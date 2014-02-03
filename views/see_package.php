@@ -1,14 +1,12 @@
 <?php
 session_start();
 if($_GET["id"]=="1"){
-$origen="Mario Urdaneta";
 $destino="Mayra Mora";
 $asunto="Artículos";
 $tipo="Doc";
 $rta="[X]";
 $localizacion="Sede Caracas";
 }elseif($_GET["id"]=="2"){
-$origen="Sandra Sánchez";
 $destino="Jose Moncada";
 $asunto="Doc. Digital";
 $tipo="Doc";
@@ -16,7 +14,6 @@ $rta="[X]";
 $localizacion="Receptor 1 sede";
 }
 elseif($_GET["id"]=="3"){
-$origen="Juan Salcedo";
 $destino="Mayra Benavides";
 $asunto="Permiso";
 $tipo="Obj";
@@ -152,12 +149,8 @@ $localizacion="Receptor 1 origen";
          <div class="tab-content" id="lista" align="center"> 
          <h2> Datos del Paquete </h2> 
        <table class='footable table table-striped table-bordered'>
-			 <tr>
-			 <td style="text-align:center" ><b>Origen</b></td>
-				 <td style="text-align:center"><?php echo $origen; ?></td>
-		     </tr>
-			 <tr>
-			 
+
+			 <tr>			 
 			 <td style="text-align:center"><b>Destino</b></td>
 				<td style="text-align:center"><?php echo $destino; ?></td>
 		     </tr>
