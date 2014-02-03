@@ -1,4 +1,10 @@
-
+<?php
+include("../recursos/funciones.php");
+	if(isset($_POST["confirma"])){
+        javaalert("EL paquete ha sido confirmado");
+		iraURL("inbox.php");
+		}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -75,21 +81,17 @@
                         
                    
 							<h3> Correspondencia    
-                     <span>SH</span> - José 
+                     <span>SH</span> - José   
                           
-                       <div class="btn-group" >
+                       <div class="btn-group" >       
                        
-                      <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" value="Correspondecia">				
-                      	<span> Documento </span>
                       </button>
                       <ul class="dropdown-menu" role="menu">
-                        <li> <a href="#">Ver Documentos</a> </li>
-                                                
-                      </ul>
-          
+                        <li> <a href="../pages/verDocumento.php">Ver Documentos</a> </li>                     
+                      </ul>                
                       </div>    
-                            </h3> 
-                    <div class="btn-group" >
+                       
+                      <div class="btn-group" >
                        
                       <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
                       	<span class="icon-cog" style="color:rgb(255,255,255)"> </span>
@@ -97,29 +99,27 @@
                        
                       </button>
                       <ul class="dropdown-menu" role="menu">
-                        <li> <a href="#">Mi Cuenta</a> </li>
-                <li>   
-      <a href="../pages/adminUsuario.php" id="idusu"  >  
-             <h5 align="center"> Administracion Usuario </h5>         
+                        <li> <a href="#">Mi Cuenta</a> </li> <li>   
+      <a href=".#" id="idusu"  > 
+             <h5 align="center"> Administracion Usuario </h5>   
           </a>
            </li> 
                         <li><a href="#">Configuración</a></li>
                         <li class="divider"></li>
-                        <li><a href="../recursos/cerrarsesion.php" onClick="">Salir</a></li>
+                        <li><a href="#">Salir</a></li>
                         <li class="divider"></li>
                         <li><a href="#">Ayuda</a></li>
                       </ul>
                       </div>
-                      
+                     </h3>   
                     
                       </div>
-                 
+                    
 						
 					</li>
 			 		
 			 	</ul>
 		   </div>
-          
           
            
 		<!--Caso pantalla uno-->
@@ -127,11 +127,9 @@
            <div class="span2">      
                        <ul class="nav nav-pills nav-stacked">
                        <li>   
-                                             <a href="#" style="text-align:center">
-                                    <?php echo "Atrás" ?>         
-                                         </a>
-                                  </li>
-                            </ul>
+                            <a href="inbox.php" style="text-align:center">Atrás</a>
+                        </li>
+                       </ul>
                      </div>
          <div class="span10">
          <div class="tab-content" id="bandeja">
@@ -165,7 +163,9 @@
   
 	 </tbody>
   	</table>
-    <div align="center"><button type="submit" class="btn" >Confirmar</button></div>
+	<form method="POST">
+	    <div align="center"><button type="submit" class="btn" name="confirma" >Confirmar</button></div>
+    </form>
 
     <p>Correspondencia hoy en el Área de Trabajo</p>
 <table class='footable table table-striped table-bordered' data-page-size='10'>    

@@ -78,11 +78,7 @@
                      <span>SH</span> - José   
                           
                        <div class="btn-group" >
-                       
-                      <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" value="Correspondecia">				
-                      	<span> Documento </span>
-                       
-                       
+       
                       </button>
                       <ul class="dropdown-menu" role="menu">
                         <li> <a href="../pages/verDocumento.php">Ver Documentos</a> </li>
@@ -169,7 +165,7 @@
                  <td style='text-align:center'>Doc</td>
                  <td style='text-align:center'>[X]</td>
                  <td style='text-align:center'>Sede Caracas</td>
-			<td style="text-align:center"><a href="#"><button class="btn"> <span class="add-on"><i class="icon-eye-open"></i> </span> Ver  </button> </td>
+			<td style="text-align:center"><a href="see_package.php?id=1"><button class="btn"> <span class="add-on"><i class="icon-eye-open"></i> </span> Ver  </button> </td>
                </tr>
                <tr>
                  <td  style='text-align:center'>Sandra Sánchez</td>
@@ -178,8 +174,7 @@
                  <td style='text-align:center'>Doc. Digital</td>
                  <td style='text-align:center'>[X]</td>
                  <td style='text-align:center'>Receptor 1 sede</td>
-                 <td style="text-align:center"><a href="#"><button class="btn"> <span class="add-on"><i class="icon-eye-open"></i> </span> Ver  </button> </td>
-
+                 <td style="text-align:center"><a href="see_package.php?id=2"><button class="btn"> <span class="add-on"><i class="icon-eye-open"></i> </span> Ver  </button> </td>
                </tr>
                <tr>
                  <td  style='text-align:center'>Juan Salcedo</td>
@@ -188,7 +183,7 @@
                  <td style='text-align:center'>Obj</td>
                  <td style='text-align:center'>[]</td>
                  <td style='text-align:center'>Receptor 1 origen</td>
-                 <td style="text-align:center"><a href="#"><button class="btn"> <span class="add-on"><i class="icon-eye-open"></i> </span> Ver  </button> </td>
+                 <td style="text-align:center"><a href="see_package.php?id=3"><button class="btn"> <span class="add-on"><i class="icon-eye-open"></i> </span> Ver  </button> </td>
 
                </tr>
              </tbody>
