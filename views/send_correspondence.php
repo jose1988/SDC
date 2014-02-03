@@ -133,7 +133,7 @@ include("../recursos/funciones.php");
         <ul class="nav nav-pills nav-stacked">
           <li> <a href="crearUsuario.php">Atrás</a> <li>
     
-        <li> <a href="entrada.php">Inicio</a> <li> 
+       
 
         </ul>
      
