@@ -82,12 +82,7 @@
                        <div class="btn-group" >
        
                       </button>
-                      <ul class="dropdown-menu" role="menu">
-                        <li> <a href="../pages/verDocumento.php">Ver Documentos</a> </li>
-                        
-                     
-                        
-                      </ul>
+                      
                      
                       
                     
@@ -139,6 +134,7 @@
         <li> <a href="recibidosPendientes.php" >  Recibidos Pendientes </a></li>
         <li> <a href="enviados.php" >  Enviados </a></li>
         <li> <a href="enviadosPendientes.php" >  Enviados Pendientes </a></li>
+         <li> <a href="reports_user.php" >  Reportes </a></li>
       
      </ul>
        <?php 
@@ -154,7 +150,7 @@
 					  <?php }
 					    if($_SESSION["Usuario"]=="empaquetador"){ ?>
 							
-					<a href="create_valise.php" ><button type="button" class="btn btn-info btn-primary" value="Realizar Valija">  Realizar Valija del usuario  </button> </a>
+					<a href="create_valise.php" ><button type="button" class="btn btn-info btn-primary" value="Realizar Valija">   Realizar Valija para enviar  </button> </a>
 						  
 					 <?php  }
 					   

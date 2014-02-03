@@ -132,8 +132,9 @@ include("../recursos/funciones.php");
       
         <ul class="nav nav-pills nav-stacked">
 
-		<li> <a href="inbox.php">Átras</a> <li>
+		<li> <a href="inbox.php">Atrás</a> <li>
         <li> <a href="confirm_valise.php">Confirmar valija</a> <li> 
+        <li> <a href="breakdown_valise.php">Recibir valija</a> <li>
         <li> <a href="valise_report.php">Reportar valija</a> <li> 
         <li> <a href="reports_valise.php">Reportes</a> <li> 
          

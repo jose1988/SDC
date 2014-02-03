@@ -131,9 +131,9 @@ include("../recursos/funciones.php");
        <div class="span2">
        
       
-        <ul class="nav nav-pills nav-stacked">
+        <ul class="nav nav-pills nav-stacked" >
 
-		<li> <a href="headquarters_operator.php">Atrás</a> <li>
+		<li style="text-align:center"> <a href="headquarters_operator.php" >Atrás</a> <li>
          
       
      </ul>

@@ -135,8 +135,8 @@ include("../recursos/funciones.php");
       
         <ul class="nav nav-pills nav-stacked">
 
-		<li> <a href="crear.php">Átras</a> <li>
-        <li> <a href="entrada.php">Crear</a> <li> 
+		<li> <a href="crear.php">Atrás</a> <li>
+        
          
       
      </ul>
@@ -161,7 +161,7 @@ include("../recursos/funciones.php");
 		     </tr>
 			 
 			 <td style="text-align:center" width="50%">Correo</td>
-				 <td style="text-align:center"><input type="text" name="correo" id="correo" maxlength="19" size="30" title="Ingrese un correo" placeholder="Ej. josefuentes@gmail.com">
+				 <td style="text-align:center"><input type="text" name="correo" id="correo" maxlength="100" size="50" title="Ingrese un correo" placeholder="Ej. josefuentes@gmail.com">
 				 <div id="Info2" style="float:right"></div>
 				 </td>		
 			 	
