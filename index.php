@@ -43,7 +43,7 @@ if (isset($_POST["Biniciar"])) {
 	iraURL('../pages/index.php');	
 	}*/
 	$_SESSION["Usuario"]=$_POST["usuario"];
-	iraURL('views/inbox.php');
+	iraURL('views/create_user.php');
 	}
 
 include("views/index.php");

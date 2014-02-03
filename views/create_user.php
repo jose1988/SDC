@@ -1,3 +1,10 @@
+<?php
+include("../recursos/funciones.php");
+	if(isset($_POST["crear"])){
+        javaalert("se ha guardado con exito");
+		iraURL("inbox.php");
+		}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -213,7 +220,9 @@
 				 <td style="text-align:center"><input type="checkbox" name="habilitado" id="habilitado" title="si no esta seleccionado estara deshabilitado" checked> </td>
 			 </tr>
 	</table><br>
-     <div class="span11" align="center"><button class="btn" id="crear_uno" name="crear_uno" type="submit">Guardar</button></div>
+    </form>
+    <form method="post">
+     <div class="span11" align="center"><button class="btn" id="crear" name="crear" type="submit">Guardar</button></div>
      <br>
     
 </form>  

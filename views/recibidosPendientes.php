@@ -147,16 +147,18 @@
        <div class="row-fluid">
        
        <div class="span2">
-       
+        <a href="send_correspondence.php" ><button type="button" class="btn btn-info " value="Redactar"> Redactar Correspondencia</button> </a>
       
+       
         <ul class="nav nav-pills nav-stacked">
-              <li> <a href="inbox.php" >  Recibidos </a></li>
+        
+        <li> <a href="inbox.php" >  Recibidos </a></li>
         <li> <a href="recibidosPendientes.php" >  Recibidos Pendientes </a></li>
         <li> <a href="enviados.php" >  Enviados </a></li>
         <li> <a href="enviadosPendientes.php" >  Enviados Pendientes </a></li>
       
      </ul>
-     
+      
       </div>
       
        <div class="span10">
