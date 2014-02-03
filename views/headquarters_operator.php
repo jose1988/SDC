@@ -85,8 +85,7 @@ include("../recursos/funciones.php");
                           
                        <div class="btn-group" >
                        
-                      <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" value="Correspondecia">				
-                      	<span> Documento </span>
+                      
                        
                        
                       </button>
@@ -136,12 +135,16 @@ include("../recursos/funciones.php");
            
 		<!--Caso pantalla uno-->
        <div class="row-fluid">
-           <div class="span2">      
+           <div class="span2"> 
+               
                        <ul class="nav nav-pills nav-stacked">
                        <li>   
                             <a href="inbox.php" style="text-align:center">Atrás</a>
                         </li>
                        </ul>
+                  
+                       <a href="create_document.php" ><button type="button" class="btn btn-info btn-primary"  id="documento" value="documento">  Establecer Documento </button> </a>
+                       
                      </div>
          <div class="span10">
          <div class="tab-content" id="bandeja">
@@ -149,6 +152,7 @@ include("../recursos/funciones.php");
 
 
 <form class="form-search">
+<h2> Recibir paquete </h2>
   Código de Correspondencia:  <input type="text" class="input-medium search-query">
   <button type="submit" class="btn">Recibir Paquete</button>
 </form>
@@ -176,7 +180,7 @@ include("../recursos/funciones.php");
 	<form method="POST">
 	    <div align="center"><button type="submit" class="btn" name="confirma" >Confirmar</button></div>
     </form>
-    <p>Correspondencia hoy en la sede</p>
+    <h2>Correspondencia hoy en la sede</h2>
 <table class='footable table table-striped table-bordered' data-page-size='10'>    
 	<thead bgcolor'#FF0000'>
 			<tr>	

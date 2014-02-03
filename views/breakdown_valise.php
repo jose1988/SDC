@@ -150,7 +150,7 @@ include("../recursos/funciones.php");
         <h2> <strong> Desglozar Valija </strong> </h2> 
        
        
-    <form class="form-Dvalija">
+    <form class="form-Dvalija" method="post">
   Código de Valija:  <input type="text" class="input-medium search-query">
   <button type="submit" class="btn">Buscar</button>
 </form>

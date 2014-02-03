@@ -1,4 +1,10 @@
-
+<?php
+include("../recursos/funciones.php");
+	if(isset($_POST["enviar"])){
+        javaalert("La Correspondecia ha sido enviada, Recuerde imprimir el comprobante");
+		iraURL("inbox.php");
+		}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -184,7 +190,11 @@
         <td>Su mensaje: </td><td><textarea  rows="10" cols= "23" id="elmsg" name="elmsg"  style="width:800px">Su comentario...</textarea><br></td>
         </tr>
         <tr>
-        <td colspan="2" align="right"><input type="submit" value="Enviar Correspondecia" name="enviar"><br></td>
+        <form method="post">
+        <td colspan="2" align="right"><input type="submit" value="Enviar Correspondecia" name="enviar"><br>
+        
+        </td>
+        </form>
         </tr>
      
     </table>

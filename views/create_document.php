@@ -133,7 +133,7 @@ include("../recursos/funciones.php");
       
         <ul class="nav nav-pills nav-stacked">
 
-		<li> <a href="crear.php">Átras</a> <li>
+		<li> <a href="headquarters_operator.php">Atrás</a> <li>
          
       
      </ul>
@@ -159,7 +159,9 @@ include("../recursos/funciones.php");
 			 
 	
 	</table><br>
+    <form method="post">
      <div class="span9" align="center"><button class="btn" id="guardar" name="guardar" type="submit">Guardar</button></div>
+     </form>
    
     </div>
     

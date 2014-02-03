@@ -128,6 +128,7 @@ include("../recursos/funciones.php");
                        <ul class="nav nav-pills nav-stacked">
                        <li>   
                             <a href="inbox.php" style="text-align:center">Atrás</a>
+                             
                         </li>
                        </ul>
                      </div>
@@ -137,6 +138,8 @@ include("../recursos/funciones.php");
 
 
 <form class="form-search">
+
+<h2>Recibir paquete</h2>
   Código de Correspondencia:  <input type="text" class="input-medium search-query">
   <button type="submit" class="btn">Recibir Paquete</button>
 </form>
@@ -167,7 +170,7 @@ include("../recursos/funciones.php");
 	    <div align="center"><button type="submit" class="btn" name="confirma" >Confirmar</button></div>
     </form>
 
-    <p>Correspondencia hoy en el Área de Trabajo</p>
+    <h2>Correspondencia hoy en el Área de Trabajo</h2>
 <table class='footable table table-striped table-bordered' data-page-size='10'>    
 	<thead bgcolor'#FF0000'>
 			<tr>	

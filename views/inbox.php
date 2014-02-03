@@ -78,25 +78,8 @@
                    
 							<h3> Correspondencia    
                      <span>SH</span> - José   
-                       
-                       <?php 
-					   if($_SESSION["Usuario"]=="operador"){ ?>
-						   
-						<a href="operator_level.php" ><button type="button" class="btn btn-info " value="Recibir paquete"> Recibir paquete </button> </a>
-						   
-					  <?php }
-					    if($_SESSION["Usuario"]=="operadorsede"){ ?>
-							
-						<a href="headquarters_operator.php" > <button type="button"class="btn btn-info "  value="Recibir paquete"> Recibir paquete</button> </a>
-						   
-					  <?php }
-					    if($_SESSION["Usuario"]=="empaquetador"){ ?>
-							
-					<a href="create_valise.php" ><button type="button" class="btn btn-info " value="Realizar Valija"> Realizar Valija</button> </a>
-						  
-					 <?php  }
-					   
-					   ?>
+                      
+                    
                        
                       <div class="btn-group" >
                        
@@ -136,8 +119,9 @@
        <div class="row-fluid">
        
        <div class="span2">
-       
+        <a href="send_correspondence.php" ><button type="button" class="btn btn-info " value="Redactar"> Redactar Correspondencia</button> </a>
       
+       
         <ul class="nav nav-pills nav-stacked">
         
         <li> <a href="inbox.php" >  Recibidos </a></li>
@@ -146,7 +130,24 @@
         <li> <a href="enviadosPendientes.php" >  Enviados Pendientes </a></li>
       
      </ul>
-     
+       <?php 
+					   if($_SESSION["Usuario"]=="operador"){ ?>
+						   
+						<a href="operator_level.php" ><button type="button" class="btn btn-info btn-primary " value="Recibir paquete">  Recibir paquete del usuario  </button> </a>
+						   
+					  <?php }
+					    if($_SESSION["Usuario"]=="operadorsede"){ ?>
+							
+						<a href="headquarters_operator.php" > <button type="button"class="btn btn-info btn-primary"  value="Recibir paquete">  Recibir paquete del usuario   </button> </a>
+						   
+					  <?php }
+					    if($_SESSION["Usuario"]=="empaquetador"){ ?>
+							
+					<a href="create_valise.php" ><button type="button" class="btn btn-info btn-primary" value="Realizar Valija">  Realizar Valija del usuario  </button> </a>
+						  
+					 <?php  }
+					   
+					   ?>
       </div>
       
        <div class="span10">

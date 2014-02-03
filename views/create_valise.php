@@ -1,3 +1,10 @@
+<?php
+include("../recursos/funciones.php");
+	if(isset($_POST["guardar"])){
+        javaalert("La valija ha sido creada correctamente");
+		iraURL("inbox.php");
+		}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -278,7 +285,9 @@
   	</table>
        
     
- 
+ <form method="POST">
+	    <div align="center"><button type="submit" class="btn" id="guardar" name="guardar" >Crear Valija</button></div>
+    </form>
            
            </div>
       
