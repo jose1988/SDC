@@ -1,3 +1,26 @@
+<?php
+//función que direcciona a una pagina especifica
+function iraURL($url){
+	$ini='<script language="javascript">
+				window.location = "';
+	$fin='"; </script>';	
+	echo $ini.$url.$fin;
+}
+
+//alertas
+function javaalert($msj){
+	$ini='<script language="javascript">	alert("';
+	$fin='"); </script>';
+	echo $ini.$msj.$fin;
+}
+
+
+if(isset($_POST["reenviar"]) || isset($_POST["reportar"])){
+	javaalert('Solicitud Procesada con Exito');
+	iraURL('../views/inbox.php');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -81,10 +104,6 @@
                         		<span>SH</span> - <?php echo "José"; ?>
                                 
                           			<div class="btn-group">
-                                    
-                       					<button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" value="Correspondecia">				
-                      						<span>Documento</span>                       
-                      					</button>
                                         
                       					<ul class="dropdown-menu" role="menu">
                         					<li> <a href="../pages/verDocumento.php">Ver Documentos</a> </li>
@@ -126,7 +145,7 @@
             <div class="span2">      
         		<ul class="nav nav-pills nav-stacked">
                 	<li>   
-      					<a href="#" style="text-align:center">
+      					<a href="inbox.php" style="text-align:center">
              			<?php echo "Atrás" ?>         
           				</a>
            			</li>
@@ -134,33 +153,27 @@
       		</div>
       
 			<div class="span10">
-            
-       			<div class="tab-content" id="bandeja">
-                <strong> <h2>Paquete Excedente</h2> </strong>
-                
-                <div align="center">
-                	<form class="form-search">
-  						Código de Correspondencia:  <input type="text" class="input-medium search-query">
-  						<button type="submit" class="btn">Reenviar</button>
-					</form>
-                </div>               
-       		  </div>
+            	<form class="form-search" method="post">
+       				<div class="tab-content" id="bandeja">
+                		<strong> <h2>Paquete Excedente</h2> </strong>                
+                		<div align="center">
+  							Código de Correspondencia:  <input type="text" class="input-medium search-query">
+  							<button type="submit" class="btn" id="reenviar" name="reenviar" >Reenviar</button>
+                		</div>               
+       		  		</div>
               
-              <div class="tab-content" id="bandeja"> 
-              <strong> <h2>Ausencia de Paquete</h2> </strong>
-              
-              <div align="center">
-                <form class="form-search">
-                	Por favor detalle el error de la valija, e indique los datos de los paquetes faltantes
-  					<textarea rows="10" cols="23" id="reporte" name="reporte" style="width:600px">Detalle...</textarea>
-                    <br>
-                    <br>
-  					<button type="submit" class="btn">Reportar</button>
+              		<div class="tab-content" id="bandeja"> 
+              			<strong> <h2>Ausencia de Paquete</h2> </strong>              
+              			<div align="center">
+                			Por favor detalle el error de la valija, e indique los datos de los paquetes faltantes
+  							<textarea rows="10" cols="23" id="reporte" name="reporte" style="width:600px">Detalle...</textarea>
+                    		<br>
+                    		<br>
+  							<button type="submit" class="btn"  id="reportar" name="reportar">Reportar</button>			
+              			</div>
+              		</div>	  
 				</form>
-              </div>
-              </div>
-      		</div>	  
-
+			</div>
     	</div>
 	
     </div>

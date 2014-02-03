@@ -82,10 +82,6 @@
                                 
                           			<div class="btn-group">
                                     
-                       					<button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" value="Correspondecia">				
-                      						<span>Documento</span>                       
-                      					</button>
-                                        
                       					<ul class="dropdown-menu" role="menu">
                         					<li> <a href="../pages/verDocumento.php">Ver Documentos</a> </li>
                       					</ul>
@@ -126,7 +122,7 @@
             <div class="span2">      
         		<ul class="nav nav-pills nav-stacked">
                 	<li>   
-      					<a href="#" style="text-align:center">
+      					<a href="inbox.php" style="text-align:center">
              			<?php echo "Atrás" ?>         
           				</a>
            			</li>
