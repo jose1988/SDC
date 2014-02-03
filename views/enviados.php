@@ -171,6 +171,7 @@
                  <th style='width:7%; text-align:center' data-sort-ignore="true">Asunto </th>
                  <th style='width:7%; text-align:center' >Tipo</th>
                  <th style='width:7%; text-align:center' >Con Respuesta</th>
+				 <th style='width:7%; text-align:center' >Fecha</th>
                  <th style='width:7%; text-align:center' data-sort-ignore="true">Localización</th>
                  <th style='width:7%; text-align:center' data-sort-ignore="true">Ver más</th>
 
@@ -183,6 +184,7 @@
                  <td style='text-align:center'>Artículos</td>
                  <td style='text-align:center'>Doc</td>
                  <td style='text-align:center'>[X]</td>
+				 <td style='text-align:center'>03/02/2014</td>
                  <td style='text-align:center'><p>Mayra Mora</p></td>
 			<td style="text-align:center"><a href="see_package.php?id=1"><button class="btn"> <span class="add-on"><i class="icon-eye-open"></i> </span> Ver  </button> </td>
                </tr>
@@ -192,6 +194,7 @@
                  <td style='text-align:center'>Entregas</td>
                  <td style='text-align:center'>Doc. Digital</td>
                  <td style='text-align:center'>[X]</td>
+				 <td style='text-align:center'>03/02/2014</td>
                  <td style='text-align:center'>Jose Moncada</td>
                  <td style="text-align:center"><a href="see_package.php?id=2"><button class="btn"> <span class="add-on"><i class="icon-eye-open"></i> </span> Ver  </button> </td>
                </tr>
@@ -201,6 +204,7 @@
                  <td style='text-align:center'>Permiso</td>
                  <td style='text-align:center'>Obj</td>
                  <td style='text-align:center'>[]</td>
+				 <td style='text-align:center'>03/02/2014</td>
                  <td style='text-align:center'>Mayra Benavides</td>
                  <td style="text-align:center"><a href="see_package.php?id=3"><button class="btn"> <span class="add-on"><i class="icon-eye-open"></i> </span> Ver  </button> </td>
 
