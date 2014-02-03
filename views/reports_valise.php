@@ -237,7 +237,7 @@
                 }
             },
             series: [{
-                name: 'Prcesadas',
+                name: 'Procesadas',
                 data: [25.5, 35.5, 39]
     
             }, {
