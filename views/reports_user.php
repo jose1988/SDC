@@ -132,15 +132,16 @@
 			<div class="span10">
             
        			<div class="tab-content" id="bandeja">
-                <strong> <h2 align="center">Reporte Enviados</h2> </strong>
+                <strong> <h2 align="center">Reporte Enviados por Hoy</h2> </strong>
                 
                 <table class='footable table table-striped table-bordered' data-page-size='5'>
         		<thead bgcolor'#FF0000'>
         			<tr>
             			<th style="text-align:center">Destino</th>
                 		<th style="text-align:center" data-sort-ignore="true">Asunto</th>
-                		<th style="text-align:center" data-sort-ignore="true">Con Respuesta</th>
                         <th style="text-align:center" data-sort-ignore="true">Localización</th>
+                        <th style="text-align:center" data-sort-ignore="true">Fecha</th>
+                		<th style="text-align:center" data-sort-ignore="true">Con Respuesta</th>                        
            		 	</tr>
         		</thead>
                 
@@ -148,29 +149,33 @@
         			<tr>
             			<td style="text-align:center">José Moncada</td>
               			<td style="text-align:center">Facturas</td>
-                		<td style="text-align:center">[X]</td>
                         <td style="text-align:center">Recepción Sede</td>
+                        <td style="text-align:center">03/02/2014</td>
+                		<td style="text-align:center">[X]</td>                        
             		</tr>
                     
             		<tr>
             			<td style="text-align:center">Pedro Peréz</td>
               			<td style="text-align:center">Entregas</td>
-                		<td style="text-align:center">[]</td>
                         <td style="text-align:center">Recepción 1</td>
+                        <td style="text-align:center">03/02/2014</td>
+                		<td style="text-align:center">[]</td>                        
             		</tr>
                     
             		<tr>
             			<td style="text-align:center">María Mora</td>
               			<td style="text-align:center">Artículos</td>
-                		<td style="text-align:center">[]</td>
                         <td style="text-align:center">Zoom</td>
+                        <td style="text-align:center">03/02/2014</td>
+                		<td style="text-align:center">[]</td>                        
                     </tr>
                     
              		<tr>
             			<td style="text-align:center">Sandra Sanchez</td>
               			<td style="text-align:center">Permiso</td>
-                		<td style="text-align:center">[X]</td>
                         <td style="text-align:center">Recepción Sede Destino</td>
+                        <td style="text-align:center">03/02/2014</td>
+                		<td style="text-align:center">[X]</td>                        
             		</tr>
                     
          		</tbody>
