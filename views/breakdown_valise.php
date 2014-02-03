@@ -1,3 +1,10 @@
+<?php
+include("../recursos/funciones.php");
+	if(isset($_POST["guardar"])){
+        javaalert("Ha sido confimada la entrega de la valija");
+		iraURL("inbox.php");
+		}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -126,9 +133,9 @@
       
         <ul class="nav nav-pills nav-stacked">
 
-		<li> <a href="crearUsuario.php">Átras</a> <li>
+		<li> <a href="inbox.php">Atrás</a> <li>
     
-        <li> <a href="entrada.php">Reportar Valija</a> <li> 
+        <li> <a href="valise_report.php">Reportar Valija</a> <li> 
          
       
      </ul>
@@ -212,7 +219,9 @@
 				
         
        
-        
+       <form method="POST">
+	    <div align="center"><button type="submit" class="btn" name="guardar" >Confirmar entrega</button></div>
+    </form> 
         
 	</div>
 	

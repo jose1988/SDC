@@ -1,3 +1,10 @@
+<?php
+include("../recursos/funciones.php");
+	if(isset($_POST["guardar"])){
+        javaalert("La valija ha sido confimada");
+		iraURL("inbox.php");
+		}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -161,7 +168,7 @@
       </div>	
  
     	</div>
-        <button class="btn btn-large btn-info" type="submit" name="Biniciar">Guardar</button>
+        <button class="btn btn-large btn-info" type="submit" name="guardar">Guardar</button>
       		</form>
      </div>
      		

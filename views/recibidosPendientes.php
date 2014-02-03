@@ -78,7 +78,20 @@
                    
 							<h3> Correspondencia    
                      <span>SH</span> - José   
-                       
+                          
+                       <div class="btn-group" >
+       
+                      </button>
+                      <ul class="dropdown-menu" role="menu">
+                        <li> <a href="../pages/verDocumento.php">Ver Documentos</a> </li>
+                        
+                     
+                        
+                      </ul>
+                     
+                      
+                    
+                      </div>    
                        <?php 
 					   if($_SESSION["Usuario"]=="operador"){ ?>
 						   
@@ -97,7 +110,7 @@
 					 <?php  }
 					   
 					   ?>
-                       
+                          
                       <div class="btn-group" >
                        
                       <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
@@ -117,10 +130,8 @@
                         <li class="divider"></li>
                         <li><a href="#">Ayuda</a></li>
                       </ul>
-                     
-                     </h3>
-                     
-                        
+                      </div>
+                     </h3>   
                     
                       </div>
                     
@@ -139,8 +150,7 @@
        
       
         <ul class="nav nav-pills nav-stacked">
-        
-        <li> <a href="inbox.php" >  Recibidos </a></li>
+              <li> <a href="inbox.php" >  Recibidos </a></li>
         <li> <a href="recibidosPendientes.php" >  Recibidos Pendientes </a></li>
         <li> <a href="enviados.php" >  Enviados </a></li>
         <li> <a href="enviadosPendientes.php" >  Enviados Pendientes </a></li>
@@ -150,54 +160,58 @@
       </div>
       
        <div class="span10">
-
-         <div class="tab-content" id="bandeja"><strong><h2> Recibidos </h2></strong>
-           <table class='footable table table-striped table-bordered' data-page-size='10'>    
-	<thead bgcolor'#FF0000'>
-			<tr>	
-            	
-                 <th style='width:7%; text-align:center' >Origen</th>
+         <div class="tab-content" id="bandeja"><strong>
+           <h2> Enviados Pendientes </h2>
+           </strong>
+           <table class='footable table table-striped table-bordered' data-page-size='10'>
+             <thead bgcolor'#ff0000'>
+               <tr>
+                 
+                 <th style='width:7%; text-align:center' >Destino</th>
                  <th style='width:7%; text-align:center' data-sort-ignore="true">Asunto </th>
                  <th style='width:7%; text-align:center' >Tipo</th>
                  <th style='width:7%; text-align:center' >Con Respuesta</th>
-                 <th style='width:7%; text-align:center' data-sort-ignore="true">Ver máse</th>
+                 <th style='width:7%; text-align:center' data-sort-ignore="true">Localización</th>
+                 <th style='width:7%; text-align:center' data-sort-ignore="true">Ver más</th>
 
-            </tr>
-		</thead>
-        <tbody>
-        	<tr>     
-					<td style='text-align:center'>Mayra Mora</td>
-					<td style='text-align:center'>Artículos</td>
-                    <td style='text-align:center'>Doc</td>
-                      <td style='text-align:center'>[X]</td>    
-                       <td style="text-align:center"><a href="#"><button class="btn"> <span class="add-on"><i class="icon-eye-open"></i> </span> Ver  </button> </td>
+               </tr>
+             </thead>
+             <tbody>
+               <tr>
+                
+                 <td style='text-align:center'>Mayra Mora</td>
+                 <td style='text-align:center'>Artículos</td>
+                 <td style='text-align:center'>Doc</td>
+                 <td style='text-align:center'>[X]</td>
+                 <td style='text-align:center'>Sede Caracas</td>
+			<td style="text-align:center"><a href="see_package.php?id=1"><button class="btn"> <span class="add-on"><i class="icon-eye-open"></i> </span> Ver  </button> </td>
+               </tr>
+               <tr>
+                 
+                 <td style='text-align:center'>Jose Moncada</td>
+                 <td style='text-align:center'>Entregas</td>
+                 <td style='text-align:center'>Doc. Digital</td>
+                 <td style='text-align:center'>[X]</td>
+                 <td style='text-align:center'>Receptor 1 sede</td>
+                 <td style="text-align:center"><a href="see_package.php?id=2"><button class="btn"> <span class="add-on"><i class="icon-eye-open"></i> </span> Ver  </button> </td>
+               </tr>
+               <tr>
+              
+                 <td style='text-align:center'>Mayra Benavides</td>
+                 <td style='text-align:center'>Permiso</td>
+                 <td style='text-align:center'>Obj</td>
+                 <td style='text-align:center'>[]</td>
+                 <td style='text-align:center'>Receptor 1 origen</td>
+                 <td style="text-align:center"><a href="see_package.php?id=3"><button class="btn"> <span class="add-on"><i class="icon-eye-open"></i> </span> Ver  </button> </td>
 
-            </tr>
-            <tr>     
-					<td style='text-align:center'>Jose Moncada</td>
-					<td style='text-align:center'>Entregas</td>
-                    <td style='text-align:center'>Doc. Digital</td>
-                      <td style='text-align:center'>[X]</td>   
-                    <td style="text-align:center"><a href="#"><button class="btn"> <span class="add-on"><i class="icon-eye-open"></i> </span> Ver  </button> </td>
-
-            </tr>
-            <tr>    
-					<td style='text-align:center'>Mayra Benavides</td>
-					<td style='text-align:center'>Permiso</td>
-                    <td style='text-align:center'>Obj</td>
-                      <td style='text-align:center'>[]</td>  
-                    
-                  <td style="text-align:center"><a href="#"><button class="btn"> <span class="add-on"><i class="icon-eye-open"></i> </span> Ver  </button> </td>
-
-            </tr>
-	 </tbody>
-  	</table>
-	<ul id="pagination" class="footable-nav"><span>Pag:</span></ul>
-           
-           </div>
-      
-       
-      </div>	  
+               </tr>
+             </tbody>
+           </table>
+           <ul id="pagination" class="footable-nav">
+             <span>Pag:</span>
+           </ul>
+         </div>
+       </div>	  
 
     	</div>
     

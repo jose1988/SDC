@@ -1,3 +1,10 @@
+<?php
+include("../recursos/funciones.php");
+	if(isset($_POST["guardar"])){
+        javaalert("EL documento ha sido guardado");
+		iraURL("inbox.php");
+		}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -152,7 +159,7 @@
 			 
 	
 	</table><br>
-     <div class="span9" align="center"><button class="btn" id="crear_uno" name="crear_uno" type="submit">Guardar</button></div>
+     <div class="span9" align="center"><button class="btn" id="guardar" name="guardar" type="submit">Guardar</button></div>
    
     </div>
     

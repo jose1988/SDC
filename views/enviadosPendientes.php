@@ -1,4 +1,6 @@
-
+<?php
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -90,7 +92,24 @@
                       
                     
                       </div>    
-                      
+                       <?php 
+					   if($_SESSION["Usuario"]=="operador"){ ?>
+						   
+						<a href="operator_level.php" ><button type="button" class="btn btn-info " value="Recibir paquete"> Recibir paquete </button> </a>
+						   
+					  <?php }
+					    if($_SESSION["Usuario"]=="operadorsede"){ ?>
+							
+						<a href="headquarters_operator.php" > <button type="button"class="btn btn-info "  value="Recibir paquete"> Recibir paquete</button> </a>
+						   
+					  <?php }
+					    if($_SESSION["Usuario"]=="empaquetador"){ ?>
+							
+					<a href="create_valise.php" ><button type="button" class="btn btn-info " value="Realizar Valija"> Realizar Valija</button> </a>
+						  
+					 <?php  }
+					   
+					   ?>
                           
                       <div class="btn-group" >
                        
@@ -131,10 +150,10 @@
        
       
         <ul class="nav nav-pills nav-stacked">
-             <li> <a href="#" >  Recibidos </a></li>
-             <li> <a href="#" >  Recibidos Pendientes </a></li>
-             <li> <a href="#" >  Enviados </a></li>
-             <li> <a href="#" >  Enviados Pendientes </a></li>
+              <li> <a href="inbox.php" >  Recibidos </a></li>
+        <li> <a href="recibidosPendientes.php" >  Recibidos Pendientes </a></li>
+        <li> <a href="enviados.php" >  Enviados </a></li>
+        <li> <a href="enviadosPendientes.php" >  Enviados Pendientes </a></li>
       
      </ul>
      
@@ -147,7 +166,7 @@
            <table class='footable table table-striped table-bordered' data-page-size='10'>
              <thead bgcolor'#ff0000'>
                <tr>
-                 <th style='width:7%; text-align:center'>Origen</th>
+                 
                  <th style='width:7%; text-align:center' >Destino</th>
                  <th style='width:7%; text-align:center' data-sort-ignore="true">Asunto </th>
                  <th style='width:7%; text-align:center' >Tipo</th>
@@ -159,7 +178,7 @@
              </thead>
              <tbody>
                <tr>
-                 <td style='text-align:center'>Mario Urdaneta</td>
+               
                  <td style='text-align:center'>Mayra Mora</td>
                  <td style='text-align:center'>Artículos</td>
                  <td style='text-align:center'>Doc</td>
@@ -168,7 +187,7 @@
 			<td style="text-align:center"><a href="see_package.php?id=1"><button class="btn"> <span class="add-on"><i class="icon-eye-open"></i> </span> Ver  </button> </td>
                </tr>
                <tr>
-                 <td  style='text-align:center'>Sandra Sánchez</td>
+                
                  <td style='text-align:center'>Jose Moncada</td>
                  <td style='text-align:center'>Entregas</td>
                  <td style='text-align:center'>Doc. Digital</td>
@@ -177,7 +196,7 @@
                  <td style="text-align:center"><a href="see_package.php?id=2"><button class="btn"> <span class="add-on"><i class="icon-eye-open"></i> </span> Ver  </button> </td>
                </tr>
                <tr>
-                 <td  style='text-align:center'>Juan Salcedo</td>
+                 
                  <td style='text-align:center'>Mayra Benavides</td>
                  <td style='text-align:center'>Permiso</td>
                  <td style='text-align:center'>Obj</td>
