@@ -1,4 +1,6 @@
-
+<?php
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -76,26 +78,26 @@
                    
 							<h3> Correspondencia    
                      <span>SH</span> - José   
-                          
-                       <div class="btn-group" >
                        
-                      <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" value="Correspondecia">				
-                      	<span> Documento </span>
+                       <?php 
+					   if($_SESSION["Usuario"]=="operador"){ ?>
+						   
+						<a href="operator_level.php" ><button type="button" class="btn btn-info " value="Recibir paquete"> Recibir paquete </button> </a>
+						   
+					  <?php }
+					    if($_SESSION["Usuario"]=="operadorsede"){ ?>
+							
+						<a href="headquarters_operator.php" > <button type="button"class="btn btn-info "  value="Recibir paquete"> Recibir paquete</button> </a>
+						   
+					  <?php }
+					    if($_SESSION["Usuario"]=="empaquetador"){ ?>
+							
+					<a href="create_valise.php" ><button type="button" class="btn btn-info " value="Realizar Valija"> Realizar Valija</button> </a>
+						  
+					 <?php  }
+					   
+					   ?>
                        
-                       
-                      </button>
-                      <ul class="dropdown-menu" role="menu">
-                        <li> <a href="../pages/verDocumento.php">Ver Documentos</a> </li>
-                        
-                     
-                        
-                      </ul>
-                     
-                      
-                    
-                      </div>    
-                      
-                          
                       <div class="btn-group" >
                        
                       <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
@@ -115,8 +117,10 @@
                         <li class="divider"></li>
                         <li><a href="#">Ayuda</a></li>
                       </ul>
-                      </div>
-                     </h3>   
+                     
+                     </h3>
+                     
+                        
                     
                       </div>
                     
@@ -135,10 +139,11 @@
        
       
         <ul class="nav nav-pills nav-stacked">
-             <li> <a href="#" >  Recibidos </a></li>
-             <li> <a href="#" >  Recibidos Pendientes </a></li>
-             <li> <a href="#" >  Enviados </a></li>
-             <li> <a href="#" >  Enviados Pendientes </a></li>
+        
+        <li> <a href="inbox.php" >  Recibidos </a></li>
+        <li> <a href="recibidosPendientes.php" >  Recibidos Pendientes </a></li>
+        <li> <a href="enviados.php" >  Enviados </a></li>
+        <li> <a href="enviadosPendientes.php" >  Enviados Pendientes </a></li>
       
      </ul>
      

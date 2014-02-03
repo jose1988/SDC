@@ -1,17 +1,17 @@
 <?php
 session_start();
-try{
-include("../recursos/funciones.php");
-require_once('../lib/nusoap.php');
+//try{
+include("recursos/funciones.php");
+require_once('lib/nusoap.php');
 
-if(isset($_SESSION["Usuario"])){
+/*if(isset($_SESSION["Usuario"])){
 	
 	eliminarSesion();
-	}
+	}*/
 
 if (isset($_POST["Biniciar"])) {
    
-  $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
+ /* $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
   $client = new SOAPClient($wsdl_url);
   $client->decode_utf8 = false; 
   $Usuario= array('user' => $_POST["usuario"]);
@@ -41,8 +41,11 @@ if (isset($_POST["Biniciar"])) {
   } catch (Exception $e) {
 	javaalert('Lo sentimos no hay conexión');
 	iraURL('../pages/index.php');	
+	}*/
+	$_SESSION["Usuario"]=$_POST["usuario"];
+	iraURL('views/inbox.php');
 	}
 
-include("../views/index.php");
+include("views/index.php");
  
 ?>
