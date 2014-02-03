@@ -161,7 +161,8 @@
                  <th style='width:7%; text-align:center' data-sort-ignore="true">Asunto </th>
                  <th style='width:7%; text-align:center' >Tipo</th>
                  <th style='width:7%; text-align:center' >Con Respuesta</th>
-                 <th style='width:7%; text-align:center' data-sort-ignore="true">Ver máse</th>
+				 <th style='width:7%; text-align:center'>Fecha</th>
+                 <th style='width:7%; text-align:center' data-sort-ignore="true">Ver más</th>
 
             </tr>
 		</thead>
@@ -170,7 +171,8 @@
 					<td style='text-align:center'>Mayra Mora</td>
 					<td style='text-align:center'>Artículos</td>
                     <td style='text-align:center'>Doc</td>
-                      <td style='text-align:center'>[X]</td>    
+                      <td style='text-align:center'>[X]</td> 
+					  <td style='text-align:center'>03/02/2014</td>
                        <td style="text-align:center"><a href="#"><button class="btn"> <span class="add-on"><i class="icon-eye-open"></i> </span> Ver  </button> </td>
 
             </tr>
@@ -178,7 +180,8 @@
 					<td style='text-align:center'>Jose Moncada</td>
 					<td style='text-align:center'>Entregas</td>
                     <td style='text-align:center'>Doc. Digital</td>
-                      <td style='text-align:center'>[X]</td>   
+                      <td style='text-align:center'>[X]</td>  
+					  <td style='text-align:center'>03/02/2014</td>
                     <td style="text-align:center"><a href="#"><button class="btn"> <span class="add-on"><i class="icon-eye-open"></i> </span> Ver  </button> </td>
 
             </tr>
@@ -187,7 +190,7 @@
 					<td style='text-align:center'>Permiso</td>
                     <td style='text-align:center'>Obj</td>
                       <td style='text-align:center'>[]</td>  
-                    
+                    <td style='text-align:center'>03/02/2014</td>
                   <td style="text-align:center"><a href="#"><button class="btn"> <span class="add-on"><i class="icon-eye-open"></i> </span> Ver  </button> </td>
 
             </tr>
