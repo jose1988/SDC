@@ -132,7 +132,7 @@
 			<div class="span10">
             
        			<div class="tab-content" id="bandeja">
-                <strong> <h2>Reporte de Valijas</h2> </strong>
+                <strong> <h2 align="center">Reporte de Valijas</h2> </strong>
                 
                 <table class='footable table table-striped table-bordered' data-page-size='5'>
         		<thead bgcolor'#FF0000'>

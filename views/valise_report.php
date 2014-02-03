@@ -155,7 +155,7 @@ if(isset($_POST["reenviar"]) || isset($_POST["reportar"])){
 			<div class="span10">
             	<form class="form-search" method="post">
        				<div class="tab-content" id="bandeja">
-                		<strong> <h2>Paquete Excedente</h2> </strong>                
+                		<strong> <h2 align="center">Paquete Excedente</h2> </strong>                
                 		<div align="center">
   							Código de Correspondencia:  <input type="text" class="input-medium search-query">
   							<button type="submit" class="btn" id="reenviar" name="reenviar" >Reenviar</button>
@@ -163,7 +163,7 @@ if(isset($_POST["reenviar"]) || isset($_POST["reportar"])){
        		  		</div>
               
               		<div class="tab-content" id="bandeja"> 
-              			<strong> <h2>Ausencia de Paquete</h2> </strong>              
+              			<strong> <h2 align="center">Ausencia de Paquete</h2> </strong>              
               			<div align="center">
                 			Por favor detalle el error de la valija, e indique los datos de los paquetes faltantes
   							<textarea rows="10" cols="23" id="reporte" name="reporte" style="width:600px">Detalle...</textarea>
