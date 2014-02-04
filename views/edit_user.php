@@ -155,12 +155,12 @@ include("../recursos/funciones.php");
              
               <tr>
 			 
-			 <td style="text-align:center">Telefono 1</td>
+			 <td style="text-align:center">Teléfono 1</td>
 				<td style="text-align:center"><input type="tel" name="telefono1" id="telefono1" value="04245463213" maxlength="19" size="30" title="Ingrese el numero de telefono" placeholder="Ej. 04269876543"   required></td>
 		     </tr>
               <tr>
 			 
-			 <td style="text-align:center">Telefono 2</td>
+			 <td style="text-align:center">Teléfono 2</td>
 				<td style="text-align:center"><input type="tel" name="telefono2" id="telefono2" value="02123565789" maxlength="19" size="30" placeholder="Ej. 04168674789"  ></td>
 		     </tr>
               <tr>
