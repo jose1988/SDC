@@ -103,7 +103,7 @@ if (isset($_POST["guardar"])) {
                     </ul>
                 </div>
 
-                <div class="span10" align="center">
+                <div class="span10">
                     <div class="tab-content" id="lista">
                         <h2> <strong> Realizar Valija </strong> </h2>
                         <form class="form-Cvalija">
