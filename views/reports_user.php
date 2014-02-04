@@ -104,6 +104,7 @@
                       					</ul>
                                         
                       				</div>
+                                     </h3>
            
 		<!--Caso pantalla uno-->
 		<div class="row-fluid">
@@ -187,7 +188,7 @@
 	<div id="footer" class="container">    	
 	</div>
     
- </div>
+
     
 <script src="../js/footable.js" type="text/javascript"></script>
 <script src="../js/footable.paginate.js" type="text/javascript"></script>

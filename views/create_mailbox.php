@@ -101,10 +101,9 @@ include("../recursos/funciones.php");
                         					<li class="divider"></li>
                         					<li><a href="#">Ayuda</a></li>
                       					</ul>
-                                        
+                                       
                       				</div>
-                                     </h3>
-          
+          </h3>
           
            
 		<!--Caso pantalla uno-->
