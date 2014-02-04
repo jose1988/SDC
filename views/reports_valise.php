@@ -103,7 +103,8 @@
                         					<li><a href="#">Ayuda</a></li>
                       					</ul>
                                         
-                      				</div>>         
+                      				</div>
+                                     </h3>         
            
 		<!--Caso pantalla uno-->
 		<div class="row-fluid">
@@ -179,7 +180,7 @@
 	<div id="footer" class="container">    	
 	</div>
     
- </div>
+
 
     
 <script src="../js/footable.js" type="text/javascript"></script>

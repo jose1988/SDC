@@ -125,8 +125,9 @@ if(isset($_POST["reenviar"]) || isset($_POST["reportar"])){
                         					<li class="divider"></li>
                         					<li><a href="#">Ayuda</a></li>
                       					</ul>
-                                        
+                                           
                       				</div>
+                               </h3>  
            
 		<!--Caso pantalla uno-->
 		<div class="row-fluid">
@@ -165,13 +166,13 @@ if(isset($_POST["reenviar"]) || isset($_POST["reportar"])){
 			</div>
     	</div>
 	
-    </div>
+    
 	
     <!-- /container -->
 	<div id="footer" class="container">    	
 	</div>
     
- </div>
+
     
 <script src="../js/footable.js" type="text/javascript"></script>
 <script src="../js/footable.paginate.js" type="text/javascript"></script>

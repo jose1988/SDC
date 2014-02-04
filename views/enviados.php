@@ -105,6 +105,7 @@
                       					</ul>
                                         
                       				</div>
+                                    </h3>
           
            
 		<!--Caso pantalla uno-->
@@ -210,7 +211,7 @@
 	</div>
 
     
- </div>
+ 
 
     
     

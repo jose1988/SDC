@@ -76,7 +76,7 @@ include("../recursos/funciones.php");
 			 
 	    <div>
 			 	<ul class="nav nav-pills">
-			 		<li class="pull-left">
+<li class="pull-left">
 			 			<div class="modal-header">
                         
                    
@@ -105,9 +105,10 @@ include("../recursos/funciones.php");
                         					<li class="divider"></li>
                         					<li><a href="#">Ayuda</a></li>
                       					</ul>
+                                    
                                         
-                      				</div>
-          
+           				  </div>
+           </h3>
            
 		<!--Caso pantalla uno-->
        <div class="row-fluid">
@@ -118,7 +119,7 @@ include("../recursos/funciones.php");
                              
                         </li>
                        </ul>
-                     </div>
+         </div>
          <div class="span10">
          <div class="tab-content" id="bandeja">
        
@@ -197,16 +198,14 @@ include("../recursos/funciones.php");
 </div>
 
           
-           </div>
+         </div>
       
        
       </div>	  
 
     	</div>
     
-	</div>
-	
-    <!-- /container -->
+	<!-- /container -->
 	<div id="footer" class="container">    	
 	</div>
 
