@@ -127,6 +127,27 @@ include("../recursos/funciones.php");
        
  <form id="formulario" method="post">      
          <div class="tab-content" id="lista" align="center"> 
+         
+         <h2> Seleccione la Sede:
+         
+         <select id="sede" name="sede"  required  title="Seleccione la Tipo de usuario">
+                  <option value="" style="display:none">Seleccionar:</option> 
+				<option> Caracas</option>
+            <option> San Cristóbal  </option>
+            <option> Maracay </option>
+            <option> Valencia</option>
+            <option> Barinas </option>
+                 </select>
+                 Seleccione el Usuario:
+                 <select id="usuario" name="usuario"  required  title="Seleccione la Tipo de usuario">
+                  <option value="" style="display:none">Seleccionar:</option> 
+				<option> Mayra Benavidez</option>
+            <option> Jose Moncada  </option>
+            <option> Pedro Perez </option>
+            <option> Maria Sanchez</option>
+            <option> Juliana Contreras </option>
+                 </select>
+         <h2>
          <h2> Datos del usuario</h2> 
        <table class='footable table table-striped table-bordered'>
 			 <tr>
@@ -146,13 +167,7 @@ include("../recursos/funciones.php");
 			 	
 			 </tr>
 			
-			 <tr>
-			 
-			 <td style="text-align:center" width="50%">Usuario</td>
-				 <td style="text-align:center"><input type="text" name="usuario" id="usuario" maxlength="19" size="30" title="Ingrese el nombre de usuario" placeholder="Ej.   " required>
-				 <div id="Info" style="float:right"></div>
-				 </td>		
-			 </tr>
+			
 			  <tr>
 			
              
@@ -169,35 +184,18 @@ include("../recursos/funciones.php");
               <tr>
 			 
 			 <td style="text-align:center">Dirección 1</td>
-				<td style="text-align:center"><textarea style="width:500px;"   id="elmsg" name="elmsg"  style="width:800px" ></textarea></td>
+				<td style="text-align:center"><textarea style="width:500px;"   id="elmsg" name="elmsg"  style="width:800px" ></textarea>
+                Seleccionar: <input type="checkbox" name="habilitado" id="habilitado" title="si no esta seleccionado estara deshabilitado" checked> 
+                </td>
 		     </tr>
               <tr>
 			 
 			 <td style="text-align:center">Dirección 2</td>
-				<td style="text-align:center"><textarea style="width:500px;" id="elmsg" name="elmsg"  style="width:800px"></textarea></td>
+				<td style="text-align:center"><textarea style="width:500px;" id="elmsg" name="elmsg"  style="width:800px"></textarea>
+                 Seleccionar: <input type="checkbox" name="habilitado" id="habilitado" title="si no esta seleccionado estara deshabilitado" ></td>
 		     </tr>
-             
-             
-             
-             
-			 <tr> 
-			<td style="text-align:center">Tipo de Usuario</th>
-				 <td style="text-align:center"><select id="clasificacion" name="clasificacion"  required  title="Seleccione la Tipo de usuario">
-                  <option value="" style="display:none">Seleccionar:</option> 
-				<option> Adminstrador</option>
-            <option> Operador nivel 1  </option>
-            <option> Operador nivel 2</option>
-            <option> Operador nivel 3</option>
-            <option> Usuario </option>
-                 </select></td>
-			 </tr>
-             
-             
-			 <tr> 
-			 
-			<td style="text-align:center">Habilitado</th>
-				 <td style="text-align:center"><input type="checkbox" name="habilitado" id="habilitado" title="si no esta seleccionado estara deshabilitado" checked> </td>
-			 </tr>
+        
+            
 	</table><br>
     </form>
     <form method="post">
