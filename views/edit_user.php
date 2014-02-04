@@ -1,7 +1,7 @@
 <?php
 include("../recursos/funciones.php");
 	if(isset($_POST["crear"])){
-        javaalert("se ha guardado con éxito");
+        javaalert("se ha guardado con exito");
 		iraURL("inbox.php");
 		}
 ?>
@@ -103,6 +103,7 @@ include("../recursos/funciones.php");
                       					</ul>
                                         
                       				</div>
+                                     </h3>
           
           
            
@@ -113,19 +114,15 @@ include("../recursos/funciones.php");
        
       
         <ul class="nav nav-pills nav-stacked">
-
-		<li> <a href="crear.php">Atrás</a> <li>
-        
-         
-      
-     </ul>
+		<li> <a href="inbox.php">Atrás</a> <li>  
+        </ul>
      
       </div>
       
        <div class="span10" align="center">
        
        
- <form id="formulario" method="post">      
+<form id="formulario" method="post">      
          <div class="tab-content" id="lista" align="center"> 
          <h2> Datos del Usuario </h2> 
        <table class='footable table table-striped table-bordered'>
