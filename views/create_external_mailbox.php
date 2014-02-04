@@ -1,7 +1,7 @@
 <?php
 include("../recursos/funciones.php");
 if (isset($_POST["crear"])) {
-    javaalert("se ha guardado con exito");
+    javaalert("Se ha guardado con exito");
     iraURL("inbox.php");
 }
 ?>
@@ -48,10 +48,7 @@ if (isset($_POST["crear"])) {
 
     </head>
 
-
-
     <body class="appBg">
-
         <div id="header">
             <div class="container header-top-top hidden-phone">
                 <img alt="" src="../images/header-top-top-left.png" class="pull-left">
@@ -76,13 +73,14 @@ if (isset($_POST["crear"])) {
                     <ul class="nav nav-pills">
                         <li class="pull-left">
                             <div class="modal-header">
-                                <h3>Correspondecia<span>SH</span> - José
+                                <h3>Correspondencia 
+                                    <span>SH</span> - José
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
                                             <span class="icon-cog" style="color:rgb(255,255,255)"> </span>
                                         </button>
                                         <ul class="dropdown-menu" role="menu">                 
-                                            <li><a href="#">editar usuario</a></li>
+                                            <li><a href="#">Editar Usuario</a></li>
                                             <li class="divider"></li>
                                             <li><a href="../recursos/cerrarsesion.php" onClick="">Salir</a></li>
                                             <li class="divider"></li>
@@ -102,9 +100,9 @@ if (isset($_POST["crear"])) {
                         </ul>
                     </div>
 
-                    <div class="span10" align="center">       
-                        <form id="formulario" method="post">      
-                            <div class="tab-content" id="lista" align="center"> 
+                    <div class="span10" align="center">
+                        <div class="tab-content" id="lista" align="center"> 
+                            <form id="formulario" method="post">                            
                                 <h2> Datos del Usuario </h2> 
                                 <table class='footable table table-striped table-bordered'>
                                     <tr>
@@ -140,12 +138,10 @@ if (isset($_POST["crear"])) {
                                     </tr>
                                 </table>
                                 <br>
-                                </form>
-                                <form method="post">
-                                    <div class="span11" align="center"><button class="btn" id="crear" name="crear" type="submit">Guardar</button></div>
-                                    <br>
-                                </form>
-                            </div>
+                                <div class="span11" align="center"><button class="btn" id="crear" name="crear" type="submit">Guardar</button></div>
+                                <br>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
