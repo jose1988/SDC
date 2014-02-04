@@ -118,12 +118,8 @@ if(isset($_POST["reenviar"]) || isset($_POST["reportar"])){
                                         </button>
                                         
                       					<ul class="dropdown-menu" role="menu">                                        
-             								<li><a href="../pages/verCuenta.php?id=<?php echo $_SESSION["Usuario"]->return->idusu ?>">Mi Cuenta</a> </li>
-                         					<li><a href="../pages/adminUsuario.php" id="idusu">           
-             									<h5 align="center"> Administracion Usuario </h5>
-                                                </a>
-           									</li>
-                        					<li><a href="#">Configuración</a></li>
+             								
+                        					<li><a href="#">editar usuario</a></li>
                         					<li class="divider"></li>
                         					<li><a href="../recursos/cerrarsesion.php" onClick="">Salir</a></li>
                         					<li class="divider"></li>
@@ -131,13 +127,6 @@ if(isset($_POST["reenviar"]) || isset($_POST["reportar"])){
                       					</ul>
                                         
                       				</div>
-                                   
-                                   </h3>
-                                                   
-                      			</div>
-							</li>			 		
-			 			</ul>
-		   			</div>         
            
 		<!--Caso pantalla uno-->
 		<div class="row-fluid">
