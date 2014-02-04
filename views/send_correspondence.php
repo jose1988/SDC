@@ -69,9 +69,7 @@ include("../recursos/funciones.php");
 		</div>
 	</div>
 
-	<div id="middle">
-	
-	  <div class="container app-container">
+	<div class="container app-container">
 			 
 			 
 	    <div>
@@ -80,11 +78,12 @@ include("../recursos/funciones.php");
 			 			<div class="modal-header">
                         
                    
-							<h3>Correspondecia<span>SH</span> - José
-                          
-                          
-                          
-                     <div class="btn-group">
+							<h3> Correspondencia    
+                     <span>SH</span> <?php echo "- José" ?>   
+                      
+                    
+                       
+                      <div class="btn-group">
                       					
                                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
                       						<span class="icon-cog" style="color:rgb(255,255,255)"> </span>
@@ -100,10 +99,11 @@ include("../recursos/funciones.php");
                       					</ul>
                                         
                       				</div>
-           </h3>
-          
-           
-		<!--Caso pantalla uno-->
+                                     </h3>
+            				</div>
+           			 </li>
+           	 </ul>
+          </div><!--Caso pantalla uno-->
        <div class="row-fluid">
        
        <div class="span2">

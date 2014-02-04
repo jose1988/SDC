@@ -65,9 +65,7 @@
 		</div>
 	</div>
 
-	<div id="middle">
-	
-	  <div class="container app-container">
+	<div id="middle"><div class="container app-container">
 			 
 			 
 	    <div>
@@ -77,23 +75,10 @@
                         
                    
 							<h3> Correspondencia    
-                     <span>SH</span> - José   
-                          
-                       <div class="btn-group" >
-       
-                      </button>
-                      <ul class="dropdown-menu" role="menu">
-                        <li> <a href="../pages/verDocumento.php">Ver Documentos</a> </li>
-                        
-                     
-                        
-                      </ul>
-                     
+                     <span>SH</span> <?php echo "- José" ?>   
                       
                     
-                      </div>    
-                      
-                          
+                       
                       <div class="btn-group">
                       					
                                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
@@ -110,8 +95,11 @@
                       					</ul>
                                         
                       				</div>
-          
-          </h3>
+                                     </h3>
+            				</div>
+           			 </li>
+           	 </ul>
+          </div>
            
 		<!--Caso pantalla uno-->
        <div class="row-fluid">

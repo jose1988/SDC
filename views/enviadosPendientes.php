@@ -65,9 +65,7 @@
 		</div>
 	</div>
 
-	<div id="middle">
-	
-	  <div class="container app-container">
+	<div id="middle"><div class="container app-container">
 			 
 			 
 	    <div>
@@ -77,24 +75,10 @@
                         
                    
 							<h3> Correspondencia    
-                     <span>SH</span> - José   
-                          
-                       <div class="btn-group" >
-       
-                      </button>
-                      <ul class="dropdown-menu" role="menu">
-                        <li> <a href="../pages/verDocumento.php">Ver Documentos</a> </li>
-                        
-                     
-                        
-                      </ul>
-                     
+                     <span>SH</span> <?php echo "- José" ?>   
                       
                     
-                      </div>    
-                    
-                          
-                      <div class="btn-group" >
+                       
                       <div class="btn-group">
                       					
                                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
@@ -112,6 +96,10 @@
                                         
                       				</div>
                                      </h3>
+            				</div>
+           			 </li>
+           	 </ul>
+          </div>
            
 		<!--Caso pantalla uno-->
        <div class="row-fluid">
@@ -142,7 +130,7 @@
 					  <?php }
 					    if($_SESSION["Usuario"]=="empaquetador"){ ?>
 							
-					<a href="create_valise.php" ><button type="button" class="btn btn-info btn-primary" value="Realizar Valija">  Realizar Valija   </button> </a>
+					<a href="create_valise.php" ><button type="button" class="btn btn-info btn-primary" value="Realizar Valija">  Realizar Valija para enviar    </button> </a>
 						  
 					 <?php  }
 					   

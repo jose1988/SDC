@@ -77,19 +77,11 @@
                         
                    
 							<h3> Correspondencia    
-                     <span>SH</span> - José   
-                          
-                       <div class="btn-group" >
-       
-                      </button>
-                      
-                     
+                     <span>SH</span> <?php echo "- José" ?>   
                       
                     
-                      </div>    
-                      
                        
-                     <div class="btn-group">
+                      <div class="btn-group">
                       					
                                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
                       						<span class="icon-cog" style="color:rgb(255,255,255)"> </span>
@@ -105,10 +97,11 @@
                       					</ul>
                                         
                       				</div>
-                                    </h3>
-          
-           
-		<!--Caso pantalla uno-->
+                                     </h3>
+            				</div>
+           			 </li>
+           	 </ul>
+          </div><!--Caso pantalla uno-->
        <div class="row-fluid">
        
       <div class="span2">

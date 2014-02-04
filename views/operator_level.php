@@ -69,29 +69,21 @@ include("../recursos/funciones.php");
 		</div>
 	</div>
 
-	<div id="middle">
-	
-	  <div class="container app-container">
+	<div id="middle"><div class="container app-container">
 			 
 			 
 	    <div>
 			 	<ul class="nav nav-pills">
-<li class="pull-left">
+			 		<li class="pull-left">
 			 			<div class="modal-header">
                         
                    
 							<h3> Correspondencia    
-                     <span>SH</span> - José   
-                          
-                       <div class="btn-group" >       
+                     <span>SH</span> <?php echo "- José" ?>   
+                      
+                    
                        
-                      </button>
-                      <ul class="dropdown-menu" role="menu">
-                        <li> <a href="../pages/verDocumento.php">Ver Documentos</a> </li>                     
-                      </ul>                
-                      </div>    
-                       
-                    <div class="btn-group">
+                      <div class="btn-group">
                       					
                                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
                       						<span class="icon-cog" style="color:rgb(255,255,255)"> </span>
@@ -105,10 +97,13 @@ include("../recursos/funciones.php");
                         					<li class="divider"></li>
                         					<li><a href="#">Ayuda</a></li>
                       					</ul>
-                                    
                                         
-           				  </div>
-           </h3>
+                      				</div>
+                                     </h3>
+            				</div>
+           			 </li>
+           	 </ul>
+          </div>
            
 		<!--Caso pantalla uno-->
        <div class="row-fluid">

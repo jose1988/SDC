@@ -72,9 +72,7 @@ include("../recursos/funciones.php");
 		</div>
 	</div>
 
-	<div id="middle">
-	
-	  <div class="container app-container">
+	<div class="container app-container">
 			 
 			 
 	    <div>
@@ -83,11 +81,12 @@ include("../recursos/funciones.php");
 			 			<div class="modal-header">
                         
                    
-							<h3>Correspondecia<span>SH</span> - José
-                          
-                          
-                          
-                     <div class="btn-group">
+							<h3> Correspondencia    
+                     <span>SH</span> <?php echo "- José" ?>   
+                      
+                    
+                       
+                      <div class="btn-group">
                       					
                                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
                       						<span class="icon-cog" style="color:rgb(255,255,255)"> </span>
@@ -101,12 +100,13 @@ include("../recursos/funciones.php");
                         					<li class="divider"></li>
                         					<li><a href="#">Ayuda</a></li>
                       					</ul>
-                                       
+                                        
                       				</div>
-          </h3>
-          
-           
-		<!--Caso pantalla uno-->
+                                     </h3>
+            				</div>
+           			 </li>
+           	 </ul>
+          </div><!--Caso pantalla uno-->
        <div class="row-fluid">
        
        <div class="span2">
@@ -114,7 +114,7 @@ include("../recursos/funciones.php");
       
         <ul class="nav nav-pills nav-stacked">
 
-		<li> <a href="crear.php">Atrás</a> <li>
+		<li> <a href="send_correspondence.php">Atrás</a> <li>
         
          
       
@@ -127,7 +127,7 @@ include("../recursos/funciones.php");
        
  <form id="formulario" method="post">      
          <div class="tab-content" id="lista" align="center"> 
-         <h2> Datos del Usuario </h2> 
+         <h2> Datos del usuario</h2> 
        <table class='footable table table-striped table-bordered'>
 			 <tr>
 			 <td style="text-align:center" >Nombre</td>

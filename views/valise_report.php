@@ -90,28 +90,20 @@ if(isset($_POST["reenviar"]) || isset($_POST["reportar"])){
 	<div id="middle">
     
 		<div class="container app-container">
-        
-      		<div>
-            
-        		<ul class="nav nav-pills">
-                
-					<li class="pull-left">
-                    
+			 
+			 
+	    <div>
+			 	<ul class="nav nav-pills">
+			 		<li class="pull-left">
 			 			<div class="modal-header">
-                                          
-                    		<h3>Correspondencia
-                            
-                        		<span>SH</span> - <?php echo "José"; ?>
-                                
-                          			<div class="btn-group">
-                                        
-                      					<ul class="dropdown-menu" role="menu">
-                        					<li> <a href="../pages/verDocumento.php">Ver Documentos</a> </li>
-                      					</ul>
-                                        
-                      				</div>
-                                               
-                      				<div class="btn-group">
+                        
+                   
+							<h3> Correspondencia    
+                     <span>SH</span> <?php echo "- José" ?>   
+                      
+                    
+                       
+                      <div class="btn-group">
                       					
                                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
                       						<span class="icon-cog" style="color:rgb(255,255,255)"> </span>
@@ -125,9 +117,13 @@ if(isset($_POST["reenviar"]) || isset($_POST["reportar"])){
                         					<li class="divider"></li>
                         					<li><a href="#">Ayuda</a></li>
                       					</ul>
-                                           
+                                        
                       				</div>
-                               </h3>  
+                                     </h3>
+            				</div>
+           			 </li>
+           	 </ul>
+          </div>  
            
 		<!--Caso pantalla uno-->
 		<div class="row-fluid">

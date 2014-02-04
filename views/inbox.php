@@ -77,7 +77,7 @@
                         
                    
 							<h3> Correspondencia    
-                     <span>SH</span> - José   
+                     <span>SH</span> <?php echo "- José" ?>   
                       
                     
                        
@@ -98,7 +98,12 @@
                                         
                       				</div>
                                      </h3>
-          
+            				</div>
+           			 </li>
+           	 </ul>
+          </div>
+        
+         
            
 		<!--Caso pantalla uno-->
        <div class="row-fluid">
@@ -191,8 +196,7 @@
 
     	</div>
     
-	</div>
-	
+		
     <!-- /container -->
 	<div id="footer" class="container">    	
 	</div>
