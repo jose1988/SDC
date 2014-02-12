@@ -37,10 +37,10 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
   }else{
 	$reg=0;  
   }
-  // echo '<pre>';
- //	print_r( $Bandeja );
+   echo '<pre>';
+ print_r( $Bandeja );
 	
- // echo '<pre>';
+  echo '<pre>';
           
           echo "<h2> <strong>".$aux."</h2> </strong>";
           
@@ -54,12 +54,15 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
        echo "<br>";
 	echo "<table class='footable table table-striped table-bordered' align='center' data-page-size='10'>
     	<thead bgcolor'#FF0000'>
-			<tr>
-				
-            	<th style='width:7%; text-align:center''>De</th>
-                <th style='width:7%; text-align:center''>Para</th>
-				<th style='width:7%; text-align:center''>Asunto </th>
-				 <th style='width:7%; text-align:center''>Fecha</th>
+			<tr>	
+            	
+                 <th style='width:7%; text-align:center' >Origen</th>
+                 <th style='width:7%; text-align:center' data-sort-ignore='true'>Asunto </th>
+                 <th style='width:7%; text-align:center' >Tipo</th>
+                 <th style='width:7%; text-align:center' >Con Respuesta</th>
+				 <th style='width:7%; text-align:center'>Fecha</th>
+                 <th style='width:7%; text-align:center' data-sort-ignore='true'>Ver más</th>
+
             </tr>
 		</thead>
         <tbody>

@@ -108,20 +108,39 @@
 		<!--Caso pantalla uno-->
        <div class="row-fluid">
        
-       <div class="span2">
-        <a href="send_correspondence.php" ><button type="button" class="btn btn-info " value="Redactar"> Redactar Correspondencia</button> </a>
-      
+     <div class="span2">
        
+      
         <ul class="nav nav-pills nav-stacked">
+
+
+         <?php 
+		 $i=0;
+		  while($i<$reg){
+			$aux=$BandejaUsu->return[$i]->nombreiba;
+				?>
+             <li>   
+      <a href="javascript:;" id="<?php echo $aux ?>" onClick="Bandeja(<?php echo "'".$aux."'" ?>);" >  
+             
+             <?php echo ($BandejaUsu->return[$i]->nombreiba); ?> 
+             <span class="badge pull-right">42</span>   
+            
+         
+          </a>
+           </li>
         
-        <li> <a href="inbox.php" >  Recibidos </a></li>
-        <li> <a href="recibidosPendientes.php" >  Recibidos Pendientes </a></li>
-        <li> <a href="enviados.php" >  Enviados </a></li>
-        <li> <a href="enviadosPendientes.php" >  Enviados Pendientes </a></li>
-        <li> <a href="reports_user.php" >  Reportes </a></li>
+         
+          <?php
+			 
+		  $i++;
+		   }
+		    
+		  ?>
       
      </ul>
-       <?php 
+     
+      
+      <?php /*
 					   if($_SESSION["Usuario"]=="operador"){ ?>
 						   
 						<a href="operator_level.php" ><button type="button" class="btn btn-info btn-primary " value="Recibir paquete">  Recibir paquete del usuario  </button> </a>
@@ -138,55 +157,13 @@
 						  
 					 <?php  }
 					   
-					   ?>
+					   */?>
       </div>
       
        <div class="span10">
 
          <div class="tab-content" id="bandeja"><strong><h2> Recibidos </h2></strong>
-           <table class='footable table table-striped table-bordered' data-page-size='10'>    
-	<thead bgcolor'#FF0000'>
-			<tr>	
-            	
-                 <th style='width:7%; text-align:center' >Origen</th>
-                 <th style='width:7%; text-align:center' data-sort-ignore="true">Asunto </th>
-                 <th style='width:7%; text-align:center' >Tipo</th>
-                 <th style='width:7%; text-align:center' >Con Respuesta</th>
-				 <th style='width:7%; text-align:center'>Fecha</th>
-                 <th style='width:7%; text-align:center' data-sort-ignore="true">Ver más</th>
-
-            </tr>
-		</thead>
-        <tbody>
-        	<tr>     
-					<td style='text-align:center'>Mayra Mora</td>
-					<td style='text-align:center'>Artículos</td>
-                    <td style='text-align:center'>Doc</td>
-                      <td style='text-align:center'>[X]</td> 
-					  <td style='text-align:center'>03/02/2014</td>
-                       <td style="text-align:center"><a href="#"><button class="btn"> <span class="add-on"><i class="icon-eye-open"></i> </span> Ver  </button> </td>
-
-            </tr>
-            <tr>     
-					<td style='text-align:center'>Jose Moncada</td>
-					<td style='text-align:center'>Entregas</td>
-                    <td style='text-align:center'>Doc. Digital</td>
-                      <td style='text-align:center'>[X]</td>  
-					  <td style='text-align:center'>03/02/2014</td>
-                    <td style="text-align:center"><a href="#"><button class="btn"> <span class="add-on"><i class="icon-eye-open"></i> </span> Ver  </button> </td>
-
-            </tr>
-            <tr>    
-					<td style='text-align:center'>Mayra Benavides</td>
-					<td style='text-align:center'>Permiso</td>
-                    <td style='text-align:center'>Obj</td>
-                      <td style='text-align:center'>[]</td>  
-                    <td style='text-align:center'>03/02/2014</td>
-                  <td style="text-align:center"><a href="#"><button class="btn"> <span class="add-on"><i class="icon-eye-open"></i> </span> Ver  </button> </td>
-
-            </tr>
-	 </tbody>
-  	</table>
+          
 	<ul id="pagination" class="footable-nav"><span>Pag:</span></ul>
            
            </div>
@@ -200,9 +177,43 @@
     <!-- /container -->
 	<div id="footer" class="container">    	
 	</div>
+ <script>
+	
+	
+	function Bandeja(idban){
+			
+			 var parametros = {
 
+                "idban" : idban
+       		 };
+			 
+
+		
+			$.ajax({
+           	type: "POST",
+           	url: "../ajax/bandejas.php",
+           	data: parametros,
+           	dataType: "text",
+			success:  function (response) {
+            	$("#bandeja").html(response);
+			}
+		
+	    }); 
+		
+		
+	}
+	
+	
+	</script>
     
+    <script>
+window.onload = function(){killerSession();}
 
+function killerSession(){
+setTimeout("window.open('../recursos/cerrarsesion.php','_top');",300000);
+}
+    
+</script>
 
     
     
