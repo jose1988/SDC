@@ -1,10 +1,4 @@
-<?php
-include("../recursos/funciones.php");
-if (isset($_POST["enviar"])) {
-    javaalert("La Correspondecia ha sido enviada, Recuerde imprimir el comprobante");
-    iraURL("inbox.php");
-}
-?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -15,15 +9,16 @@ if (isset($_POST["enviar"])) {
         <meta name="author" content="">
 
         <!-- javascript -->
-        <script type='text/javascript' src="../js/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="../js/jquery-1.9.1.js" ></script> 
         <script type='text/javascript' src="../js/bootstrap.js"></script>
         <script type='text/javascript' src="../js/bootstrap-transition.js"></script>
         <script type='text/javascript' src="../js/bootstrap-tooltip.js"></script>
         <script type='text/javascript' src="../js/modernizr.min.js"></script>
-<!--<script type='text/javascript' src="../js/togglesidebar.js"></script>-->	
         <script type='text/javascript' src="../js/custom.js"></script>
         <script type='text/javascript' src="../js/jquery.fancybox.pack.js"></script>
-
+<!-- javascript para el funcionamiento del calendario -->
+<link rel="stylesheet" type="text/css" href="../js/ui-lightness/jquery-ui-1.10.3.custom.css" media="all" />
+<script type="text/javascript" src="../js/jquery-ui-1.10.3.custom.js" ></script> 
         <!-- styles -->
         <link href="../css/bootstrap.css" rel="stylesheet">
         <link href="../css/bootstrap-combined.min.css" rel="stylesheet">
@@ -44,7 +39,49 @@ if (isset($_POST["enviar"])) {
         <link href="../css/footable-0.1.css" rel="stylesheet" type="text/css" />
         <link href="../css/footable.sortable-0.1.css" rel="stylesheet" type="text/css" />
         <link href="../css/footable.paginate.css" rel="stylesheet" type="text/css" />
-    </head>
+ <script>
+  $(function() {
+	$.datepicker.regional['es'] = {
+		clearText: 'Limpiar', clearStatus: '',
+		closeText: 'Cerrar', closeStatus: '',
+		prevText: '&#x3c;Ant', prevStatus: '',
+		prevBigText: '&#x3c;&#x3c;', prevBigStatus: '',
+		nextText: 'Sig&#x3e;', nextStatus: '',
+		nextBigText: '&#x3e;&#x3e;', nextBigStatus: '',
+		currentText: 'Hoy', currentStatus: '',
+		monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
+		'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+		monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun',
+		'Jul','Ago','Sep','Oct','Nov','Dic'],
+		monthStatus: '', yearStatus: '',
+		weekHeader: 'Sm', weekStatus: '',
+		dayNames: ['Domingo','Lunes','Martes','Mi&eacute;rcoles','Jueves','Viernes','S&aacute;bado'],
+		dayNamesShort: ['Dom','Lun','Mar','Mi&eacute;','Juv','Vie','S&aacute;b'],
+		dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','S&aacute;'],
+		dayStatus: 'DD', dateStatus: 'D, M d',
+		dateFormat: 'dd/mm/yy', firstDay: 0, 
+		initStatus: '', isRTL: false};
+		$("#datepickerf").datepicker();
+		$("#datepicker").datepicker({
+		minDate: 3,
+		onClose: function (selectedDate) {
+		  var date = $(this).datepicker('getDate');
+            if (date) {
+                  date.setDate(date.getDate() + 1);
+            }
+		$("#datepickerf").datepicker("option", "minDate", date);
+		
+		}
+		});
+
+	$.datepicker.setDefaults($.datepicker.regional['es']); 
+	$.datepickerf.setDefaults($.datepicker.regional['es']); 
+
+ 
+  });
+  
+  </script>
+		</head>
 
     <body class="appBg">
         <div id="header">
@@ -90,6 +127,7 @@ if (isset($_POST["enviar"])) {
                 </ul>
             </div>
             <!--Caso pantalla uno-->
+			 <form method="post">
             <div class="row-fluid">
                 <div class="span2">
                     <ul class="nav nav-pills nav-stacked">
@@ -103,57 +141,73 @@ if (isset($_POST["enviar"])) {
                     <div class="tab-content" id="Correspondecia">
                         <table> 
                             <tr>
-                                <td>Para:</td><td><input type="text" id="nombr" name="nombr" value="" maxlength="200" size="100" style="width:800px"><br></td>
+                                <td>Para:</td><td>
+								<input id="contacto" name="contacto" type="text" list="suggests" style="width:800px" title="Ingrese el nombre de usuario"  autofocus required>								
+									<datalist id="suggests">
+									<?php 
+									for($i=0;$i<count($rowContactos->return);$i++){
+									echo '<option value="'.$rowContactos->return[$i]->idusubuz->userusu.'">';
+									}
+									?>
+									</datalist>
+								<br></td>
+						   </tr>
+                            <tr>
+                                <td>Asunto:</td><td><input type="text" id="asunto" name="asunto" value="" maxlength="50"  size="100" style="width:800px" title="Ingrese el asunto"  required><br></td>
                             </tr>
                             <tr>
-                                <td>Asunto:</td><td><input type="text" id="elcorreo" name="elcorreo" value="" maxlength="50"  size="100" style="width:800px"><br></td>
-                            </tr>
-                            <tr>
-                                <td>Tipo Doc:</td><td><select name="tipos">
-                                        <option> Documento</option>
-                                        <option> Objetos </option>
-                                        <option> Articulos </option>
-                                        <option> Material </option>
+                                <td>Tipo Doc:</td><td><select name="doc" required  title="Seleccione el tipo de documento">
+								   <option value="" style="display:none">Seleccionar:</option>
+
+								    <?php 
+									for($i=0;$i<count($rowDocumentos->return);$i++){
+									echo '<option value="'.$rowDocumentos->return[$i]->iddoc.'">'.$rowDocumentos->return[$i]->nombredoc.'</option>';
+									}
+									?>
+       
                                     </select><br></td>
                             </tr>
                             <tr>
-                                <td>Prioridad:</td><td><select name="tipos">
-                                        <option> Importante</option>
-                                        <option> Alta </option>
-                                        <option> Normal </option>
-                                        <option> Baja </option>
+                                <td>Prioridad:</td><td><select name="prioridad" required  title="Seleccione la prioridad">
+								<option value="" style="display:none">Seleccionar:</option>                                  
+								  <?php 
+									for($i=0;$i<count($rowPrioridad->return);$i++){
+									echo '<option value="'.$rowPrioridad->return[$i]->idpri.'">'.$rowPrioridad->return[$i]->nombrepri.'</option>';
+									}
+									?>
                                     </select><br></td>
                             </tr>
                             <tr>
                                 <td></td><td>
-                                    Fecha de alerta: <input type="date" name="fechahora">
-                                    Fecha de limite: <input type="date" name="fechahora2">
-                                    <br></td>
+								Fecha de alerta:<input type="text" id="datepicker" name="datepicker" style="width:100px" title="Seleccione la fecha de alerta" required/> 
+					        	Fecha de límite:<input type="text" id="datepickerf" name="datepickerf" style="width:100px" title="Seleccione la fecha límite" required/>
+								<br></td>
                             </tr>
                             <tr>
                                 <td>Imagen (opcional):</td><td>
-
                                     <FORM method="POST" ENCTYPE="multipart/form-data" action="cargar.php">
                                         <INPUT type=hidden name=MAX_FILE_SIZE >
                                         <INPUT type=file name="nom_del_archivo">
                                         <!--<INPUT type=submit value="enviar"> -->
-                                    </FORM><br>
+                                   </FORM>
                                 </td>
                             </tr>
                             <tr>
-                                <td>Su mensaje: </td><td><textarea  rows="10" cols= "23" id="elmsg" name="elmsg"  style="width:800px">Su comentario...</textarea><br></td>
+                             <td>Su mensaje: </td><td><textarea  rows="10" cols= "23" id="elmsg" name="elmsg"  style="width:800px" title="Ingrese un comentario" required="required">Su comentario...</textarea><br></td>
                             </tr>
-                            <tr>
-                            <form method="post">
+							<tr>
+                             <td>Con Respuesta: </td><td><input type="checkbox" name="rta" id="rta" title="Seleccione si desea con respuesta" checked="checked"></td>
+                            </tr>
+                            <tr>          
                                 <td colspan="2" align="right"><input type="submit" value="Enviar Correspondecia" name="enviar"><br>
                                 </td>
-                            </form>
                             </tr>
+							
                         </table>
                     </div>
                 </div>
             </div>
-
+ </form>
             <!-- /container -->
             <div id="footer" class="container">    	
             </div>
@@ -175,25 +229,6 @@ if (isset($_POST["enviar"])) {
 
 
             }
-        </script>
-        <script>
-            window.onload = function() {
-                killerSession();
-            }
-
-            function killerSession() {
-                setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
-            }
-        </script>
-
-        <script src="../js/footable.js" type="text/javascript"></script>
-        <script src="../js/footable.paginate.js" type="text/javascript"></script>
-        <script src="../js/footable.sortable.js" type="text/javascript"></script>
-
-        <script type="text/javascript">
-            $(function() {
-                $('table').footable();
-            });
         </script>
     </body>
 </html>
