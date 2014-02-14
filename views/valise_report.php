@@ -1,26 +1,3 @@
-<?php
-
-//función que direcciona a una pagina especifica
-function iraURL($url) {
-    $ini = '<script language="javascript">
-				window.location = "';
-    $fin = '"; </script>';
-    echo $ini . $url . $fin;
-}
-
-//alertas
-function javaalert($msj) {
-    $ini = '<script language="javascript">	alert("';
-    $fin = '"); </script>';
-    echo $ini . $msj . $fin;
-}
-
-if (isset($_POST["reenviar"]) || isset($_POST["reportar"])) {
-    javaalert('Solicitud Procesada con Exito');
-    iraURL('../views/inbox.php');
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -78,7 +55,8 @@ if (isset($_POST["reenviar"]) || isset($_POST["reportar"])) {
                 </div>
                 <div class="filter-area">
                     <div class="container">					
-                        <span lang="es">&nbsp;</span></div>
+                        <span lang="es">&nbsp;</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -126,19 +104,20 @@ if (isset($_POST["reenviar"]) || isset($_POST["reportar"])) {
                             <div class="tab-content" id="bandeja">
                                 <strong> <h2 align="center">Paquete Excedente</h2> </strong>                
                                 <div align="center">
-                                    Código de Correspondencia:  <input type="text" class="input-medium search-query">
-                                    <button type="submit" class="btn" id="reenviar" name="reenviar" >Reenviar</button>
+                                    Código de Correspondencia:  
+                                    <input type="text" id="cPaquete" name="cPaquete" class="input-medium search-query">
+                                    <button type="submit" class="btn" id="reportarPaqExc" name="reportarPaqExc">Reenviar</button>
+                                    <h6>(El paquete será reenviado a su destino)</h6>
                                 </div>               
                             </div>
-                            <div class="tab-content" id="bandeja"> 
-                                <strong> <h2 align="center">Ausencia de Paquete</h2> </strong>              
+                            <div class="tab-content" id="bandeja">
+                                <strong> <h2 align="center">Valija Errada</h2> </strong>                
                                 <div align="center">
-                                    Por favor detalle el error de la valija, e indique los datos de los paquetes faltantes
-                                    <textarea rows="10" cols="23" id="reporte" name="reporte" style="width:600px">Detalle...</textarea>
-                                    <br>
-                                    <br>
-                                    <button type="submit" class="btn"  id="reportar" name="reportar">Reportar</button>			
-                                </div>
+                                    Código de Valija:  
+                                    <input type="text" id="cValija" name="cValija" class="input-medium search-query">
+                                    <button type="submit" class="btn" id="reportarValija" name="reportarValija">Reenviar</button>
+                                    <h6>(La valija será reenviada a su destino)</h6>
+                                </div>               
                             </div>	  
                         </form>
                     </div>

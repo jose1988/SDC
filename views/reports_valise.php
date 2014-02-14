@@ -120,20 +120,7 @@
                                         <td style="text-align:center">03/02/2014</td>
                                         <td style="text-align:center">[]</td>
                                     </tr>
-                                    <tr>
-                                        <td style="text-align:center">María Mora</td>
-                                        <td style="text-align:center">Sandra Sanchez</td>
-                                        <td style="text-align:center">Obj</td>
-                                        <td style="text-align:center">03/02/2014</td>
-                                        <td style="text-align:center">[]</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align:center">Sandra Sanchez</td>
-                                        <td style="text-align:center">José Moncada</td>
-                                        <td style="text-align:center">Doc Dig</td>
-                                        <td style="text-align:center">03/02/2014</td>
-                                        <td style="text-align:center">[X]</td>
-                                    </tr>
+                                                                       
                                 </tbody>
                             </table>
                             <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>

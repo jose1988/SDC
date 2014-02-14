@@ -57,7 +57,8 @@
 
                 <div class="filter-area">
                     <div class="container">					
-                        <span lang="es">&nbsp;</span></div>
+                        <span lang="es">&nbsp;</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -102,6 +103,16 @@
 
                     <div class="span10">
                         <div class="tab-content" id="bandeja">
+            			<?php             
+                        //Verificando que este vacio o sea null
+						if(!isset($resultadoConsultarPaquetes->return)){
+							echo '<div class="alert alert-block" align="center">';
+   							echo '<h2 style="color:rgb(255,255,255)" align="center">Atención</h2>';
+   							echo '<h4 align="center">No Existen Registros de Reportes Enviados por Hoy</h4>';
+							echo '</div>';
+						}
+    					//Si existen registros muestro la tabla
+						else{ ?>                        
                             <strong> <h2 align="center">Reporte Enviados por Hoy</h2> </strong>
                             <table class='footable table table-striped table-bordered' data-page-size='5'>
                                 <thead bgcolor='#FF0000'>
@@ -113,38 +124,73 @@
                                         <th style="text-align:center" data-sort-ignore="true">Con Respuesta</th>                        
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td style="text-align:center">José Moncada</td>
-                                        <td style="text-align:center">Facturas</td>
-                                        <td style="text-align:center">Recepción Sede</td>
-                                        <td style="text-align:center">03/02/2014</td>
-                                        <td style="text-align:center">[X]</td>                        
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align:center">Pedro Peréz</td>
-                                        <td style="text-align:center">Entregas</td>
-                                        <td style="text-align:center">Recepción 1</td>
-                                        <td style="text-align:center">03/02/2014</td>
-                                        <td style="text-align:center">[]</td>                        
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align:center">María Mora</td>
-                                        <td style="text-align:center">Artículos</td>
-                                        <td style="text-align:center">Zoom</td>
-                                        <td style="text-align:center">03/02/2014</td>
-                                        <td style="text-align:center">[]</td>                        
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align:center">Sandra Sanchez</td>
-                                        <td style="text-align:center">Permiso</td>
-                                        <td style="text-align:center">Recepción Sede Destino</td>
-                                        <td style="text-align:center">03/02/2014</td>
-                                        <td style="text-align:center">[X]</td>                        
-                                    </tr>
+                                <tbody>                                	
+                                    
+                                    <?php if($paquetes>1){
+										for($i=0;$i<$paquetes;$i++){
+										?>
+                                        	<tr>
+                                        		<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return[$i]->idpaq->destinopaq->nombreusu?></td>
+                                                 <?php 
+												if(!isset($resultadoConsultarPaquetes->return[$i]->idpaq->asuntopaq)){
+												?>
+                                                	<td style="text-align:center"><?php echo ""?></td>
+                                                <?php }
+												else{?>
+                                        		<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return[$i]->idpaq->asuntopaq?></td>
+                                                <?php
+												}
+												if(!isset($resultadoConsultarPaquetes->return[$i]->idpaq->localizacionpaq)){
+												?>
+                                                	<td style="text-align:center"><?php echo ""?></td>
+                                                <?php }
+												else{?>
+                                        		<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return[$i]->idpaq->localizacionpaq?></td>												<?php }?>
+                                        		<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return[$i]->idpaq->fechaenviopaq?></td>
+                                                 <?php 
+												if(isset($resultadoConsultarPaquetes->return[$i]->idpaq->localizacionpaq)=='0'){
+												?>
+                                                	<td style="text-align:center"><?php echo ""?></td>
+                                                <?php }
+												else{?>
+                                        		<td style="text-align:center"><?php echo "[X]"?></td>
+                                                <?php }?>
+                                        	</tr>
+                                    <?php }
+									}
+									else{ ?>
+											<tr>
+                                        		<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return->idpaq->destinopaq->nombreusu?></td>
+                                                 <?php 
+												if(!isset($resultadoConsultarPaquetes->return->idpaq->asuntopaq)){
+												?>
+                                                	<td style="text-align:center"><?php echo ""?></td>
+                                                <?php }
+												else{?>
+                                        		<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return->idpaq->asuntopaq?></td>
+                                                <?php
+												}
+												if(!isset($resultadoConsultarPaquetes->return->idpaq->localizacionpaq)){
+												?>
+                                                	<td style="text-align:center"><?php echo ""?></td>
+                                                <?php }
+												else{?>
+                                        		<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return->idpaq->localizacionpaq?></td>												<?php }?>
+                                        		<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return->idpaq->fechaenviopaq?></td>
+                                                 <?php 
+												if(isset($resultadoConsultarPaquetes->return->idpaq->localizacionpaq)=='0'){
+												?>
+                                                	<td style="text-align:center"><?php echo "[]"?></td>
+                                                <?php }
+												else{?>
+                                        		<td style="text-align:center"><?php echo "[X]"?></td>
+                                                <?php }?>
+                                        	</tr>
+										<?php }?>                                    
                                 </tbody>
                             </table>
                             <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>
+                            <?php }?>
                             <br>
                             <br>
                             <div id="grafico" style="min-width: 150px; max-width: 850px; height: 350px; margin: 0 auto">   	

@@ -16,7 +16,8 @@
 <!--<script type='text/javascript' src="../js/togglesidebar.js"></script>-->	
         <script type='text/javascript' src="../js/custom.js"></script>
         <script type='text/javascript' src="../js/jquery.fancybox.pack.js"></script>
-
+        <script src="http://code.highcharts.com/highcharts.js"></script>
+        <script src="http://code.highcharts.com/modules/exporting.js"></script>
 
         <!-- styles -->
         <link href="../css/bootstrap.css" rel="stylesheet">
@@ -38,7 +39,6 @@
         <link href="../css/footable-0.1.css" rel="stylesheet" type="text/css" />
         <link href="../css/footable.sortable-0.1.css" rel="stylesheet" type="text/css" />
         <link href="../css/footable.paginate.css" rel="stylesheet" type="text/css" />
-
     </head>
 
     <body class="appBg">
@@ -50,11 +50,11 @@
             <div class="header-top">
                 <div class="container">
                     <img alt="" src="../images/header-top-left.png" class="pull-left">
-                    <div class="pull-right">
+                    <div class="pull-right">					
                     </div>
                 </div>
                 <div class="filter-area">
-                    <div class="container">
+                    <div class="container">					
                         <span lang="es">&nbsp;</span>
                     </div>
                 </div>
@@ -85,47 +85,43 @@
                             </div>
                         </li>
                     </ul>
-                </div><!--Caso pantalla uno-->
+                </div>  
+
+                <!--Caso pantalla uno-->
                 <div class="row-fluid">
-                    <div class="span2">
+                    <div class="span2">      
                         <ul class="nav nav-pills nav-stacked">
-                            <li> <a href="create_valise.php">Atrás</a> <li>
+                            <li>   
+                                <a href="inbox.php">
+                                    <?php echo "Atrás" ?>         
+                                </a>
+                            </li>
                         </ul>
                     </div>
 
-                    <div class="span10" align="center">
-                        <form class="form-signin" method="post">
-                            <div class="tab-content">
-                                <div class="row-fluid">
-                                    <h3 class="form-signin-heading">Confirmar Valija</h3>
-                                    <div class="span5" align="right">Código de Valija:</div>
-                                    <div class="span3" align="left">
-                                        <input type="text" class="input-block-level" name="cValija" id="cValija" autofocus required>
-                                    </div>
-                                    <div class="span5" align="right">Código de Zoom:</div>
-                                    <div class="span3" align="left">
-                                        <input type="text" class="input-block-level" name="cZoom" id="cZoom" required>
-                                    </div>
+                    <div class="span10">
+                        <form class="form-search" method="post">                            
+                            <div class="tab-content" id="bandeja"> 
+                                <strong> <h2 align="center">Ausencia de Paquete</h2> </strong>              
+                                <div align="center">
+                                    Por favor detalle el error de la valija, e indique los datos de los paquetes faltantes
+                                    <textarea rows="10" cols="23" id="datosPaquete" name="datosPaquete" style="width:600px"></textarea>
+                                    <br>
+                                    <br>
+                                    <button type="submit" class="btn" id="reportarPaqAus" name="reportarPaqAus">Reportar</button>			
                                 </div>
-                                <button class="btn" type="submit" id="confirmar" name="confirmar">Confirmar</button>
-                            </div>
+                            </div>                             
                         </form>
                     </div>
                 </div>
             </div>
-
-            <!-- /container -->
-            <div id="footer" class="container">    	
-            </div>
+        </div>
+        <!-- /container -->
+        <div id="footer" class="container">    	
         </div>
 
-        <script>
-            //window.onload = function(){killerSession();}
-            //
-            //function killerSession(){
-            //setTimeout("window.open('../recursos/cerrarsesion.php','_top');",300000);
-            //}
-        </script>
+
+
         <script src="../js/footable.js" type="text/javascript"></script>
         <script src="../js/footable.paginate.js" type="text/javascript"></script>
         <script src="../js/footable.sortable.js" type="text/javascript"></script>
