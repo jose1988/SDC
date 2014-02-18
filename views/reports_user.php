@@ -108,12 +108,12 @@
 						if(!isset($resultadoConsultarPaquetes->return)){
 							echo '<div class="alert alert-block" align="center">';
    							echo '<h2 style="color:rgb(255,255,255)" align="center">Atención</h2>';
-   							echo '<h4 align="center">No Existen Registros de Reportes Enviados por Hoy</h4>';
+   							echo '<h4 align="center">No Existen Registros de Enviados Hoy</h4>';
 							echo '</div>';
 						}
     					//Si existen registros muestro la tabla
 						else{ ?>                        
-                            <strong> <h2 align="center">Reporte Enviados por Hoy</h2> </strong>
+                            <strong> <h2 align="center">Reporte Enviados Hoy</h2> </strong>
                             <table class='footable table table-striped table-bordered' data-page-size='5'>
                                 <thead bgcolor='#FF0000'>
                                     <tr>
@@ -130,27 +130,33 @@
 										for($i=0;$i<$paquetes;$i++){
 										?>
                                         	<tr>
-                                        		<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return[$i]->idpaq->destinopaq->nombreusu?></td>
+                                        		<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return[$i]->destinopaq->idusubuz->nombreusu?></td>
                                                  <?php 
-												if(!isset($resultadoConsultarPaquetes->return[$i]->idpaq->asuntopaq)){
+												if(!isset($resultadoConsultarPaquetes->return[$i]->asuntopaq)){
 												?>
                                                 	<td style="text-align:center"><?php echo ""?></td>
                                                 <?php }
 												else{?>
-                                        		<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return[$i]->idpaq->asuntopaq?></td>
+                                        		<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return[$i]->asuntopaq?></td>
                                                 <?php
 												}
-												if(!isset($resultadoConsultarPaquetes->return[$i]->idpaq->localizacionpaq)){
+												if(!isset($resultadoConsultarPaquetes->return[$i]->localizacionpaq)){
 												?>
                                                 	<td style="text-align:center"><?php echo ""?></td>
                                                 <?php }
 												else{?>
-                                        		<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return[$i]->idpaq->localizacionpaq?></td>												<?php }?>
-                                        		<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return[$i]->idpaq->fechaenviopaq?></td>
-                                                 <?php 
-												if(isset($resultadoConsultarPaquetes->return[$i]->idpaq->localizacionpaq)=='0'){
+                                        		<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return[$i]->localizacionpaq?></td>											<?php }
+												if(!isset($resultadoConsultarPaquetes->return[$i]->fechaenviopaq)){
 												?>
                                                 	<td style="text-align:center"><?php echo ""?></td>
+                                                <?php }
+												else{?>
+                                        		<td style="text-align:center"><?php echo substr($resultadoConsultarPaquetes->return[$i]->fechaenviopaq,0,10)?></td>
+                                                 <?php
+												}
+												if($resultadoConsultarPaquetes->return[$i]->respaq=='0'){
+												?>
+                                                	<td style="text-align:center"><?php echo "[]"?></td>
                                                 <?php }
 												else{?>
                                         		<td style="text-align:center"><?php echo "[X]"?></td>
@@ -160,25 +166,29 @@
 									}
 									else{ ?>
 											<tr>
-                                        		<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return->idpaq->destinopaq->nombreusu?></td>
-                                                 <?php 
-												if(!isset($resultadoConsultarPaquetes->return->idpaq->asuntopaq)){
+                                        		<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return->destinopaq->idusubuz->nombreusu?></td> <?php 
+												if(!isset($resultadoConsultarPaquetes->return->asuntopaq)){
 												?>
                                                 	<td style="text-align:center"><?php echo ""?></td>
                                                 <?php }
 												else{?>
-                                        		<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return->idpaq->asuntopaq?></td>
+                                        		<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return->asuntopaq?></td>
                                                 <?php
 												}
-												if(!isset($resultadoConsultarPaquetes->return->idpaq->localizacionpaq)){
+												if(!isset($resultadoConsultarPaquetes->return->localizacionpaq)){
 												?>
                                                 	<td style="text-align:center"><?php echo ""?></td>
                                                 <?php }
 												else{?>
-                                        		<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return->idpaq->localizacionpaq?></td>												<?php }?>
-                                        		<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return->idpaq->fechaenviopaq?></td>
-                                                 <?php 
-												if(isset($resultadoConsultarPaquetes->return->idpaq->localizacionpaq)=='0'){
+                                        		<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return->localizacionpaq?></td>												<?php }
+												if(!isset($resultadoConsultarPaquetes->return->fechaenviopaq)){
+												?>
+                                                	<td style="text-align:center"><?php echo ""?></td>
+                                                <?php }
+												else{?>
+                                        		<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return->fechaenviopaq?></td>
+                                                 <?php }
+												if($resultadoConsultarPaquetes->return->respaq=='0'){
 												?>
                                                 	<td style="text-align:center"><?php echo "[]"?></td>
                                                 <?php }
@@ -249,11 +259,11 @@
                     },
                     series: [{
                             name: 'Con Respuesta',
-                            data: [30.5, 69.5]
+                            data: [<?php echo $procesadosConRespuesta ?>, <?php echo $noProcesadosConRespuesta ?>]
 
                         }, {
                             name: 'Sin Respuesta',
-                            data: [50.5, 49.5]
+                            data: [<?php echo $procesadosSinRespuesta ?>, <?php echo $noProcesadosSinRespuesta ?>]
                         }]
                 });
 

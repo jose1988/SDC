@@ -11,7 +11,7 @@ try {
   	$client = new SOAPClient($wsdl_url);
   	$client->decode_utf8 = false;
 	
-	$usuario = array('user' => 'niuskam');
+	$usuario = array('user' => 'niuska.mora');
 	$resultadoConsultarUsuario = $client->consultarUsuarioXUser($usuario);
 	
 	if(!isset($resultadoConsultarUsuario->return)){
@@ -35,18 +35,18 @@ try {
 				$client->decode_utf8 = false;
 				$reportarPaqExc = $client->reportarPaqueteExcedente($parametros);
 				
-				if(isset($reportarPaqExc->return)==1){
+				if($reportarPaqExc->return==1){
 					javaalert('Paquete Reportado y Reenviado');
-					iraURL('index.php');
+					iraURL('../index.php');
 				}
 				else{
 					javaalert('Paquete No Reportado y No Reenviado');
-					iraURL('index.php');
+					iraURL('../index.php');
 				}
 				
 			} catch (Exception $e) {
 				javaalert('Lo sentimos no hay conexión');
-				iraURL('index.php');
+				iraURL('../index.php');
 			}
 		}
 	}
@@ -63,18 +63,18 @@ try {
 				$client->decode_utf8 = false;
 				$reportarValija = $client->reportarValija($parametros);
 				
-				if(isset($reportarValija->return)==1){
+				if($reportarValija->return==1){
 					javaalert('Valija Reportada y Reenviada');
-					iraURL('index.php');
+					iraURL('../index.php');
 				}
 				else{
 					javaalert('Valija No Reportada y No Reenviada');
-					iraURL('index.php');
+					iraURL('../index.php');
 				}
 				
 			} catch (Exception $e) {
 				javaalert('Lo sentimos no hay conexión');
-				iraURL('index.php');
+				iraURL('../index.php');
 			}
 		}
 	}
@@ -83,6 +83,6 @@ try {
 	
 } catch (Exception $e) {
 	javaalert('Lo sentimos no hay conexión');
-	iraURL('index.php');	
+	iraURL('../index.php');	
 }
 ?>

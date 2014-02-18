@@ -101,29 +101,79 @@
 
                     <div class="span10">
                         <div class="tab-content" id="bandeja">
-                            <strong> <h2 align="center">Reporte de Valijas por Hoy</h2> </strong>
+            			<?php             
+                        //Verificando que este vacio o sea null
+						if(!isset($resultadoConsultarValijas->return)){
+							echo '<div class="alert alert-block" align="center">';
+   							echo '<h2 style="color:rgb(255,255,255)" align="center">Atención</h2>';
+   							echo '<h4 align="center">No Existen Registros de Valijas Hoy</h4>';
+							echo '</div>';
+						}
+    					//Si existen registros muestro la tabla
+						else{ ?>                        
+                            <strong> <h2 align="center">Reporte de Valijas Hoy</h2> </strong>
                             <table class='footable table table-striped table-bordered' data-page-size='5'>
                                 <thead bgcolor='#FF0000'>
                                     <tr>
                                         <th style="text-align:center">Origen</th>
                                         <th style="text-align:center" data-sort-ignore="true">Destino</th>
-                                        <th style="text-align:center" data-sort-ignore="true">Tipo</th>
-                                        <th style="text-align:center" data-sort-ignore="true">Fecha</th>
-                                        <th style="text-align:center" data-sort-ignore="true">Con Respuesta</th>
+                                        <th style="text-align:center" data-sort-ignore="true">Asunto</th>
+                                        <th style="text-align:center" data-sort-ignore="true">Fecha</th>                       
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td style="text-align:center">Pedro Peréz</td>
-                                        <td style="text-align:center">María Mora</td>
-                                        <td style="text-align:center">Obj</td>
-                                        <td style="text-align:center">03/02/2014</td>
-                                        <td style="text-align:center">[]</td>
-                                    </tr>
-                                                                       
+                                <tbody>                                	
+                                    
+                                    <?php if($valijas>1){
+										for($i=0;$i<$valijas;$i++){
+										?>
+                                        	<tr>
+                                        		<td style="text-align:center"><?php echo $resultadoConsultarValijas->return[$i]->origenval?></td>
+                                        		<td style="text-align:center"><?php echo $resultadoConsultarValijas->return[$i]->destinoval->nombresed?></td>
+                                                <?php												
+												if(!isset($resultadoConsultarValijas->return[$i]->asuntoval)){
+												?>
+                                                	<td style="text-align:center"><?php echo ""?></td>
+                                                <?php }
+												else{?>
+                                        		<td style="text-align:center"><?php echo $resultadoConsultarValijas->return[$i]->asuntoval?></td>											<?php }
+												if(!isset($resultadoConsultarValijas->return[$i]->fechaval)){
+												?>
+                                                	<td style="text-align:center"><?php echo ""?></td>
+                                                <?php }
+												else{?>
+                                        		<td style="text-align:center"><?php echo substr($resultadoConsultarValijas->return[$i]->fechaval,0,10)?></td>
+                                                 <?php
+												}
+												?>
+                                        	</tr>
+                                    <?php }
+									}
+									else{ ?>
+											<tr>
+                                        		<td style="text-align:center"><?php echo $resultadoConsultarValijas->return->origenval->nombreusu?></td>
+                                        		<td style="text-align:center"><?php echo $resultadoConsultarValijas->return->destinoval->idusubuz->nombreusu?></td>
+                                                <?php												
+												if(!isset($resultadoConsultarValijas->return->asuntoval)){
+												?>
+                                                	<td style="text-align:center"><?php echo ""?></td>
+                                                <?php }
+												else{?>
+                                        		<td style="text-align:center"><?php echo $resultadoConsultarValijas->return->asuntoval?></td>											<?php }
+												if(!isset($resultadoConsultarValijas->return->fechaval)){
+												?>
+                                                	<td style="text-align:center"><?php echo ""?></td>
+                                                <?php }
+												else{?>
+                                        		<td style="text-align:center"><?php echo substr($resultadoConsultarValijas->return->fechaval,0,10)?></td>
+                                                 <?php
+												}
+												?>
+                                        	</tr>
+										<?php }?>                                    
                                 </tbody>
                             </table>
                             <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>
+                            <?php }?>
                             <br>
                             <br>
                             <div id="grafico" style="min-width: 150px; max-width: 850px; height: 350px; margin: 0 auto">   	

@@ -21,16 +21,16 @@ if(isset($_POST["confirmar"])){
 				
 			if(isset($confirmarValija->return)==1){
 				javaalert('Valija Confirmada');
-				iraURL('index.php');
+				iraURL('../index.php');
 			}
 			else{
 				javaalert('Valija No Confirmada');
-				iraURL('index.php');
+				iraURL('../index.php');
 			}
 				
 		} catch (Exception $e) {
 			javaalert('Lo sentimos no hay conexión');
-			iraURL('index.php');
+			iraURL('../index.php');
 		}
 	}
 }
