@@ -118,7 +118,8 @@
                                         <th style="text-align:center">Origen</th>
                                         <th style="text-align:center" data-sort-ignore="true">Destino</th>
                                         <th style="text-align:center" data-sort-ignore="true">Asunto</th>
-                                        <th style="text-align:center" data-sort-ignore="true">Fecha</th>                       
+                                        <th style="text-align:center" data-sort-ignore="true">Fecha</th>
+                                        <th style="text-align:center" data-sort-ignore="true">Incidente</th>
                                     </tr>
                                 </thead>
                                 <tbody>                                	
@@ -127,7 +128,22 @@
 										for($i=0;$i<$valijas;$i++){
 										?>
                                         	<tr>
-                                        		<td style="text-align:center"><?php echo $resultadoConsultarValijas->return[$i]->origenval?></td>
+                                            	<?php
+												$idSed = $resultadoConsultarValijas->return[$i]->origenval;
+												$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/Niuska?WSDL';
+  												$client = new SOAPClient($wsdl_url);
+										  		$client->decode_utf8 = false;
+	
+												$idSede = array('idSede' => $idSed);
+												$resultadoConsultarSede = $client->consultarSedeXId($idSede);
+	
+												if(!isset($resultadoConsultarSede->return)){
+													$sede = 0;
+												}else{
+													$sede = count($resultadoConsultarSede->return);													
+												?>
+                                        		<td style="text-align:center"><?php echo $resultadoConsultarSede->return->nombresed?></td>
+                                                <?php }?>
                                         		<td style="text-align:center"><?php echo $resultadoConsultarValijas->return[$i]->destinoval->nombresed?></td>
                                                 <?php												
 												if(!isset($resultadoConsultarValijas->return[$i]->asuntoval)){
@@ -142,6 +158,14 @@
                                                 <?php }
 												else{?>
                                         		<td style="text-align:center"><?php echo substr($resultadoConsultarValijas->return[$i]->fechaval,0,10)?></td>
+                                                 <?php
+												}
+                                               	if(!isset($resultadoConsultarValijas->return[$i]->idinc)){
+												?>
+                                                	<td style="text-align:center"><?php echo ""?></td>
+                                                <?php }
+												else{?>
+                                        		<td style="text-align:center"><?php echo $resultadoConsultarValijas->return[$i]->idinc->nombreinc?></td>
                                                  <?php
 												}
 												?>
@@ -165,6 +189,14 @@
                                                 <?php }
 												else{?>
                                         		<td style="text-align:center"><?php echo substr($resultadoConsultarValijas->return->fechaval,0,10)?></td>
+                                                 <?php
+												}
+                                                if(!isset($resultadoConsultarValijas->return->idinc)){
+												?>
+                                                	<td style="text-align:center"><?php echo ""?></td>
+                                                <?php }
+												else{?>
+                                        		<td style="text-align:center"><?php echo $resultadoConsultarValijas->return->idinc->nombreinc?></td>
                                                  <?php
 												}
 												?>
@@ -202,13 +234,12 @@
                         type: 'column'
                     },
                     title: {
-                        text: 'Reporte de Valijas dependiendo del Origen'
+                        text: 'Reporte de Valijas'
                     },
                     xAxis: {
                         categories: [
-                            'Caracas',
-                            'San Cristóbal',
-                            'Margarita'
+                            'Procesadas',
+                            'Fallas'
                         ]
                     },
                     yAxis: {
@@ -232,13 +263,10 @@
                         }
                     },
                     series: [{
-                            name: 'Procesadas',
-                            data: [25.5, 35.5, 39]
-
-                        }, {
-                            name: 'Fallas',
-                            data: [39, 25.5, 35.5]
-                        }]
+                            name: 'Valijas',
+                            data: [<?php echo $valijasProcesadas ?>, <?php echo $valijasNoProcesadas ?>]
+							                        
+                        	}]
                 });
 
 

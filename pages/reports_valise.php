@@ -20,8 +20,19 @@ require_once('../lib/nusoap.php');
 			$valijas = count($resultadoConsultarValijas->return);
 		}
 		
-		//print_r($resultadoConsultarValijas);
-	
+		$resultadoValijasNoProcesadas = $client->listarValijasNoProcesadas($idSede);
+		if(!isset($resultadoValijasNoProcesadas->return)){
+			$valijasNoProcesadas = 0;
+		}else{
+			$valijasNoProcesadas = count($resultadoValijasNoProcesadas->return);
+		}
+		
+		$resultadoValijasProcesadas = $client->listarValijasProcesadas($idSede);
+		if(!isset($resultadoValijasProcesadas->return)){
+			$valijasProcesadas = 0;
+		}else{
+			$valijasProcesadas = count($resultadoValijasProcesadas->return);
+		}
 	
 	} catch (Exception $e) {
 		javaalert('Lo sentimos no hay conexión');
