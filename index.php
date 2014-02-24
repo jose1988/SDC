@@ -11,15 +11,18 @@ if(isset($_SESSION["Usuario"])){
 
 if (isset($_POST["Biniciar"])) {
    
-  $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
+  $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/mariela?WSDL';
   $client = new SOAPClient($wsdl_url);
   $client->decode_utf8 = false; 
-  $Usuario= array('user' => "1");
-  $UsuarioLogIn = $client->buscarUsuario($Usuario);
+  $Usuario= array('user' => $_POST["usuario"]);
+  $UsuarioLogIn = $client->consultarUsuarioXUser($Usuario);
   $_SESSION["Usuario"]=$UsuarioLogIn;
-  iraURL("inbox.php");
+  $idUsu= array('idusu' =>$UsuarioLogIn->return->idusu);
+  $registroUsu= array('registroUsuario' =>$idUsu);
+  $_SESSION["Sede"]=$client->consultarSedeDeUsuario($registroUsu);
+  iraURL("views/inbox.php");
  // echo '<pre>';
-  //print_r($resultadoLogIn);
+ // print_r($_SESSION["Sede"]);
   //echo '<pre>';
  /* if($UsuarioLogIn->return->idusu!="No"){
 		

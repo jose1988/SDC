@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION["Usuario"]="Luz123";
+$_SESSION["Usuario"]="LUZ";
 try {
 include("../recursos/funciones.php");
 require_once('../lib/nusoap.php');

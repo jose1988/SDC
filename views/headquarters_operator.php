@@ -1,10 +1,4 @@
-<?php
-include("../recursos/funciones.php");
-if (isset($_POST["confirma"])) {
-    javaalert("El paquete ha sido confirmado");
-    iraURL("inbox.php");
-}
-?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -46,9 +40,7 @@ if (isset($_POST["confirma"])) {
         <link href="../css/footable.paginate.css" rel="stylesheet" type="text/css" />
     </head>
 
-
     <body class="appBg">
-
         <div id="header">
             <div class="container header-top-top hidden-phone">
                 <img alt="" src="../images/header-top-top-left.png" class="pull-left">
@@ -74,12 +66,7 @@ if (isset($_POST["confirma"])) {
                         <li class="pull-left">
                             <div class="modal-header">
                                 <h3> Correspondencia    
-                                    <span>SH</span> - José
-                                    <div class="btn-group" >                                        
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li> <a href="../pages/verDocumento.php">Ver Documentos</a> </li>
-                                        </ul>
-                                    </div>
+                                    <span>SH</span> <?php echo "- José" ?>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
                                             <span class="icon-cog" style="color:rgb(255,255,255)"> </span>
@@ -100,100 +87,129 @@ if (isset($_POST["confirma"])) {
 
                 <!--Caso pantalla uno-->
                 <div class="row-fluid">
-                    <div class="span2">
+                    <div class="span2">      
                         <ul class="nav nav-pills nav-stacked">
                             <li>   
                                 <a href="inbox.php">Atrás</a>
                             </li>
                         </ul>
-                        <a href="create_document.php" ><button type="button" class="btn btn-info btn-primary"  id="documento" value="documento">  Establecer Documento </button> </a>
                     </div>
                     <div class="span10">
                         <div class="tab-content" id="bandeja">
-                            <form class="form-search">
-                                <h2> Recibir paquete </h2>
-                                Código de Correspondencia:  <input type="text" class="input-medium search-query">
-                                <button type="submit" class="btn">Recibir Paquete</button>
-                            </form>
-                            <h3></h3><h3></h3>
-                            <table class='footable table table-striped table-bordered' align='center' data-page-size='10'>
-                                <thead bgcolor'#FF0000'>
-                                       <tr>	
-                                        <th style='width:7%; text-align:center' data-sort-ignore="true">Origen</th>
-                                        <th style='width:7%; text-align:center' data-sort-ignore="true">Destino</th>
-                                        <th style='width:7%; text-align:center' data-sort-ignore="true">Asunto </th>
-                                        <th style='width:7%; text-align:center' data-sort-ignore="true">Tipo</th>
-                                        <th style='width:7%; text-align:center' data-sort-ignore="true">Con Respuesta</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>    
-                                        <td  style='text-align:center'>Pedro Pérez</td>
-                                        <td style='text-align:center'>Mayra Benavides</td>
-                                        <td style='text-align:center'>Entregas</td>
-                                        <td style='text-align:center'>Doc</td>
-                                        <td style='text-align:center'>[X]</td>  
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <form method="POST">
-                                <div align="center"><button type="submit" class="btn" name="confirma" >Confirmar</button></div>
-                            </form>
-                            <h2>Correspondencia hoy en la sede</h2>
+                            <form class="form-search" id="formulario">
+                                <h2>Recibir paquete</h2>
+                                Código de Correspondencia:  <input type="text" id="idpaq" name="idpaq" class="input-medium search-query">
+                                <button type="button" class="btn" onClick="Paquete();">Recibir Paquete</button>
+                          <div id="data">
+						  		 <?php		
+   if(isset($PaquetesConfirmados->return)){        
+   
+       echo "<br>";
+	?>
+	
+         <h2>Correspondencia hoy en la Sede</h2>
                             <table class='footable table table-striped table-bordered' data-page-size='10'>    
-                                <thead bgcolor'#FF0000'>
-                                       <tr>	
-                                        <th style='width:7%; text-align:center''>Origen</th>
+                                <thead bgcolor='#FF0000'>
+                                    <tr>	
+                                        <th style='width:7%; text-align:center'>Origen</th>
                                         <th style='width:7%; text-align:center' data-sort-ignore="true">Destino</th>
                                         <th style='width:7%; text-align:center' data-sort-ignore="true">Asunto </th>
                                         <th style='width:7%; text-align:center' data-sort-ignore="true">Tipo</th>
+                                        <th style='width:7%; text-align:center' data-sort-ignore="true">Contenido</th>
                                         <th style='width:7%; text-align:center' data-sort-ignore="true">Con Respuesta</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+								<?php
+								if(count($PaquetesConfirmados->return)==1){
+								  if($PaquetesConfirmados->return->respaq=="0"){
+									  $rta="No";
+									  }else{
+									  $rta="Si";
+								  }
+								?>
                                     <tr>     
-                                        <td  style='text-align:center'>Mario Urdaneta</td>
-                                        <td style='text-align:center'>Mayra Mora</td>
-                                        <td style='text-align:center'>Artículos</td>
-                                        <td style='text-align:center'>Doc</td>
-                                        <td style='text-align:center'>[X]</td>  
-                                    </tr>
+                                       <td  style='text-align:center'><?php echo $PaquetesConfirmados->return->origenpaq->nombreusu." ".$PaquetesConfirmados->return->origenpaq->apellidousu;?></td>
+                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return->destinopaq->nombreusu." ".$PaquetesConfirmados->return->destinopaq->apellidousu;?></td>
+                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return->asuntopaq;?></td>
+                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return->iddoc->nombredoc;?></td>
+                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return->textopaq;?></td>
+                                        <td style='text-align:center'><?php echo $rta;?></td>  
+                                    </tr>   
+								<?php	
+								}else{
+								for($i=0;$i<count($PaquetesConfirmados->return);$i++){
+								  if($PaquetesConfirmados->return[$i]->respaq=="0"){
+									  $rta="No";
+									  }else{
+									  $rta="Si";
+								  }
+								
+								?>
                                     <tr>     
-                                        <td  style='text-align:center'>Sandra Sánchez</td>
-                                        <td style='text-align:center'>Jose Moncada</td>
-                                        <td style='text-align:center'>Entregas</td>
-                                        <td style='text-align:center'>Doc. Digital</td>
-                                        <td style='text-align:center'>[X]</td>  
-                                    </tr>
-                                    <tr>     
-                                        <td  style='text-align:center'>Juan Salcedo</td>
-                                        <td style='text-align:center'>Mayra Benavides</td>
-                                        <td style='text-align:center'>Permiso</td>
-                                        <td style='text-align:center'>Obj</td>
-                                        <td style='text-align:center'>[]</td>  
-                                    </tr>
-                                </tbody>
+                                        <td  style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->origenpaq->nombreusu." ".$PaquetesConfirmados->return[$i]->origenpaq->apellidousu;?></td>
+                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->destinopaq->nombreusu." ".$PaquetesConfirmados->return[$i]->destinopaq->apellidousu;?></td>
+                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->asuntopaq;?></td>
+                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->iddoc->nombredoc;?></td>
+                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->textopaq;?></td>
+                                        <td style='text-align:center'><?php echo $rta;?></td>  
+                                    </tr>   
+								<?php															
+								}
+								}//fin else
+								?>  
+								</tbody>
                             </table>
-                            <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>
+							<ul id="pagination" class="footable-nav"><span>Pag:</span></ul>								
+							
+	<?php				
+	}
+	?>
+						  
+						  
+						  </div>  
+                            
+                            </form>
                         </div>
                     </div>
-                </div>	  
+                </div>
+            </div>
+
+            <!-- /container -->
+            <div id="footer" class="container">    	
             </div>
         </div>
+		<script>
+	
+	function Paquete(){
+			var idpaq= document.forms.formulario.idpaq.value;
+			 var parametros = {
+                "idpaq" : idpaq
+       		 };
+			$.ajax({
+           	type: "POST",
+           	url: "../ajax/paqueteSede.php",
+           	data: parametros,
+           	dataType: "text",
+			success:  function (response) {
+            	$("#data").html(response);
+			}
+		
+	    }); 
+		
+		
+	}
 
-        <!-- /container -->
-        <div id="footer" class="container">    	
-        </div>
-    </div>
+	</script>
+        <script src="../js/footable.js" type="text/javascript"></script>
+        <script src="../js/footable.paginate.js" type="text/javascript"></script>
+        <script src="../js/footable.sortable.js" type="text/javascript"></script>
 
-    <script src="../js/footable.js" type="text/javascript"></script>
-    <script src="../js/footable.paginate.js" type="text/javascript"></script>
-    <script src="../js/footable.sortable.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(function() {
+                $('table').footable();
+            });
+        </script>
 
-    <script type="text/javascript">
-        $(function() {
-            $('table').footable();
-        });
-    </script>
-</body>
+    </body>
 </html>

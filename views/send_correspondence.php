@@ -127,7 +127,7 @@
                 </ul>
             </div>
             <!--Caso pantalla uno-->
-			 <form method="post">
+			 <form method="post" ENCTYPE="multipart/form-data">
             <div class="row-fluid">
                 <div class="span2">
                     <ul class="nav nav-pills nav-stacked">
@@ -185,11 +185,7 @@
                             </tr>
                             <tr>
                                 <td>Imagen (opcional):</td><td>
-                                    <FORM method="POST" ENCTYPE="multipart/form-data" action="cargar.php">
-                                        <INPUT type=hidden name=MAX_FILE_SIZE >
-                                        <INPUT type=file name="nom_del_archivo">
-                                        <!--<INPUT type=submit value="enviar"> -->
-                                   </FORM>
+										<input id="imagen" name="imagen" type="file" maxlength="249" />
                                 </td>
                             </tr>
                             <tr>
