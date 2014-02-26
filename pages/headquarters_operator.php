@@ -14,7 +14,8 @@ $client->decode_utf8 = false;
   $idsed= array('idsed' => $_SESSION["Sede"]->return->idsed);
   $parametros=array('registroSede' => $idsed);
    $PaquetesConfirmados = $client->consultarPaquetesConfirmadosXSedeAlDia($parametros); 
-
+//echo '<pre>';
+//print_R($PaquetesConfirmados);
    include("../views/headquarters_operator.php");
   /*} catch (Exception $e) {
 					javaalert('Error al crear el documento');

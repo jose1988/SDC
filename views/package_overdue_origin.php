@@ -97,9 +97,6 @@
                     <div class="span10">
                         <div class="tab-content" id="bandeja">
                             <form class="form-search" id="formulario">
-                                <h2>Recibir paquete</h2>
-                                Código de Correspondencia:  <input type="text" id="idpaq" name="idpaq" class="input-medium search-query">
-                                <button type="button" class="btn" onClick="Paquete();">Recibir Paquete</button>
                           <div id="data">
 						  		 <?php		
    if(isset($PaquetesConfirmados->return)){        

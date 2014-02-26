@@ -21,8 +21,8 @@ if (isset($_POST["Biniciar"])) {
   $registroUsu= array('registroUsuario' =>$idUsu);
   $_SESSION["Sede"]=$client->consultarSedeDeUsuario($registroUsu);
   iraURL("views/inbox.php");
- // echo '<pre>';
- // print_r($_SESSION["Sede"]);
+  //echo '<pre>';
+  //print_r($UsuarioLogIn);
   //echo '<pre>';
  /* if($UsuarioLogIn->return->idusu!="No"){
 		

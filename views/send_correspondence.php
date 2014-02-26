@@ -41,6 +41,9 @@
         <link href="../css/footable.paginate.css" rel="stylesheet" type="text/css" />
  <script>
   $(function() {
+  
+  diasFestivos = ["1/1","1/5","19/4","24/6","5/7","24/7","12/10","25/12","31/12"];
+
 	$.datepicker.regional['es'] = {
 		clearText: 'Limpiar', clearStatus: '',
 		closeText: 'Cerrar', closeStatus: '',
@@ -61,9 +64,14 @@
 		dayStatus: 'DD', dateStatus: 'D, M d',
 		dateFormat: 'dd/mm/yy', firstDay: 0, 
 		initStatus: '', isRTL: false};
-		$("#datepickerf").datepicker();
+		$("#datepickerf").datepicker({
+				constrainInput:true,
+beforeShowDay:noFinesDeSemanaNiFestivos,
+		});
 		$("#datepicker").datepicker({
 		minDate: 3,
+		constrainInput:true,
+beforeShowDay:noFinesDeSemanaNiFestivos,
 		onClose: function (selectedDate) {
 		  var date = $(this).datepicker('getDate');
             if (date) {
@@ -79,6 +87,23 @@
 
  
   });
+  
+  function noFinesDeSemanaNiFestivos(date){
+var noWeekend=$.datepicker.noWeekends(date,diasFestivos);
+noWeekend[2]='No se permite el ingreso de días de fin de semana';
+return noWeekend[0]?festivo(date):noWeekend;
+}
+
+
+function festivo(date){
+var m=date.getMonth(),d=date.getDate();
+for(i=0;i<diasFestivos.length;i++){
+if($.inArray(d+'/'+(m+1),diasFestivos)!=-1){
+return[false,"festivos",'No se permite el ingreso de días festivos'];
+}
+}
+return[true,''];
+}
   
   </script>
 		</head>
@@ -142,7 +167,7 @@
                         <table> 
                             <tr>
                                 <td>Para:</td><td>
-								<input id="contacto" name="contacto" type="text" list="suggests" style="width:800px" title="Ingrese el nombre de usuario"  autofocus required>								
+								<input id="contacto" name="contacto" type="text" list="suggests" style="width:800px"  title="Ingrese el nombre de usuario" autocomplete="off"   autofocus required>								
 									<datalist id="suggests">
 									<?php 
 									for($i=0;$i<count($rowContactos->return);$i++){
@@ -153,7 +178,7 @@
 								<br></td>
 						   </tr>
                             <tr>
-                                <td>Asunto:</td><td><input type="text" id="asunto" name="asunto" value="" maxlength="50"  size="100" style="width:800px" title="Ingrese el asunto"  required><br></td>
+                                <td>Asunto:</td><td><input type="text" id="asunto" name="asunto" maxlength="50"  size="100" style="width:800px" title="Ingrese el asunto" autocomplete="off"  required><br></td>
                             </tr>
                             <tr>
                                 <td>Tipo Doc:</td><td><select name="doc" required  title="Seleccione el tipo de documento">
@@ -179,13 +204,13 @@
                             </tr>
                             <tr>
                                 <td></td><td>
-								Fecha de alerta:<input type="text" id="datepicker" name="datepicker" style="width:100px" title="Seleccione la fecha de alerta" required/> 
-					        	Fecha de límite:<input type="text" id="datepickerf" name="datepickerf" style="width:100px" title="Seleccione la fecha límite" required/>
+								Fecha de alerta:<input type="text" id="datepicker" name="datepicker" autocomplete="off" style="width:100px" title="Seleccione la fecha de alerta" required/> 
+					        	Fecha de límite:<input type="text" id="datepickerf" name="datepickerf" autocomplete="off" style="width:100px" title="Seleccione la fecha límite" required/>
 								<br></td>
                             </tr>
                             <tr>
                                 <td>Imagen (opcional):</td><td>
-										<input id="imagen" name="imagen" type="file" maxlength="249" />
+										<input id="imagen" name="imagen" type="file" maxlength="249" onBlur='LimitAttach(this);'/>
                                 </td>
                             </tr>
                             <tr>
@@ -210,21 +235,27 @@
 
         </div>
         <script>
-            function cargar() {
+function LimitAttach(tField) { 
+file=imagen.value; 
 
-                $.ajax({
-                    type: "POST",
-                    url: "../ajax/cargar.php",
-                    data: parametros,
-                    dataType: "text",
-                    success: function(response) {
-                        $("#carga").html(response);
-                    }
+extArray = new Array(".gif",".jpg",".png"); 
 
-                });
-
-
-            }
+allowSubmit = false; 
+if (!file) return; 
+while (file.indexOf("\\") != -1) file = file.slice(file.indexOf("\\") + 1); 
+ext = file.slice(file.indexOf(".")).toLowerCase(); 
+for (var i = 0; i < extArray.length; i++) { 
+if (extArray[i] == ext) { 
+allowSubmit = true; 
+break; 
+} 
+} 
+if (allowSubmit) { 
+} else { 
+tField.value=""; 
+alert("Usted sólo puede subir archivos con extensiones " + (extArray.join(" ")) + "\nPor favor seleccione un nuevo archivo"); 
+} 
+}  
         </script>
     </body>
 </html>

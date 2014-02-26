@@ -127,17 +127,16 @@
        <table class='footable table table-striped table-bordered'>
 			 <tr>
 			 <td style="text-align:center" >Nombre</td>
-				 <td style="text-align:center"><input type="text" name="nombre" id="nombre" value="<?php echo $Usuario->return->nombreusu;?>" maxlength="19" size="30" title="Ingrese el nombre"  autofocus required></td>
+				 <td style="text-align:center"><input type="text" name="nombre" id="nombre" autocomplete="off" value="<?php echo $Usuario->return->nombreusu;?>" maxlength="19" size="30"  autofocus required></td>
 		     </tr>
 			 <tr>
 			 
 			 <td style="text-align:center">Apellido</td>
-				<td style="text-align:center"><input type="text" name="apellido" id="apellido" value="<?php echo $apellido;?>" maxlength="19" size="30" title="Ingrese el  apellido"   ></td>
+				<td style="text-align:center"><input type="text" name="apellido" id="apellido" autocomplete="off" value="<?php echo $apellido;?>" maxlength="19" size="30"  ></td>
 		     </tr>
 			 
 			 <td style="text-align:center" width="50%">Correo</td>
-				 <td style="text-align:center"><input type="email" name="correo" id="correo" value="<?php echo $correo;?>" maxlength="100" size="50" title="Ingrese un correo" >
-				 <br><div id="Info2" style="float:right"></div>
+				 <td style="text-align:center"><input type="email" name="correo" id="correo" autocomplete="off" value="<?php echo $correo;?>" maxlength="100" size="50" >	 
 				 </td>		
 			 	
 			 </tr>
@@ -145,7 +144,7 @@
 			 <tr>
 			 
 			 <td style="text-align:center" width="50%">Usuario</td>
-				 <td style="text-align:center"><input type="text" name="usuario" id="usuario" value="<?php echo $Usuario->return->userusu;?>" maxlength="19" size="30"   disabled>
+				 <td style="text-align:center"><input type="text" name="usuario" id="usuario"  value="<?php echo $Usuario->return->userusu;?>" maxlength="19" size="30"   disabled>
 				 <div id="Info" style="float:right"></div>
 				 </td>		
 			 </tr>
@@ -155,29 +154,24 @@
               <tr>
 			 
 			 <td style="text-align:center">Teléfono 1</td>
-				<td style="text-align:center"><input type="tel" name="telefono1" id="telefono1" value="<?php echo $telefono1;?>" maxlength="19" size="30" title="Ingrese el número de teléfono"   ></td>
+				<td style="text-align:center"><input type="tel" name="telefono1" id="telefono1" autocomplete="off" value="<?php echo $telefono1;?>" maxlength="19" size="30"    ></td>
 		     </tr>
               <tr>
 			 
 			 <td style="text-align:center">Teléfono 2</td>
-				<td style="text-align:center"><input type="tel" name="telefono2" id="telefono2" value="<?php echo $telefono2;?>" maxlength="19" size="30"  ></td>
+				<td style="text-align:center"><input type="tel" name="telefono2" id="telefono2" autocomplete="off" value="<?php echo $telefono2;?>" maxlength="19" size="30"  ></td>
 		     </tr>
               <tr>
 			 
 			 <td style="text-align:center">Dirección 1</td>
-				<td style="text-align:center"><textarea style="width:500px;"   id="direccion1" name="direccion1" style="width:800px"><?php echo $direccion1;?></textarea></td>
+				<td style="text-align:center"><textarea style="width:500px;"   id="direccion1" name="direccion1" autocomplete="off" style="width:800px"><?php echo $direccion1;?></textarea></td>
 		     </tr>
               <tr>
 			 
 			 <td style="text-align:center">Dirección 2</td>
-				<td style="text-align:center"><textarea style="width:500px;" id="direccion2" name="direccion2"  style="width:800px"><?php echo $direccion2;?></textarea></td>
+				<td style="text-align:center"><textarea style="width:500px;" id="direccion2" name="direccion2" autocomplete="off" style="width:800px"><?php echo $direccion2;?></textarea></td>
 		     </tr>
-             
-			 <tr> 
-			 
-			<td style="text-align:center">Habilitado</th>
-				 <td style="text-align:center"><input type="checkbox" name="habilitado" id="habilitado" title="si no esta seleccionado estara deshabilitado" checked> </td>
-			 </tr>
+
 	</table><br>
                             <div class="span11" align="center"><button class="btn" id="guardar" name="guardar" type="submit">Guardar</button></div>
                             <br>
@@ -187,38 +181,11 @@
             </div>
         </div>
 
-        <script>
-            window.onload = function(){killerSession();}
-             
-             function killerSession(){
-             setTimeout("window.open('../recursos/cerrarsesion.php','_top');",300000);
-             }
-             </script>
         <script src="../js/footable.js" type="text/javascript"></script>
         <script src="../js/footable.paginate.js" type="text/javascript"></script>
         <script src="../js/footable.sortable.js" type="text/javascript"></script>
         <script type="text/javascript" src="../js/jquery-2.0.3.js" ></script> 
 
-             <script type="text/javascript">
-             $(document).ready(function() {
-             <!-- Codigo para verificar si el Correo lleva el formato correcto --> 
-             $('#correo').blur(function(){
-             if($(this).val()!=""){
-             $('#Info2').html('<img src="../images/loader.gif" alt="" />').fadeOut(1000);
-             }
-             var correo = $(this).val();
-             var dataString = 'correo='+correo;
-             $.ajax({
-             type: "POST",
-             url: "../ajax/chequeoCorreo.php",
-             data: dataString,
-             success: function(data) {
-             $('#Info2').fadeIn(1000).html(data);
-             }
-             });     
-             });	
-             });
-        </script>  
 
     </body>
 </html>
