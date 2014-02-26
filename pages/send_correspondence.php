@@ -70,8 +70,7 @@ if(isset($_POST["enviar"])){//echo $_POST["datepicker"].'<br>';			echo date("Y-m
 					$Ruta =$direccion2."/adjunto/".$cadena.".".$tipo[1];
 						$imagen=$_FILES['imagen']['tmp_name'];
 					move_uploaded_file($imagen,$uploadfile);	
-			}		
-			$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/mariela?WSDL';
+					$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/mariela?WSDL';
 			$client = new SOAPClient($wsdl_url);
 			$client->decode_utf8 = false;
 			$idPaquete=	$client->maxPaquete();
@@ -81,6 +80,8 @@ if(isset($_POST["enviar"])){//echo $_POST["datepicker"].'<br>';			echo date("Y-m
 			'idpaq' =>$paq);
 			$par=array('registroAdj' => $adj);
 			$Rta=	$client->insertarAdjunto($par);
+			}		
+			
 			}else{
 			javaalert("Debe agregar todos los campos obligatorios, por favor verifique");
 		}

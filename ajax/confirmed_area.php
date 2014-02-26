@@ -12,11 +12,10 @@
 	 $sede= array('idsed' => $_SESSION["Sede"]->return->idsed);
 	 $parConsultaTipo=array('idPaquete' =>$_POST['idpaq'],
 						'registroSede'=>$sede);
-	  $Tipo = $client->consultarTipoSeguimiento($parConsultaTipo); 
-	 
+	//  $Tipo = $client->consultarTipoSeguimiento($parConsultaTipo); 
+	 //	'Tipo'=>$Tipo->return,
 	$parametros=array('registroPaquete' => $idPaquete,
-						'registroUsuario'=>$usu,
-						'Tipo'=>$Tipo->return,
+						'registroUsuario'=>$usu,					
 						'registroSede'=>$sede);
   $seg = $client->registroSeguimiento($parametros); 
 //if(isset($seg->return) && $seg->return==1){
@@ -95,7 +94,7 @@ $parametros=array('idUsuario' => $usu);
 								?>
                                     <tr>     
                                        <td  style='text-align:center'><?php echo $PaquetesConfirmados->return->origenpaq->nombreusu." ".$PaquetesConfirmados->return->origenpaq->apellidousu;?></td>
-                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return->destinopaq->nombreusu." ".$PaquetesConfirmados->return->destinopaq->apellidousu;?></td>
+                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return->destinopaq->idusubuz->nombreusu." ".$PaquetesConfirmados->return->destinopaq->idusubuz->apellidousu;?></td>
                                         <td style='text-align:center'><?php echo $PaquetesConfirmados->return->asuntopaq;?></td>
                                         <td style='text-align:center'><?php echo $PaquetesConfirmados->return->iddoc->nombredoc;?></td>
                                         <td style='text-align:center'><?php echo $PaquetesConfirmados->return->textopaq;?></td>
@@ -112,7 +111,7 @@ $parametros=array('idUsuario' => $usu);
 								?>
                                     <tr>     
                                         <td  style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->origenpaq->nombreusu." ".$PaquetesConfirmados->return[$i]->origenpaq->apellidousu;?></td>
-                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->destinopaq->nombreusu." ".$PaquetesConfirmados->return[$i]->destinopaq->apellidousu;?></td>
+                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->destinopaq->idusubuz->nombreusu." ".$PaquetesConfirmados->return[$i]->destinopaq->idusubuz->apellidousu;?></td>
                                         <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->asuntopaq;?></td>
                                         <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->iddoc->nombredoc;?></td>
                                         <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->textopaq;?></td>

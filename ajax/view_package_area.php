@@ -58,7 +58,7 @@
                                 <tbody>
                                     <tr>     
                                         <td  style='text-align:center'><?php echo $rowPaquete->return->origenpaq->nombreusu." ".$rowPaquete->return->origenpaq->apellidousu;?></td>
-                                        <td style='text-align:center'><?php echo $rowPaquete->return->destinopaq->nombreusu." ".$rowPaquete->return->destinopaq->apellidousu;?></td>
+                                        <td style='text-align:center'><?php echo $rowPaquete->return->destinopaq->idusubuz->nombreusu." ".$rowPaquete->return->destinopaq->idusubuz->apellidousu;?></td>
                                         <td style='text-align:center'><?php echo $rowPaquete->return->asuntopaq;?></td>
                                         <td style='text-align:center'><?php echo $rowPaquete->return->iddoc->nombredoc;?></td>
                                         <td style='text-align:center'><?php echo $rowPaquete->return->textopaq;?></td>
@@ -98,7 +98,7 @@
 								?>
                                     <tr>     
                                        <td  style='text-align:center'><?php echo $PaquetesConfirmados->return->origenpaq->nombreusu." ".$PaquetesConfirmados->return->origenpaq->apellidousu;?></td>
-                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return->destinopaq->nombreusu." ".$PaquetesConfirmados->return->destinopaq->apellidousu;?></td>
+                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return->destinopaq->idusubuz->nombreusu." ".$PaquetesConfirmados->return->destinopaq->idusubuz->apellidousu;?></td>
                                         <td style='text-align:center'><?php echo $PaquetesConfirmados->return->asuntopaq;?></td>
                                         <td style='text-align:center'><?php echo $PaquetesConfirmados->return->iddoc->nombredoc;?></td>
                                         <td style='text-align:center'><?php echo $PaquetesConfirmados->return->textopaq;?></td>
@@ -116,7 +116,7 @@
 								?>
                                     <tr>     
                                         <td  style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->origenpaq->nombreusu." ".$PaquetesConfirmados->return[$i]->origenpaq->apellidousu;?></td>
-                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->destinopaq->nombreusu." ".$PaquetesConfirmados->return[$i]->destinopaq->apellidousu;?></td>
+                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->destinopaq->idusubuz->nombreusu." ".$PaquetesConfirmados->return[$i]->destinopaq->idusubuz->apellidousu;?></td>
                                         <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->asuntopaq;?></td>
                                         <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->iddoc->nombredoc;?></td>
                                         <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->textopaq;?></td>
@@ -156,7 +156,7 @@
        		 };
 			$.ajax({
            	type: "POST",
-           	url: "../ajax/confirmadosOperador.php",
+           	url: "../ajax/confirmed_area.php",
            	data: parametros,
            	dataType: "text",
 			success:  function (response) {
