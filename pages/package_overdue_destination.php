@@ -12,11 +12,11 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/mariela?WSDL';
 $client = new SOAPClient($wsdl_url);
 $client->decode_utf8 = false; 
   $usu= array('idusu' => $_SESSION["Usuario"]->return->idusu);
-  $parametros=array('idUsuario' => $usu);
-   $PaquetesConfirmados = $client->xx($parametros); 
+  $parametros=array('registroUsuario' => $usu);
+   $PaquetesConfirmados = $client->paquetesVencidosXDestino($parametros); 
 //echo '<pre>';
 //print_R($PaquetesConfirmados);
-   include("../views/operator_level.php");
+   include("../views/package_overdue_destination.php");
   /*} catch (Exception $e) {
 					javaalert('Error al crear el documento');
 				//	iraURL('../pages/index.php');

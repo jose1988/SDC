@@ -97,9 +97,9 @@
                     <div class="span10">
                         <div class="tab-content" id="bandeja">
                             <form class="form-search" id="formulario">
-						    <h2>Correspondencia que no ha sido recibida Con Fecha de Alerta y Límite Vencidas </h2>
+						    <h2>Valijas que no han sido Entregadas al Destino</h2>
 						  		 <?php		
-   if(isset($PaquetesConfirmados->return)){        
+   if(isset($Valijas->return)){        
    
        echo "<br>";
 	?>
@@ -110,32 +110,29 @@
                                     <tr>	
                                         <th style='width:7%; text-align:center' data-sort-ignore="true">Destino</th>
                                         <th style='width:7%; text-align:center' data-sort-ignore="true">Asunto </th>
-                                        <th style='width:7%; text-align:center' data-sort-ignore="true">Tipo</th>
-                                        <th style='width:7%; text-align:center' data-sort-ignore="true">Fecha Alerta</th>
-                                        <th style='width:7%; text-align:center' data-sort-ignore="true">Fecha Límite</th>
+                                        <th style='width:7%; text-align:center' data-sort-ignore="true">Fecha del Envio</th>
+                                        <th style='width:7%; text-align:center' data-sort-ignore="true">Fecha Límite </th>
                                     </tr>
                                 </thead>
                                 <tbody>
 								<?php
-								if(count($PaquetesConfirmados->return)==1){
+								if(count($Valijas->return)==1){
 								?>
                                     <tr>     
-                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return->destinopaq->idusubuz->nombreusu." ".$PaquetesConfirmados->return->destinopaq->idusubuz->apellidousu;?></td>
-                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return->asuntopaq;?></td>
-                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return->iddoc->nombredoc;?></td>
-                                                   <td style='text-align:center'><?php echo  date("d/m/Y",strtotime(substr($PaquetesConfirmados->return->fechaapaq,0,10))); ;?></td>
-                                        <td style='text-align:center'><?php echo  date("d/m/Y",strtotime(substr($PaquetesConfirmados->return->fechaenviopaq,0,10)));?></td>  
+                                        <td style='text-align:center'><?php echo $Valijas->return->destinoval->nombresed;?></td>
+                                        <td style='text-align:center'><?php echo $Valijas->return->asuntoval;?></td>
+                                        <td style='text-align:center'><?php echo date("d/m/Y",strtotime(substr($Valijas->return->fechaval,0,10))) ;?></td>
+                                        <td style='text-align:center'><?php echo date("d/m/Y",strtotime(substr($Valijas->return->fechaalerval,0,10))) ;?></td>
                                     </tr>   
 								<?php	
 								}else{
-								for($i=0;$i<count($PaquetesConfirmados->return);$i++){
+								for($i=0;$i<count($Valijas->return);$i++){
 								?>
                                     <tr>     
-                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->destinopaq->idusubuz->nombreusu." ".$PaquetesConfirmados->return[$i]->destinopaq->idusubuz->apellidousu;?></td>
-                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->asuntopaq;?></td>
-                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->iddoc->nombredoc;?></td>
-                                       <td style='text-align:center'><?php echo  date("d/m/Y",strtotime(substr($PaquetesConfirmados->return[$i]->fechaapaq,0,10))); ?></td>
-                                        <td style='text-align:center'><?php echo  date("d/m/Y",strtotime(substr($PaquetesConfirmados->return[$i]->fechaenviopaq,0,10)));?></td>  
+                                            <td style='text-align:center'><?php echo $Valijas->return[$i]->destinoval->nombresed;?></td>
+                                        <td style='text-align:center'><?php echo $Valijas->return[$i]->asuntoval;?></td>
+                                      <td style='text-align:center'><?php echo date("d/m/Y",strtotime(substr($Valijas->return[$i]->fechaval,0,10))) ;?></td>
+                                        <td style='text-align:center'><?php echo date("d/m/Y",strtotime(substr($Valijas->return[$i]->fechaalerval,0,10))) ;?></td>
                                     </tr>   
 								<?php															
 								}

@@ -97,7 +97,7 @@
                     <div class="span10">
                         <div class="tab-content" id="bandeja">
                             <form class="form-search" id="formulario">
-						    <h2>Correspondencia que no ha sido recibida Con Fecha de Alerta y Límite Vencidas </h2>
+						    <h2>Correspondencia que no ha sido Entregada Con Fecha de Alerta y Límite Vencidas </h2>
 						  		 <?php		
    if(isset($PaquetesConfirmados->return)){        
    
@@ -108,7 +108,7 @@
                             <table class='footable table table-striped table-bordered' data-page-size='10'>    
                                 <thead bgcolor='#FF0000'>
                                     <tr>	
-                                        <th style='width:7%; text-align:center' data-sort-ignore="true">Destino</th>
+                                        <th style='width:7%; text-align:center'>Origen</th>
                                         <th style='width:7%; text-align:center' data-sort-ignore="true">Asunto </th>
                                         <th style='width:7%; text-align:center' data-sort-ignore="true">Tipo</th>
                                         <th style='width:7%; text-align:center' data-sort-ignore="true">Fecha Alerta</th>
@@ -120,10 +120,10 @@
 								if(count($PaquetesConfirmados->return)==1){
 								?>
                                     <tr>     
-                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return->destinopaq->idusubuz->nombreusu." ".$PaquetesConfirmados->return->destinopaq->idusubuz->apellidousu;?></td>
+                                       <td  style='text-align:center'><?php echo $PaquetesConfirmados->return->origenpaq->nombreusu." ".$PaquetesConfirmados->return->origenpaq->apellidousu;?></td>
                                         <td style='text-align:center'><?php echo $PaquetesConfirmados->return->asuntopaq;?></td>
                                         <td style='text-align:center'><?php echo $PaquetesConfirmados->return->iddoc->nombredoc;?></td>
-                                                   <td style='text-align:center'><?php echo  date("d/m/Y",strtotime(substr($PaquetesConfirmados->return->fechaapaq,0,10))); ;?></td>
+                                        <td style='text-align:center'><?php echo  date("d/m/Y",strtotime(substr($PaquetesConfirmados->return->fechaapaq,0,10))); ;?></td>
                                         <td style='text-align:center'><?php echo  date("d/m/Y",strtotime(substr($PaquetesConfirmados->return->fechaenviopaq,0,10)));?></td>  
                                     </tr>   
 								<?php	
@@ -131,10 +131,10 @@
 								for($i=0;$i<count($PaquetesConfirmados->return);$i++){
 								?>
                                     <tr>     
-                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->destinopaq->idusubuz->nombreusu." ".$PaquetesConfirmados->return[$i]->destinopaq->idusubuz->apellidousu;?></td>
+                                        <td  style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->origenpaq->nombreusu." ".$PaquetesConfirmados->return[$i]->origenpaq->apellidousu;?></td>
                                         <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->asuntopaq;?></td>
                                         <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->iddoc->nombredoc;?></td>
-                                       <td style='text-align:center'><?php echo  date("d/m/Y",strtotime(substr($PaquetesConfirmados->return[$i]->fechaapaq,0,10))); ?></td>
+                                        <td style='text-align:center'><?php echo  date("d/m/Y",strtotime(substr($PaquetesConfirmados->return[$i]->fechaapaq,0,10))); ?></td>
                                         <td style='text-align:center'><?php echo  date("d/m/Y",strtotime(substr($PaquetesConfirmados->return[$i]->fechaenviopaq,0,10)));?></td>  
                                     </tr>   
 								<?php															

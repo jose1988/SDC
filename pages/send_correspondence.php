@@ -28,13 +28,14 @@ if(isset($_POST["enviar"])){//echo $_POST["datepicker"].'<br>';			echo date("Y-m
 			 }else{
 			 $rta="1";
 			 }
-			$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
-			$client = new SOAPClient($wsdl_url);
-			$client->decode_utf8 = false;
+			 $sede= array('idsed' => $_SESSION["Sede"]->return->idsed);
+
 			$origenpaq= array('idusu' => $_SESSION["Usuario"]->return->idusu);
-			$Usuario= array('user' =>$_POST["contacto"]);
-            $usuarioDestino = $client->consultarUsuarioXUser($Usuario);
-			$destinopaq= array('idusu' => $usuarioDestino->return->idusu);
+			$Parametros= array('userUsu' =>$_POST["contacto"],
+			            'idUsuario'=>$origenpaq,
+						'registroSede'=>$sede);
+            $usuarioBuzon = $client->consultarBuzonXNombreUsuario($Parametros);
+			$destinopaq= array('idbuz' => $usuarioBuzon->return->idbuz);
 			$prioridad= array('idpri' => $_POST["prioridad"]);
 			$documento= array('iddoc' => $_POST["doc"]);
 	
@@ -52,6 +53,10 @@ if(isset($_POST["enviar"])){//echo $_POST["datepicker"].'<br>';			echo date("Y-m
 							'respaq' => $rta
 							);
 							$registro= array('registroPaquete' => $paquete);
+				$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
+			$client = new SOAPClient($wsdl_url);
+			$client->decode_utf8 = false;				
+							
 			$client->crearPaquete($registro);		//pilas ismael
 			if($_FILES['imagen']['name']!=""){
 					$imagenName= $_FILES['imagen']['name'];

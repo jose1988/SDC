@@ -10,13 +10,12 @@ if(!isset($_SESSION["Usuario"])){
 //try {
 $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/mariela?WSDL';
 $client = new SOAPClient($wsdl_url);
-$client->decode_utf8 = false; 
-  $usu= array('idusu' => $_SESSION["Usuario"]->return->idusu);
-  $parametros=array('idUsuario' => $usu);
-   $PaquetesConfirmados = $client->xx($parametros); 
-//echo '<pre>';
-//print_R($PaquetesConfirmados);
-   include("../views/operator_level.php");
+$client->decode_utf8 = false;
+  $parametros=array('idSede' => $_SESSION["Sede"]->return->idsed);
+   $Valijas = $client->valijasXFechaVencidaXUsuarioOrigen($parametros); 
+//   echo '<pre>';
+//print_r($Valijas);
+    include("../views/suitcase_overdue_origin.php");
   /*} catch (Exception $e) {
 					javaalert('Error al crear el documento');
 				//	iraURL('../pages/index.php');
