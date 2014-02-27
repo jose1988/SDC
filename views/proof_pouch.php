@@ -1,13 +1,14 @@
 <?php
 require_once("../pdf/dompdf/dompdf_config.inc.php");
 
-$idpaq = $resultadoConsultarUltimoPaquete->return->idpaq;
-$nombre = $resultadoConsultarUltimoPaquete->return->origenpaq->nombreusu;
-$apellido = $resultadoConsultarUltimoPaquete->return->origenpaq->apellidousu;
+$idval = $resultadoConsultarUltimaValija->return->idval;
 
-$nombredes = $resultadoConsultarUltimoPaquete->return->destinopaq->idusubuz->nombreusu;
-$direcciondes = $resultadoConsultarUltimoPaquete->return->destinopaq->idusubuz->direccionusu;
-$telefonodes = $resultadoConsultarUltimoPaquete->return->destinopaq->idusubuz->telefonousu;
+$nombre = $resultadoConsultarUltimaValija->return->idusu->nombreusu;
+$apellido = $resultadoConsultarUltimaValija->return->idusu->apellidousu;
+
+$nombredes = $resultadoConsultarUltimaValija->return->destinoval->nombresed;
+$direcciondes = $resultadoConsultarUltimaValija->return->destinoval->direccionsed;
+$telefonodes = $resultadoConsultarUltimaValija->return->destinoval->telefonosed;
 
 $sede = $resultadoConsultarSede->return->nombresed;
 
@@ -16,7 +17,7 @@ $html='
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Comprobante de Correspondencia</title>
+<title>Comprobante de Valija</title>
 <link rel="stylesheet" href="../recursos/estilosPdf.css" type="text/css" />
 </head>
 <body>
@@ -26,7 +27,7 @@ $html='
     <td>
 		<img src="../images/header-top-left.png" width="330" height="50">
    	  	<h2 align="center">Sistema de Correspondencia</h2>
-		<h3 align="center">Comprobante de Paquete</h3>
+		<h3 align="center">Comprobante de Valija</h3>
     	<table width="500" border="0">
   		<tr>
     		<td><strong>Sede: </strong>'.$sede.'</td>
@@ -45,7 +46,7 @@ $html='
     		<td>&nbsp;</td>
   		</tr>
   		<tr>
-    		<td><strong>Nombre: </strong>'.$nombredes.'</td>
+    		<td><strong>Sede Destino: </strong>'.$nombredes.'</td>
     		<td><strong>Dirección: </strong>'.' '.' '.' '.$direcciondes.'</td>
   		</tr>
   		<tr>
@@ -84,7 +85,7 @@ $html='
     <td>
 		<img src="../images/header-top-left.png" width="330" height="50">
 		<h2 align="center">Sistema de Correspondencia</h2>
-		<h3 align="center">Comprobante de Paquete</h3>
+		<h3 align="center">Comprobante de Valija</h3>
     	<table width="500" border="0">
   		<tr>
     		<td><strong>Sede: </strong>'.$sede.'</td>
@@ -103,7 +104,7 @@ $html='
     		<td>&nbsp;</td>
   		</tr>
   		<tr>
-    		<td><strong>Nombre: </strong>'.$nombredes.'</td>
+    		<td><strong>Sede Destino: </strong>'.$nombredes.'</td>
     		<td><strong>Dirección: </strong>'.' '.' '.' '.$direcciondes.'</td>
   		</tr>
   		<tr>
@@ -139,6 +140,6 @@ $dompdf->load_html($html);
 //Esta línea es para hacer la página del PDF más grande
 $dompdf->set_paper('carta','portrait');
 $dompdf->render();
-$nom = 'Comprobante de Correpondencia Numero '.$idpaq.'.pdf';
+$nom = 'Comprobante de Valija Numero '.$idval.'.pdf';
 $dompdf->stream($nom);
 ?>
