@@ -6,8 +6,10 @@ include("../recursos/funciones.php");
 require_once('../lib/nusoap.php');
 if(!isset($_SESSION["Usuario"])){
 	iraURL("../index.php");
-}
-//try {
+}elseif(!usuarioCreado()){
+	iraURL("../pages/create_user.php");
+	}
+try {
 $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/mariela?WSDL';
 $client = new SOAPClient($wsdl_url);
 $client->decode_utf8 = false;
@@ -16,8 +18,8 @@ $client->decode_utf8 = false;
 //   echo '<pre>';
 //print_r($Valijas);
     include("../views/suitcase_overdue_origin.php");
-  /*} catch (Exception $e) {
-					javaalert('Error al crear el documento');
-				//	iraURL('../pages/index.php');
-}*/
+  } catch (Exception $e) {
+					javaalert('Lo sentimos no hay conexión');
+					iraURL('../pages/inbox.php');
+}
 ?>

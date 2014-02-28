@@ -68,5 +68,16 @@ function llenarLog($accion,$observacion,$usuario,$sede){
   		$client->decode_utf8 = false;
 		$registroBitacora = $client->insertarBitacora($parametros);
 }
-
+//Verificando si el usuario esta creado
+function usuarioCreado(){
+		$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
+  		$client = new SOAPClient($wsdl_url);
+  		$client->decode_utf8 = false;
+		$Usuario= array('idUsuario' =>$_SESSION["Usuario"]->return->idusu);
+    $Usuariocreado = $client->consultarUsuario($Usuario);
+	if(isset($Usuariocreado->return))
+		return true;
+	else
+		return false;
+}
 ?>
