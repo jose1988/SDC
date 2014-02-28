@@ -16,10 +16,24 @@ $usuario= array('registroUsuario' => $usu);
 $rowContactos = $client->consultarBuzonXUsuario($usuario);
 $rowDocumentos = $client->listarDocumentos();
 $rowPrioridad = $client->listarPrioridad();
+ if(!isset($rowContactos->return)){
+   javaalert("Lo sentimos no se puede enviar correspondencia porque no tiene buzones creados");
+  iraURL('../pages/inbox.php');
+  }
+  if(!isset($rowDocumentos->return)){
+   javaalert("Lo sentimos no se puede enviar correspondencia porque no hay Tipos de documentos registrados,Consulte con el Administrador");
+  iraURL('../pages/inbox.php');
+  }
+   if(!isset($rowPrioridad->return)){
+   javaalert("Lo sentimos no se puede enviar correspondencia porque no hay Prioridades registradas,Consulte con el Administrador");
+  iraURL('../pages/inbox.php');
+  }
+  
 //echo '<pre>';
 // print_r($rowContactos);
 
-if(isset($_POST["enviar"])){//echo $_POST["datepicker"].'<br>';			echo date("Y-m-d",strtotime($_POST["datepicker"]));
+if(isset($_POST["enviar"])){//echo $_POST["datepicker"].'<br>';		
+//echo '<br>'.date('Y-m-d', strtotime(str_replace('/', '-', $_POST["datepicker"]))).'Lados___'.date('Y-m-d', strtotime(str_replace('/', '-', $_POST["datepickerf"])));
 			
 //echo $_POST["contacto"].'_'.$_POST["asunto"].'_'.$_POST["doc"].'_'.$_POST["prioridad"].'_'.$_POST["datepicker"].'_'.$_POST["datepickerf"].'_'.$_POST["elmsg"];
 	 	if(isset($_POST["contacto"]) && $_POST["contacto"]!=""  && isset($_POST["asunto"]) && $_POST["asunto"]!="" && isset($_POST["doc"]) && $_POST["doc"]!="" && isset($_POST["prioridad"]) && $_POST["prioridad"]!="" && isset($_POST["datepicker"]) && $_POST["datepicker"]!=""  && isset($_POST["datepickerf"]) && $_POST["datepickerf"]!="" && isset($_POST["elmsg"]) && $_POST["elmsg"]!=""){			
@@ -28,14 +42,13 @@ if(isset($_POST["enviar"])){//echo $_POST["datepicker"].'<br>';			echo date("Y-m
 			 }else{
 			 $rta="1";
 			 }
-			 $sede= array('idsed' => $_SESSION["Sede"]->return->idsed);
-
 			$origenpaq= array('idusu' => $_SESSION["Usuario"]->return->idusu);
 			$Parametros= array('userUsu' =>$_POST["contacto"],
-			            'idUsuario'=>$origenpaq,
-						'registroSede'=>$sede);
+			            'idUsuario'=>$origenpaq);
             $usuarioBuzon = $client->consultarBuzonXNombreUsuario($Parametros);
-			$destinopaq= array('idbuz' => $usuarioBuzon->return->idbuz);
+			
+			if(isset($usuarioBuzon->return)){
+					$destinopaq= array('idbuz' => $usuarioBuzon->return->idbuz);
 			$prioridad= array('idpri' => $_POST["prioridad"]);
 			$documento= array('iddoc' => $_POST["doc"]);
 	
@@ -44,8 +57,8 @@ if(isset($_POST["enviar"])){//echo $_POST["datepicker"].'<br>';			echo date("Y-m
 							'asuntopaq' => $_POST["asunto"],
 							'textopaq' => $_POST["elmsg"],
 							'fechapaq' => date("Y-m-d"),
-							'fechaenviopaq' => date("Y-m-d",strtotime($_POST["datepickerf"])),
-							'fechaapaq' => date("Y-m-d",strtotime($_POST["datepicker"])),
+							'fechaenviopaq' => date('Y-m-d', strtotime(str_replace('/', '-', $_POST["datepickerf"]))),
+							'fechaapaq' => date('Y-m-d', strtotime(str_replace('/', '-', $_POST["datepicker"]))),
 							'statuspaq' => "0",
 							'localizacionpaq' => $_SESSION["Usuario"]->return->userusu,
 							'idpri' => $prioridad,
@@ -85,7 +98,15 @@ if(isset($_POST["enviar"])){//echo $_POST["datepicker"].'<br>';			echo date("Y-m
 			'idpaq' =>$paq);
 			$par=array('registroAdj' => $adj);
 			$Rta=	$client->insertarAdjunto($par);
-			}		
+			
+			}
+			javaalert("La correspondencia ha sido enviada");
+			iraURL('../pages/inbox.php');
+			
+			}else{
+			javaalert("El Usuario al que desea enviar la correspondencia no esta registrado en sus contactos, por favor verifique");
+			}
+			
 			
 			}else{
 			javaalert("Debe agregar todos los campos obligatorios, por favor verifique");

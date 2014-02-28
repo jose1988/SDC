@@ -13,7 +13,7 @@ $client = new SOAPClient($wsdl_url);
 $client->decode_utf8 = false;
 	 $sede= array('idsed' => $_SESSION["Sede"]->return->idsed);
   $parametros=array('registroSede' => $sede);
-   $Valijas = $client->xx($parametros); 
+   $Valijas = $client->valijasXFechaVencidaXUsuarioDestino($parametros); 
 if(isset($Valijas->return)){
    if(count($Valijas->return)==1){
       $parametros=array('Id' =>$Valijas->return->origenval );

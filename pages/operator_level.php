@@ -13,7 +13,7 @@ $client = new SOAPClient($wsdl_url);
 $client->decode_utf8 = false; 
   $usu= array('idusu' => $_SESSION["Usuario"]->return->idusu);
   $parametros=array('idUsuario' => $usu);
-   $PaquetesConfirmados = $client->xx($parametros); 
+   $PaquetesConfirmados = $client->consultarPaquetesXUsuarioProcesadasAlDia($parametros); 
 //echo '<pre>';
 //print_R($PaquetesConfirmados);
    include("../views/operator_level.php");
