@@ -127,10 +127,10 @@
                                                 <?php
 												if($resultadoPaquetesConfirmados->return[$i]->respaq=='0'){
 												?>
-                                                	<td style="text-align:center"><?php echo "[]"?></td>
+                                                	<td style="text-align:center"><?php echo "No"?></td>
                                                 <?php }
 												else{?>
-                                        		<td style="text-align:center"><?php echo "[X]"?></td>
+                                        		<td style="text-align:center"><?php echo "Si"?></td>
                                                 <?php }?>
                                                <?php echo '<td style="text-align:center"><input type="checkbox" name="ide['.$i.']" id="ide['.$i.']" value='.$resultadoPaquetesConfirmados->return[$i]->idpaq.'></td>'; ?>			
                                         	</tr>
@@ -142,10 +142,10 @@
                                         		<td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return->destinopaq->idusubuz->nombreusu?></td>  								<?php
 												if($resultadoPaquetesConfirmados->return->respaq=='0'){
 												?>
-                                                	<td style="text-align:center"><?php echo "[]"?></td>
+                                                	<td style="text-align:center"><?php echo "No"?></td>
                                                 <?php }
 												else{?>
-                                        		<td style="text-align:center"><?php echo "[X]"?></td>
+                                        		<td style="text-align:center"><?php echo "Si"?></td>
                                                 <?php }?>
                                                 <?php echo '<td style="text-align:center"><input type="checkbox" name="ide[0]" id="ide[0]" value='.$resultadoPaquetesConfirmados->return->idpaq.'></td>'; ?>
                                         	</tr>

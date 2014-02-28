@@ -11,6 +11,8 @@ $telefonodes = $resultadoConsultarUltimoPaquete->return->destinopaq->idusubuz->t
 
 $sede = $resultadoConsultarSede->return->nombresed;
 
+if(isset($resultadoConsultarUltimoPaquete->return)){
+
 # Contenido HTML del documento que queremos generar en PDF.
 $html='
 <html>
@@ -141,4 +143,6 @@ $dompdf->set_paper('carta','portrait');
 $dompdf->render();
 $nom = 'Comprobante de Correpondencia Numero '.$idpaq.'.pdf';
 $dompdf->stream($nom);
+
+}//Fin del IF general
 ?>

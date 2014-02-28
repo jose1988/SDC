@@ -37,11 +37,10 @@ try {
 		$valijasProcesadas = count($resultadoValijasProcesadas->return);
 	}
 	
+	include("../views/reports_valise.php");
+	
 } catch (Exception $e) {
 	javaalert('Lo sentimos no hay conexión');
 	iraURL('../index.php');	
 }
-	
-	include("../views/reports_valise.php");
-
 ?>

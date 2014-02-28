@@ -12,6 +12,8 @@ $telefonodes = $resultadoConsultarUltimaValija->return->destinoval->telefonosed;
 
 $sede = $resultadoConsultarSede->return->nombresed;
 
+if(isset($resultadoConsultarUltimaValija->return)){
+
 # Contenido HTML del documento que queremos generar en PDF.
 $html='
 <html>
@@ -142,4 +144,6 @@ $dompdf->set_paper('carta','portrait');
 $dompdf->render();
 $nom = 'Comprobante de Valija Numero '.$idval.'.pdf';
 $dompdf->stream($nom);
+
+}//Fin del IF general
 ?>

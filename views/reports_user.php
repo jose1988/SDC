@@ -156,10 +156,10 @@
 												}
 												if($resultadoConsultarPaquetes->return[$i]->respaq=='0'){
 												?>
-                                                	<td style="text-align:center"><?php echo "[]"?></td>
+                                                	<td style="text-align:center"><?php echo "No"?></td>
                                                 <?php }
 												else{?>
-                                        		<td style="text-align:center"><?php echo "[X]"?></td>
+                                        		<td style="text-align:center"><?php echo "Si"?></td>
                                                 <?php }?>
                                         	</tr>
                                     <?php }
@@ -190,21 +190,21 @@
                                                  <?php }
 												if($resultadoConsultarPaquetes->return->respaq=='0'){
 												?>
-                                                	<td style="text-align:center"><?php echo "[]"?></td>
+                                                	<td style="text-align:center"><?php echo "No"?></td>
                                                 <?php }
 												else{?>
-                                        		<td style="text-align:center"><?php echo "[X]"?></td>
+                                        		<td style="text-align:center"><?php echo "Si"?></td>
                                                 <?php }?>
                                         	</tr>
 										<?php }?>                                    
                                 </tbody>
                             </table>
-                            <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>
-                            <?php }?>
+                            <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>                            
                             <br>
                             <br>
                             <div id="grafico" style="min-width: 150px; max-width: 850px; height: 350px; margin: 0 auto">   	
                             </div>
+                            <?php }?>
                         </div>
                     </div>
                 </div>
@@ -270,6 +270,10 @@
 
             });
         </script>
+        
+        <script src="../js/footable.js" type="text/javascript"></script>
+        <script src="../js/footable.paginate.js" type="text/javascript"></script>
+        <script src="../js/footable.sortable.js" type="text/javascript"></script>
 
         <script type="text/javascript">
             $(function() {

@@ -6,12 +6,12 @@ $htmlTres = "";
 $htmlCuatro = "";
 $htmlCinco = "";
 
-# Contenido HTML del documento que queremos generar en PDF.
 if($contadorPaquetes>0){
 	
 ///Si el contador excede el valor para ver 2 páginas
 if($contadorPaquetes>5){
-	
+
+# Contenido HTML del documento que queremos generar en PDF.
 $htmlUno = '<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -212,8 +212,6 @@ $htmlUno = '<html>
 
 }//Fin del ELSE
 
-}//Fin del FOR general
-
 //Concatenación de todo
 $html = $htmlUno.$htmlDos.$htmlTres.$htmlCuatro.$htmlCinco;
 
@@ -226,4 +224,6 @@ $dompdf->set_paper('carta','portrait');
 $dompdf->render();
 $nom = 'Comprobante Nivel Uno_'.$contadorPaquetes.' Paquetes.pdf';
 $dompdf->stream($nom);
+
+}//Fin del IF general
 ?>
