@@ -38,7 +38,7 @@ function llenarLog($accion,$observacion,$usuario,$sede){
 			break;
 		case 2:
 			$accion="CONFIRMACION";
-		break;
+			break;
 		case 3:
 			$accion="BORRADO";
 			break;
@@ -49,17 +49,23 @@ function llenarLog($accion,$observacion,$usuario,$sede){
 			$accion="FIN DE SESION";
 			break;
 		case 6:
+			$accion="COMPROBANTE";
+			break;
+		case 7:
 			$accion="REPORTE";
+			break;	
+		case 8:
+			$accion="VACIO DE BITACORA";
 			break;	
 		}
 
-		$parametros = array('accion' => $accion,
-				'observacion' => $observacion,
-				'registroUsuario' => $usuario,
-				'registroSede' => $sede);
-		$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/Niuska?WSDL';
-		$client = new SOAPClient($wsdl_url);
-		$client->decode_utf8 = false;
+		$parametros = array('idSede' => $sede,
+				'idUsu' => $usuario,
+				'accion' => $accion,
+				'observacion' => $observacion);
+		$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
+  		$client = new SOAPClient($wsdl_url);
+  		$client->decode_utf8 = false;
 		$registroBitacora = $client->insertarBitacora($parametros);
 }
 

@@ -7,7 +7,7 @@ if(!isset($_SESSION["Usuario"])){
 	iraURL("../index.php");
 }
 
-$usuario = $_SESSION["Usuario"]->return->idusu;
+$usuarioBitacora = $_SESSION["Usuario"]->return->idusu;
 $sede = $_SESSION["Sede"]->return->idsed;
 
 if(isset($_POST["confirmar"])){
@@ -24,7 +24,7 @@ if(isset($_POST["confirmar"])){
 				
 			if(isset($confirmarValija->return)==1){
 				javaalert('Valija Confirmada');
-				llenarLog(2, "Confirmación Valija",$usuario,$sede);
+				llenarLog(2, "Confirmación Valija",$usuarioBitacora,$sede);
 				iraURL('../index.php');
 			}
 			else{

@@ -6,7 +6,10 @@ require_once('../lib/nusoap.php');
 if(!isset($_SESSION["Usuario"])){	
 	iraURL("../index.php");
 }
-	
+
+$usuarioBitacora = $_SESSION["Usuario"]->return->idusu;
+$sede = $_SESSION["Sede"]->return->idsed;
+
 if(isset($_POST["reportarPaqAus"])){
 				
 	if(isset($_POST["datosPaquete"]) && $_POST["datosPaquete"]!=""){
@@ -21,6 +24,7 @@ if(isset($_POST["reportarPaqAus"])){
 				
 			if($reportarPaqAus->return==1){
 				javaalert('Paquete Reportado');
+				llenarLog(7, "Paquete Ausente",$usuarioBitacora,$sede);
 				iraURL('../index.php');
 			}
 			else{

@@ -9,6 +9,8 @@ if(!isset($_SESSION["Usuario"])){
 
 $paquetes = $_SESSION["paquetes"];
 $paquetesConfirmados = $_SESSION["paquetesConfirmados"];
+$usuarioBitacora = $_SESSION["Usuario"]->return->idusu;
+$sede = $_SESSION["Sede"]->return->idsed;
 
 try {
 	$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/Niuska?WSDL';
@@ -37,14 +39,12 @@ try {
 
 	if($paquetesTotales != ""){
 		$contadorPaquetes = count($paquetesTotales);
+		llenarLog(6, "Comprobante Nivel 1",$usuarioBitacora,$sede);
 	}
 	else{
 		$contadorPaquetes = 0;
 	}
-	
-	
 	include("../views/proof_operator_level.php");
-
 	
 } catch (Exception $e) {
 	javaalert('Lo sentimos no hay conexión');

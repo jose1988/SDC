@@ -8,6 +8,8 @@ if(!isset($_SESSION["Usuario"])){
 }
 
 $nomUsuario = $_SESSION["Usuario"]->return->userusu;
+$usuarioBitacora = $_SESSION["Usuario"]->return->idusu;
+$sede = $_SESSION["Sede"]->return->idsed;
 
 try {
 	$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
@@ -40,6 +42,7 @@ try {
 				
 				if($reportarPaqExc->return==1){
 					javaalert('Paquete Reportado y Reenviado');
+					llenarLog(7, "Paquete Excedente",$usuarioBitacora,$sede);
 					iraURL('../index.php');
 				}
 				else{
@@ -68,6 +71,7 @@ try {
 				
 				if($reportarValija->return==1){
 					javaalert('Valija Reportada y Reenviada');
+					llenarLog(7, "Valija Erronea",$usuarioBitacora,$sede);
 					iraURL('../index.php');
 				}
 				else{

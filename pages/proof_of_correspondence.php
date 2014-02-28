@@ -8,6 +8,8 @@ if(!isset($_SESSION["Usuario"])){
 }
 
 $nomUsuario = $_SESSION["Usuario"]->return->userusu;
+$ideSede = $_SESSION["Sede"]->return->idsed;
+$usuarioBitacora = $_SESSION["Usuario"]->return->idusu;
 
 try {
 	$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
@@ -33,9 +35,10 @@ try {
 		$idUsu = array('idUsuario' => $idUsuario);
 		$resultadoConsultarUltimoPaquete = $client->ultimoPaqueteXOrigen($idUsu);
 		
-		$idSede = array('idSede' => '1');
+		$idSede = array('idSede' => $ideSede);
 		$resultadoConsultarSede = $client->consultarSedeXId($idSede);
-	
+		
+		llenarLog(6, "Comprobante de Correspondencia",$usuarioBitacora,$ideSede);	
 		
 	} catch (Exception $e) {
 		javaalert('Lo sentimos no hay conexión');
