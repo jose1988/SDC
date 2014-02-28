@@ -3,12 +3,13 @@ session_start();
 include("../recursos/funciones.php");
 require_once('../lib/nusoap.php');
 
+if(!isset($_SESSION["Usuario"])){	
+	iraURL("../index.php");
+}
+
 $paquetes = $_SESSION["paquetes"];
 $paquetesConfirmados = $_SESSION["paquetesConfirmados"];
 
-/*if(!isset($_SESSION["Usuario"])){	
-	iraURL("index.php");
-}*/
 try {
 	$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/Niuska?WSDL';
   	$client = new SOAPClient($wsdl_url);

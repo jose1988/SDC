@@ -3,16 +3,19 @@ session_start();
 include("../recursos/funciones.php");
 require_once('../lib/nusoap.php');
 
-/*if(!isset($_SESSION["Usuario"])){	
-	iraURL("index.php");
-}*/
+if(!isset($_SESSION["Usuario"])){	
+	iraURL("../index.php");
+}
+
+$nomUsuario = $_SESSION["Usuario"]->return->userusu;
+$ideSede = $_SESSION["Sede"]->return->idsed;
 
 try {
 	$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
   	$client = new SOAPClient($wsdl_url);
   	$client->decode_utf8 = false;
 	
-	$usuario = array('user' => 'niuska.mora');
+	$usuario = array('user' => $nomUsuario);
 	$resultadoConsultarUsuario = $client->consultarUsuarioXUser($usuario);
 	
 	if(!isset($resultadoConsultarUsuario->return)){
@@ -31,7 +34,7 @@ try {
 		$idUsu = array('idUsuario' => $idUsuario);
 		$resultadoConsultarUltimaValija = $client->ultimaValijaXUsuario($idUsu);
 		
-		$idSede = array('idSede' => '2');
+		$idSede = array('idSede' => $ideSede);
 		$resultadoConsultarSede = $client->consultarSedeXId($idSede);
 	
 		

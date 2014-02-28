@@ -29,4 +29,38 @@ function eliminarSesion(){
 	
 }
 
+//bitacora del  sitio web
+function llenarLog($accion,$observacion,$usuario,$sede){
+
+		switch($accion){
+		case 1:
+			$accion="INSERCION";
+			break;
+		case 2:
+			$accion="CONFIRMACION";
+		break;
+		case 3:
+			$accion="BORRADO";
+			break;
+		case 4:
+			$accion="INICIO DE SESION";
+			break;
+		case 5:
+			$accion="FIN DE SESION";
+			break;
+		case 6:
+			$accion="REPORTE";
+			break;	
+		}
+
+		$parametros = array('accion' => $accion,
+				'observacion' => $observacion,
+				'registroUsuario' => $usuario,
+				'registroSede' => $sede);
+		$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/Niuska?WSDL';
+		$client = new SOAPClient($wsdl_url);
+		$client->decode_utf8 = false;
+		$registroBitacora = $client->insertarBitacora($parametros);
+}
+
 ?>
