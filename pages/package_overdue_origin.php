@@ -11,8 +11,10 @@ if(!isset($_SESSION["Usuario"])){
 $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/mariela?WSDL';
 $client = new SOAPClient($wsdl_url);
 $client->decode_utf8 = false; 
-  $usu= array('idusu' => $_SESSION["Usuario"]->return->idusu);
-  $parametros=array('registroUsuario' => $usu);
+   $usu= array('idusu' => $_SESSION["Usuario"]->return->idusu);
+  	 $sede= array('idsed' => $_SESSION["Sede"]->return->idsed);
+  $parametros=array('registroUsuario' => $usu,
+					'registroSede' => $sede);
    $PaquetesConfirmados = $client->paquetesVencidosXOrigen($parametros); 
 //echo '<pre>';
 //print_R($PaquetesConfirmados);

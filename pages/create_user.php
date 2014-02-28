@@ -13,6 +13,10 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/mariela?WSDL';
   $client = new SOAPClient($wsdl_url);
   $client->decode_utf8 = false; 
  $Sedes = $client->listarSedes();
+  if(!isset($Sedes->return)){
+   javaalert("Lo sentimos no se puede crear el usuario porque no hay sedes registradas,Consulte con el Administrador");
+  iraURL('../pages/inbox.php');
+  }
 
 if(isset($_POST["crear"])){
 	 	if(isset($_POST["nombre"]) && $_POST["nombre"]!=""  && isset($_POST["apellido"]) && $_POST["apellido"]!="" && isset($_POST["correo"]) && $_POST["correo"]!="" && isset($_POST["sede"]) && $_POST["sede"]!=""){		
@@ -49,7 +53,7 @@ if(isset($_POST["crear"])){
 					      $parametros=array('registroUsuario'=>$Usuario);
 						$client->insertarUsuario($parametros);
 						$sede=array('idsed'=> $_POST["sede"]);
-						$rol=array('idrol'=>"6");
+						$rol=array('idrol'=>"0");
 						$usuSede=array('idsed'=> $sede,'idrol'=> $rol);
 						$RegUsuSede=array('registroUsuSede'=> $usuSede);
 						$client->insertarUsuarioSedeXDefecto($RegUsuSede);

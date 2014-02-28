@@ -100,25 +100,25 @@
                             <table class='footable table table-striped table-bordered'>
                                 <tr>
                                     <td style="text-align:center" >Nombres</td>
-                                    <td style="text-align:center"><input type="text" name="nombre" id="nombre" autocomplete="off" maxlength="19" size="30" title="Ingrese el primer nombre" placeholder="Ej. Pedro" autofocus required></td>
+                                    <td style="text-align:center"><input type="text" name="nombre" id="nombre" autocomplete="off" maxlength="150" size="30" title="Ingrese el primer nombre" placeholder="Ej. Pedro" autofocus required></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align:center">Apellidos</td>
-                                    <td style="text-align:center"><input type="text" name="apellido" id="apellido" autocomplete="off" maxlength="19" size="30" title="Ingrese el  apellido" placeholder="Ej. Perez"  required></td>
+                                    <td style="text-align:center"><input type="text" name="apellido" id="apellido" autocomplete="off" maxlength="150" size="30" title="Ingrese el  apellido" placeholder="Ej. Perez"  required></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align:center" width="50%">Correo</td>
-                                    <td style="text-align:center"><input type="email" name="correo" id="correo" autocomplete="off" maxlength="100" size="50" title="Ingrese un correo" placeholder="Ej. pedroperez@gmail.com">
+                                    <td style="text-align:center"><input type="email" name="correo" id="correo" autocomplete="off" maxlength="50" size="50" title="Ingrese un correo" placeholder="Ej. pedroperez@gmail.com">
 
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="text-align:center">Teléfono 1</td>
-                                    <td style="text-align:center"><input type="tel" name="telefono1" id="telefono1" autocomplete="off" maxlength="19" size="30" title="Ingrese el numero de telefono" placeholder="Ej. 04269876543"   ></td>
+                                    <td style="text-align:center"><input type="tel" name="telefono1" id="telefono1" autocomplete="off" maxlength="50" size="30" title="Ingrese el numero de telefono" placeholder="Ej. 04269876543"   ></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align:center">Teléfono 2</td>
-                                    <td style="text-align:center"><input type="tel" name="telefono2" id="telefono2" autocomplete="off" maxlength="19" size="30" placeholder="Ej. 04168674789"  ></td>
+                                    <td style="text-align:center"><input type="tel" name="telefono2" id="telefono2" autocomplete="off" maxlength="50" size="30" placeholder="Ej. 04168674789"  ></td>
                                 </tr>
 																 <tr>
                                     <td style="text-align:center">Sede</td>
@@ -133,11 +133,11 @@
                                 </tr>
                                 <tr>
                                     <td style="text-align:center" >Dirección 1</td>
-                                    <td style="text-align:center"><textarea style="width:500px;"   id="direccion1" name="direccion1"  style="width:800px" ></textarea></td>
+                                    <td style="text-align:center"><textarea style="width:500px;"   id="direccion1" name="direccion1" maxlength="2000"  style="width:800px" ></textarea></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align:center" >Dirección 2</td>
-                                    <td style="text-align:center"><textarea style="width:500px;" id="direccion2" name="direccion2"  style="width:800px"></textarea></td>
+                                    <td style="text-align:center"><textarea style="width:500px;" id="direccion2" name="direccion2" maxlength="2000"  style="width:800px"></textarea></td>
                                 </tr>
 
                             </table>
