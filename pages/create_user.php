@@ -53,7 +53,7 @@ if(isset($_POST["crear"])){
 					      $parametros=array('registroUsuario'=>$Usuario);
 						$client->insertarUsuario($parametros);
 						$sede=array('idsed'=> $_POST["sede"]);
-						$rol=array('idrol'=>"0");
+						$rol=array('idrol'=>"6");
 						$usuSede=array('idsed'=> $sede,'idrol'=> $rol);
 						$RegUsuSede=array('registroUsuSede'=> $usuSede);
 						$client->insertarUsuarioSedeXDefecto($RegUsuSede);

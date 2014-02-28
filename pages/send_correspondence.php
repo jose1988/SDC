@@ -6,8 +6,10 @@ session_start();
 require_once('../lib/nusoap.php');
 if(!isset($_SESSION["Usuario"])){
 	iraURL("../index.php");
-}
-//try {
+}elseif(!usuarioCreado()){
+	iraURL("../pages/create_user.php");
+	}
+try {
 $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/mariela?WSDL';
 $client = new SOAPClient($wsdl_url);
 $client->decode_utf8 = false; 
@@ -51,7 +53,8 @@ if(isset($_POST["enviar"])){//echo $_POST["datepicker"].'<br>';
 					$destinopaq= array('idbuz' => $usuarioBuzon->return->idbuz);
 			$prioridad= array('idpri' => $_POST["prioridad"]);
 			$documento= array('iddoc' => $_POST["doc"]);
-	
+				$sede= array('idsed' => $_SESSION["Sede"]->return->idsed);
+
 			$paquete=array('origenpaq' => $origenpaq,
 							'destinopaq' => $destinopaq,
 							'asuntopaq' => $_POST["asunto"],
@@ -63,8 +66,8 @@ if(isset($_POST["enviar"])){//echo $_POST["datepicker"].'<br>';
 							'localizacionpaq' => $_SESSION["Usuario"]->return->userusu,
 							'idpri' => $prioridad,
 							'iddoc' => $documento,
-							'respaq' => $rta
-							);
+							'respaq' => $rta,
+							'idsed'=>$sede);
 							$registro= array('registroPaquete' => $paquete);
 				$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
 			$client = new SOAPClient($wsdl_url);
@@ -113,8 +116,8 @@ if(isset($_POST["enviar"])){//echo $_POST["datepicker"].'<br>';
 		}
 }
    include("../views/send_correspondence.php");
-  /*} catch (Exception $e) {
-					javaalert('Error al crear el documento');
-				//	iraURL('../pages/index.php');
-}*/
+  } catch (Exception $e) {
+					javaalert('Lo sentimos no hay conexión');
+					iraURL('../pages/inbox.php');
+}
 ?>

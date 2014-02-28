@@ -6,18 +6,17 @@ require_once('../lib/nusoap.php');
 if(!isset($_SESSION["Usuario"])){
 	
 	iraURL("../pages/index.php");
+	}elseif(!isset(usuarioCreado())){
+	iraURL("../pages/create_user.php");
 	}
 
 
   $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/mariela?WSDL';
   $client = new SOAPClient($wsdl_url);
   $client->decode_utf8 = false; 
-  // echo "<pre>";
- // print_r($_SESSION["Usuario"]);
   $usuario= array('user' => $_SESSION["Usuario"]->return->userusu);
   $Usuario = $client->consultarUsuarioXUser($usuario);
- // echo "<pre>";
- // print_r($Usuario);
+
 			
 if(isset($_POST["guardar"])){
 	 	if(isset($_POST["nombre"]) && $_POST["nombre"]!=""  && isset($_POST["apellido"]) && $_POST["apellido"]!="" && isset($_POST["correo"]) && $_POST["correo"]!="" ){		

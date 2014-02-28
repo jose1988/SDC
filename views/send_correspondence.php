@@ -294,7 +294,7 @@ function FechaRelativa (Dia, Mes, Agno, DiferenciaDias) {
                         <table> 
                             <tr>
                                 <td>Para:</td><td>
-								<input id="contacto" name="contacto" type="text" list="suggests" maxlength="24" style="width:800px"  title="Ingrese el nombre de usuario" autocomplete="off"   autofocus required>								
+								<input id="contacto" name="contacto" type="text"  list="suggests" maxlength="24" style="width:800px ;height:28px" size="100"  title="Ingrese el nombre de usuario" autocomplete="off"   autofocus required>								
 									<datalist id="suggests">
 									<?php 
 									for($i=0;$i<count($rowContactos->return);$i++){
@@ -302,7 +302,7 @@ function FechaRelativa (Dia, Mes, Agno, DiferenciaDias) {
 									}
 									?>
 									</datalist>
-								<br></td>
+								</td>
 						   </tr>
                             <tr>
                                 <td>Asunto:</td><td><input type="text" id="asunto" name="asunto" maxlength="24"  size="100" style="width:800px" title="Ingrese el asunto" autocomplete="off"  required><br></td>
@@ -341,7 +341,7 @@ function FechaRelativa (Dia, Mes, Agno, DiferenciaDias) {
                                 </td>
                             </tr>
                             <tr>
-                             <td>Su mensaje: </td><td><textarea  rows="10" cols= "23" id="elmsg" name="elmsg" maxlength="499"  style="width:800px" title="Ingrese un comentario" required="required">Su comentario...</textarea><br></td>
+                             <td>Su mensaje: </td><td><textarea  rows="10" cols= "23" id="elmsg" name="elmsg" maxlength="499"  style="width:800px" title="Ingrese un comentario" required>Su comentario...</textarea><br></td>
                             </tr>
 							<tr>
                              <td>Con Respuesta: </td><td><input type="checkbox" name="rta" id="rta" title="Seleccione si desea con respuesta" checked="checked"></td>
