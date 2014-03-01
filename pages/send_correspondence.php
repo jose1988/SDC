@@ -30,10 +30,6 @@ $rowPrioridad = $client->listarPrioridad();
    javaalert("Lo sentimos no se puede enviar correspondencia porque no hay Prioridades registradas,Consulte con el Administrador");
   iraURL('../pages/inbox.php');
   }
-  
-//echo '<pre>';
-// print_r($rowContactos);
-
 if(isset($_POST["enviar"])){//echo $_POST["datepicker"].'<br>';		
 //echo '<br>'.date('Y-m-d', strtotime(str_replace('/', '-', $_POST["datepicker"]))).'Lados___'.date('Y-m-d', strtotime(str_replace('/', '-', $_POST["datepickerf"])));
 			
@@ -73,7 +69,7 @@ if(isset($_POST["enviar"])){//echo $_POST["datepicker"].'<br>';
 			$client = new SOAPClient($wsdl_url);
 			$client->decode_utf8 = false;				
 							
-			$client->crearPaquete($registro);		//pilas ismael
+			$envio=$client->crearPaquete($registro);		//pilas ismael
 			if($_FILES['imagen']['name']!=""){
 					$imagenName= $_FILES['imagen']['name'];
 					$caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"; //posibles caracteres a usar
@@ -103,7 +99,12 @@ if(isset($_POST["enviar"])){//echo $_POST["datepicker"].'<br>';
 			$Rta=	$client->insertarAdjunto($par);
 			
 			}
-			javaalert("La correspondencia ha sido enviada");
+			if($envio->return==0){
+				javaalert("La correspondencia no ha podido ser enviada en estos momentos");
+			}else{
+				javaalert("La correspondencia ha sido enviada");
+				llenarLog(1, "Envio de Correspondencia",$_SESSION["Usuario"]->return->idusu,$_SESSION["Sede"]->return->idsed);
+			}
 			iraURL('../pages/inbox.php');
 			
 			}else{

@@ -6,7 +6,7 @@ require_once('../lib/nusoap.php');
 if(!isset($_SESSION["Usuario"])){
 	
 	iraURL("../pages/index.php");
-	}elseif(!isset(usuarioCreado())){
+	}elseif(!usuarioCreado()){
 	iraURL("../pages/create_user.php");
 	}
 
@@ -50,9 +50,14 @@ if(isset($_POST["guardar"])){
 						  'telefono2usu' => $telefono2,
 						  'userusu'=>$Usuario->return->userusu);
 						  $registroU=array('registroUsuario'=>$registroUsu);
-							$client->editarUsuario($registroU);
-javaalert("Se han Guardado los datos del Usuario");
-								iraURL('../pages/inbox.php');	
+						$guardo=$client->editarUsuario($registroU);
+						if($guardo->return==0){
+						javaalert("No se han Guardado los datos del Usuario, Consulte con el Admininistrador");
+						}else{
+						javaalert("Se han Guardado los datos del Usuario");
+						llenarLog(9, "Edición de Usuario",$_SESSION["Usuario"]->return->idusu,$_SESSION["Sede"]->return->idsed);
+						}
+						iraURL('../pages/inbox.php');	
 			 }	
 					
 		}else{

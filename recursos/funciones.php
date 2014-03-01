@@ -34,19 +34,19 @@ function llenarLog($accion,$observacion,$usuario,$sede){
 
 		switch($accion){
 		case 1:
-			$accion="INSERCION";
+			$accion="INSERCIÓN";
 			break;
 		case 2:
-			$accion="CONFIRMACION";
+			$accion="CONFIRMACIÓN";
 			break;
 		case 3:
 			$accion="BORRADO";
 			break;
 		case 4:
-			$accion="INICIO DE SESION";
+			$accion="INICIO DE SESIÓN";
 			break;
 		case 5:
-			$accion="FIN DE SESION";
+			$accion="FIN DE SESIÓN";
 			break;
 		case 6:
 			$accion="COMPROBANTE";
@@ -56,6 +56,9 @@ function llenarLog($accion,$observacion,$usuario,$sede){
 			break;	
 		case 8:
 			$accion="VACIO DE BITACORA";
+			break;	
+		case 9:
+			$accion="EDICIÓN";
 			break;	
 		}
 

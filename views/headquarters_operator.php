@@ -66,7 +66,7 @@
                         <li class="pull-left">
                             <div class="modal-header">
                                 <h3> Correspondencia    
-                                    <span>SH</span> <?php echo "- José" ?>
+                                <span>SH</span> <?php echo "- ".$_SESSION["Usuario"]->return->userusu; ?>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
                                             <span class="icon-cog" style="color:rgb(255,255,255)"> </span>
@@ -179,6 +179,13 @@
             <div id="footer" class="container">    	
             </div>
         </div>
+		 <script>
+            window.onload = function(){
+			killerSession();}
+             function killerSession(){
+             setTimeout("window.open('../recursos/cerrarsesion.php','_top');",300000);
+             }
+   </script>
 		<script>
 	
 	function Paquete(){

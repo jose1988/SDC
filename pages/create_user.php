@@ -56,10 +56,15 @@ if(isset($_POST["crear"])){
 						$rol=array('idrol'=>"6");
 						$usuSede=array('idsed'=> $sede,'idrol'=> $rol);
 						$RegUsuSede=array('registroUsuSede'=> $usuSede);
-						$client->insertarUsuarioSedeXDefecto($RegUsuSede);
+						$guardo=$client->insertarUsuarioSedeXDefecto($RegUsuSede);
+						if($guardo->return==0){
+						javaalert("No se han Guardado los datos del Usuario, Consulte con el Admininistrador");
+						}else{
 						javaalert("Se han Guardado los datos del Usuario");
+						llenarLog(1, "Inserción de Usuario",$_SESSION["Usuario"]->return->idusu,$_SESSION["Sede"]->return->idsed);
+						}
 						iraURL('../pages/inbox.php');		
-
+						
 						}else{
 							javaalert("El formato del correo es incorrecto, por favor verifique");
 						

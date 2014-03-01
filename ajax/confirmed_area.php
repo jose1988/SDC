@@ -10,21 +10,15 @@
      $idPaquete= array('idpaq' => $_POST['idpaq']);
 	 $usu= array('idusu' => $_SESSION["Usuario"]->return->idusu);
 	 $sede= array('idsed' => $_SESSION["Sede"]->return->idsed);
-	 $parConsultaTipo=array('idPaquete' =>$_POST['idpaq'],
-						'registroSede'=>$sede);
-	//  $Tipo = $client->consultarTipoSeguimiento($parConsultaTipo); 
-	 //	'Tipo'=>$Tipo->return,
 	$parametros=array('registroPaquete' => $idPaquete,
 						'registroUsuario'=>$usu,					
 						'registroSede'=>$sede);
-  $seg = $client->registroSeguimiento($parametros); 
-//if(isset($seg->return) && $seg->return==1){
+  $seg = $client->registroSeguimiento($parametros);
+
+  
 $parametros=array('idUsuario' => $usu);
  $PaquetesConfirmados = $client->consultarPaquetesXUsuarioProcesadasAlDia($parametros); 
-  //echo '<pre>';
- // print_r($seg);
- // print_r($PaquetesConfirmados);
-//}
+
    if($seg->return==0){
        echo "<br>";
 		echo"<div class='alert alert-block' align='center'>
