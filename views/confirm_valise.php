@@ -68,15 +68,15 @@
                         <li class="pull-left">
                             <div class="modal-header">
                                 <h3> Correspondencia    
-                                    <span>SH</span> <?php echo "- José" ?>
+                                    <span>SH</span> <?php echo "- ".$_SESSION["Usuario"]->return->userusu; ?>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
                                             <span class="icon-cog" style="color:rgb(255,255,255)"> </span>
                                         </button>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Editar Usuario</a></li>
+                                            <li><a href="../pages/edit_user.php">Editar Usuario</a></li>
                                             <li class="divider"></li>
-                                            <li><a href="../recursos/cerrarsesion.php" onClick="">Salir</a></li>
+                                            <li><a href="../recursos/cerrarsesion.php">Salir</a></li>
                                             <li class="divider"></li>
                                             <li><a href="#">Ayuda</a></li>
                                         </ul>
@@ -89,7 +89,11 @@
                 <div class="row-fluid">
                     <div class="span2">
                         <ul class="nav nav-pills nav-stacked">
-                            <li> <a href="create_valise.php">Atrás</a> <li>
+                            <li>   
+                                <a href="#">
+                                    <?php echo "Atrás" ?>         
+                                </a>
+                            </li>
                         </ul>
                     </div>
 

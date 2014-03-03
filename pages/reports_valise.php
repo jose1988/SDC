@@ -5,6 +5,8 @@ require_once('../lib/nusoap.php');
 
 if(!isset($_SESSION["Usuario"])){	
 	iraURL("../index.php");
+}elseif(!usuarioCreado()){
+	iraURL("../pages/create_user.php");
 }
 
 $ideSede = $_SESSION["Sede"]->return->idsed;

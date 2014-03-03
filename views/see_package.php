@@ -65,16 +65,17 @@
                 <div>
                     <ul class="nav nav-pills">
                         <li class="pull-left">
-                            <div class="modal-header">                  
-                                <h3>Correspondecia<span>SH</span> - José
+                            <div class="modal-header">
+                                <h3> Correspondencia    
+                                    <span>SH</span> <?php echo "- ".$_SESSION["Usuario"]->return->userusu; ?>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
                                             <span class="icon-cog" style="color:rgb(255,255,255)"> </span>
                                         </button>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Editar Usuario</a></li>
+                                            <li><a href="../pages/edit_user.php">Editar Usuario</a></li>
                                             <li class="divider"></li>
-                                            <li><a href="../recursos/cerrarsesion.php" onClick="">Salir</a></li>
+                                            <li><a href="../recursos/cerrarsesion.php">Salir</a></li>
                                             <li class="divider"></li>
                                             <li><a href="#">Ayuda</a></li>
                                         </ul>
@@ -89,7 +90,11 @@
                 <div class="row-fluid">
                     <div class="span2">
                         <ul class="nav nav-pills nav-stacked">
-                            <li> <a href="enviadosPendientes.php">Atrás</a> <li>
+                            <li>   
+                                <a href="../pages/inbox.php">
+                                    <?php echo "Atrás" ?>         
+                                </a>
+                            </li>
                         </ul>
                     </div>
 
@@ -151,8 +156,24 @@
                                         <?php if(!isset($resultadoPaquete->return->statuspaq)){ ?>
                                         	<td style="text-align:center"><?php echo ""?></td>
                                         <?php }
-										else{?>
-                                        	<td style="text-align:center"><?php echo $resultadoPaquete->return->statuspaq?></td>
+										else{
+											if($resultadoPaquete->return->statuspaq=="0"){
+												$statusPaquete = "En Proceso";
+											}
+											elseif($resultadoPaquete->return->statuspaq=="1"){
+												$statusPaquete = "Entregado";
+											}
+											elseif($resultadoPaquete->return->statuspaq=="2"){
+												$statusPaquete = "No Permitido";
+											}
+											elseif($resultadoPaquete->return->statuspaq=="3"){
+												$statusPaquete = "Reenviado";
+											}
+											elseif($resultadoPaquete->return->statuspaq=="4"){
+												$statusPaquete = "Ausente";
+											}
+											?>
+                                        	<td style="text-align:center"><?php echo $statusPaquete?></td>
                                         <?php }?>
                                     </tr>
                                     <tr>
