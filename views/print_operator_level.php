@@ -73,7 +73,7 @@
                                         <ul class="dropdown-menu" role="menu">
                                             <li><a href="../pages/edit_user.php">Editar Usuario</a></li>
                                             <li class="divider"></li>
-                                            <li><a href="../recursos/cerrarsesion.php">Salir</a></li>
+                                            <li><a href="../index.php">Salir</a></li>
                                             <li class="divider"></li>
                                             <li><a href="#">Ayuda</a></li>
                                         </ul>

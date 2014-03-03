@@ -99,7 +99,7 @@
                                         <ul class="dropdown-menu" role="menu">
                                             <li><a href="#">Editar Usuario</a></li>
                                             <li class="divider"></li>
-                                            <li><a href="../recursos/cerrarsesion.php" onClick="">Salir</a></li>
+                                            <li><a href="../index.php" onClick="">Salir</a></li>
                                             <li class="divider"></li>
                                             <li><a href="#">Ayuda</a></li>
                                         </ul>
