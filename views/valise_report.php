@@ -1,26 +1,3 @@
-<?php
-
-//función que direcciona a una pagina especifica
-function iraURL($url) {
-    $ini = '<script language="javascript">
-				window.location = "';
-    $fin = '"; </script>';
-    echo $ini . $url . $fin;
-}
-
-//alertas
-function javaalert($msj) {
-    $ini = '<script language="javascript">	alert("';
-    $fin = '"); </script>';
-    echo $ini . $msj . $fin;
-}
-
-if (isset($_POST["reenviar"]) || isset($_POST["reportar"])) {
-    javaalert('Solicitud Procesada con Exito');
-    iraURL('../views/inbox.php');
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -78,7 +55,8 @@ if (isset($_POST["reenviar"]) || isset($_POST["reportar"])) {
                 </div>
                 <div class="filter-area">
                     <div class="container">					
-                        <span lang="es">&nbsp;</span></div>
+                        <span lang="es">&nbsp;</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -90,7 +68,30 @@ if (isset($_POST["reenviar"]) || isset($_POST["reportar"])) {
                         <li class="pull-left">
                             <div class="modal-header">
                                 <h3> Correspondencia    
-                                    <span>SH</span> <?php echo "- José" ?>
+                                    <div class="container app-container">
+                <div>
+                    <ul class="nav nav-pills">
+                        <li class="pull-left">
+                            <div class="modal-header">
+                                <h3> Correspondencia    
+                                    <span>SH</span> <?php echo "- Hola, ".$_SESSION["Usuario"]->return->nombreusu;?>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
+                                            <span class="icon-cog" style="color:rgb(255,255,255)"> </span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="../pages/edit_user.php">Editar Usuario</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="../recursos/cerrarsesion.php">Salir</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">Ayuda</a></li>
+                                        </ul>
+                                    </div>
+                                </h3>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
                                             <span class="icon-cog" style="color:rgb(255,255,255)"> </span>
@@ -98,7 +99,7 @@ if (isset($_POST["reenviar"]) || isset($_POST["reportar"])) {
                                         <ul class="dropdown-menu" role="menu">
                                             <li><a href="#">Editar Usuario</a></li>
                                             <li class="divider"></li>
-                                            <li><a href="../recursos/cerrarsesion.php" onClick="">Salir</a></li>
+                                            <li><a href="../index.php" onClick="">Salir</a></li>
                                             <li class="divider"></li>
                                             <li><a href="#">Ayuda</a></li>
                                         </ul>
@@ -114,7 +115,7 @@ if (isset($_POST["reenviar"]) || isset($_POST["reportar"])) {
                     <div class="span2">      
                         <ul class="nav nav-pills nav-stacked">
                             <li>   
-                                <a href="inbox.php">
+                                <a href="#">
                                     <?php echo "Atrás" ?>         
                                 </a>
                             </li>
@@ -126,19 +127,20 @@ if (isset($_POST["reenviar"]) || isset($_POST["reportar"])) {
                             <div class="tab-content" id="bandeja">
                                 <strong> <h2 align="center">Paquete Excedente</h2> </strong>                
                                 <div align="center">
-                                    Código de Correspondencia:  <input type="text" class="input-medium search-query">
-                                    <button type="submit" class="btn" id="reenviar" name="reenviar" >Reenviar</button>
+                                    Código de Correspondencia:  
+                                    <input type="text" id="cPaquete" name="cPaquete" class="input-medium search-query">
+                                    <button type="submit" class="btn" id="reportarPaqExc" name="reportarPaqExc">Reenviar</button>
+                                    <h6>(El paquete será reenviado a su destino)</h6>
                                 </div>               
                             </div>
-                            <div class="tab-content" id="bandeja"> 
-                                <strong> <h2 align="center">Ausencia de Paquete</h2> </strong>              
+                            <div class="tab-content" id="bandeja">
+                                <strong> <h2 align="center">Valija Errada</h2> </strong>                
                                 <div align="center">
-                                    Por favor detalle el error de la valija, e indique los datos de los paquetes faltantes
-                                    <textarea rows="10" cols="23" id="reporte" name="reporte" style="width:600px">Detalle...</textarea>
-                                    <br>
-                                    <br>
-                                    <button type="submit" class="btn"  id="reportar" name="reportar">Reportar</button>			
-                                </div>
+                                    Código de Valija:  
+                                    <input type="text" id="cValija" name="cValija" class="input-medium search-query">
+                                    <button type="submit" class="btn" id="reportarValija" name="reportarValija">Reenviar</button>
+                                    <h6>(La valija será reenviada a su destino)</h6>
+                                </div>               
                             </div>	  
                         </form>
                     </div>
@@ -148,9 +150,7 @@ if (isset($_POST["reenviar"]) || isset($_POST["reportar"])) {
         <!-- /container -->
         <div id="footer" class="container">    	
         </div>
-
-
-
+        
         <script src="../js/footable.js" type="text/javascript"></script>
         <script src="../js/footable.paginate.js" type="text/javascript"></script>
         <script src="../js/footable.sortable.js" type="text/javascript"></script>

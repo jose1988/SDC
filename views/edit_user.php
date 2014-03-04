@@ -1,10 +1,4 @@
-<?php
-include("../recursos/funciones.php");
-if (isset($_POST["crear"])) {
-    javaalert("Se ha guardado con éxito");
-    iraURL("inbox.php");
-}
-?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -47,7 +41,33 @@ if (isset($_POST["crear"])) {
         <link href="../css/footable.paginate.css" rel="stylesheet" type="text/css" />
 
     </head>
+<?php 
+	$apellido="";
+	$correo="";
+	$telefono1="";
+	$telefono2="";
+	$direccion1="";
+	$direccion2="";
+	if(isset($Usuario->return->apellidousu)){
+	$apellido=$Usuario->return->apellidousu;
+	}
+	if(isset($Usuario->return->correousu)){
+	$correo=$Usuario->return->correousu;
+	}
+	if(isset($Usuario->return->telefonousu)){
+	$telefono1=$Usuario->return->telefonousu;
+	}
+	if(isset($Usuario->return->telefono2usu)){
+	$telefono2=$Usuario->return->telefono2usu;
+	}
+	if(isset($Usuario->return->direccionusu)){
+	$direccion1=$Usuario->return->direccionusu;
+	}
+	if(isset($Usuario->return->direccion2usu)){
+	$direccion2=$Usuario->return->direccion2usu;
+	}
 
+?>
     <body class="appBg">
         <div id="header">
             <div class="container header-top-top hidden-phone">
@@ -73,7 +93,7 @@ if (isset($_POST["crear"])) {
                     <li class="pull-left">
                         <div class="modal-header">
                             <h3> Correspondencia    
-                                <span>SH</span> <?php echo "- José" ?>
+                                <span>SH</span> <?php echo "- ".$_SESSION["Usuario"]->return->userusu; ?>
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
                                         <span class="icon-cog" style="color:rgb(255,255,255)"> </span>
@@ -107,17 +127,16 @@ if (isset($_POST["crear"])) {
        <table class='footable table table-striped table-bordered'>
 			 <tr>
 			 <td style="text-align:center" >Nombre</td>
-				 <td style="text-align:center"><input type="text" name="nombre" id="nombre" value="José" maxlength="19" size="30" title="Ingrese el primer nombre" placeholder="Ej. Jose" autofocus required></td>
+				 <td style="text-align:center"><input type="text" name="nombre" id="nombre" autocomplete="off" value="<?php echo $Usuario->return->nombreusu;?>" maxlength="150" size="30"  autofocus required></td>
 		     </tr>
 			 <tr>
 			 
 			 <td style="text-align:center">Apellido</td>
-				<td style="text-align:center"><input type="text" name="apellido" id="apellido" value="Fuentes" maxlength="19" size="30" title="Ingrese el  apellido" placeholder="Ej. Fuentes"  ></td>
+				<td style="text-align:center"><input type="text" name="apellido" id="apellido" autocomplete="off" value="<?php echo $apellido;?>" maxlength="150" size="30"  ></td>
 		     </tr>
 			 
 			 <td style="text-align:center" width="50%">Correo</td>
-				 <td style="text-align:center"><input type="text" name="correo" id="correo" value="joseismael@gmail.com" maxlength="100" size="50" title="Ingrese un correo" placeholder="Ej. josefuentes@gmail.com">
-				 <div id="Info2" style="float:right"></div>
+				 <td style="text-align:center"><input type="email" name="correo" id="correo" autocomplete="off" value="<?php echo $correo;?>" maxlength="100" size="50" >	 
 				 </td>		
 			 	
 			 </tr>
@@ -125,7 +144,7 @@ if (isset($_POST["crear"])) {
 			 <tr>
 			 
 			 <td style="text-align:center" width="50%">Usuario</td>
-				 <td style="text-align:center"><input type="text" name="usuario" id="usuario" value="joseismael" maxlength="19" size="30" title="Ingrese el nombre de usuario" placeholder="Ej.   " required>
+				 <td style="text-align:center"><input type="text" name="usuario" id="usuario"  value="<?php echo $Usuario->return->userusu;?>" size="30"   disabled>
 				 <div id="Info" style="float:right"></div>
 				 </td>		
 			 </tr>
@@ -135,244 +154,44 @@ if (isset($_POST["crear"])) {
               <tr>
 			 
 			 <td style="text-align:center">Teléfono 1</td>
-				<td style="text-align:center"><input type="tel" name="telefono1" id="telefono1" value="04245463213" maxlength="19" size="30" title="Ingrese el numero de telefono" placeholder="Ej. 04269876543"   required></td>
+				<td style="text-align:center"><input type="tel" name="telefono1" id="telefono1" autocomplete="off" value="<?php echo $telefono1;?>" maxlength="50" size="30"    ></td>
 		     </tr>
               <tr>
 			 
 			 <td style="text-align:center">Teléfono 2</td>
-				<td style="text-align:center"><input type="tel" name="telefono2" id="telefono2" value="02123565789" maxlength="19" size="30" placeholder="Ej. 04168674789"  ></td>
+				<td style="text-align:center"><input type="tel" name="telefono2" id="telefono2" autocomplete="off" value="<?php echo $telefono2;?>" maxlength="50" size="30"  ></td>
 		     </tr>
               <tr>
 			 
 			 <td style="text-align:center">Dirección 1</td>
-				<td style="text-align:center"><textarea style="width:500px;"   id="elmsg" name="elmsg" style="width:800px">La concordia carrera 10 nro.10-5</textarea></td>
+				<td style="text-align:center"><textarea style="width:500px;"   id="direccion1" name="direccion1"  maxlength="2000" style="width:800px"><?php echo $direccion1;?></textarea></td>
 		     </tr>
               <tr>
 			 
 			 <td style="text-align:center">Dirección 2</td>
-				<td style="text-align:center"><textarea style="width:500px;" id="elmsg" name="elmsg"  style="width:800px">Centro 7ma Av. calle 3</textarea></td>
+				<td style="text-align:center"><textarea style="width:500px;" id="direccion2" name="direccion2" maxlength="2000" style="width:800px"><?php echo $direccion2;?></textarea></td>
 		     </tr>
-             
-             
-             
-             
-			 <tr> 
-			<td style="text-align:center">Tipo de Usuario</th>
-				 <td style="text-align:center"><select id="clasificacion" name="clasificacion"  required  title="Seleccione la Tipo de usuario">
-                  <option value="" style="display:none">Usuario</option> 
-				<option> Administrador</option>
-            <option> Operador nivel 1  </option>
-            <option> Operador nivel 2</option>
-            <option> Operador nivel 3</option>
-            <option> Usuario </option>
-                 </select></td>
-			 </tr>
-             
-             
-			 <tr> 
-			 
-			<td style="text-align:center">Habilitado</th>
-				 <td style="text-align:center"><input type="checkbox" name="habilitado" id="habilitado" title="si no esta seleccionado estara deshabilitado" checked> </td>
-			 </tr>
+
 	</table><br>
+                            <div class="span11" align="center"><button class="btn" id="guardar" name="guardar" type="submit">Guardar</button></div>
+                            <br>
     </form>
                     </div>
                 </div>
             </div>
         </div>
-
-        <script>
-            /*window.onload = function(){killerSession();}
-             
+ <script>
+            window.onload = function(){
+			killerSession();}
              function killerSession(){
              setTimeout("window.open('../recursos/cerrarsesion.php','_top');",300000);
              }
-             </script>
+   </script>
         <script src="../js/footable.js" type="text/javascript"></script>
         <script src="../js/footable.paginate.js" type="text/javascript"></script>
         <script src="../js/footable.sortable.js" type="text/javascript"></script>
         <script type="text/javascript" src="../js/jquery-2.0.3.js" ></script> 
 
-             <script type="text/javascript">
-             $(document).ready(function() {
-             
-             
-             
-             <!-- Codigo para verificar si el nombre del usuario ya existe --> 
-             $('#usuario').blur(function(){
-             if($(this).val()!=""){
-             $('#Info').html('<img src="../images/loader.gif" alt="" />').fadeOut(1000);
-             }
-             var nombre = $(this).val();        
-             var dataString = 'nombre='+nombre;
-             
-             var parametros = {
-             
-             "nombre" : nombre
-             };
-             $.ajax({
-             type: "POST",
-             url: "../ajax/chequeoNombreUsuario.php",
-             data: parametros,
-             success: function(data) {
-             $('#Info').fadeIn(1000).html(data);
-             }
-             });     
-             });
-             
-             
-             <!-- Codigo para verificar las contraseñas --> 
-             $('#contrasena_c').blur(function(){
-             
-             document.getElementById('fortaleza').style.display='none';
-             
-             if($(this).val()!="" && document.forms.formulario.contrasena.value!=""){
-             $('#contra').html('<img src="../images/loader.gif" alt="" />').fadeOut(1000);
-             $('#contra1').html('<img src="../images/loader.gif" alt="" />').fadeOut(1000);
-             
-             }
-             
-             var contrasena_c = $(this).val();        
-             var dataString = 'contrasena_c='+contrasena_c;
-             var con= document.forms.formulario.contrasena.value;
-             
-             $.ajax({
-             type: "POST",
-             url: "../ajax/chequeoContrasena.php?contra="+con+"",
-             data: dataString,
-             success: function(data) {
-             $('#contra').fadeIn(1000).html(data);
-             $('#contra1').fadeIn(1000).html(data);
-             }
-             });
-             });
-             
-             $('#contrasena').blur(function(){
-             document.getElementById('fortaleza').style.display='none';
-             
-             if($(this).val()!="" && document.forms.formulario.contrasena_c.value!=""){
-             $('#contra').html('<img src="../images/loader.gif" alt="" />').fadeOut(1000);
-             $('#contra1').html('<img src="../images/loader.gif" alt="" />').fadeOut(1000);
-             
-             }
-             
-             var contrasena = $(this).val();        
-             var dataString = 'contrasena='+contrasena;
-             var con= document.forms.formulario.contrasena_c.value;
-             
-             $.ajax({
-             type: "POST",
-             url: "../ajax/chequeoContrasena.php?contra="+con+"",
-             data: dataString,
-             success: function(data) {
-             $('#contra').fadeIn(1000).html(data);
-             $('#contra1').fadeIn(1000).html(data);
-             }
-             });
-             });  
-             <!-- Codigo para verificar si el Correo lleva el formato correcto --> 
-             $('#correo').blur(function(){
-             if($(this).val()!=""){
-             $('#Info2').html('<img src="../images/loader.gif" alt="" />').fadeOut(1000);
-             }
-             var correo = $(this).val();
-             var dataString = 'correo='+correo;
-             $.ajax({
-             type: "POST",
-             url: "../ajax/chequeoCorreo.php",
-             data: dataString,
-             success: function(data) {
-             $('#Info2').fadeIn(1000).html(data);
-             }
-             });     
-             });	
-             });
-             
-             <!-- Codigo para verificar la fortaleza de la contraseña --> 
-             
-             var numeros="0123456789";
-             var letras="abcdefghyjklmnñopqrstuvwxyz";
-             var letras_mayusculas="ABCDEFGHYJKLMNÑOPQRSTUVWXYZ";
-             
-             function tiene_numeros(texto){
-             for(i=0; i<texto.length; i++){
-             if (numeros.indexOf(texto.charAt(i),0)!=-1){
-             return 1;
-             }
-             }
-             return 0;
-             } 
-             
-             function tiene_letras(texto){
-             texto = texto.toLowerCase();
-             for(i=0; i<texto.length; i++){
-             if (letras.indexOf(texto.charAt(i),0)!=-1){
-             return 1;
-             }
-             }
-             return 0;
-             } 
-             
-             function tiene_minusculas(texto){
-             for(i=0; i<texto.length; i++){
-             if (letras.indexOf(texto.charAt(i),0)!=-1){
-             return 1;
-             }
-             }
-             return 0;
-             } 
-             
-             function tiene_mayusculas(texto){
-             for(i=0; i<texto.length; i++){
-             if (letras_mayusculas.indexOf(texto.charAt(i),0)!=-1){
-             return 1;
-             }
-             }
-             return 0;
-             } 
-             
-             function seguridad_clave(clave){
-             var seguridad = 0;
-             if (clave.length!=0){
-             if (tiene_numeros(clave) && tiene_letras(clave)){
-             seguridad += 30;
-             }
-             if (tiene_minusculas(clave) && tiene_mayusculas(clave)){
-             seguridad += 30;
-             }
-             if (clave.length >= 4 && clave.length <= 5){
-             seguridad += 10;
-             }else{
-             if (clave.length >= 6 && clave.length <= 8){
-             seguridad += 30;
-             }else{
-             if (clave.length > 8){
-             seguridad += 40;
-             }
-             }
-             }
-             }
-             return seguridad				
-             }	
-             
-             function muestra_seguridad_clave(clave,formulario){
-             seguridad=seguridad_clave(clave);
-             document.getElementById('fortaleza').style.color='#FFFFFF'; 
-             if(seguridad>0 && seguridad<=40){
-             document.getElementById('fortaleza').style.display='block'; 
-             document.getElementById('fortaleza').style.backgroundColor="#2ECCFA"; 
-             formulario.fortaleza.value="Debil";
-             }else if(seguridad>40 && seguridad<=70){
-             formulario.fortaleza.value="Medio";
-             document.getElementById('fortaleza').style.backgroundColor="#5882FA"; 
-             }else if(seguridad>70){
-             formulario.fortaleza.value="Fuerte";
-             document.getElementById('fortaleza').style.backgroundColor="#0404B4"; 
-             }else{
-             document.getElementById('fortaleza').style.display='none'; 
-             }		
-             }*/
-        </script>  
 
     </body>
 </html>

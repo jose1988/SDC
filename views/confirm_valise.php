@@ -1,10 +1,3 @@
-<?php
-include("../recursos/funciones.php");
-if (isset($_POST["guardar"])) {
-    javaalert("La valija ha sido confimada");
-    iraURL("inbox.php");
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -62,7 +55,8 @@ if (isset($_POST["guardar"])) {
                 </div>
                 <div class="filter-area">
                     <div class="container">
-                        <span lang="es">&nbsp;</span></div>
+                        <span lang="es">&nbsp;</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -74,15 +68,15 @@ if (isset($_POST["guardar"])) {
                         <li class="pull-left">
                             <div class="modal-header">
                                 <h3> Correspondencia    
-                                    <span>SH</span> <?php echo "- José" ?>
+                                    <span>SH</span> <?php echo "- Hola, ".$_SESSION["Usuario"]->return->nombreusu;?>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
                                             <span class="icon-cog" style="color:rgb(255,255,255)"> </span>
                                         </button>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Editar Usuario</a></li>
+                                            <li><a href="../pages/edit_user.php">Editar Usuario</a></li>
                                             <li class="divider"></li>
-                                            <li><a href="../recursos/cerrarsesion.php" onClick="">Salir</a></li>
+                                            <li><a href="../index.php">Salir</a></li>
                                             <li class="divider"></li>
                                             <li><a href="#">Ayuda</a></li>
                                         </ul>
@@ -95,7 +89,11 @@ if (isset($_POST["guardar"])) {
                 <div class="row-fluid">
                     <div class="span2">
                         <ul class="nav nav-pills nav-stacked">
-                            <li> <a href="create_valise.php">Atrás</a> <li>
+                            <li>   
+                                <a href="#">
+                                    <?php echo "Atrás" ?>         
+                                </a>
+                            </li>
                         </ul>
                     </div>
 
@@ -104,24 +102,16 @@ if (isset($_POST["guardar"])) {
                             <div class="tab-content">
                                 <div class="row-fluid">
                                     <h3 class="form-signin-heading">Confirmar Valija</h3>
-                                    <div class="span5" align="right">
-                                        Codigo de Valija:
-                                    </div>
-
+                                    <div class="span5" align="right">Código de Valija:</div>
                                     <div class="span3" align="left">
-                                        <input type="text" class="input-block-level"  name="cValija" id="cValija"  autofocus required>
-                                    </div>	
-
-                                    <div class="span5" align="right">
-                                        Codigo de Zoom:
+                                        <input type="text" class="input-block-level" name="cValija" id="cValija" autofocus required>
                                     </div>
-
+                                    <div class="span5" align="right">Código de Zoom:</div>
                                     <div class="span3" align="left">
-                                        <input type="text" class="input-block-level"  name="cZoom" id="cZoom" required>
-                                    </div>	
-
+                                        <input type="text" class="input-block-level" name="cZoom" id="cZoom" required>
+                                    </div>
                                 </div>
-                                <button class="btn" type="submit" name="guardar">Guardar</button>
+                                <button class="btn" type="submit" id="confirmar" name="confirmar">Confirmar</button>
                             </div>
                         </form>
                     </div>
@@ -133,13 +123,6 @@ if (isset($_POST["guardar"])) {
             </div>
         </div>
 
-        <script>
-            //window.onload = function(){killerSession();}
-            //
-            //function killerSession(){
-            //setTimeout("window.open('../recursos/cerrarsesion.php','_top');",300000);
-            //}
-        </script>
         <script src="../js/footable.js" type="text/javascript"></script>
         <script src="../js/footable.paginate.js" type="text/javascript"></script>
         <script src="../js/footable.sortable.js" type="text/javascript"></script>

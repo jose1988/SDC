@@ -68,15 +68,15 @@
                         <li class="pull-left">
                             <div class="modal-header">
                                 <h3> Correspondencia    
-                                    <span>SH</span> <?php echo "- José" ?>
+                                    <span>SH</span> <?php echo "- Hola, ".$_SESSION["Usuario"]->return->nombreusu;?>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
                                             <span class="icon-cog" style="color:rgb(255,255,255)"> </span>
                                         </button>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Editar Usuario</a></li>
+                                            <li><a href="../pages/edit_user.php">Editar Usuario</a></li>
                                             <li class="divider"></li>
-                                            <li><a href="../recursos/cerrarsesion.php" onClick="">Salir</a></li>
+                                            <li><a href="../index.php">Salir</a></li>
                                             <li class="divider"></li>
                                             <li><a href="#">Ayuda</a></li>
                                         </ul>
@@ -92,7 +92,7 @@
                     <div class="span2">      
                         <ul class="nav nav-pills nav-stacked">
                             <li>   
-                                <a href="inbox.php">
+                                <a href="#">
                                     <?php echo "Atrás" ?>         
                                 </a>
                             </li>
@@ -101,46 +101,115 @@
 
                     <div class="span10">
                         <div class="tab-content" id="bandeja">
-                            <strong> <h2 align="center">Reporte de Valijas por Hoy</h2> </strong>
+            			<?php             
+                        //Verificando que este vacio o sea null
+						if(!isset($resultadoConsultarValijas->return)){
+							echo '<div class="alert alert-block" align="center">';
+   							echo '<h2 style="color:rgb(255,255,255)" align="center">Atención</h2>';
+   							echo '<h4 align="center">No Existen Registros de Valijas Hoy</h4>';
+							echo '</div>';
+						}
+    					//Si existen registros muestro la tabla
+						else{ ?>                        
+                            <strong> <h2 align="center">Reporte de Valijas Hoy</h2> </strong>
                             <table class='footable table table-striped table-bordered' data-page-size='5'>
                                 <thead bgcolor='#FF0000'>
                                     <tr>
                                         <th style="text-align:center">Origen</th>
                                         <th style="text-align:center" data-sort-ignore="true">Destino</th>
-                                        <th style="text-align:center" data-sort-ignore="true">Tipo</th>
+                                        <th style="text-align:center" data-sort-ignore="true">Asunto</th>
                                         <th style="text-align:center" data-sort-ignore="true">Fecha</th>
-                                        <th style="text-align:center" data-sort-ignore="true">Con Respuesta</th>
+                                        <th style="text-align:center" data-sort-ignore="true">Incidente</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td style="text-align:center">Pedro Peréz</td>
-                                        <td style="text-align:center">María Mora</td>
-                                        <td style="text-align:center">Obj</td>
-                                        <td style="text-align:center">03/02/2014</td>
-                                        <td style="text-align:center">[]</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align:center">María Mora</td>
-                                        <td style="text-align:center">Sandra Sanchez</td>
-                                        <td style="text-align:center">Obj</td>
-                                        <td style="text-align:center">03/02/2014</td>
-                                        <td style="text-align:center">[]</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align:center">Sandra Sanchez</td>
-                                        <td style="text-align:center">José Moncada</td>
-                                        <td style="text-align:center">Doc Dig</td>
-                                        <td style="text-align:center">03/02/2014</td>
-                                        <td style="text-align:center">[X]</td>
-                                    </tr>
+                                <tbody>                                	
+                                    
+                                    <?php if($valijas>1){
+										for($i=0;$i<$valijas;$i++){
+										?>
+                                        	<tr>
+                                            	<?php
+												$idSed = $resultadoConsultarValijas->return[$i]->origenval;
+												$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/Niuska?WSDL';
+  												$client = new SOAPClient($wsdl_url);
+										  		$client->decode_utf8 = false;
+	
+												$idSede = array('idSede' => $idSed);
+												$resultadoConsultarSede = $client->consultarSedeXId($idSede);
+	
+												if(!isset($resultadoConsultarSede->return)){
+													$sede = 0;
+												}else{
+													$sede = count($resultadoConsultarSede->return);													
+												?>
+                                        		<td style="text-align:center"><?php echo $resultadoConsultarSede->return->nombresed?></td>
+                                                <?php }?>
+                                        		<td style="text-align:center"><?php echo $resultadoConsultarValijas->return[$i]->destinoval->nombresed?></td>
+                                                <?php												
+												if(!isset($resultadoConsultarValijas->return[$i]->asuntoval)){
+												?>
+                                                	<td style="text-align:center"><?php echo ""?></td>
+                                                <?php }
+												else{?>
+                                        		<td style="text-align:center"><?php echo $resultadoConsultarValijas->return[$i]->asuntoval?></td>											<?php }
+												if(!isset($resultadoConsultarValijas->return[$i]->fechaval)){
+												?>
+                                                	<td style="text-align:center"><?php echo ""?></td>
+                                                <?php }
+												else{?>
+                                        		<td style="text-align:center"><?php echo substr($resultadoConsultarValijas->return[$i]->fechaval,0,10)?></td>
+                                                 <?php
+												}
+                                               	if(!isset($resultadoConsultarValijas->return[$i]->idinc)){
+												?>
+                                                	<td style="text-align:center"><?php echo ""?></td>
+                                                <?php }
+												else{?>
+                                        		<td style="text-align:center"><?php echo $resultadoConsultarValijas->return[$i]->idinc->nombreinc?></td>
+                                                 <?php
+												}
+												?>
+                                        	</tr>
+                                    <?php }
+									}
+									else{ ?>
+											<tr>
+                                        		<td style="text-align:center"><?php echo $resultadoConsultarValijas->return->origenval->nombreusu?></td>
+                                        		<td style="text-align:center"><?php echo $resultadoConsultarValijas->return->destinoval->idusubuz->nombreusu?></td>
+                                                <?php												
+												if(!isset($resultadoConsultarValijas->return->asuntoval)){
+												?>
+                                                	<td style="text-align:center"><?php echo ""?></td>
+                                                <?php }
+												else{?>
+                                        		<td style="text-align:center"><?php echo $resultadoConsultarValijas->return->asuntoval?></td>											<?php }
+												if(!isset($resultadoConsultarValijas->return->fechaval)){
+												?>
+                                                	<td style="text-align:center"><?php echo ""?></td>
+                                                <?php }
+												else{?>
+                                        		<td style="text-align:center"><?php echo substr($resultadoConsultarValijas->return->fechaval,0,10)?></td>
+                                                 <?php
+												}
+                                                if(!isset($resultadoConsultarValijas->return->idinc)){
+												?>
+                                                	<td style="text-align:center"><?php echo ""?></td>
+                                                <?php }
+												else{?>
+                                        		<td style="text-align:center"><?php echo $resultadoConsultarValijas->return->idinc->nombreinc?></td>
+                                                 <?php
+												}
+												?>
+                                        	</tr>
+										<?php }?>                                    
                                 </tbody>
                             </table>
-                            <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>
+                            <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>                            
                             <br>
                             <br>
                             <div id="grafico" style="min-width: 150px; max-width: 850px; height: 350px; margin: 0 auto">   	
                             </div>
+                            <?php }?>
                         </div>
                     </div>
                 </div>
@@ -165,13 +234,12 @@
                         type: 'column'
                     },
                     title: {
-                        text: 'Reporte de Valijas dependiendo del Origen'
+                        text: 'Reporte de Valijas'
                     },
                     xAxis: {
                         categories: [
-                            'Caracas',
-                            'San Cristóbal',
-                            'Margarita'
+                            'Procesadas',
+                            'Fallas'
                         ]
                     },
                     yAxis: {
@@ -195,18 +263,19 @@
                         }
                     },
                     series: [{
-                            name: 'Procesadas',
-                            data: [25.5, 35.5, 39]
-
-                        }, {
-                            name: 'Fallas',
-                            data: [39, 25.5, 35.5]
-                        }]
+                            name: 'Valijas',
+                            data: [<?php echo $valijasProcesadas ?>, <?php echo $valijasNoProcesadas ?>]
+							                        
+                        	}]
                 });
 
 
             });
         </script>
+        
+        <script src="../js/footable.js" type="text/javascript"></script>
+        <script src="../js/footable.paginate.js" type="text/javascript"></script>
+        <script src="../js/footable.sortable.js" type="text/javascript"></script>
 
         <script type="text/javascript">
             $(function() {
