@@ -1,20 +1,54 @@
 <?php
 require_once("../pdf/dompdf/dompdf_config.inc.php");
+$htmlUno = "";
+$htmlDos = "";
+$htmlTres = "";
 
 $idpaq = $resultadoConsultarUltimoPaquete->return->idpaq;
+
+if(isset($resultadoConsultarUltimoPaquete->return->idpaqres->idpaq)){
+	$idpaqres = $resultadoConsultarUltimoPaquete->return->idpaqres->idpaq;
+}else{
+	$idpaqres = "";
+}
+
 $nombre = $resultadoConsultarUltimoPaquete->return->origenpaq->nombreusu;
-$apellido = $resultadoConsultarUltimoPaquete->return->origenpaq->apellidousu;
 
-$nombredes = $resultadoConsultarUltimoPaquete->return->destinopaq->idusubuz->nombreusu;
-$direcciondes = $resultadoConsultarUltimoPaquete->return->destinopaq->idusubuz->direccionusu;
-$telefonodes = $resultadoConsultarUltimoPaquete->return->destinopaq->idusubuz->telefonousu;
+if(isset($resultadoConsultarUltimoPaquete->return->origenpaq->apellidousu)){
+	$apellido = $resultadoConsultarUltimoPaquete->return->origenpaq->apellidousu;
+}else{
+	$apellido = "";
+}
 
-$sede = $resultadoConsultarSede->return->nombresed;
+if(isset($resultadoConsultarUltimoPaquete->return->destinopaq->idusubuz->nombreusu)){
+	$nombredes = $resultadoConsultarUltimoPaquete->return->destinopaq->idusubuz->nombreusu;
+}else{
+	$nombredes = "";
+}
+
+if(isset($resultadoConsultarUltimoPaquete->return->destinopaq->idusubuz->direccionusu)){
+	$direcciondes = $resultadoConsultarUltimoPaquete->return->destinopaq->idusubuz->direccionusu;
+}
+else{
+	$direcciondes = "";
+}
+
+if(isset($resultadoConsultarUltimoPaquete->return->destinopaq->idusubuz->telefonousu)){
+	$telefonodes = $resultadoConsultarUltimoPaquete->return->destinopaq->idusubuz->telefonousu;
+}else{
+	$telefonodes = "";
+}
+
+if(isset($resultadoConsultarSede->return->nombresed)){
+	$sede = $resultadoConsultarSede->return->nombresed;
+}else{
+	$sede = "";
+}
 
 if(isset($resultadoConsultarUltimoPaquete->return)){
 
 # Contenido HTML del documento que queremos generar en PDF.
-$html='
+$htmlUno ='
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -32,16 +66,21 @@ $html='
     	<table width="500" border="0">
   		<tr>
     		<td><strong>Sede: </strong>'.$sede.'</td>
-    		<td>&nbsp;</td>
+    		<td align="center"><strong>Paquete No: </strong>'.$idpaq.'</td>
   		</tr>
   		<tr>
     		<td>&nbsp;</td>
     		<td>&nbsp;</td>
   		</tr>
   		<tr>
-    		<td><strong>Realizado por: </strong>'.$nombre.' '.$apellido.'</td>
-    		<td>&nbsp;</td>
-  		</tr>
+    		<td><strong>Realizado por: </strong>'.$nombre.' '.$apellido.'</td>';
+			if($idpaqres!=""){
+				$htmlDos = '<td><strong>Respuesta al Paquete: </strong>'.$idpaqres.'</td>';
+			}else{
+				$htmlDos = '<td>&nbsp;</td>';
+			}
+    		
+  		$htmlDos = $htmlDos.'</tr>
   		<tr>
     		<td>&nbsp;</td>
     		<td>&nbsp;</td>
@@ -59,10 +98,10 @@ $html='
 		</tr>
 		<tr>
   		  <td colspan="2">&nbsp;</td>
-		</tr>
+		</tr>		
   		<tr>
   		  <td align="center"><strong>________________</strong></td>
-          <td align="center"<strong>________________</strong></td>
+          <td align="center"><strong>________________</strong></td>
 		  </tr>
   		<tr>
   		  <td align="center"><strong>Usuario</strong></td>
@@ -90,16 +129,21 @@ $html='
     	<table width="500" border="0">
   		<tr>
     		<td><strong>Sede: </strong>'.$sede.'</td>
-    		<td>&nbsp;</td>
+    		<td align="center"><strong>Paquete No: </strong>'.$idpaq.'</td>
   		</tr>
   		<tr>
     		<td>&nbsp;</td>
     		<td>&nbsp;</td>
   		</tr>
   		<tr>
-    		<td><strong>Realizado por: </strong>'.$nombre.' '.$apellido.'</td>
-    		<td>&nbsp;</td>
-  		</tr>
+    		<td><strong>Realizado por: </strong>'.$nombre.' '.$apellido.'</td>';
+			if($idpaqres!=""){
+				$htmlTres = '<td><strong>Respuesta del Paquete: </strong>'.$idpaqres.'</td>';
+			}else{
+				$htmlTres = '<td>&nbsp;</td>';
+			}
+    		
+  		$htmlTres = $htmlTres.'</tr>
   		<tr>
     		<td>&nbsp;</td>
     		<td>&nbsp;</td>
@@ -120,7 +164,7 @@ $html='
 		</tr>
   		<tr>
   		  <td align="center"><strong>________________</strong></td>
-          <td align="center"<strong>________________</strong></td>
+          <td align="center"><strong>________________</strong></td>
 		  </tr>
   		<tr>
   		  <td align="center"><strong>Usuario</strong></td>
@@ -133,6 +177,9 @@ $html='
 </body>
 </html>
 ';
+
+//Concatenación de todo
+$html = $htmlUno.$htmlDos.$htmlTres;
 
 //Obtenemos el código html de la página web que nos interesa
 $dompdf = new DOMPDF();

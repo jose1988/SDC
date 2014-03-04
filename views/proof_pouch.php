@@ -4,13 +4,36 @@ require_once("../pdf/dompdf/dompdf_config.inc.php");
 $idval = $resultadoConsultarUltimaValija->return->idval;
 
 $nombre = $resultadoConsultarUltimaValija->return->idusu->nombreusu;
-$apellido = $resultadoConsultarUltimaValija->return->idusu->apellidousu;
 
-$nombredes = $resultadoConsultarUltimaValija->return->destinoval->nombresed;
-$direcciondes = $resultadoConsultarUltimaValija->return->destinoval->direccionsed;
-$telefonodes = $resultadoConsultarUltimaValija->return->destinoval->telefonosed;
+if(isset($resultadoConsultarUltimaValija->return->origenpaq->apellidousu)){
+	$apellido = $resultadoConsultarUltimaValija->return->origenpaq->apellidousu;
+}else{
+	$apellido = "";
+}
 
-$sede = $resultadoConsultarSede->return->nombresed;
+if(isset($resultadoConsultarUltimaValija->return->destinoval->nombresed)){
+	$nombredes = $resultadoConsultarUltimaValija->return->destinoval->nombresed;
+}else{
+	$nombredes = "";
+}
+
+if(isset($resultadoConsultarUltimaValija->return->destinoval->direccionsed)){
+	$direcciondes = $resultadoConsultarUltimaValija->return->destinoval->direccionsed;
+}else{
+	$direcciondes = "";
+}
+
+if(isset($resultadoConsultarUltimaValija->return->destinoval->telefonosed)){
+	$telefonodes = $resultadoConsultarUltimaValija->return->destinoval->telefonosed;
+}else{
+	$telefonodes = "";
+}
+
+if(isset($resultadoConsultarSede->return->nombresed)){
+	$sede = $resultadoConsultarSede->return->nombresed;
+}else{
+	$sede = "";
+}
 
 if(isset($resultadoConsultarUltimaValija->return)){
 
@@ -33,7 +56,7 @@ $html='
     	<table width="500" border="0">
   		<tr>
     		<td><strong>Sede: </strong>'.$sede.'</td>
-    		<td>&nbsp;</td>
+    		<td align="center"><strong>Valija No: </strong>'.$idval.'</td>
   		</tr>
   		<tr>
     		<td>&nbsp;</td>
@@ -63,7 +86,7 @@ $html='
 		</tr>
   		<tr>
   		  <td align="center"><strong>________________</strong></td>
-          <td align="center"<strong>________________</strong></td>
+          <td align="center"><strong>________________</strong></td>
 		  </tr>
   		<tr>
   		  <td align="center"><strong>Usuario</strong></td>
@@ -91,7 +114,7 @@ $html='
     	<table width="500" border="0">
   		<tr>
     		<td><strong>Sede: </strong>'.$sede.'</td>
-    		<td>&nbsp;</td>
+    		<td align="center"><strong>Valija No: </strong>'.$idval.'</td>
   		</tr>
   		<tr>
     		<td>&nbsp;</td>
@@ -121,7 +144,7 @@ $html='
 		</tr>
   		<tr>
   		  <td align="center"><strong>________________</strong></td>
-          <td align="center"<strong>________________</strong></td>
+          <td align="center"><strong>________________</strong></td>
 		  </tr>
   		<tr>
   		  <td align="center"><strong>Usuario</strong></td>

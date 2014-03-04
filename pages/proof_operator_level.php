@@ -27,10 +27,28 @@ try {
 			$idPaquete = array('idPaquete' => $paquetes[$j]);
 			$resultadoPaquete = $client->consultarPaqueteXId($idPaquete);
 			$paquetesTotales[$i] = $resultadoPaquete->return;
+			$idPaq[$i] = $resultadoPaquete->return->idpaq;
+			if(isset($resultadoPaquete->return->idpaqres->idpaq)){
+				$idPaqRes[$i] = $resultadoPaquete->return->idpaqres->idpaq;
+			}else{
+				$idPaqRes[$i] = "";
+			}
 			$origen[$i] = $resultadoPaquete->return->origenpaq->nombreusu;
-			$destino[$i] = $resultadoPaquete->return->destinopaq->idusubuz->nombreusu;
-			$direccion[$i] = $resultadoPaquete->return->destinopaq->idusubuz->direccionusu;
-			$telefono[$i] = $resultadoPaquete->return->destinopaq->idusubuz->telefonousu;
+			if(isset($resultadoPaquete->return->destinopaq->idusubuz->nombreusu)){
+				$destino[$i] = $resultadoPaquete->return->destinopaq->idusubuz->nombreusu;
+			}else{
+				$destino[$i] = "";
+			}
+			if(isset($resultadoPaquete->return->destinopaq->idusubuz->direccionusu)){
+				$direccion[$i] = $resultadoPaquete->return->destinopaq->idusubuz->direccionusu;
+			}else{
+				$direccion[$i] = "";
+			}
+			if(isset($resultadoPaquete->return->destinopaq->idusubuz->telefonousu)){
+				$telefono[$i] = $resultadoPaquete->return->destinopaq->idusubuz->telefonousu;
+			}else{
+				$telefono[$i] = "";
+			}
 			$i++;
 			$contadorPaq++;
 		}

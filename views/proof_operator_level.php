@@ -28,18 +28,22 @@ $htmlUno = '<html>
 		<h3 align="center">Listado de Paquetes en Nivel 1</h3>
     	<table width="500" border="1" id="borde">
 			<tr id="bd">
+				<td id="bd" style="text-align:center"><strong>Paquete</strong></td>
     			<td id="bd" style="text-align:center"><strong>Origen</strong></td>
     			<td id="bd" style="text-align:center"><strong>Destino</strong></td>
     			<td id="bd" style="text-align:center"><strong>Dirección</strong></td>
 				<td id="bd" style="text-align:center"><strong>Teléfono</strong></td>
+				<td id="bd" style="text-align:center"><strong>Respuesta al Paquete</strong></td>
   			</tr>';
 			
 	  	for($i=0; $i<$contadorPaquetes; $i++){			
 	  		$htmlDos = $htmlDos.'<tr id="bd">
+				<td id="bd" align="center">'.$idPaq[$i].'</td>
     			<td id="bd">'.$origen[$i].'</td>
     			<td id="bd">'.$destino[$i].'</td>
     			<td id="bd">'.$direccion[$i].'</td>
 				<td id="bd">'.$telefono[$i].'</td>
+				<td id="bd" align="center">'.$idPaqRes[$i].'</td>
   			</tr>';		
 		}
 		
@@ -71,18 +75,22 @@ $htmlUno = '<html>
 		<h3 align="center">Listado de Paquetes en Nivel 1</h3>
     	<table width="500" border="1" id="borde">
 			<tr id="bd">
+				<td id="bd" style="text-align:center"><strong>Paquete</strong></td>
     			<td id="bd" style="text-align:center"><strong>Origen</strong></td>
     			<td id="bd" style="text-align:center"><strong>Destino</strong></td>
     			<td id="bd" style="text-align:center"><strong>Dirección</strong></td>
 				<td id="bd" style="text-align:center"><strong>Teléfono</strong></td>
+				<td id="bd" style="text-align:center"><strong>Respuesta al Paquete</strong></td>
   			</tr>';
 			
 	  	for($i=0; $i<$contadorPaquetes; $i++){
 	  		$htmlCuatro = $htmlCuatro.'<tr id="bd">
+				<td id="bd" align="center">'.$idPaq[$i].'</td>
     			<td id="bd">'.$origen[$i].'</td>
     			<td id="bd">'.$destino[$i].'</td>
     			<td id="bd">'.$direccion[$i].'</td>
 				<td id="bd">'.$telefono[$i].'</td>
+				<td id="bd" align="center">'.$idPaqRes[$i].'</td>
   			</tr>';		
 		}
 		
@@ -127,18 +135,22 @@ $htmlUno = '<html>
 		<h3 align="center">Listado de Paquetes en Nivel 1</h3>
     	<table width="500" border="1" id="borde">
 			<tr id="bd">
+				<td id="bd" style="text-align:center"><strong>Paquete</strong></td>
     			<td id="bd" style="text-align:center"><strong>Origen</strong></td>
     			<td id="bd" style="text-align:center"><strong>Destino</strong></td>
     			<td id="bd" style="text-align:center"><strong>Dirección</strong></td>
 				<td id="bd" style="text-align:center"><strong>Teléfono</strong></td>
+				<td id="bd" style="text-align:center"><strong>Respuesta al Paquete</strong></td>
   			</tr>';
 			
 		for($i=0; $i<$contadorPaquetes; $i++){			
 	  		$htmlDos = $htmlDos.'<tr id="bd">
+				<td id="bd" align="center">'.$idPaq[$i].'</td>
     			<td id="bd">'.$origen[$i].'</td>
     			<td id="bd">'.$destino[$i].'</td>
     			<td id="bd">'.$direccion[$i].'</td>
 				<td id="bd">'.$telefono[$i].'</td>
+				<td id="bd" align="center">'.$idPaqRes[$i].'</td>
   			</tr>';		
 		}
 		
@@ -174,18 +186,22 @@ $htmlUno = '<html>
 		<h3 align="center">Listado de Paquetes en Nivel 1</h3>
 		<table width="500" border="1" id="borde">
 			<tr id="bd">
+				<td id="bd" style="text-align:center"><strong>Paquete</strong></td>
     			<td id="bd" style="text-align:center"><strong>Origen</strong></td>
     			<td id="bd" style="text-align:center"><strong>Destino</strong></td>
     			<td id="bd" style="text-align:center"><strong>Dirección</strong></td>
 				<td id="bd" style="text-align:center"><strong>Teléfono</strong></td>
+				<td id="bd" style="text-align:center"><strong>Respuesta al Paquete</strong></td>
   			</tr>';
 		
 		for($i=0; $i<$contadorPaquetes; $i++){
 	  		$htmlCuatro = $htmlCuatro.'<tr id="bd">
+				<td id="bd" align="center">'.$idPaq[$i].'</td>
     			<td id="bd">'.$origen[$i].'</td>
     			<td id="bd">'.$destino[$i].'</td>
     			<td id="bd">'.$direccion[$i].'</td>
 				<td id="bd">'.$telefono[$i].'</td>
+				<td id="bd" align="center">'.$idPaqRes[$i].'</td>
   			</tr>';		
 		}
 		
