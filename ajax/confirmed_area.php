@@ -6,7 +6,7 @@
   $client->decode_utf8 = false; 
   $idPaquete= array('idPaquete' => $_POST['idpaq']);
   $Paquete = $client->ConsultarPaqueteXId($idPaquete); 
-  if(isset($Paquete)){
+  if(isset($Paquete->return)){
      $idPaquete= array('idpaq' => $_POST['idpaq']);
 	 $usu= array('idusu' => $_SESSION["Usuario"]->return->idusu);
 	 $sede= array('idsed' => $_SESSION["Sede"]->return->idsed);
