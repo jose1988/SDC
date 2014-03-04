@@ -1,6 +1,4 @@
-<?php
-  session_start();
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -123,7 +121,7 @@
       <a href="javascript:;" id="<?php echo $aux ?>" onClick="Bandeja(<?php echo "'".$aux."'" ?>);" >  
              
              <?php echo ($BandejaUsu->return[$i]->nombreiba); ?> 
-             <span class="badge pull-right">42</span>   
+            
             
          
           </a>
@@ -140,8 +138,8 @@
      </ul>
      
       
-      <?php /*
-					   if($_SESSION["Usuario"]=="operador"){ ?>
+      <?php 
+					   if( $_SESSION["Usuario"]->return->idusu=="1"){ ?>
 						   
 						<a href="operator_level.php" ><button type="button" class="btn btn-info btn-primary " value="Recibir paquete">  Recibir paquete del usuario  </button> </a>
 						   
@@ -157,7 +155,7 @@
 						  
 					 <?php  }
 					   
-					   */?>
+					   ?>
       </div>
       
        <div class="span10">

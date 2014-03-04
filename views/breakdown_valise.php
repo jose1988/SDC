@@ -1,9 +1,50 @@
 <?php
-include("../recursos/funciones.php");
-if (isset($_POST["guardar"])) {
-    javaalert("Ha sido confimada la entrega de la valija");
-    iraURL("inbox.php");
-}
+
+if(isset($_POST["guardar"]) && (isset($_POST["idc"]) || isset($_POST["idr"])) ){
+		try{
+			$registrosFallidos=$_POST["ide"];
+			$registrosConfimados=$_POST["idr"];
+			$contadorEliminados=0;
+			$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
+  $client = new SOAPClient($wsdl_url);
+  $client->decode_utf8 = false; 
+			if(isset($registrosFallidos)){
+			$datosValija = array('idval' => $_SESSION["Usuario"]->return->idusu, 'status'=> "entregado con ausente");
+			
+			
+			   
+			}else{
+				$datosValija = array('idval' => $_SESSION["Usuario"]->return->idusu, 'status'=> "entregado");
+			}
+			
+			
+			if(isset($registrosConfimados)){	
+				
+			for($j=0; $j<$_SESSION["idc"]; $j++){
+			    if(isset($registrosConfimados[$j])){
+				$datosAct = array('localizacion' => "Sede Destino", 'idpaq'=> $registrosConfimados[$j]);
+				$client->actualizacionLocalizacionRecibidoPaquete($datosAct);
+			
+				$contadorEliminados++;
+				}		
+				if($contadorEliminados==count($_POST["ide"])){
+					break;
+				}
+			  }	
+			}
+				
+  $idValija = $client->entregarValija($datosValija);
+  
+  
+		 } catch (Exception $e) {
+			javaalert('Lo sentimos no hay conexión');
+			iraURL('../views/index.php');
+		}
+		//javaalert("Los registros han sido habilitados");
+		//iraURL('inbox.php');
+	}else if(isset($_POST["guardar"])){
+		javaalert("Debe seleccionar al menos un registro");
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -102,59 +143,19 @@ if (isset($_POST["guardar"])) {
                 <div class="span10">
                     <div class="tab-content" id="lista">
                         <h2> <strong> Desglozar Valija </strong> </h2>
-                        <form class="form-Dvalija" method="post">
-                            Código de Valija:  <input type="text" class="input-medium search-query">
-                            <button type="submit" class="btn">Buscar</button>
+                        <form class="form-Dvalija" method="post" id="fval">
+                            Código de Valija:  <input type="text" id="idval" name="idval" class="input-medium search-query">
+                            <button type="button"  onClick="Valija();" class="btn">Buscar</button>
                         </form>
-                        <table class='footable table table-striped table-bordered' data-page-size='10'>
-                            <thead bgcolor='#FF0000'>
-                                <tr>
-                                    <th style='width:20%; text-align:center' >Origen</th>
-                                    <th style='width:20%; text-align:center'>Destino</th>
-                                    <th data-sort-ignore="true" style='width:15%; text-align:center'>Asunto</th>
-                                    <th  style='width:10%; text-align:center'>Tipo</th>
-                                    <th   data-sort-ignore="true" style='width:15%; text-align:center'>Contenido </th>
-                                    <th style='width:10%; text-align:center'>C/R</th>
-                                    <th  data-sort-ignore="true" style='width:30%; text-align:center'>Confirmar</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td style="text-align:center"> Juan Pérez </td>
-                                    <td style="text-align:center"> María Chacón </td>
-                                    <td style="text-align:center"> Entregas </td>
-                                    <td style="text-align:center"> Doc </td>
-                                    <td style="text-align:center"> Solicitudes </td>
-                                    <td style="text-align:center"> Si </td>
-                                    <td style="text-align:center">  <input name="Confirmar" type="radio" value=""></td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align:center"> María Chacón </td>
-                                    <td style="text-align:center"> Juan Pérez </td>
-                                    <td style="text-align:center"> Permiso </td>
-                                    <td style="text-align:center"> Obj</td>
-                                    <td style="text-align:center"> Varios documentos </td>
-                                    <td style="text-align:center"> No </td>
-                                    <td style="text-align:center"> <input name="Confirmar" type="radio" value=""></td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align:center"> José Moncada </td>
-                                    <td style="text-align:center"> Mario Gonzalez </td>
-                                    <td style="text-align:center"> Oficina </td>
-                                    <td style="text-align:center"> Articulos </td>
-                                    <td style="text-align:center"> Articulos Varios  </td>
-                                    <td style="text-align:center"> No </td>
-                                    <td style="text-align:center"> <input name="Confirmar" type="radio" value=""></td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>
-                        <br>
+                        
+                        <div id="valija">
+                  
+						</div>
+                       
                         <?php /* ?><div class='alert alert-block' align='center'>
                           <h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
                           <h4 align='center'>No hay usuarios </h4><?php */ ?>
-                        <form method="POST">
+                        <form method="POST" id="botn">
                             <div align="center"><button type="submit" class="btn" name="guardar" >Confirmar entrega</button></div>
                         </form> 
                     </div>
@@ -166,6 +167,10 @@ if (isset($_POST["guardar"])) {
             </div>
         </div>
 
+
+<div id="alert">
+
+</div>
         <script>
             //window.onload = function(){killerSession();}
             //
@@ -173,6 +178,31 @@ if (isset($_POST["guardar"])) {
             //setTimeout("window.open('../recursos/cerrarsesion.php','_top');",300000);
             //}
         </script>
+        
+        <script>
+	
+	function Valija(){
+			var idval= document.forms.fval.idval.value;
+			 var parametros = {
+                "idval" : idval
+       		 };
+			$.ajax({
+           	type: "POST",
+           	url: "../ajax/breakdown_valise.php",
+           	data: parametros,
+           	dataType: "text",
+			success:  function (response) {
+            	$("#valija").html(response);
+			}
+		
+	    }); 
+		
+		
+	}
+
+
+
+	</script>
         <script src="../js/footable.js" type="text/javascript"></script>
         <script src="../js/footable.paginate.js" type="text/javascript"></script>
         <script src="../js/footable.sortable.js" type="text/javascript"></script>

@@ -15,17 +15,19 @@ if(!isset($_SESSION["Usuario"])){
   $client = new SOAPClient($wsdl_url);
   $client->decode_utf8 = false; 
   $i=0;
-  $Usuario= array('user' => $_SESSION["Usuario"]->return->idusu);
-  $BandejaUsu = $client->consultarBandejas;
-//  $Ban= array('ban' =>$BandejaUsu->return[$i]->idban);
-//  $Bandeja=$client->consultarPaquetesXBandeja($Usuario,$ban);
+  $BandejaUsu = $client->consultarBandejas();
+  $Usuario= array('user' => $_SESSION["Usuario"]->return->idusu,'ban' =>    $BandejaUsu->return[$i]->nombreiba);
+ 
+  $Ban= array('ban' =>$BandejaUsu->return[$i]->nombreiba);
+  $Bandeja=$client->consultarPaquetesXBandeja($Usuario);
   $reg=0;
-	if(isset($BandejaUsu->return)){
+	if(isset($BandejaUsu->return) &&  isset($Bandeja->return)){
 	  $reg=count($BandejaUsu->return);
+	  $regp=count($Bandeja->return);
 	  }
   } catch (Exception $e) {
 	javaalert('Lo sentimos no hay conexión');
-	iraURL('index.php');	
+	iraURL('./index.php');	
 	}
  //echo'<pre>';
 // print_r( $_SESSION["Usuario"]);

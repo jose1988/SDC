@@ -1,10 +1,21 @@
 <?php
-include("../recursos/funciones.php");
 if (isset($_POST["crear"])) {
-    javaalert("Se ha guardado con exito");
-    iraURL("inbox.php");
+    javaalert($_SESSION["usubox"]."  Se ha guardado con exito");
+    try{
+	$datosB = array('idusu' => $_SESSION["Usuario"]->return->idusu,'idusub' => $_SESSION["usubox"],'sede' => $_SESSION["sedeb"]);
+	$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
+  $client = new SOAPClient($wsdl_url);
+  $client->decode_utf8 = false; 
+  $res=$client->insertarBuzon($datosB);
+  
+	}catch (Exception $e) {
+			javaalert('Lo sentimos no hay conexión');
+			iraURL('index.php');
+		}
 }
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -15,7 +26,7 @@ if (isset($_POST["crear"])) {
         <meta name="author" content="">
 
         <!-- javascript -->
-        <script type='text/javascript' src="../js/jquery-1.9.1.js"></script>
+        <script type='text/javascript' src="../js/jquery-2.0.2.js"></script>
         <script type='text/javascript' src="../js/bootstrap.js"></script>
         <script type='text/javascript' src="../js/bootstrap-transition.js"></script>
         <script type='text/javascript' src="../js/bootstrap-tooltip.js"></script>
@@ -23,7 +34,6 @@ if (isset($_POST["crear"])) {
 <!--<script type='text/javascript' src="../js/togglesidebar.js"></script>-->	
         <script type='text/javascript' src="../js/custom.js"></script>
         <script type='text/javascript' src="../js/jquery.fancybox.pack.js"></script>
-
 
         <!-- styles -->
         <link href="../css/bootstrap.css" rel="stylesheet">
@@ -101,67 +111,42 @@ if (isset($_POST["crear"])) {
 
                 <div class="span10" align="center">
                     <div class="tab-content" id="lista" align="center">
-                        <form id="formulario" method="post">                        
-                            <h2> Seleccione la Sede:
-                                <select id="sede" name="sede"  required  title="Seleccione la Tipo de usuario">
-                                    <option value="" style="display:none">Seleccionar:</option> 
-                                    <option> Caracas</option>
-                                    <option> San Cristóbal  </option>
-                                    <option> Maracay </option>
-                                    <option> Valencia</option>
-                                    <option> Barinas </option>
+                                               
+                            <h2>
+                            
+                             Seleccione la Sede:
+                                <select onChange="sede();" name="lista" id="lista"  required  title="Seleccione la Tipo de usuario">
+                           <option value="" style="display:none">Seleccionar:</option>
+                                            <?php 
+								if($reg>1){
+									$i=0;
+								  while($reg>$i){
+								
+						echo '<option value="'.$Sedes->return[$i].'" >'.$Sedes->return[$i].'</option>';
+						$i++;
+						
+								  }
+								}
+								else{
+							echo '<option value="'.$Sedes->return.'" >'.$Sedes->return.'</option>';	  
+								}
+								?>
+                            
                                 </select>
+                              
                                 Seleccione el Usuario:
-                                <select id="usuario" name="usuario"  required  title="Seleccione la Tipo de usuario">
-                                    <option value="" style="display:none">Seleccionar:</option> 
-                                    <option> Mayra Benavidez</option>
-                                    <option> Jose Moncada  </option>
-                                    <option> Pedro Perez </option>
-                                    <option> Maria Sanchez</option>
-                                    <option> Juliana Contreras </option>
+                                <select onChange="usuario()" id="listau" name="listau"  required  title="Seleccione la Tipo de usuario">
+                              <option value="" style="display:none">Seleccionar:</option>  
+                                   
                                 </select>
                             </h2>
-                            <h2> Datos del usuario</h2> 
-                            <table class='footable table table-striped table-bordered'>
-                                <tr>
-                                    <td style="text-align:center" >Nombre</td>
-                                    <td style="text-align:center"><input type="text" name="nombre" id="nombre" maxlength="19" size="30" title="Ingrese el primer nombre" placeholder="Ej. Jose" autofocus required></td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align:center">Apellido</td>
-                                    <td style="text-align:center"><input type="text" name="apellido" id="apellido" maxlength="19" size="30" title="Ingrese el  apellido" placeholder="Ej. Fuentes"  ></td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align:center" width="50%">Correo</td>
-                                    <td style="text-align:center"><input type="text" name="correo" id="correo" maxlength="100" size="50" title="Ingrese un correo" placeholder="Ej. josefuentes@gmail.com">
-                                        <div id="Info2" style="float:right"></div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align:center">Telefono 1</td>
-                                    <td style="text-align:center"><input type="tel" name="telefono1" id="telefono1" maxlength="19" size="30" title="Ingrese el numero de telefono" placeholder="Ej. 04269876543"   required></td>
-                                </tr>
-                                <tr>
-
-                                    <td style="text-align:center">Telefono 2</td>
-                                    <td style="text-align:center"><input type="tel" name="telefono2" id="telefono2" maxlength="19" size="30" placeholder="Ej. 04168674789"  ></td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align:center">Dirección 1</td>
-                                    <td style="text-align:center"><textarea style="width:500px;"   id="elmsg" name="elmsg"  style="width:800px" ></textarea>
-                                        Seleccionar: <input type="checkbox" name="habilitado" id="habilitado" title="si no esta seleccionado estara deshabilitado" checked> 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align:center">Dirección 2</td>
-                                    <td style="text-align:center"><textarea style="width:500px;" id="elmsg" name="elmsg"  style="width:800px"></textarea>
-                                        Seleccionar: <input type="checkbox" name="habilitado" id="habilitado" title="si no esta seleccionado estara deshabilitado" ></td>
-                                </tr>
-                            </table>
+                            <div id="datos">
+                            
                             <br>
-                            <div class="span11" align="center"><button class="btn" id="crear" name="crear" type="submit">Guardar</button></div>
+                            </div>
+                            <div class="span11" align="center"></div>
                             <br>
-                        </form>  
+                        
                     </div>
                 </div>
             </div>
@@ -358,6 +343,49 @@ if (isset($_POST["crear"])) {
              }		
              }*/
         </script>  
+        
+        
+        <script language="JavaScript">
+
+
+	 
+	
+	function sede(){
+		 //posicion
+        var $selectedOption = $('#lista').find('option:selected');
+		var id = $selectedOption.val();
+		$.ajax({
+           type: "POST",
+           url: "../ajax/user_headquarters.php",
+           data: {'sed':id},
+           dataType: "text",
+                success:  function (response) {
+                       $("#listau").html(response);
+					}
+		
+	    }); 
+		
+		
+	}
+	
+	function usuario(){
+		 //posicion
+        var $selectedOption = $('#listau').find('option:selected');
+		var idusu = $selectedOption.val();
+		$.ajax({
+           type: "POST",
+           url: "../ajax/info_user.php",
+           data: {'idusu':idusu},
+           dataType: "text",
+                success:  function (response) {
+                       $("#datos").html(response);
+					}
+		
+	    }); 
+	}
+
+</script>
+
 
     </body>
 </html>

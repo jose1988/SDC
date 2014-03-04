@@ -30,20 +30,18 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
   $client = new SOAPClient($wsdl_url);
   $client->decode_utf8 = false; 
   $Usuario= array('user' => $_SESSION["Usuario"]->return->idusu, 'ban' => $aux);
-  $Bandeja = $client->consultarPaquetesXBandeja($Usuario,$aux);
+  $Bandeja = $client->consultarPaquetesXBandeja($Usuario);
   $reg=0;
   if(isset($Bandeja->return)){
   $reg=count($Bandeja->return);
   }else{
 	$reg=0;  
   }
-   echo '<pre>';
- print_r( $Bandeja );
-	
-  echo '<pre>';
+   
           
           echo "<h2> <strong>".$aux."</h2> </strong>";
           
+	
 		  
 		  
    if($reg!=0){        
@@ -53,42 +51,65 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
 		 
        echo "<br>";
 	echo "<table class='footable table table-striped table-bordered' align='center' data-page-size='10'>
-    	<thead bgcolor'#FF0000'>
-			<tr>	
-            	
-                 <th style='width:7%; text-align:center' >Origen</th>
-                 <th style='width:7%; text-align:center' data-sort-ignore='true'>Asunto </th>
-                 <th style='width:7%; text-align:center' >Tipo</th>
-                 <th style='width:7%; text-align:center' >Con Respuesta</th>
-				 <th style='width:7%; text-align:center'>Fecha</th>
-                 <th style='width:7%; text-align:center' data-sort-ignore='true'>Ver más</th>
-
-            </tr>
-		</thead>
+    	 <thead bgcolor='#ff0000'>
+                                    <tr>
+       <th style='width:7%; text-align:center' >Destino</th>
+   <th style='width:7%; text-align:center' data-sort-ignore='true'>Asunto </th>
+                                        <th style='width:7%; text-align:center' >Tipo</th>
+                                        <th style='width:7%; text-align:center' >Con Respuesta</th>
+                                        <th style='width:7%; text-align:center' >Fecha</th>
+                                        <th style='width:7%; text-align:center' data-sort-ignore='true'>Localización</th>
+                                        <th style='width:7%; text-align:center' data-sort-ignore='true'>Ver más</th>";
+								if($aux=="Recibidos Pendientes"){
+			echo"<th style='width:7%; text-align:center' data-sort-ignore='true'>Confirmar</th>";
+								}
+								
+                               echo     "</tr>
+         </thead>
         <tbody>
         	<tr>";
 			if($reg>1){
 				$j=0;
 				while($j<$reg){ 
                 	
-                    echo "<td  style='text-align:center'>".$Bandeja->return[$j]->origenpaq."</td>";
-					echo "<td style='text-align:center'>".$Bandeja->return[$j]->destinopaq."</td>";
-					echo "<td style='text-align:center'>".$Bandeja->return[$j]->asuntopaq."</td>";
-                    echo "<td style='text-align:center'>".substr($Bandeja->return[$j]->fechapaq,0,10)."</td>";                                   
+                    echo "<td  style='text-align:center'>".$Bandeja->return[$j]->destinopaq->idusubuz->nombreusu."</td>";
+					 echo "<td  style='text-align:center'>".$Bandeja->return[$j]->asuntopaq."</td>";
+					echo "<td style='text-align:center'>".$Bandeja->return[$j]->iddoc->nombredoc."</td>";
+					if($Bandeja->return[$j]->respaq==0){
+					echo "<td style='text-align:center'> No </td>";}else{
+						echo "<td style='text-align:center'> Si </td>";
+					}
+                    echo "<td style='text-align:center'>".substr($Bandeja->return[$j]->fechapaq,0,10)."</td>";  
+					echo "<td style='text-align:center'>".$Bandeja->return[$j]->localizacionpaq."</td>";
+					echo "<td style='text-align:center'>Ver mas</td>";  
+					if($aux=="Recibidos Pendientes"){
+			echo"<th style='width:7%; text-align:center' data-sort-ignore='true'>Confirmar</th>";
+								}                               
             echo "</tr>";
 					$j++;
 				} 
 			}else{  
-					echo "<td style='text-align:center'>".$Bandeja->return->origenpaq."</td>";
-					echo "<td style='text-align:center'>".$Bandeja->return->destinopaq."</td>";
-					echo "<td style='text-align:center'>".$Bandeja->return->asuntopaq."</td>";
-                    echo "<td style='text-align:center'>".substr($Bandeja->return->fechapaq,0,10)."</td>";
-                echo "</tr>";
+					 echo "<td  style='text-align:center'>".$Bandeja->return->destinopaq->idusubuz->nombreusu."</td>";
+					 echo "<td  style='text-align:center'>".$Bandeja->return->asuntopaq."</td>";
+					echo "<td style='text-align:center'>".$Bandeja->return->iddoc->nombredoc."</td>";
+					if($Bandeja->return->respaq==0){
+					echo "<td style='text-align:center'> No </td>";}else{
+						echo "<td style='text-align:center'> Si </td>";
+					}
+                    echo "<td style='text-align:center'>".substr($Bandeja->return->fechapaq,0,10)."</td>";  
+					echo "<td style='text-align:center'>".$Bandeja->return->localizacionpaq."</td>";
+					echo "<td style='text-align:center'>Ver mas</td>";    
+					if($aux=="Recibidos Pendientes"){
+			echo"<th style='width:7%; text-align:center' data-sort-ignore='true'>Confirmar</th>";
+								}                             
+            echo "</tr>";
 			}
 	echo " </tbody>
   	</table>";
 	echo '<ul id="pagination" class="footable-nav"><span>Pag:</span></ul>';
-	
+   		
+		
+		
 	}else {
 		echo "<br>";
 		echo"<div class='alert alert-block' align='center'>
@@ -97,10 +118,35 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
 		</div> ";
 	}
 	
-    
+		  
+		  
+		
+		  
   ?>  
  
-
+<script>
+	
+	function Confirmar(idpaq){
+			
+			 var parametros = {
+                "idpaq" : idpaq
+       		 };
+			$.ajax({
+           	type: "POST",
+           	url: "../ajax/packeges_confirm.php",
+           	data: parametros,
+           	dataType: "text",
+			success:  function (response) {
+            	$("#alert").html(response);
+			}
+		
+	    }); 
+		
+		
+	}
+    
+    </script>
+	
 <script src="../js/footable.js" type="text/javascript"></script>
 <script src="../js/footable.paginate.js" type="text/javascript"></script>
 <script src="../js/footable.sortable.js" type="text/javascript"></script>
