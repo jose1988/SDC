@@ -8,13 +8,15 @@ if(!isset($_SESSION["Usuario"])){
 	iraURL("../index.php");
 }elseif(!usuarioCreado()){
 	iraURL("../pages/create_user.php");
+	}elseif(!isset($_POST['idpaqr'])){
+	iraURL("../pages/inbox.php");
 	}
 //try {
 $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/mariela?WSDL';
 $client = new SOAPClient($wsdl_url);
 $client->decode_utf8 = false; 
 
-  $idPaquete= array('idPaquete' => "24");
+  $idPaquete= array('idPaquete' => $_POST['idpaqr']);
   $Paquete = $client->ConsultarPaqueteXId($idPaquete); 
   $contacto= array('idusu' =>$Paquete->return->origenpaq->idusu);
 $dueno= array('idusu' => $Paquete->return->destinopaq->idusubuz->idusu);
@@ -48,7 +50,7 @@ if(isset($_POST["enviar"])){//echo $_POST["datepicker"].'<br>';
 			$prioridad= array('idpri' => $_POST["prioridad"]);
 			$documento= array('iddoc' => $_POST["doc"]);
 				$sede= array('idsed' => $_SESSION["Sede"]->return->idsed);
-$idPadre= array('idpaq' => "24");
+$idPadre= array('idpaq' => $_POST['idpaqr']);
 			$paquete=array('origenpaq' => $origenpaq,
 							'destinopaq' => $destinopaq,
 							'asuntopaq' => $_POST["asunto"],
