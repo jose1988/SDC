@@ -16,8 +16,11 @@ if (isset($_POST["Biniciar"])) {
   $client->decode_utf8 = false; 
   $Usuario= array('user' => "1");
   $UsuarioLogIn = $client->buscarUsuario($Usuario);
+  $Sede= array('idSede' => "1");
+  $SedeLogIn = $client->ConsultarSede($Sede);
   $_SESSION["Usuario"]=$UsuarioLogIn;
-  iraURL("inbox.php");
+  $_SESSION["Sede"]= $SedeLogIn;
+  iraURL("./pages/inbox.php");
  // echo '<pre>';
   //print_r($resultadoLogIn);
   //echo '<pre>';
