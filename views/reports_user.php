@@ -151,7 +151,7 @@
                                                 	<td style="text-align:center"><?php echo ""?></td>
                                                 <?php }
 												else{?>
-                                        		<td style="text-align:center"><?php echo substr($resultadoConsultarPaquetes->return[$i]->fechaenviopaq,0,10)?></td>
+                                        		<td style="text-align:center"><?php echo date("d/m/Y",strtotime(substr($resultadoConsultarPaquetes->return[$i]->fechaenviopaq,0,10)))?></td>
                                                  <?php
 												}
 												if($resultadoConsultarPaquetes->return[$i]->respaq=='0'){
@@ -186,7 +186,7 @@
                                                 	<td style="text-align:center"><?php echo ""?></td>
                                                 <?php }
 												else{?>
-                                        		<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return->fechaenviopaq?></td>
+                                        		<td style="text-align:center"><?php echo date("d/m/Y",strtotime(substr($resultadoConsultarPaquetes->return->fechaenviopaq,0,10)))?></td>
                                                  <?php }
 												if($resultadoConsultarPaquetes->return->respaq=='0'){
 												?>

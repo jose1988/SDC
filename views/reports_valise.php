@@ -157,7 +157,7 @@
                                                 	<td style="text-align:center"><?php echo ""?></td>
                                                 <?php }
 												else{?>
-                                        		<td style="text-align:center"><?php echo substr($resultadoConsultarValijas->return[$i]->fechaval,0,10)?></td>
+                                        		<td style="text-align:center"><?php echo date("d/m/Y",strtotime(substr($resultadoConsultarValijas->return[$i]->fechaval,0,10)))?></td>
                                                  <?php
 												}
                                                	if(!isset($resultadoConsultarValijas->return[$i]->idinc)){
@@ -188,7 +188,7 @@
                                                 	<td style="text-align:center"><?php echo ""?></td>
                                                 <?php }
 												else{?>
-                                        		<td style="text-align:center"><?php echo substr($resultadoConsultarValijas->return->fechaval,0,10)?></td>
+                                        		<td style="text-align:center"><?php echo date("d/m/Y",strtotime(substr($resultadoConsultarValijas->return->fechaval,0,10)))?></td>
                                                  <?php
 												}
                                                 if(!isset($resultadoConsultarValijas->return->idinc)){

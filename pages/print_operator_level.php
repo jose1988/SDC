@@ -10,6 +10,8 @@ if(!isset($_SESSION["Usuario"])){
 }
 
 $nomUsuario = $_SESSION["Usuario"]->return->userusu;
+$_SESSION["paquetesConfirmados"] = "";
+$_SESSION["paquetes"] = "";
 
 try {
 	$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
