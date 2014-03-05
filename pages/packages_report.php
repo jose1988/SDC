@@ -19,7 +19,7 @@ if(isset($_POST["reportarPaqAus"])){
 		try{
 			$parametros = array('registroPaquete' => '2',
 								'datosPaquete' => $_POST["datosPaquete"]);
-			$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/Niuska?WSDL';
+			$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
 			$client = new SOAPClient($wsdl_url);
 			$client->decode_utf8 = false;
 			$reportarPaqAus = $client->reportarPaqueteAusente($parametros);

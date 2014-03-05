@@ -19,7 +19,7 @@ if(isset($_POST["confirmar"])){
 		try{
 			$parametros = array('idValija' => $_POST["cValija"],
 								'codZoom' => $_POST["cZoom"]);
-			$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/Niuska?WSDL';
+			$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
 			$client = new SOAPClient($wsdl_url);
 			$client->decode_utf8 = false;
 			$confirmarValija = $client->confirmarValija($parametros);

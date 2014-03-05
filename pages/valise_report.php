@@ -37,7 +37,7 @@ try {
 			try{
 				$parametros = array('registroPaquete' => $_POST["cPaquete"],
 									'registroUsuario' => $idUsuario);
-				$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/Niuska?WSDL';
+				$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
 				$client = new SOAPClient($wsdl_url);
 				$client->decode_utf8 = false;
 				$reportarPaqExc = $client->reportarPaqueteExcedente($parametros);
@@ -66,7 +66,7 @@ try {
 			try{
 				$parametros = array('registroValija' => $_POST["cValija"],
 									'registroUsuario' => $idUsuario);
-				$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/Niuska?WSDL';
+				$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
 				$client = new SOAPClient($wsdl_url);
 				$client->decode_utf8 = false;
 				$reportarValija = $client->reportarValija($parametros);

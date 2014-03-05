@@ -10,7 +10,7 @@ if(!isset($_SESSION["Usuario"])){
 	iraURL("../pages/create_user.php");
 	}
 try {
-$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/mariela?WSDL';
+$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
 $client = new SOAPClient($wsdl_url);
 $client->decode_utf8 = false;
 	 $sede= array('idsed' => $_SESSION["Sede"]->return->idsed);

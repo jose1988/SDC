@@ -10,7 +10,7 @@ if(!isset($_SESSION["Usuario"])){
 	iraURL("../pages/create_user.php");
 	}
 try {
-$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/mariela?WSDL';
+$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
 $client = new SOAPClient($wsdl_url);
 $client->decode_utf8 = false; 
 $usu= array('idusu' => $_SESSION["Usuario"]->return->idusu);
@@ -87,7 +87,7 @@ if(isset($_POST["enviar"])){//echo $_POST["datepicker"].'<br>';
 					$Ruta =$direccion2."/adjunto/".$cadena.".".$tipo[1];
 						$imagen=$_FILES['imagen']['tmp_name'];
 					move_uploaded_file($imagen,$uploadfile);	
-					$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/mariela?WSDL';
+					$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
 			$client = new SOAPClient($wsdl_url);
 			$client->decode_utf8 = false;
 			$idPaquete=	$client->maxPaquete();

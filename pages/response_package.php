@@ -12,7 +12,7 @@ if(!isset($_SESSION["Usuario"])){
 	iraURL("../pages/inbox.php");
 	}
 //try {
-$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/mariela?WSDL';
+$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
 $client = new SOAPClient($wsdl_url);
 $client->decode_utf8 = false; 
 
@@ -87,7 +87,7 @@ $idPadre= array('idpaq' => $_POST['idpaqr']);
 					$Ruta =$direccion2."/adjunto/".$cadena.".".$tipo[1];
 						$imagen=$_FILES['imagen']['tmp_name'];
 					move_uploaded_file($imagen,$uploadfile);	
-					$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/mariela?WSDL';
+					$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
 			$client = new SOAPClient($wsdl_url);
 			$client->decode_utf8 = false;
 			$idPaquete=	$client->maxPaquete();
