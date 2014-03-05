@@ -43,6 +43,6 @@ try {
 	
 } catch (Exception $e) {
 	javaalert('Lo sentimos no hay conexion');
-	//iraURL('../index.php');	
+	iraURL('../index.php');	
 }
 ?>
