@@ -3,10 +3,11 @@ if (isset($_POST["crear"])) {
     javaalert($_SESSION["usubox"]."  Se ha guardado con exito");
     try{
 	$datosB = array('idusu' => $_SESSION["Usuario"]->return->idusu,'idusub' => $_SESSION["usubox"],'sede' => $_SESSION["sedeb"]);
+	
 	$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
   $client = new SOAPClient($wsdl_url);
   $client->decode_utf8 = false; 
-  $res=$client->insertarBuzon($datosB);
+  $res=$client->editarRol($datosB);
   
 	}catch (Exception $e) {
 			javaalert('Lo sentimos no hay conexión');
@@ -161,6 +162,46 @@ if (isset($_POST["crear"])) {
       
 
 
+        <script language="JavaScript">
+
+
+	 
+	
+	function sede(){
+		 //posicion
+        var $selectedOption = $('#lista').find('option:selected');
+		var id = $selectedOption.val();
+		$.ajax({
+           type: "POST",
+           url: "../ajax/user_headquarters.php",
+           data: {'sed':id},
+           dataType: "text",
+                success:  function (response) {
+                       $("#listau").html(response);
+					}
+		
+	    }); 
+		
+		
+	}
+	
+	function usuario(){
+		 //posicion
+        var $selectedOption = $('#listau').find('option:selected');
+		var idusu = $selectedOption.val();
+		$.ajax({
+           type: "POST",
+           url: "../ajax/info_user_edit.php",
+           data: {'idusu':idusu},
+           dataType: "text",
+                success:  function (response) {
+                       $("#datos").html(response);
+					}
+		
+	    }); 
+	}
+
+</script>
 
     </body>
 </html>
