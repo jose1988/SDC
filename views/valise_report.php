@@ -68,12 +68,6 @@
                         <li class="pull-left">
                             <div class="modal-header">
                                 <h3> Correspondencia    
-                                    <div class="container app-container">
-                <div>
-                    <ul class="nav nav-pills">
-                        <li class="pull-left">
-                            <div class="modal-header">
-                                <h3> Correspondencia    
                                     <span>SH</span> <?php echo "- Hola, ".$_SESSION["Usuario"]->return->nombreusu;?>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
@@ -82,24 +76,7 @@
                                         <ul class="dropdown-menu" role="menu">
                                             <li><a href="../pages/edit_user.php">Editar Usuario</a></li>
                                             <li class="divider"></li>
-                                            <li><a href="../recursos/cerrarsesion.php">Salir</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Ayuda</a></li>
-                                        </ul>
-                                    </div>
-                                </h3>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
-                                            <span class="icon-cog" style="color:rgb(255,255,255)"> </span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Editar Usuario</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="../index.php" onClick="">Salir</a></li>
+                                            <li><a href="../index.php">Salir</a></li>
                                             <li class="divider"></li>
                                             <li><a href="#">Ayuda</a></li>
                                         </ul>
@@ -150,7 +127,7 @@
         <!-- /container -->
         <div id="footer" class="container">    	
         </div>
-        
+
         <script src="../js/footable.js" type="text/javascript"></script>
         <script src="../js/footable.paginate.js" type="text/javascript"></script>
         <script src="../js/footable.sortable.js" type="text/javascript"></script>

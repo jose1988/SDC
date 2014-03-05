@@ -35,7 +35,7 @@ if(isset($_POST["confirmar"])){
 			}
 				
 		} catch (Exception $e) {
-			javaalert('Lo sentimos no hay conexión');
+			javaalert('Lo sentimos no hay conexion');
 			iraURL('../index.php');
 		}
 	}
