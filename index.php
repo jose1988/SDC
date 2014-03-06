@@ -1,17 +1,16 @@
 <?php
 session_start();
 //try{
-include("recursos/funciones.php");
-require_once("lib/nusoap.php");
+include("/recursos/funciones.php");
+require_once("/lib/nusoap.php");
 
 if(isset($_SESSION["Usuario"])){
-	
 	eliminarSesion();
 	}
 
 if (isset($_POST["Biniciar"])) {
-   
-  $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/mariela?WSDL';
+   try{
+  $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
   $client = new SOAPClient($wsdl_url);
   $client->decode_utf8 = false; 
   $Usuario= array('user' => $_POST["usuario"]);
@@ -19,37 +18,30 @@ if (isset($_POST["Biniciar"])) {
   $_SESSION["Usuario"]=$UsuarioLogIn;
   $idUsu= array('idusu' =>$UsuarioLogIn->return->idusu);
   $registroUsu= array('registroUsuario' =>$idUsu);
-  $_SESSION["Sede"]=$client->consultarSedeDeUsuario($registroUsu);
-  iraURL("views/inbox.php");
-  //echo '<pre>';
-  //print_r($UsuarioLogIn);
-  //echo '<pre>';
- /* if($UsuarioLogIn->return->idusu!="No"){
-		
-		//echo '<pre>';
-		//print_r($resultadoAnalista);
-		
-		if($UsuarioLogIn->return->passwordusu==$_POST["password"]){
-			$_SESSION["Usuario"]=$UsuarioLogIn;
-			iraURL("entrada.php");
-		}else{
-		javaalert( "Contraseña incorrecta");
-		}		
+  $Sedes=$client->consultarSedeDeUsuario($registroUsu);
+  
+  
+  if(isset($UsuarioLogIn->return) && isset($Sedes->return)){
+  if(count($Sedes->return)==1){
+  $_SESSION["Sede"]=$Sedes;
+// echo '<pre>'; print_r($_SESSION["Sede"]); 
+  iraURL("pages/inbox.php");
   }else{
-  		javaalert("el usuario no registrado");
-		
+  $_SESSION["Sedes"]=$Sedes;
+  iraURL("pages/headquarters.php");
+
   }
-
-}
-
+  }else{
+  javaalert("Usuario o contraseña incorrectos , por favor verifique");
+  }
+	
 
   } catch (Exception $e) {
 	javaalert('Lo sentimos no hay conexión');
-	iraURL('../pages/index.php');	
-	}*/
-	}
+}
+}
+	
 
-include("views/index.php");
+include("/views/index.php");
  
 ?>
-
