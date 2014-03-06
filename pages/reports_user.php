@@ -76,14 +76,14 @@ try {
 		}
 	
 	} catch (Exception $e) {
-		javaalert('Lo sentimos no hay conexión');
+		javaalert('Lo sentimos no hay conexion');
 		iraURL('../index.php');	
 	}
 	
 	include("../views/reports_user.php");
 	
 } catch (Exception $e) {
-	javaalert('Lo sentimos no hay conexión');
+	javaalert('Lo sentimos no hay conexion');
 	iraURL('../index.php');	
 }
 ?>

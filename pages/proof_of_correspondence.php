@@ -43,14 +43,14 @@ try {
 		llenarLog(6, "Comprobante de Correspondencia",$usuarioBitacora,$ideSede);	
 		
 	} catch (Exception $e) {
-		javaalert('Lo sentimos no hay conexión');
+		javaalert('Lo sentimos no hay conexion');
 		iraURL('../index.php');	
 	}
 	
 	include("../views/proof_of_correspondence.php");
 	
 } catch (Exception $e) {
-	javaalert('Lo sentimos no hay conexión');
+	javaalert('Lo sentimos no hay conexion');
 	iraURL('../index.php');	
 }
 ?>
