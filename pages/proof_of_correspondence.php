@@ -40,7 +40,8 @@ try {
 		$idSede = array('idSede' => $ideSede);
 		$resultadoConsultarSede = $client->consultarSedeXId($idSede);
 		
-		llenarLog(6, "Comprobante de Correspondencia",$usuarioBitacora,$ideSede);	
+		llenarLog(6, "Comprobante de Correspondencia",$usuarioBitacora,$ideSede);
+		iraURL('../pages/send_correspondence.php');
 		
 	} catch (Exception $e) {
 		javaalert('Lo sentimos no hay conexion');
