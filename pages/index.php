@@ -42,6 +42,6 @@ if (isset($_POST["Biniciar"])) {
 }
 	
 
-include("../views/index2.php");
+include("../views/index.php");
  
 ?>
