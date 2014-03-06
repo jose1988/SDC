@@ -44,13 +44,13 @@ try {
 		
 	} catch (Exception $e) {
 		javaalert('Lo sentimos no hay conexion');
-		iraURL('../index.php');	
+		iraURL('../pages/send_correspondence.php');	
 	}
 	
 	include("../views/proof_of_correspondence.php");
 	
 } catch (Exception $e) {
 	javaalert('Lo sentimos no hay conexion');
-	iraURL('../index.php');	
+	iraURL('../pages/send_correspondence.php');	
 }
 ?>

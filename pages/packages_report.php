@@ -11,13 +11,14 @@ if(!isset($_SESSION["Usuario"])){
 
 $usuarioBitacora = $_SESSION["Usuario"]->return->idusu;
 $sede = $_SESSION["Sede"]->return->idsed;
+$idPaquete = '2';
 
 if(isset($_POST["reportarPaqAus"])){
 				
 	if(isset($_POST["datosPaquete"]) && $_POST["datosPaquete"]!=""){
 			
 		try{
-			$parametros = array('registroPaquete' => '2',
+			$parametros = array('registroPaquete' => $idPaquete,
 								'datosPaquete' => $_POST["datosPaquete"]);
 			$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
 			$client = new SOAPClient($wsdl_url);

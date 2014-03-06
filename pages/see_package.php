@@ -9,8 +9,10 @@ if(!isset($_SESSION["Usuario"])){
 	iraURL("../pages/create_user.php");
 }
 
+$idPaquete = '2';
+
 try{
-	$parametros = array('idPaquete' => '2');
+	$parametros = array('idPaquete' => $idPaquete);
 	$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
 	$client = new SOAPClient($wsdl_url);
 	$client->decode_utf8 = false;
