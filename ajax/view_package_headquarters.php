@@ -1,6 +1,7 @@
 	<?php  
 	session_start();
   require_once('../lib/nusoap.php');
+  try{
   $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
   $client = new SOAPClient($wsdl_url);
   $client->decode_utf8 = false; 
@@ -9,8 +10,8 @@
 $idsed= array('idsed' => $_SESSION["Sede"]->return->idsed);
   $parametros=array('registroSede' => $idsed);
    $PaquetesConfirmados = $client->consultarPaquetesConfirmadosXSedeAlDia($parametros); 
-  //echo '<pre>';
- // print_r($rowPaquete);
+ // echo '<pre>';
+  //print_r($rowPaquete);
 	?>
 	
 	<!-- styles -->
@@ -58,7 +59,7 @@ $idsed= array('idsed' => $_SESSION["Sede"]->return->idsed);
                                 <tbody>
                                     <tr>     
                                         <td  style='text-align:center'><?php echo $rowPaquete->return->origenpaq->nombreusu." ".$rowPaquete->return->origenpaq->apellidousu;?></td>
-                                        <td style='text-align:center'><?php echo $rowPaquete->return->destinopaq->idusubuz->idusubuz->nombreusu." ".$rowPaquete->return->destinopaq->idusubuz->idusubuz->apellidousu;?></td>
+                                        <td style='text-align:center'><?php echo $rowPaquete->return->destinopaq->idusubuz->nombreusu." ".$rowPaquete->return->destinopaq->idusubuz->apellidousu;?></td>
                                         <td style='text-align:center'><?php echo $rowPaquete->return->asuntopaq;?></td>
                                         <td style='text-align:center'><?php echo $rowPaquete->return->iddoc->nombredoc;?></td>
                                         <td style='text-align:center'><?php echo $rowPaquete->return->textopaq;?></td>
@@ -70,6 +71,14 @@ $idsed= array('idsed' => $_SESSION["Sede"]->return->idsed);
                                 <div align="center"><button type="button" class="btn" onClick="Confirma();" name="confirma" >Confirmar</button></div>
 
 			 <?php		
+			 
+			 }else {
+		echo "<br>";
+		echo"<div class='alert alert-block' align='center'>
+			<h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
+			<h4 align='center'>No existen Paquetes con ese código </h4>
+		</div> ";
+	}
    if(isset($PaquetesConfirmados->return)){        
    
        echo "<br>";
@@ -116,7 +125,7 @@ $idsed= array('idsed' => $_SESSION["Sede"]->return->idsed);
 								?>
                                     <tr>     
                                         <td  style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->origenpaq->nombreusu." ".$PaquetesConfirmados->return[$i]->origenpaq->apellidousu;?></td>
-                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->destinopaq->idusubuz->idusubuz->nombreusu." ".$PaquetesConfirmados->return[$i]->destinopaq->idusubuz->idusubuz->apellidousu;?></td>
+                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->destinopaq->idusubuz->nombreusu." ".$PaquetesConfirmados->return[$i]->destinopaq->idusubuz->apellidousu;?></td>
                                         <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->asuntopaq;?></td>
                                         <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->iddoc->nombredoc;?></td>
                                         <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->textopaq;?></td>
@@ -131,17 +140,7 @@ $idsed= array('idsed' => $_SESSION["Sede"]->return->idsed);
 							<ul id="pagination" class="footable-nav"><span>Pag:</span></ul>								
 							
 	<?php				
-	}
-		
-	}else {
-		echo "<br>";
-		echo"<div class='alert alert-block' align='center'>
-			<h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
-			<h4 align='center'>No existen Paquetes con ese código </h4>
-		</div> ";
-	}
-
-    
+	} 
   ?>  
  	</div>
 
@@ -181,4 +180,9 @@ $idsed= array('idsed' => $_SESSION["Sede"]->return->idsed);
 
     
  </div>
-
+<?php
+ } catch (Exception $e) {
+					javaalert('Lo sentimos no hay conexión');
+					iraURL('../pages/inbox.php');
+}
+ ?>  

@@ -88,29 +88,29 @@
         </div>
 
         <div class="container app-container">
-            <div>
-                <ul class="nav nav-pills">
-                    <li class="pull-left">
-                        <div class="modal-header">
-                            <h3> Correspondencia    
-                                <span>SH</span> <?php echo "- ".$_SESSION["Usuario"]->return->userusu; ?>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
-                                        <span class="icon-cog" style="color:rgb(255,255,255)"> </span>
-                                    </button>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">Editar Usuario</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="../recursos/cerrarsesion.php" onClick="">Salir</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Ayuda</a></li>
-                                    </ul>
-                                </div>
-                            </h3>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+            <<div>
+                    <ul class="nav nav-pills">
+                        <li class="pull-left">
+                            <div class="modal-header">
+                                <h3> Correspondencia    
+                                    <span>SH</span> <?php echo "- Hola, ".$_SESSION["Usuario"]->return->nombreusu;?>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
+                                            <span class="icon-cog" style="color:rgb(255,255,255)"> </span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="../pages/edit_user.php">Editar Usuario</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="../index.php">Salir</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">Ayuda</a></li>
+                                        </ul>
+                                    </div>
+                                </h3>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             <!--Caso pantalla uno-->
             <div class="row-fluid">
                 <div class="span2">

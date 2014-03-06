@@ -66,15 +66,15 @@
                         <li class="pull-left">
                             <div class="modal-header">
                                 <h3> Correspondencia    
-                                <span>SH</span> <?php echo "- ".$_SESSION["Usuario"]->return->userusu; ?>
+                                    <span>SH</span> <?php echo "- Hola, ".$_SESSION["Usuario"]->return->nombreusu;?>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
                                             <span class="icon-cog" style="color:rgb(255,255,255)"> </span>
                                         </button>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Editar Usuario</a></li>
+                                            <li><a href="../pages/edit_user.php">Editar Usuario</a></li>
                                             <li class="divider"></li>
-                                            <li><a href="../recursos/cerrarsesion.php" onClick="">Salir</a></li>
+                                            <li><a href="../index.php">Salir</a></li>
                                             <li class="divider"></li>
                                             <li><a href="#">Ayuda</a></li>
                                         </ul>
@@ -101,7 +101,7 @@
                         <div class="tab-content" id="bandeja">
                             <form class="form-search" id="formulario">
                                 <h2>Recibir paquete</h2>
-                                Código de Correspondencia:  <input type="text" id="idpaq" name="idpaq" class="input-medium search-query">
+                                Código de Correspondencia:  <input type="text" placeholder="Ej. 4246" title="Ingrese el código de correspondencia" autocomplete="off" style="width:140px ;height:28px" onkeypress="return isNumberKey(event)" pattern="[0-9]{1,38}" id="idpaq" name="idpaq"  required>
                                 <button type="button" class="btn" onClick="Paquete();">Recibir Paquete</button>
                           <div id="data">
 						  		 <?php		
@@ -182,9 +182,26 @@
             <div id="footer" class="container">    	
             </div>
         </div>
+			 <script>
+            window.onload = function(){
+			killerSession();}
+             function killerSession(){
+             setTimeout("window.open('../recursos/cerrarsesion.php','_top');",300000);
+             }
+			 function isNumberKey(evt)
+      {
+         var charCode = (evt.which) ? evt.which : event.keyCode
+         if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+ 
+         return true;
+      }
+   </script>
 		<script>
 	
 	function Paquete(){
+	
+	if(idpaq= document.forms.formulario.idpaq.value!=""){
 			var idpaq= document.forms.formulario.idpaq.value;
 			 var parametros = {
                 "idpaq" : idpaq
@@ -199,7 +216,9 @@
 			}
 		
 	    }); 
-		
+		}else{
+		alert("Por favor agregue el código de correspondencia")
+		}
 		
 	}
 

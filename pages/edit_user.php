@@ -57,7 +57,7 @@ if(isset($_POST["guardar"])){
 						javaalert("Se han Guardado los datos del Usuario");
 						llenarLog(9, "Edición de Usuario",$_SESSION["Usuario"]->return->idusu,$_SESSION["Sede"]->return->idsed);
 						}
-						iraURL('../pages/inbox.php');	
+						//iraURL('../pages/inbox.php');	
 			 }	
 					
 		}else{

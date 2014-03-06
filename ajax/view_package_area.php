@@ -1,6 +1,7 @@
 	<?php  
 	session_start();
   require_once('../lib/nusoap.php');
+  try{
   $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
   $client = new SOAPClient($wsdl_url);
   $client->decode_utf8 = false; 
@@ -70,6 +71,13 @@
                                 <div align="center"><button type="button" class="btn" onClick="Confirma();" name="confirma" >Confirmar</button></div>
 
 			 <?php		
+			 }else {
+		echo "<br>";
+		echo"<div class='alert alert-block' align='center'>
+			<h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
+			<h4 align='center'>No existen Paquetes con ese código </h4>
+		</div> ";
+	}
    if(isset($PaquetesConfirmados->return)){        
    
        echo "<br>";
@@ -133,13 +141,7 @@
 	<?php				
 	}
 		
-	}else {
-		echo "<br>";
-		echo"<div class='alert alert-block' align='center'>
-			<h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
-			<h4 align='center'>No existen Paquetes con ese código </h4>
-		</div> ";
-	}
+	
 
     
   ?>  
@@ -181,4 +183,9 @@
 
     
  </div>
-
+<?php
+ } catch (Exception $e) {
+					javaalert('Lo sentimos no hay conexión');
+					iraURL('../pages/inbox.php');
+}
+ ?>  

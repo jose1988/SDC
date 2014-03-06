@@ -1,22 +1,20 @@
 	<?php  
 	session_start();
   require_once('../lib/nusoap.php');
+  try{
   $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
   $client = new SOAPClient($wsdl_url);
   $client->decode_utf8 = false; 
   $idPaquete= array('idPaquete' => $_POST['idpaq']);
   $Paquete = $client->ConsultarPaqueteXId($idPaquete); 
-  if(isset($Paquete->return)){
+ $usu= array('idusu' => $_SESSION["Usuario"]->return->idusu);
+	 $sede= array('idsed' => $_SESSION["Sede"]->return->idsed); 
+ if(isset($Paquete->return)){
      $idPaquete= array('idpaq' => $_POST['idpaq']);
-	 $usu= array('idusu' => $_SESSION["Usuario"]->return->idusu);
-	 $sede= array('idsed' => $_SESSION["Sede"]->return->idsed);
 	$parametros=array('registroPaquete' => $idPaquete,
 						'registroUsuario'=>$usu,
 						'registroSede'=>$sede);
   $seg = $client->registroSeguimiento($parametros); 
-$idsed= array('idsed' => $_SESSION["Sede"]->return->idsed);
-  $parametros=array('registroSede' => $idsed);
-   $PaquetesConfirmados = $client->consultarPaquetesConfirmadosXSedeAlDia($parametros); 
    if($seg->return==0){
        echo "<br>";
 		echo"<div class='alert alert-block' align='center'>
@@ -32,7 +30,8 @@ $idsed= array('idsed' => $_SESSION["Sede"]->return->idsed);
 		</div> ";
   
   }
- 
+   $parametros=array('registroSede' => $sede);
+   $PaquetesConfirmados = $client->consultarPaquetesConfirmadosXSedeAlDia($parametros); 
  
 	?>
 	
@@ -143,4 +142,9 @@ $idsed= array('idsed' => $_SESSION["Sede"]->return->idsed);
 
     
  </div>
-
+<?php
+ } catch (Exception $e) {
+					javaalert('Lo sentimos no hay conexión');
+					iraURL('../pages/inbox.php');
+}
+ ?>  

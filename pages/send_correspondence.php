@@ -14,8 +14,10 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
 $client = new SOAPClient($wsdl_url);
 $client->decode_utf8 = false; 
 $usu= array('idusu' => $_SESSION["Usuario"]->return->idusu);
-$usuario= array('registroUsuario' => $usu);
-$rowContactos = $client->consultarBuzonXUsuario($usuario);
+$sede= array('idsed' => $_SESSION["Sede"]->return->idsed);
+$param= array('registroUsuario' => $usu,
+				'registroSede'=>$sede);
+$rowContactos = $client->consultarBuzonXUsuario($param);
 $rowDocumentos = $client->listarDocumentos();
 $rowPrioridad = $client->listarPrioridad();
  if(!isset($rowContactos->return)){
