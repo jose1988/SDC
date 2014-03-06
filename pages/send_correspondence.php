@@ -103,6 +103,7 @@ if(isset($_POST["enviar"])){//echo $_POST["datepicker"].'<br>';
 			}else{
 				javaalert("La correspondencia ha sido enviada");
 				llenarLog(1, "Envio de Correspondencia",$_SESSION["Usuario"]->return->idusu,$_SESSION["Sede"]->return->idsed);
+				iraURL('proof_of_correspondence.php');
 			}
 			iraURL('../pages/inbox.php');
 			
