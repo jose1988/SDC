@@ -1,6 +1,6 @@
 <?php
 
-if(isset($_POST["guardar"]) && (isset($_POST["idc"]) || isset($_POST["idr"])) ){
+if(isset($_POST["guardar"]) && isset($_POST["idc"]) ){
 		try{
 			$registrosFallidos=$_POST["ide"];
 			$registrosConfimados=$_POST["idr"];
@@ -12,6 +12,14 @@ if(isset($_POST["guardar"]) && (isset($_POST["idc"]) || isset($_POST["idr"])) ){
 			$datosValija = array('idval' => $_SESSION["Usuario"]->return->idusu, 'status'=> "entregado con ausente");
 			
 			
+			for($j=0; $j<$_SESSION["idr"]; $j++){
+			    if(isset($registrosConfimados[$j])){
+				$datosfa = array('idpaq'=> $registrosFallidos[$j], 'datosPaquete' => "paquete ausente, no encontro en la valija respectiva");
+				$client->reportarPaqueteAusente($datosfa);
+			
+				}		
+				
+			  }	
 			   
 			}else{
 				$datosValija = array('idval' => $_SESSION["Usuario"]->return->idusu, 'status'=> "entregado");
@@ -25,11 +33,8 @@ if(isset($_POST["guardar"]) && (isset($_POST["idc"]) || isset($_POST["idr"])) ){
 				$datosAct = array('localizacion' => "Sede Destino", 'idpaq'=> $registrosConfimados[$j]);
 				$client->actualizacionLocalizacionRecibidoPaquete($datosAct);
 			
-				$contadorEliminados++;
 				}		
-				if($contadorEliminados==count($_POST["ide"])){
-					break;
-				}
+				
 			  }	
 			}
 				
@@ -156,7 +161,7 @@ if(isset($_POST["guardar"]) && (isset($_POST["idc"]) || isset($_POST["idr"])) ){
                           <h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
                           <h4 align='center'>No hay usuarios </h4><?php */ ?>
                         <form method="POST" id="botn">
-                            <div align="center"><button type="submit" class="btn" name="guardar" >Confirmar entrega</button></div>
+                            <div align="center"><button type="submit" class="btn" id="guardar" name="guardar" >Confirmar entrega</button></div>
                         </form> 
                     </div>
 
