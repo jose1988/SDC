@@ -27,16 +27,16 @@ if(isset($_POST["confirmar"])){
 			if(isset($confirmarValija->return)==1){
 				javaalert('Valija Confirmada');
 				llenarLog(2, "Confirmación Valija",$usuarioBitacora,$sede);
-				iraURL('../index.php');
+				iraURL('../pages/create_valise.php');
 			}
 			else{
 				javaalert('Valija No Confirmada');
-				iraURL('../index.php');
+				iraURL('../pages/create_valise.php');
 			}
 				
 		} catch (Exception $e) {
 			javaalert('Lo sentimos no hay conexion');
-			iraURL('../index.php');
+			iraURL('../pages/create_valise.php');
 		}
 	}
 }

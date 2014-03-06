@@ -92,7 +92,7 @@
                     <div class="span2">      
                         <ul class="nav nav-pills nav-stacked">
                             <li>   
-                                <a href="../pages/breakdown_valise.php">
+                                <a href="../pages/create_valise.php">
                                     <?php echo "Atrás" ?>         
                                 </a>
                             </li>
