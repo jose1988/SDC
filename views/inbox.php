@@ -139,17 +139,18 @@
      
       
       <?php 
-					   if( $_SESSION["Usuario"]->return->idusu=="1"){ ?>
+	  
+					   if($SedeRol->return->idrol->idrol=="1"|| $SedeRol->return->idrol->idrol=="3"){ ?>
 						   
 						<a href="operator_level.php" ><button type="button" class="btn btn-info btn-primary " value="Recibir paquete">  Recibir paquete del usuario  </button> </a>
 						   
 					  <?php }
-					    if($_SESSION["Usuario"]=="operadorsede"){ ?>
+					    if($SedeRol->return->idrol->idrol=="2"|| $SedeRol->return->idrol->idrol=="5"){ ?>
 							
 						<a href="headquarters_operator.php" > <button type="button"class="btn btn-info btn-primary"  value="Recibir paquete">  Recibir paquete del usuario   </button> </a>
 						   
 					  <?php }
-					    if($_SESSION["Usuario"]=="empaquetador"){ ?>
+					    if($SedeRol->return->idrol->idrol=="4" || $SedeRol->return->idrol->idrol=="5"){ ?>
 							
 					<a href="create_valise.php" ><button type="button" class="btn btn-info btn-primary" value="Realizar Valija">  Realizar Valija para enviar </button> </a>
 						  

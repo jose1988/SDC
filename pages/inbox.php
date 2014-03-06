@@ -20,8 +20,10 @@ if(!isset($_SESSION["Usuario"])){
  
   $Ban= array('ban' =>$BandejaUsu->return[$i]->nombreiba);
   $Bandeja=$client->consultarPaquetesXBandeja($Usuario);
+  $UsuarioRol= array('idusu' => $_SESSION["Usuario"]->return->idusu,'sede' =>$_SESSION["Sede"]->return->nombresed);
+  $SedeRol=$client->consultarSedeRol($UsuarioRol); 
   $reg=0;
-	if(isset($BandejaUsu->return) &&  isset($Bandeja->return)){
+	if(isset($BandejaUsu->return) &&  isset($Bandeja->return) && isset($SedeRol->return)){
 	  $reg=count($BandejaUsu->return);
 	  $regp=count($Bandeja->return);
 	  }

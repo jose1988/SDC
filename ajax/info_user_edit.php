@@ -44,7 +44,7 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
   $regs=count($sedeU->return);
    javaAlert("entro al ajax".$aux);
   $regr=count($Roles->return);									
-  
+  $_SESSION["usuedit"]=$Bandeja->return->idusu;
   }else{
 	$reg=0;  
   }
@@ -79,7 +79,7 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
 								 <tr>
 								 <td style='text-align:center'>  Rol en la sede: </td>
                               
-							     <td style='text-align:center'>  <select  name='lista' id='lista'  required  title='Seleccione la Tipo de usuario'>
+							     <td style='text-align:center'>  <select  name='lis' id='lis'  required  title='Seleccione la Tipo de usuario'>
                           
 						   <option value='' style='display:none'> Seleccionar:</option>";
 						   
@@ -108,13 +108,40 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
                             </table>
 		
 	
-	<button class='btn' id='crear' name='crear' type='submit'>Guardar</button>
+	<button class='btn' id='crear' onClick='editar();' name='crear' type='button'>Guardar</button>
 		  
 		</form>  
 		
 		  
    "; 
+   
+   
    }
+  ?>
+   
+  <script language="JavaScript">
+
+
+	 
+	
+	
+	function editar(){
+		 //posicion
+        var $selectedOption = $('#lis').find('option:selected');
+		var ed = $selectedOption.val();
+		$.ajax({
+           type: "POST",
+           url: "../ajax/user_edit.php",
+           data: {'ed':ed},
+           dataType: "text",
+                success:  function (response) {
+                       $("#datos").html(response);
+					}
+		
+	    }); 
+	}
+
+</script>
 
 
 
