@@ -92,6 +92,9 @@
                             <li>   
                                 <a href="inbox.php">Atrás</a>
                             </li>
+							 <li>   
+                                <a href="print_operator_level.php">Imprimir</a>
+                            </li>
                         </ul>
                     </div>
                     <div class="span10">

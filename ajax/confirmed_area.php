@@ -13,6 +13,7 @@
 	$parametros=array('registroPaquete' => $idPaquete,
 						'registroUsuario'=>$usu,					
 						'registroSede'=>$sede);
+					//	echo '<pre>';print_r($parametros);
   $seg = $client->registroSeguimiento($parametros);
 
   

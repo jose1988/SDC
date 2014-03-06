@@ -64,12 +64,9 @@ if(isset($_POST["enviar"])){//echo $_POST["datepicker"].'<br>';
 							'iddoc' => $documento,
 							'respaq' => $rta,
 							'idsed'=>$sede);
-							$registro= array('registroPaquete' => $paquete);
-				$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
-			$client = new SOAPClient($wsdl_url);
-			$client->decode_utf8 = false;				
-							
+							$registro= array('registroPaquete' => $paquete);					
 			$envio=$client->crearPaquete($registro);		//pilas ismael
+		//	echo 'yaaaa';
 			if($_FILES['imagen']['name']!=""){
 					$imagenName= $_FILES['imagen']['name'];
 					$caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"; //posibles caracteres a usar
