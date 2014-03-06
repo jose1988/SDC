@@ -18,9 +18,9 @@ if(isset($_POST["sede"]) && $_POST["sede"]!=""){
  $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
   $client = new SOAPClient($wsdl_url);
   $client->decode_utf8 = false; 
-  $id= array('idBuzon' => $_SESSION["Sede"]->idsed);
-$_SESSION["Sede"]=$client->consultarBuzonXId($id);
- //echo '<pre>'; print_r($_SESSION["Sede"]); 
+  $id= array('idSede' => $_SESSION["Sede"]->idsed);
+$_SESSION["Sede"]=$client->consultarSedeXId($id);
+// echo '<pre>'; print_r($_SESSION["Sede"]); 
 iraURL('../pages/inbox.php');
 }else{
 	javaalert('Debe escojer la sede');
