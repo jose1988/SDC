@@ -45,7 +45,7 @@ try {
 		
 	} catch (Exception $e) {
 		javaalert('Lo sentimos no hay conexion');
-		iraURL('../index.php');	
+		iraURL('../pages/operator_level.php');	
 	}
 	
 	include("../views/print_operator_level.php");
@@ -59,6 +59,6 @@ try {
 	
 } catch (Exception $e) {
 	javaalert('Lo sentimos no hay conexion');
-	iraURL('../index.php');	
+	iraURL('../pages/operator_level.php');	
 }
 ?>

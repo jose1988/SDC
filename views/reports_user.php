@@ -94,7 +94,7 @@
                     <div class="span2">      
                         <ul class="nav nav-pills nav-stacked">
                             <li>   
-                                <a href="#">
+                                <a href="../pages/inbox.php">
                                     <?php echo "Atrás" ?>         
                                 </a>
                             </li>

@@ -27,16 +27,16 @@ if(isset($_POST["reportarPaqAus"])){
 			if($reportarPaqAus->return==1){
 				javaalert('Paquete Reportado');
 				llenarLog(7, "Paquete Ausente",$usuarioBitacora,$sede);
-				iraURL('../index.php');
+				iraURL('../pages/breakdown_valise.php');
 			}
 			else{
 				javaalert('Paquete No Reportado');
-				iraURL('../index.php');
+				iraURL('../pages/breakdown_valise.php');
 			}
 				
 		} catch (Exception $e) {
 			javaalert('Lo sentimos no hay conexion');
-			iraURL('../index.php');
+			iraURL('../pages/breakdown_valise.php');
 		}
 	}
 }
