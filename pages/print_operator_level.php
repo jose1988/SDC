@@ -48,14 +48,21 @@ try {
 		iraURL('../pages/operator_level.php');	
 	}
 	
-	include("../views/print_operator_level.php");
+	if(isset($_POST["imprimir"])){
+		
+		if(isset($_POST["ide"])){
+			
+			$imprimirPaquetes = $_POST["ide"];
+			$_SESSION["paquetesConfirmados"] = $resultadoPaquetesConfirmados;
+			$_SESSION["paquetes"] = $imprimirPaquetes;
+			iraURL('proof_operator_level.php');
+			
+		}else{
+			javaalert("Debe seleccionar al menos un paquete, por favor verifique");
+		}
+	}
 	
-	if(isset($_POST["imprimir"]) && isset($_POST["ide"])){
-		$imprimirPaquetes = $_POST["ide"];
-		$_SESSION["paquetesConfirmados"] = $resultadoPaquetesConfirmados;
-		$_SESSION["paquetes"] = $imprimirPaquetes;
-		iraURL('proof_operator_level.php');
-	}	
+	include("../views/print_operator_level.php");
 	
 } catch (Exception $e) {
 	javaalert('Lo sentimos no hay conexion');

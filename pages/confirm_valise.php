@@ -38,6 +38,9 @@ if(isset($_POST["confirmar"])){
 			javaalert('Lo sentimos no hay conexion');
 			iraURL('../pages/create_valise.php');
 		}
+		
+	}else{
+		javaalert("Debe agregar todos los campos, por favor verifique");
 	}
 }
 
