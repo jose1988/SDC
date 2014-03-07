@@ -89,8 +89,8 @@ $html='
           <td align="center"><strong>________________</strong></td>
 		  </tr>
   		<tr>
-  		  <td align="center"><strong>Usuario</strong></td>
-          <td align="center"><strong>Recepción</strong></td>
+  		  <td align="center"><strong>Usuario Valija</strong></td>
+          <td align="center"><strong>Recepción Zoom</strong></td>
 		</tr>
 	</table>
 	</td>
@@ -147,8 +147,8 @@ $html='
           <td align="center"><strong>________________</strong></td>
 		  </tr>
   		<tr>
-  		  <td align="center"><strong>Usuario</strong></td>
-          <td align="center"><strong>Recepción</strong></td>
+  		  <td align="center"><strong>Usuario Valija</strong></td>
+          <td align="center"><strong>Recepción Zoom</strong></td>
 		</tr>
 	</table>
     </td>

@@ -109,7 +109,7 @@
 						else{ ?>
                         <form class="form-search" id="formulario" method="post">                   
                             <strong> <h2 align="center">Bitacora</h2> </strong>
-                            <table class='footable table table-striped table-bordered' data-page-size='5'>
+                            <table class='footable table table-striped table-bordered' data-page-size='10'>
                                 <thead bgcolor='#FF0000'>
                                     <tr>
                                         <th style="text-align:center">Bitacora</th>

@@ -130,7 +130,7 @@
 										for($i=0;$i<$paquetes;$i++){
 										?>
                                         	<tr>
-                                        		<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return[$i]->destinopaq->idusubuz->nombreusu?></td>
+                                        		<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return[$i]->destinopaq->idusubuz->nombreusu.' '.$resultadoConsultarPaquetes->return[$i]->destinopaq->idusubuz->apellidousu?></td>
                                                  <?php 
 												if(!isset($resultadoConsultarPaquetes->return[$i]->asuntopaq)){
 												?>
@@ -166,7 +166,8 @@
 									}
 									else{ ?>
 											<tr>
-                                        		<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return->destinopaq->idusubuz->nombreusu?></td> <?php 
+                                        		<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return->destinopaq->idusubuz->nombreusu.' '.$resultadoConsultarPaquetes->return->destinopaq->idusubuz->apellidousu?></td>
+                                                <?php 
 												if(!isset($resultadoConsultarPaquetes->return->asuntopaq)){
 												?>
                                                 	<td style="text-align:center"><?php echo ""?></td>
