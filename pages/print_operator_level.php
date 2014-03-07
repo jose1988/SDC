@@ -55,8 +55,7 @@ try {
 			$imprimirPaquetes = $_POST["ide"];
 			$_SESSION["paquetesConfirmados"] = $resultadoPaquetesConfirmados;
 			$_SESSION["paquetes"] = $imprimirPaquetes;
-			iraURL('proof_operator_level.php');
-			//include("proof_operator_level.php");
+			echo"<script>window.open('../pages/proof_operator_level.php');</script>";			
 			
 		}else{
 			javaalert("Debe seleccionar al menos un paquete, por favor verifique");
