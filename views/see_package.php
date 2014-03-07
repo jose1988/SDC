@@ -99,7 +99,17 @@
                     </div>
 
                     <div class="span10" align="center">
-                        <div class="tab-content" id="lista" align="center">                 
+                        <div class="tab-content" id="lista" align="center">
+                        <?php             
+                        //Verificando que este vacio o sea null
+						if(!isset($resultadoPaquete->return)){
+							echo '<div class="alert alert-block" align="center">';
+   							echo '<h2 style="color:rgb(255,255,255)" align="center">Atención</h2>';
+   							echo '<h4 align="center">No Existen Registros del Paquete</h4>';
+							echo '</div>';
+						}
+    					//Si existen registros muestro la tabla
+						else{ ?>               
                                 <h2> Datos del Paquete </h2> 
                                 <table class='footable table table-striped table-bordered'>
                                     <tr>			 
@@ -109,7 +119,7 @@
                                     <tr>
                                         <td style="text-align:center" width="50%"><b>Asunto</b></td>
                                         <?php if(!isset($resultadoPaquete->return->asuntopaq)){?>
-                                        	<td style="text-align:center"><?php echo ""?></td>
+                                        	<td style="text-align:center"><?php echo "";?></td>
                                         <?php }
 										else{?>
                                         	<td style="text-align:center"><?php echo $resultadoPaquete->return->asuntopaq?></td>
@@ -118,7 +128,7 @@
                                     <tr>
                                         <td style="text-align:center" width="50%"><b>Texto</b></td>
                                         <?php if(!isset($resultadoPaquete->return->textopaq)){?>
-                                        	<td style="text-align:center"><?php echo ""?></td>
+                                        	<td style="text-align:center"><?php echo "";?></td>
                                         <?php }
 										else{?>
                                         	<td style="text-align:center"><?php echo $resultadoPaquete->return->textopaq?></td>
@@ -127,28 +137,28 @@
                                     <tr>
                                         <td style="text-align:center" width="50%"><b>Fecha Paquete</b></td>
                                         <?php if(!isset($resultadoPaquete->return->fechapaq)){?>
-                                        	<td style="text-align:center"><?php echo ""?></td>
+                                        	<td style="text-align:center"><?php echo "";?></td>
                                         <?php }
 										else{?>
-                                        	<td style="text-align:center"><?php echo substr($resultadoPaquete->return->fechapaq,0,10)?></td>
+                                        	<td style="text-align:center"><?php echo date("d/m/Y",strtotime(substr($resultadoPaquete->return->fechapaq,0,10)))?></td>
                                         <?php }?>		
                                     </tr>
                                     <tr>
                                         <td style="text-align:center" width="50%"><b>Fecha Envio Paquete</b></td>
                                         <?php if(!isset($resultadoPaquete->return->fechaenviopaq)){?>
-                                        	<td style="text-align:center"><?php echo ""?></td>
+                                        	<td style="text-align:center"><?php echo "";?></td>
                                         <?php }
 										else{?>
-                                        	<td style="text-align:center"><?php echo substr($resultadoPaquete->return->fechaenviopaq,0,10)?></td>
+                                        	<td style="text-align:center"><?php echo date("d/m/Y",strtotime(substr($resultadoPaquete->return->fechaenviopaq,0,10)))?></td>
                                         <?php }?>		
                                     </tr>
                                     <tr>
                                         <td style="text-align:center" width="50%"><b>Fecha Alerta Paquete</b></td>
                                         <?php if(!isset($resultadoPaquete->return->fechaapaq)){?>
-                                        	<td style="text-align:center"><?php echo ""?></td>
+                                        	<td style="text-align:center"><?php echo "";?></td>
                                         <?php }
 										else{?>
-                                        	<td style="text-align:center"><?php echo substr($resultadoPaquete->return->fechaapaq,0,10)?></td>
+                                        	<td style="text-align:center"><?php echo date("d/m/Y",strtotime(substr($resultadoPaquete->return->fechaapaq,0,10)))?></td>
                                         <?php }?>		
                                     </tr>
                                     <tr>
@@ -179,7 +189,7 @@
                                     <tr>
                                         <td style="text-align:center" width="50%"><b>Localización</b></td>
                                         <?php if(!isset($resultadoPaquete->return->localizacionpaq)){ ?>
-                                        	<td style="text-align:center"><?php echo ""?></td>
+                                        	<td style="text-align:center"><?php echo "";?></td>
                                         <?php }
 										else{?>
                                         	<td style="text-align:center"><?php echo $resultadoPaquete->return->localizacionpaq?></td>
@@ -188,7 +198,7 @@
                                     <tr>
                                         <td style="text-align:center" width="50%"><b>Prioridad</b></td>
                                         <?php if(!isset($resultadoPaquete->return->idpri)){ ?>
-                                        	<td style="text-align:center"><?php echo ""?></td>
+                                        	<td style="text-align:center"><?php echo "";?></td>
                                         <?php }
 										else{?>
                                         	<td style="text-align:center"><?php echo $resultadoPaquete->return->idpri->nombrepri?></td>
@@ -197,7 +207,7 @@
                                     <tr>
                                         <td style="text-align:center" width="50%"><b>Mensaje</b></td>
                                         <?php if(!isset($resultadoPaquete->return->idmen)){ ?>
-                                        	<td style="text-align:center"><?php echo ""?></td>
+                                        	<td style="text-align:center"><?php echo "";?></td>
                                         <?php }
 										else{?>
                                         	<td style="text-align:center"><?php echo $resultadoPaquete->return->idmen->nombremen?></td>
@@ -206,7 +216,7 @@
                                     <tr>
                                         <td style="text-align:center" width="50%"><b>Documento</b></td>
                                         <?php if(!isset($resultadoPaquete->return->iddoc)){ ?>
-                                        	<td style="text-align:center"><?php echo ""?></td>
+                                        	<td style="text-align:center"><?php echo "";?></td>
                                         <?php }
 										else{?>
                                         	<td style="text-align:center"><?php echo $resultadoPaquete->return->iddoc->nombredoc?></td>
@@ -215,7 +225,7 @@
                                     <tr>
                                         <td style="text-align:center" width="50%"><b>Asunto Valija</b></td>
                                         <?php if(!isset($resultadoPaquete->return->idval)){ ?>
-                                        	<td style="text-align:center"><?php echo ""?></td>
+                                        	<td style="text-align:center"><?php echo "";?></td>
                                         <?php }
 										else{?>
                                         	<td style="text-align:center"><?php echo $resultadoPaquete->return->idval->asuntoval?></td>
@@ -233,43 +243,43 @@
                                     <tr>
                                         <td style="text-align:center" width="50%"><b>Sede</b></td>
                                         <?php if(!isset($resultadoPaquete->return->idsed)){ ?>
-                                        	<td style="text-align:center"><?php echo ""?></td>
+                                        	<td style="text-align:center"><?php echo "";?></td>
                                         <?php }
 										else{?>
                                         	<td style="text-align:center"><?php echo $resultadoPaquete->return->idsed->nombresed?></td>
                                         <?php }?>
                                     </tr>
                                     <tr>
+                                        <td style="text-align:center" width="50%"><b>Respuesta al Paquete</b></td>
+                                        <?php if(!isset($resultadoPaquete->return->idpaqresp)){ ?>
+                                        	<td style="text-align:center"><?php echo "";?></td>
+                                        <?php }
+										else{?>
+                                        	<td style="text-align:center"><?php echo $resultadoPaquete->return->idpaqresp->idpaq?></td>
+                                        <?php }?>
+                                    </tr>                                    
+                                    <tr>
                                         <td style="text-align:center" width="50%"><b>Imagen del Paquete</b></td>
                                         <?php if(!isset($resultadoAdjunto->return)){ ?>
-                                        	<td style="text-align:center"><?php echo ""?></td>
+                                        	<td style="text-align:center"><?php echo "";?></td>
                                         <?php }
 										else{?>
                                         	<td style="text-align:center"><img src="<?php echo $resultadoAdjunto->return->urladj?>"></td>
                                         <?php }?>	
                                     </tr>
                                 </table>
+                                <?php } ?>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         
-        <script src="../js/footable.js" type="text/javascript"></script>
-        <script src="../js/footable.paginate.js" type="text/javascript"></script>
-        <script src="../js/footable.sortable.js" type="text/javascript"></script>
-        
         <script>
             window.onload = function(){	killerSession(); }            
             function killerSession(){
             	setTimeout("window.open('../recursos/cerrarsesion.php','_top');",300000);
             }
-        </script>
-
-        <script type="text/javascript">
-            $(function() {
-                $('table').footable();
-            });
-        </script>        
+        </script>    
     </body>
 </html>

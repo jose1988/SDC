@@ -57,7 +57,7 @@ $htmlUno ='
 </head>
 <body>
 <br>
-<table align="center" width="500" border="0" >
+<table align="center" width="500" border="0">
   <tr>
     <td>
 		<img src="../images/header-top-left.png" width="330" height="50">
