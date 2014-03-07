@@ -157,8 +157,7 @@
                             <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>
                             <br>
                              <div align="right">
-                            	<button type="submit" class="btn" id="imprimir" name="imprimir">Imprimir Comprobante</button>
-                                
+                            	<button type="submit" class="btn" id="imprimir" name="imprimir">Imprimir Comprobante</button>                                
                              </div>
                             </form>
                             <?php }?>
@@ -171,7 +170,7 @@
             <!-- /container -->
             <div id="footer" class="container">    	
             </div>
-        </div>
+        </div>   
         
         <script>
             window.onload = function(){	killerSession(); }            
@@ -188,7 +187,6 @@
         	$(function() {
             	$('table').footable();
             });
-        </script>
-
+        </script>		 
     </body>
 </html>
