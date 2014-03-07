@@ -65,8 +65,14 @@ try {
                     'iddoc' => $documento,
                     'respaq' => $rta,
                     'idsed' => $sede);
-                $registro = array('registroPaquete' => $paquete);
-                $envio = $client->crearPaquete($registro);  //pilas ismael
+                    $registro = array('registroPaquete' => $paquete);
+                    $envio = $client->crearPaquete($registro);  //pilas ismael
+				    $paramUltimo = array('idUsuario' => $_SESSION["Usuario"]->return->idusu);
+                    $idPaquete = $client->ultimoPaqueteXOrigen($paramUltimo);
+					$paq = array('idpaq' => $idPaquete->return->idpaq);
+					$bandejaorigen=$client->insertarBandejaOrigen($paq);
+					$bandejaDestino=$client->insertarBandejaDestino($paq);
+
                 //	echo 'yaaaa';
                 if ($_FILES['imagen']['name'] != "") {
                     $imagenName = $_FILES['imagen']['name'];
@@ -85,11 +91,7 @@ try {
                     $Ruta = $direccion2 . "/adjunto/" . $cadena . "." . $tipo[1];
                     $imagen = $_FILES['imagen']['tmp_name'];
                     move_uploaded_file($imagen, $uploadfile);
-                    $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
-                    $client = new SOAPClient($wsdl_url);
-                    $client->decode_utf8 = false;
-                    $idPaquete = $client->maxPaquete();
-                    $paq = array('idpaq' => $idPaquete->return);
+				   
                     $adj = array('nombreadj' => $imagenName,
                         'urladj' => $Ruta,
                         'idpaq' => $paq);

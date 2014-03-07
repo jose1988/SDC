@@ -21,6 +21,12 @@
 			<h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
 			<h4 align='center'>El paquete ya fue confirmado </h4>
 		</div> ";
+	}elseif($seg->return==2){
+	 echo "<br>";
+		echo"<div class='alert alert-block' align='center'>
+			<h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
+			<h4 align='center'>Paquete con seguimiento errado ,consulte con el administrador </h4>
+		</div> ";
 	}
   }else{
   echo "<br>";
