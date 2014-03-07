@@ -107,7 +107,7 @@ $idsed= array('idsed' => $_SESSION["Sede"]->return->idsed);
 								?>
                                     <tr>     
                                        <td  style='text-align:center'><?php echo $PaquetesConfirmados->return->origenpaq->nombreusu." ".$PaquetesConfirmados->return->origenpaq->apellidousu;?></td>
-                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return->destinopaq->idusubuz->idusubuz->nombreusu." ".$PaquetesConfirmados->return->destinopaq->idusubuz->idusubuz->apellidousu;?></td>
+                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return->destinopaq->idusubuz->nombreusu." ".$PaquetesConfirmados->return->destinopaq->idusubuz->apellidousu;?></td>
                                         <td style='text-align:center'><?php echo $PaquetesConfirmados->return->asuntopaq;?></td>
                                         <td style='text-align:center'><?php echo $PaquetesConfirmados->return->iddoc->nombredoc;?></td>
                                         <td style='text-align:center'><?php echo $PaquetesConfirmados->return->textopaq;?></td>
