@@ -85,7 +85,7 @@ try {
                     }
 
                     $direccion = "../images"; //para cargar
-                    $direccion2 = "images"; //para guardar
+                    $direccion2 = "../images"; //para guardar
                     $tipo = explode('/', $_FILES['imagen']['type']);
                     $uploadfile = $direccion . "/adjunto/" . $cadena . "." . $tipo[1];
                     $Ruta = $direccion2 . "/adjunto/" . $cadena . "." . $tipo[1];
