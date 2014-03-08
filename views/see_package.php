@@ -264,7 +264,7 @@
                                         	<td style="text-align:center"><?php echo "";?></td>
                                         <?php }
 										else{?>
-                                        	<td style="text-align:center"><img src="<?php echo $resultadoAdjunto->return->urladj?>"></td>
+                                        	<td style="text-align:center"><img src="<?php echo $resultadoAdjunto->return->urladj?>" height="190" width="270"></td>
                                         <?php }?>	
                                     </tr>
                                 </table>

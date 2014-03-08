@@ -35,6 +35,10 @@ else{
 					llenarLog(7, "Paquete Ausente",$usuarioBitacora,$sede);
 					iraURL('../pages/breakdown_valise.php');
 				}
+				if($reportarPaqAus->return==2){
+					javaalert('Paquete No pertenece a niguna Valija y no se puede Reportar');					
+					iraURL('../pages/breakdown_valise.php');
+				}
 				else{
 					javaalert('Paquete No Reportado');
 					iraURL('../pages/breakdown_valise.php');
