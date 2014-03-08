@@ -39,6 +39,9 @@ if(isset($_POST["reportarPaqAus"])){
 			javaalert('Lo sentimos no hay conexion');
 			iraURL('../pages/breakdown_valise.php');
 		}
+		
+	}else{
+		javaalert("Debe agregar la descripcion del paquete, por favor verifique");
 	}
 }
 	

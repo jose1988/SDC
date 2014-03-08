@@ -40,17 +40,18 @@ try {
 		$idSede = array('idSede' => $ideSede);
 		$resultadoConsultarSede = $client->consultarSedeXId($idSede);
 		
-		llenarLog(6, "Comprobante de Valija",$usuarioBitacora,$ideSede);	
+		llenarLog(6, "Comprobante de Valija",$usuarioBitacora,$ideSede);
+		/*echo"<script language='javascript'>window.location='../pages/create_valise.php';</script>";*/
 		
 	} catch (Exception $e) {
 		javaalert('Lo sentimos no hay conexion');
-		iraURL('../index.php');	
+		iraURL('../pages/create_valise.php');
 	}
 	
 	include("../views/proof_pouch.php");
 	
 } catch (Exception $e) {
 	javaalert('Lo sentimos no hay conexion');
-	iraURL('../index.php');	
+	iraURL('../pages/create_valise.php');	
 }
 ?>

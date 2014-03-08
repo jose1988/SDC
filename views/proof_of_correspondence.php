@@ -57,7 +57,7 @@ $htmlUno ='
 </head>
 <body>
 <br>
-<table align="center" width="500" border="0" >
+<table align="center" width="500" border="0">
   <tr>
     <td>
 		<img src="../images/header-top-left.png" width="330" height="50">
@@ -104,7 +104,7 @@ $htmlUno ='
           <td align="center"><strong>________________</strong></td>
 		  </tr>
   		<tr>
-  		  <td align="center"><strong>Usuario</strong></td>
+  		  <td align="center"><strong>Usuario Paquete</strong></td>
           <td align="center"><strong>Recepción</strong></td>
 		</tr>
 	</table>
@@ -167,7 +167,7 @@ $htmlUno ='
           <td align="center"><strong>________________</strong></td>
 		  </tr>
   		<tr>
-  		  <td align="center"><strong>Usuario</strong></td>
+  		  <td align="center"><strong>Usuario Paquete</strong></td>
           <td align="center"><strong>Recepción</strong></td>
 		</tr>
 	</table>

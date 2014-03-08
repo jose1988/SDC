@@ -60,6 +60,7 @@ try {
 	if($paquetesTotales != ""){
 		$contadorPaquetes = count($paquetesTotales);
 		llenarLog(6, "Comprobante Nivel 1",$usuarioBitacora,$sede);
+		echo"<script language='javascript'>window.location='../pages/print_operator_level.php';</script>";
 	}
 	else{
 		$contadorPaquetes = 0;

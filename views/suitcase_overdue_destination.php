@@ -66,15 +66,15 @@
                         <li class="pull-left">
                             <div class="modal-header">
                                 <h3> Correspondencia    
-                                    <span>SH</span> <?php echo "- José" ?>
+                                    <span>SH</span> <?php echo "- Hola, ".$_SESSION["Usuario"]->return->nombreusu;?>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
                                             <span class="icon-cog" style="color:rgb(255,255,255)"> </span>
                                         </button>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Editar Usuario</a></li>
+                                            <li><a href="../pages/edit_user.php">Editar Usuario</a></li>
                                             <li class="divider"></li>
-                                            <li><a href="../recursos/cerrarsesion.php" onClick="">Salir</a></li>
+                                            <li><a href="../index.php">Salir</a></li>
                                             <li class="divider"></li>
                                             <li><a href="#">Ayuda</a></li>
                                         </ul>
@@ -115,20 +115,26 @@
                                 <tbody>
 								<?php
 								if(count($Valijas->return)==1){
+								if(isset($Valijas->return->asuntoval)){
+								$asunto=$Valijas->return->asuntoval;
+								}else{ $asunto="";}
 								?>
                                     <tr>     
                                        <td style='text-align:center'><?php echo $Valijas->return->origenval;?></td>
-                                        <td style='text-align:center'><?php echo $Valijas->return->asuntoval;?></td>
+                                        <td style='text-align:center'><?php echo $asunto;?></td>
                                      <td style='text-align:center'><?php echo date("d/m/Y",strtotime(substr($Valijas->return->fechaval,0,10))) ;?></td>
                                         <td style='text-align:center'><?php echo date("d/m/Y",strtotime(substr($Valijas->return->fechaalerval,0,10))) ;?></td>
                                     </tr>   
 								<?php	
 								}else{
 								for($i=0;$i<count($Valijas->return);$i++){
+								if(isset($Valijas->return[$i]->asuntoval)){
+								$asunto=$Valijas->return[$i]->asuntoval;
+								}else{ $asunto="";}
 								?>
                                      <tr>     
                                             <td style='text-align:center'><?php echo $Valijas->return[$i]->origenval;?></td>
-                                        <td style='text-align:center'><?php echo $Valijas->return[$i]->asuntoval;?></td>
+                                        <td style='text-align:center'><?php echo $asunto;?></td>
                                         <td style='text-align:center'><?php echo date("d/m/Y",strtotime(substr($Valijas->return[$i]->fechaval,0,10))) ;?></td>
                                         <td style='text-align:center'><?php echo date("d/m/Y",strtotime(substr($Valijas->return[$i]->fechaalerval,0,10))) ;?></td>
                                     </tr>   

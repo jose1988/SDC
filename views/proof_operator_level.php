@@ -57,7 +57,7 @@ $htmlUno = '<html>
           <td colspan="2" align="center"><strong>________________</strong></td>
 		  </tr>
   		<tr>
-  		  <td colspan="2" align="center"><strong>Usuario</strong></td>
+  		  <td colspan="2" align="center"><strong>Usuario Nivel 1</strong></td>
           <td colspan="2" align="center"><strong>Recepción</strong></td>
 		</tr>
 	</table>
@@ -104,7 +104,7 @@ $htmlUno = '<html>
           <td colspan="2" align="center"><strong>________________</strong></td>
 		  </tr>
   		<tr>
-  		  <td colspan="2" align="center"><strong>Usuario</strong></td>
+  		  <td colspan="2" align="center"><strong>Usuario Nivel 1</strong></td>
           <td colspan="2" align="center"><strong>Recepción</strong></td>
 		</tr>
 	</table>
@@ -164,7 +164,7 @@ $htmlUno = '<html>
           <td colspan="2" align="center"><strong>________________</strong></td>
 		  </tr>
   		<tr>
-  		  <td colspan="2" align="center"><strong>Usuario</strong></td>
+  		  <td colspan="2" align="center"><strong>Usuario Nivel 1</strong></td>
           <td colspan="2" align="center"><strong>Recepción</strong></td>
 		</tr>
 	</table>
@@ -215,7 +215,7 @@ $htmlUno = '<html>
           <td colspan="2" align="center"><strong>________________</strong></td>
 		  </tr>
   		<tr>
-  		  <td colspan="2" align="center"><strong>Usuario</strong></td>
+  		  <td colspan="2" align="center"><strong>Usuario Nivel 1</strong></td>
           <td colspan="2" align="center"><strong>Recepción</strong></td>
 		</tr>
 	</table>

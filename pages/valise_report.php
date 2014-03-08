@@ -56,6 +56,8 @@ try {
 				javaalert('Lo sentimos no hay conexión');
 				iraURL('../pages/create_valise.php');
 			}
+		}else{
+			javaalert("Debe agregar el codigo de paquete, por favor verifique");
 		}
 	}
 	
@@ -85,6 +87,9 @@ try {
 				javaalert('Lo sentimos no hay conexion');
 				iraURL('../pages/create_valise.php');
 			}
+			
+		}else{
+			javaalert("Debe agregar el codigo de valija, por favor verifique");
 		}
 	}
 

@@ -109,11 +109,12 @@
 						else{ ?>
                         <form class="form-search" id="formulario" method="post">                   
                             <strong> <h2 align="center">Comprobante Nivel 1</h2> </strong>
-                            <table class='footable table table-striped table-bordered' data-page-size='5'>
+                            <table class='footable table table-striped table-bordered' data-page-size='10'>
                                 <thead bgcolor='#FF0000'>
                                     <tr>
                                         <th style="text-align:center">Origen</th>
                                         <th style="text-align:center" data-sort-ignore="true">Destino</th>
+                                        <th style="text-align:center" data-sort-ignore="true">Tipo</th>
                                         <th style="text-align:center" data-sort-ignore="true">Con Respuesta</th>
                                         <th style="text-align:center" data-sort-ignore="true">Imprimir</th>                       
                                     </tr>
@@ -124,8 +125,9 @@
 										for($i=0;$i<$paquetes;$i++){
 										?>
                                         	<tr>
-                                            	<td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return[$i]->origenpaq->nombreusu?></td>
-                                        		<td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return[$i]->destinopaq->idusubuz->nombreusu?></td>
+                                            	<td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return[$i]->origenpaq->nombreusu.' '.$resultadoPaquetesConfirmados->return[$i]->origenpaq->apellidousu?></td>
+                                        		<td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return[$i]->destinopaq->idusubuz->nombreusu.' '.$resultadoPaquetesConfirmados->return[$i]->destinopaq->idusubuz->apellidousu?></td>
+                                                <td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return[$i]->iddoc->nombredoc?></td>
                                                 <?php
 												if($resultadoPaquetesConfirmados->return[$i]->respaq=='0'){
 												?>
@@ -140,8 +142,10 @@
 									}
 									else{ ?>
 											<tr>
-                                            	<td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return->origenpaq->nombreusu?></td>
-                                        		<td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return->destinopaq->idusubuz->nombreusu?></td>  								<?php
+                                            	<td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return->origenpaq->nombreusu.' '.$resultadoPaquetesConfirmados->return->origenpaq->apellidousu?></td>
+                                        		<td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return->destinopaq->idusubuz->nombreusu.' '.$resultadoPaquetesConfirmados->return->destinopaq->idusubuz->apellidousu?></td>
+                                                <td style="text-align:center"><?php echo $resultadoPaquetesConfirmados->return->iddoc->nombredoc?></td>
+												<?php
 												if($resultadoPaquetesConfirmados->return->respaq=='0'){
 												?>
                                                 	<td style="text-align:center"><?php echo "No"?></td>
@@ -157,8 +161,7 @@
                             <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>
                             <br>
                              <div align="right">
-                            	<button type="submit" class="btn" id="imprimir" name="imprimir">Imprimir Comprobante</button>
-                                
+                            	<button type="submit" class="btn" id="imprimir" name="imprimir">Imprimir Comprobante</button>                                
                              </div>
                             </form>
                             <?php }?>
@@ -171,7 +174,7 @@
             <!-- /container -->
             <div id="footer" class="container">    	
             </div>
-        </div>
+        </div>   
         
         <script>
             window.onload = function(){	killerSession(); }            
@@ -188,7 +191,6 @@
         	$(function() {
             	$('table').footable();
             });
-        </script>
-
+        </script>		 
     </body>
 </html>

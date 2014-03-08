@@ -42,7 +42,7 @@ try {
 		}
 	}
 	
-include("../views/vacuum_bitacora.php");
+	include("../views/vacuum_bitacora.php");
 	
 } catch (Exception $e) {
 	javaalert('Lo sentimos no hay conexion');

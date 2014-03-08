@@ -67,7 +67,8 @@
 			 	<ul class="nav nav-pills">
 			 		<li class="pull-left">
 			 			<div class="modal-header">
-							<h3>Correspondecia<span>SH</span></h3>
+							<h3>Correspondecia <span> SH</span> <?php echo "- Hola, ".$_SESSION["Usuario"]->return->nombreusu;?>
+</h3>
 						</div>
 					</li>
 			 		

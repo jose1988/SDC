@@ -1,30 +1,32 @@
 	<?php  
 	session_start();
   require_once('../lib/nusoap.php');
+  try{
   $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
   $client = new SOAPClient($wsdl_url);
   $client->decode_utf8 = false; 
   $idPaquete= array('idPaquete' => $_POST['idpaq']);
   $Paquete = $client->ConsultarPaqueteXId($idPaquete); 
+   $usu= array('idusu' => $_SESSION["Usuario"]->return->idusu);
   if(isset($Paquete->return)){
      $idPaquete= array('idpaq' => $_POST['idpaq']);
-	 $usu= array('idusu' => $_SESSION["Usuario"]->return->idusu);
 	 $sede= array('idsed' => $_SESSION["Sede"]->return->idsed);
 	$parametros=array('registroPaquete' => $idPaquete,
 						'registroUsuario'=>$usu,					
 						'registroSede'=>$sede);
 					//	echo '<pre>';print_r($parametros);
   $seg = $client->registroSeguimiento($parametros);
-
-  
-$parametros=array('idUsuario' => $usu);
- $PaquetesConfirmados = $client->consultarPaquetesXUsuarioProcesadasAlDia($parametros); 
-
    if($seg->return==0){
        echo "<br>";
 		echo"<div class='alert alert-block' align='center'>
 			<h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
 			<h4 align='center'>El paquete ya fue confirmado </h4>
+		</div> ";
+	}elseif($seg->return==2){
+	 echo "<br>";
+		echo"<div class='alert alert-block' align='center'>
+			<h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
+			<h4 align='center'>Paquete con seguimiento errado ,consulte con el administrador </h4>
 		</div> ";
 	}
   }else{
@@ -35,8 +37,9 @@ $parametros=array('idUsuario' => $usu);
 		</div> ";
   
   }
- 
- 
+ $parametros=array('idUsuario' => $usu);
+ $PaquetesConfirmados = $client->consultarPaquetesXUsuarioProcesadasAlDia($parametros); 
+ //echo '<pre>';print_r($PaquetesConfirmados);
 	?>
 	
 	<!-- styles -->
@@ -146,4 +149,9 @@ $parametros=array('idUsuario' => $usu);
 
     
  </div>
-
+<?php
+ } catch (Exception $e) {
+					javaalert('Lo sentimos no hay conexión');
+					iraURL('../pages/inbox.php');
+}
+ ?>  

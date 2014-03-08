@@ -9,7 +9,7 @@ if(!isset($_SESSION["Usuario"])){
 	iraURL("../pages/create_user.php");
 }
 
-$idPaquete = '2';
+$idPaquete = '1';
 
 try{
 	$parametros = array('idPaquete' => $idPaquete);
@@ -32,7 +32,7 @@ try{
 		$adjunto = $resultadoAdjunto->return;
 	}
 	
-	include("../views/see_package.php");	
+	include("../views/see_package.php");
 				
 } catch (Exception $e) {
 	javaalert('Lo sentimos no hay conexion');

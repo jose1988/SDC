@@ -255,29 +255,29 @@ function FechaRelativa (Dia, Mes, Agno, DiferenciaDias) {
         </div>
 
         <div class="container app-container">
-            <div>
-                <ul class="nav nav-pills">
-                    <li class="pull-left">
-                        <div class="modal-header">
-                            <h3> Correspondencia    
-                                <span>SH</span> <?php echo "- ".$_SESSION["Usuario"]->return->userusu; ?>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
-                                        <span class="icon-cog" style="color:rgb(255,255,255)"> </span>
-                                    </button>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">Editar Usuario</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="../recursos/cerrarsesion.php" onClick="">Salir</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Ayuda</a></li>
-                                    </ul>
-                                </div>
-                            </h3>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+           <div>
+                    <ul class="nav nav-pills">
+                        <li class="pull-left">
+                            <div class="modal-header">
+                                <h3> Correspondencia    
+                                    <span>SH</span> <?php echo "- Hola, ".$_SESSION["Usuario"]->return->nombreusu;?>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
+                                            <span class="icon-cog" style="color:rgb(255,255,255)"> </span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="../pages/edit_user.php">Editar Usuario</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="../index.php">Salir</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">Ayuda</a></li>
+                                        </ul>
+                                    </div>
+                                </h3>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             <!--Caso pantalla uno-->
 			 <form method="post" ENCTYPE="multipart/form-data">
             <div class="row-fluid">
@@ -305,9 +305,15 @@ function FechaRelativa (Dia, Mes, Agno, DiferenciaDias) {
 								   <option value="" style="display:none">Seleccionar:</option>
 
 								    <?php 
+									if(count($rowDocumentos->return)==1){
+								    echo '<option value="'.$rowDocumentos->return->iddoc.'">'.$rowDocumentos->return->nombredoc.'</option>';
+
+									}else{
 									for($i=0;$i<count($rowDocumentos->return);$i++){
 									echo '<option value="'.$rowDocumentos->return[$i]->iddoc.'">'.$rowDocumentos->return[$i]->nombredoc.'</option>';
 									}
+									}
+									
 									?>
        
                                     </select><br></td>
@@ -315,10 +321,16 @@ function FechaRelativa (Dia, Mes, Agno, DiferenciaDias) {
                             <tr>
                                 <td>Prioridad:</td><td><select name="prioridad" required  title="Seleccione la prioridad">
 								<option value="" style="display:none">Seleccionar:</option>                                  
-								  <?php 
-									for($i=0;$i<count($rowPrioridad->return);$i++){
+								 <?php 
+								  if(count($rowPrioridad->return)==1){
+								  	echo '<option value="'.$rowPrioridad->return->idpri.'">'.$rowPrioridad->return->nombrepri.'</option>';
+
+								  }else{
+								  for($i=0;$i<count($rowPrioridad->return);$i++){
 									echo '<option value="'.$rowPrioridad->return[$i]->idpri.'">'.$rowPrioridad->return[$i]->nombrepri.'</option>';
 									}
+								  }
+									
 									?>
                                     </select><br></td>
                             </tr>

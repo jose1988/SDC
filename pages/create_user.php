@@ -48,6 +48,7 @@ if(isset($_POST["crear"])){
 						  'direccion2usu' => $direccion2,
 						  'telefonousu' => $telefono1,
 						  'telefono2usu' => $telefono2,
+						  'tipousu' => "0",
 						  'userusu'=>$_SESSION["Usuario"]->return->userusu,
 						  'statususu' => "1"); 						 
 					      $parametros=array('registroUsuario'=>$Usuario);
@@ -55,13 +56,15 @@ if(isset($_POST["crear"])){
 						$sede=array('idsed'=> $_POST["sede"]);
 						$rol=array('idrol'=>"6");
 						$usuSede=array('idsed'=> $sede,'idrol'=> $rol);
-						$RegUsuSede=array('registroUsuSede'=> $usuSede);
+						$RegUsuSede=array('registroUsuSede'=> $usuSede,
+											'userUsu'=>$_SESSION["Usuario"]->return->userusu);
+						
 						$guardo=$client->insertarUsuarioSedeXDefecto($RegUsuSede);
 						if($guardo->return==0){
 						javaalert("No se han Guardado los datos del Usuario, Consulte con el Admininistrador");
 						}else{
 						javaalert("Se han Guardado los datos del Usuario");
-						llenarLog(1, "Inserción de Usuario",$_SESSION["Usuario"]->return->idusu,$_SESSION["Sede"]->return->idsed);
+						llenarLog(1, "Inserción de Usuario",$_SESSION["Usuario"]->return->idusu,$_POST["sede"]);
 						}
 						iraURL('../pages/inbox.php');		
 						
