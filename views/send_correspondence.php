@@ -45,6 +45,9 @@
   diasFestivos = ["1/1","1/5","19/4","24/6","5/7","24/7","12/10","25/12","31/12"];
 
 	$.datepicker.regional['es'] = {
+	showButtonPanel: true,
+	changeMonth: true,
+changeYear: true,
 		clearText: 'Limpiar', clearStatus: '',
 		closeText: 'Cerrar', closeStatus: '',
 		prevText: '&#x3c;Ant', prevStatus: '',
@@ -279,7 +282,7 @@ function FechaRelativa (Dia, Mes, Agno, DiferenciaDias) {
                     </ul>
                 </div>
             <!--Caso pantalla uno-->
-			 <form method="post" ENCTYPE="multipart/form-data">
+			 <form method="post" ENCTYPE="multipart/form-data" id="formu">
             <div class="row-fluid">
                 <div class="span2">
                     <ul class="nav nav-pills nav-stacked">
@@ -354,7 +357,7 @@ function FechaRelativa (Dia, Mes, Agno, DiferenciaDias) {
                             </tr>
                             <tr>
                                 <td>Imagen (opcional):</td><td>
-										<input id="imagen" name="imagen" type="file" maxlength="24" onBlur='LimitAttach(this);'/>
+										<input id="imagen" name="imagen" type="file" maxlength="199" onBlur='LimitAttach(this);'/>
                                 </td>
                             </tr>
                             <tr>
@@ -364,7 +367,7 @@ function FechaRelativa (Dia, Mes, Agno, DiferenciaDias) {
                              <td>Con Respuesta: </td><td><input type="checkbox" name="rta" id="rta" title="Seleccione si desea con respuesta" checked="checked"></td>
                             </tr>
                             <tr>          
-                                <td colspan="2" align="right"><input type="submit" value="Enviar Correspondecia" name="enviar"><br>
+                                <td colspan="2" align="right"><input type="submit" id="enviar"  onclick="return confirm('¿Esta seguro que desea enviar la correspondencia? \n Luego de enviado no podrá modificar la correspondencia')" value="Enviar Correspondecia" name="enviar"><br>
                                 </td>
                             </tr>
 							
@@ -379,7 +382,7 @@ function FechaRelativa (Dia, Mes, Agno, DiferenciaDias) {
 
         </div>
 			 <script>
-            window.onload = function(){
+      window.onload = function(){
 			killerSession();}
              function killerSession(){
              setTimeout("window.open('../recursos/cerrarsesion.php','_top');",300000);

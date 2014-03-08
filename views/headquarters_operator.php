@@ -102,12 +102,13 @@
                                 <button type="button" class="btn" onClick="Paquete();">Recibir Paquete</button>
                           <div id="data">
 						  		 <?php		
+  
    if(isset($PaquetesConfirmados->return)){        
    
        echo "<br>";
 	?>
 	
-         <h2>Correspondencia hoy en la Sede</h2>
+         <h2> Correspondencia hoy en la Sede</h2>
                             <table class='footable table table-striped table-bordered' data-page-size='10'>    
                                 <thead bgcolor='#FF0000'>
                                     <tr>	
@@ -127,13 +128,23 @@
 									  }else{
 									  $rta="Si";
 								  }
+								if(strlen ($PaquetesConfirmados->return->textopaq)>10){
+								$contenido=substr($PaquetesConfirmados->return->textopaq,0,10)."...";
+								}else{
+									$contenido=$PaquetesConfirmados->return->textopaq;
+								}
+								if(strlen ($PaquetesConfirmados->return->asuntopaq)>10){
+								$asunto=substr($PaquetesConfirmados->return->asuntopaq,0,10)."...";
+								}else{
+									$asunto=$PaquetesConfirmados->return->asuntopaq;
+								}
 								?>
                                     <tr>     
                                        <td  style='text-align:center'><?php echo $PaquetesConfirmados->return->origenpaq->nombreusu." ".$PaquetesConfirmados->return->origenpaq->apellidousu;?></td>
                                         <td style='text-align:center'><?php echo $PaquetesConfirmados->return->destinopaq->idusubuz->nombreusu." ".$PaquetesConfirmados->return->destinopaq->idusubuz->apellidousu;?></td>
-                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return->asuntopaq;?></td>
+                                        <td style='text-align:center'><?php echo $asunto;?></td>
                                         <td style='text-align:center'><?php echo $PaquetesConfirmados->return->iddoc->nombredoc;?></td>
-                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return->textopaq;?></td>
+                                        <td style='text-align:center'><?php echo $contenido;?></td>
                                         <td style='text-align:center'><?php echo $rta;?></td>  
                                     </tr>   
 								<?php	
@@ -144,14 +155,24 @@
 									  }else{
 									  $rta="Si";
 								  }
+								  if(strlen ($PaquetesConfirmados->return[$i]->textopaq)>25){
+									$contenido=substr($PaquetesConfirmados->return[$i]->textopaq,0,23)."...";
+									}else{
+										$contenido=$PaquetesConfirmados->return[$i]->textopaq;
+									}
+								if(strlen ($PaquetesConfirmados->return[$i]->asuntopaq)>10){
+								$asunto=substr($PaquetesConfirmados->return[$i]->asuntopaq,0,10)."...";
+								}else{
+									$asunto=$PaquetesConfirmados->return[$i]->asuntopaq;
+								}
 								
 								?>
                                     <tr>     
                                         <td  style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->origenpaq->nombreusu." ".$PaquetesConfirmados->return[$i]->origenpaq->apellidousu;?></td>
                                         <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->destinopaq->idusubuz->nombreusu." ".$PaquetesConfirmados->return[$i]->destinopaq->idusubuz->apellidousu;?></td>
-                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->asuntopaq;?></td>
+                                        <td style='text-align:center'><?php echo $asunto;?></td>
                                         <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->iddoc->nombredoc;?></td>
-                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->textopaq;?></td>
+                                        <td style='text-align:center'><?php echo $contenido;?></td>
                                         <td style='text-align:center'><?php echo $rta;?></td>  
                                     </tr>   
 								<?php															
@@ -211,8 +232,8 @@
 			success:  function (response) {
             	$("#data").html(response);
 			}
-		
 	    }); 
+		document.forms.formulario.idpaq.value="";
 		}else{
 		alert("Por favor agregue el código de correspondencia")
 		}

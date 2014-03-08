@@ -32,9 +32,7 @@ try {
         javaalert("Lo sentimos no se puede enviar correspondencia porque no hay Prioridades registradas,Consulte con el Administrador");
         iraURL('../pages/inbox.php');
     }
-    if (isset($_POST["enviar"])) {//echo $_POST["datepicker"].'<br>';		
-//echo '<br>'.date('Y-m-d', strtotime(str_replace('/', '-', $_POST["datepicker"]))).'Lados___'.date('Y-m-d', strtotime(str_replace('/', '-', $_POST["datepickerf"])));
-//echo $_POST["contacto"].'_'.$_POST["asunto"].'_'.$_POST["doc"].'_'.$_POST["prioridad"].'_'.$_POST["datepicker"].'_'.$_POST["datepickerf"].'_'.$_POST["elmsg"];
+    if (isset($_POST["enviar"])) {
         if (isset($_POST["contacto"]) && $_POST["contacto"] != "" && isset($_POST["asunto"]) && $_POST["asunto"] != "" && isset($_POST["doc"]) && $_POST["doc"] != "" && isset($_POST["prioridad"]) && $_POST["prioridad"] != "" && isset($_POST["datepicker"]) && $_POST["datepicker"] != "" && isset($_POST["datepickerf"]) && $_POST["datepickerf"] != "" && isset($_POST["elmsg"]) && $_POST["elmsg"] != "") {
             if (!isset($_POST["rta"])) {
                 $rta = "0";

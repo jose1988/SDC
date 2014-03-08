@@ -1,5 +1,6 @@
 	<?php  
 	session_start();
+	 include("../recursos/funciones.php");
   require_once('../lib/nusoap.php');
   try{
   $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
@@ -28,6 +29,8 @@
 			<h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
 			<h4 align='center'>Paquete con seguimiento errado ,consulte con el administrador </h4>
 		</div> ";
+	}elseif($seg->return==1){
+	javaalert("Se ha confirmado el paquete exitósamente");
 	}
   }else{
   echo "<br>";
@@ -65,7 +68,8 @@
 
 
 	 <?php		
-   if(isset($PaquetesConfirmados->return)){        
+if(isset($PaquetesConfirmados->return)){        
+   
        echo "<br>";
 	?>
 	
@@ -84,35 +88,56 @@
                                 <tbody>
 								<?php
 								if(count($PaquetesConfirmados->return)==1){
-								 if($PaquetesConfirmados->return->respaq=="0"){
+								  if($PaquetesConfirmados->return->respaq=="0"){
 									  $rta="No";
 									  }else{
 									  $rta="Si";
 								  }
+								if(strlen ($PaquetesConfirmados->return->textopaq)>10){
+								$contenido=substr($PaquetesConfirmados->return->textopaq,0,10)."...";
+								}else{
+									$contenido=$PaquetesConfirmados->return->textopaq;
+								}
+								if(strlen ($PaquetesConfirmados->return->asuntopaq)>10){
+								$asunto=substr($PaquetesConfirmados->return->asuntopaq,0,10)."...";
+								}else{
+									$asunto=$PaquetesConfirmados->return->asuntopaq;
+								}
 								?>
                                     <tr>     
                                        <td  style='text-align:center'><?php echo $PaquetesConfirmados->return->origenpaq->nombreusu." ".$PaquetesConfirmados->return->origenpaq->apellidousu;?></td>
                                         <td style='text-align:center'><?php echo $PaquetesConfirmados->return->destinopaq->idusubuz->nombreusu." ".$PaquetesConfirmados->return->destinopaq->idusubuz->apellidousu;?></td>
-                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return->asuntopaq;?></td>
+                                        <td style='text-align:center'><?php echo $asunto;?></td>
                                         <td style='text-align:center'><?php echo $PaquetesConfirmados->return->iddoc->nombredoc;?></td>
-                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return->textopaq;?></td>
+                                        <td style='text-align:center'><?php echo $contenido;?></td>
                                         <td style='text-align:center'><?php echo $rta;?></td>  
                                     </tr>   
 								<?php	
 								}else{
 								for($i=0;$i<count($PaquetesConfirmados->return);$i++){
-								 if($PaquetesConfirmados->return[$i]->respaq=="0"){
+								  if($PaquetesConfirmados->return[$i]->respaq=="0"){
 									  $rta="No";
 									  }else{
 									  $rta="Si";
 								  }
+								  if(strlen ($PaquetesConfirmados->return[$i]->textopaq)>25){
+									$contenido=substr($PaquetesConfirmados->return[$i]->textopaq,0,23)."...";
+									}else{
+										$contenido=$PaquetesConfirmados->return[$i]->textopaq;
+									}
+								if(strlen ($PaquetesConfirmados->return[$i]->asuntopaq)>10){
+								$asunto=substr($PaquetesConfirmados->return[$i]->asuntopaq,0,10)."...";
+								}else{
+									$asunto=$PaquetesConfirmados->return[$i]->asuntopaq;
+								}
+								
 								?>
                                     <tr>     
                                         <td  style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->origenpaq->nombreusu." ".$PaquetesConfirmados->return[$i]->origenpaq->apellidousu;?></td>
                                         <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->destinopaq->idusubuz->nombreusu." ".$PaquetesConfirmados->return[$i]->destinopaq->idusubuz->apellidousu;?></td>
-                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->asuntopaq;?></td>
+                                        <td style='text-align:center'><?php echo $asunto;?></td>
                                         <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->iddoc->nombredoc;?></td>
-                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->textopaq;?></td>
+                                        <td style='text-align:center'><?php echo $contenido;?></td>
                                         <td style='text-align:center'><?php echo $rta;?></td>  
                                     </tr>   
 								<?php															
@@ -121,15 +146,11 @@
 								?>  
 								</tbody>
                             </table>
-							<ul id="pagination" class="footable-nav"><span>Pag:</span></ul>	
-							
+							<ul id="pagination" class="footable-nav"><span>Pag:</span></ul>								
 							
 	<?php				
 	}
-	
-	
-    
-  ?>  
+	?>
  
 
 <script src="../js/footable.js" type="text/javascript"></script>

@@ -173,7 +173,7 @@
 		     </tr>
 
 	</table><br>
-                            <div class="span11" align="center"><button class="btn" id="guardar" name="guardar" type="submit">Guardar</button></div>
+                            <div class="span11" align="center"><button class="btn" id="guardar" name="guardar" onclick="return confirm('¿Esta seguro que desea guardar los cambios?')" type="submit">Guardar</button></div>
                             <br>
     </form>
                     </div>
