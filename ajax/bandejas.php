@@ -49,7 +49,8 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
           echo "</div>";
 		  
 		 
-       echo "<br>";
+       echo "<br> <form method='get'>";
+	   
 	echo "<table class='footable table table-striped table-bordered' align='center' data-page-size='10'>
     	 <thead bgcolor='#ff0000'>
                                     <tr>
@@ -67,6 +68,7 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
                                echo     "</tr>
          </thead>
         <tbody>
+		
         	<tr>";
 			if($reg>1){
 				$j=0;
@@ -99,15 +101,17 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
 					}
                     echo "<td style='text-align:center'>".substr($Bandeja->return->fechapaq,0,10)."</td>";  
 					echo "<td style='text-align:center'>".$Bandeja->return->localizacionpaq."</td>";
-					echo "<td style='text-align:center'><a href='../pages/see_package.php?id='".$Bandeja->return->idpaq." ><button type='button' class='btn btn-info btn-primary' value='Realizar Valija'>  Ver Mas </button> </a></td>";    
+					echo "<td style='text-align:center'><a href='../pages/see_package.php?id=".$Bandeja->return->idpaq."'><button type='button' class='btn btn-info btn-primary' value='Realizar Valija'>  Ver Mas </button> </a></td>";    
 					if($aux=="Recibidos Pendientes"){
 			echo"<th style='width:7%; text-align:center' data-sort-ignore='true'>
-			<form> <button type='button' class='btn btn-info btn-primary' onClick='Confirmar(".$Bandeja->return->idpaq.");' value='Realizar Valija'>  Confirmar </button> </form> </th>";
+			 <button type='button' class='btn btn-info btn-primary' onClick='Confirmar(".$Bandeja->return->idpaq.");' value='Realizar Valija'>  Confirmar </button>  </th>";
 								}                             
             echo "</tr>";
 			}
 	echo " </tbody>
-  	</table>";
+  	</table>
+	
+	</form>";
 	echo '<ul id="pagination" class="footable-nav"><span>Pag:</span></ul>';
    		
 		

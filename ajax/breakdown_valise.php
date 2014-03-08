@@ -5,7 +5,7 @@ include("../recursos/funciones.php");
 require_once('../lib/nusoap.php');
 
 
-?>	 	 
+?>		 
      
       <!-- javascript -->
         <script type='text/javascript' src="../js/jquery-1.9.1.js"></script>
