@@ -1,4 +1,13 @@
-	  <!-- javascript -->
+<?php
+session_start();
+
+include("../recursos/funciones.php");
+require_once('../lib/nusoap.php');
+
+
+?>	 	 
+     
+      <!-- javascript -->
         <script type='text/javascript' src="../js/jquery-1.9.1.js"></script>
         <script type='text/javascript' src="../js/bootstrap.js"></script>
 		  <script type='text/javascript' src="../js/bootstrap-transition.js"></script>
@@ -35,15 +44,16 @@
 
 	
 	 <?php
-	 session_start();
-	 include("../recursos/funciones.php");
-require_once('../lib/nusoap.php');
+	
   $aux= $_POST['idval'];
 $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
   $client = new SOAPClient($wsdl_url);
   $client->decode_utf8 = false; 
   $Val= array('registroValija' =>$aux , 'sede' => $_SESSION["Sede"]->return->nombresed);
+  $Valijac = $client->ConsultarValija($Val);
+  if($Valijac->return){
   $Valija = $client->ConsultarPaquetesXValija($Val);
+  }
   $reg=0;
   if(isset($Valija->return)){
   $reg=count($Valija->return);
@@ -93,9 +103,9 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
 					}
                     echo "<td style='text-align:center'>".substr($Valija->return[$j]->fechapaq,0,10)."</td>";  
 					echo "
-					<td style='text-align:center' width='15%'><input type='checkbox'  onMouseDown='deshabilitar(".$j.");' name='idc[".$j."]' id='idc[".$j."]' value='".$Valija->return[$j]->idpaq."'></td>";                     
+					<td style='text-align:center' width='15%'><input type='checkbox'  onClick='Confirmar(".$Valija->return[$j]->idpaq.");' name='idc[".$j."]' id='idc[".$j."]' value='".$Valija->return[$j]->idpaq."'></td>";                     
 					echo " 
-					<td style='text-align:center' width='15%'><input type='checkbox' name='idr".$j."' id='idr".$j."' value='".$Valija->return[$j]->idpaq."'></td>";  
+					<td style='text-align:center' width='15%'><input type='checkbox' name='idr".$j."' id='idr".$j."'  onClick='Reportar(".$Valija->return[$j]->idpaq.");' value='".$Valija->return[$j]->idpaq."'></td>";  
 			
 				            
             echo " </tr>";
@@ -114,9 +124,9 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
 					}
                     echo "<td style='text-align:center'>".substr($Valija->return->fechapaq,0,10)."</td>";  
 					echo "<td style='text-align:center'> 
-					<td style='text-align:center' width='15%'><input type='checkbox' onClick='this.disabled=true' onMouseDown='idr[0].disabled=true' name='idc[0]' id='idc[0]' value='".$Valija->return->idpaq."'></td>";                     
+					<td style='text-align:center' width='15%'><input type='checkbox' onClick='Confirmar(".$Valija->return->idpaq.");' name='idc[0]' id='idc[0]' value='".$Valija->return->idpaq."'></td>";                     
 					echo "<td style='text-align:center'> 
-					<td style='text-align:center' width='15%'><input type='checkbox' name='idr[0]' id='idr[0]' value='".$Valija->return->idpaq."'></td>";            
+					<td style='text-align:center' width='15%'><input type='checkbox' name='idr[0]' id='idr[0]' value='".$Valija->return->idpaq." onClick='Reportar(".$Valija->return->idpaq.");'></td>";            
             echo "</tr>";
 			}
 	echo " </tbody>
@@ -124,7 +134,9 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
 	</form>";
 	echo '<ul id="pagination" class="footable-nav"><span>Pag:</span></ul>';
    		
-		
+		echo '<form method="POST" id="botn">
+                            <div align="center"><button type="submit" class="btn" id="guardar" name="guardar" >Confirmar entrega</button></div>
+                        </form> ';
 		
 	}else {
 		echo "<br>";
@@ -140,56 +152,7 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
 		  
   ?>
 
-	 
-<script>
-	
-	function Reportar(idpaq){
-			
-			 var parametros = {
-                "idpaq" : idpaq
-       		 };
-			$.ajax({
-           	type: "POST",
-           	url: "../ajax/packeges_report.php",
-           	data: parametros,
-           	dataType: "text",
-			success:  function (response) {
-            	$("#alert").html(response);
-			}
-		
-	    }); 
-		
-		
-	}
-	
-	function Confirmar(idpaq){
-			
-			 var parametros = {
-                "idpaq" : idpaq
-       		 };
-			$.ajax({
-           	type: "POST",
-           	url: "../ajax/packeges_report.php",
-           	data: parametros,
-           	dataType: "text",
-			success:  function (response) {
-            	$("#alert").html(response);
-			}
-		
-	    }); 
-	
-	}
-	
-	
 
-function deshabilitar(id){
-		var box=document.getElementById('idr'.id);
-		
-		box.disabled=true;	
-	//document.form.chkbox2.disabled=true;
-	}
-
-	</script>
 
 <script src="../js/footable.js" type="text/javascript"></script>
 <script src="../js/footable.paginate.js" type="text/javascript"></script>
@@ -209,7 +172,4 @@ function deshabilitar(id){
     
  </div>
 
- <script type="text/javascript">
-var spryradio1 = new Spry.Widget.ValidationRadio("spryradio1");
- </script>
     

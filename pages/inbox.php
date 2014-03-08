@@ -23,9 +23,9 @@ if(!isset($_SESSION["Usuario"])){
   $UsuarioRol= array('idusu' => $_SESSION["Usuario"]->return->idusu,'sede' =>$_SESSION["Sede"]->return->nombresed);
   $SedeRol=$client->consultarSedeRol($UsuarioRol); 
   $reg=0;
-	if(isset($BandejaUsu->return) &&  isset($Bandeja->return) && isset($SedeRol->return)){
+	if(isset($BandejaUsu->return)){
 	  $reg=count($BandejaUsu->return);
-	  $regp=count($Bandeja->return);
+	
 	  }
   } catch (Exception $e) {
 	javaalert('Lo sentimos no hay conexión');

@@ -26,6 +26,7 @@ function existeSesion(){
 function eliminarSesion(){
     if(isset($_SESSION["Usuario"])){
 		unset($_SESSION["Usuario"]);
+		session_destroy();
 	}
 	
 }

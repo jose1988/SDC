@@ -1,23 +1,25 @@
 <?php
 
-if(isset($_POST["guardar"]) && isset($_POST["idc"]) ){
+
+if(isset($_POST["guardar"])){
 		try{
-			$registrosFallidos=$_POST["ide"];
-			$registrosConfimados=$_POST["idr"];
+			javaalert("entra en desglozar");
+			
+			
 			$contadorEliminados=0;
 			$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
   $client = new SOAPClient($wsdl_url);
   $client->decode_utf8 = false; 
-			if(isset($registrosFallidos)){
-			$datosValija = array('idval' => $_SESSION["Usuario"]->return->idusu, 'status'=> "entregado con ausente");
+			if($_SESSION["falla"]>0){
 			
+			  $datosValija = array('idval' => $_SESSION["Usuario"]->return->idusu, 'status'=> "entregado con ausente");
 			
-			for($j=0; $j<$_SESSION["idr"]; $j++){
-			    if(isset($registrosConfimados[$j])){
-				$datosfa = array('idpaq'=> $registrosFallidos[$j], 'datosPaquete' => "paquete ausente, no encontro en la valija respectiva");
+			for($j=1; $j<=$_SESSION["falla"]; $j++){
+			
+				$datosfa = array('idpaq'=> $_SESSION["reportados"][$j], 'datosPaquete' => "paquete ausente, no encontro en la valija respectiva");
 				$client->reportarPaqueteAusente($datosfa);
 			
-				}		
+						
 				
 			  }	
 			   
@@ -26,31 +28,33 @@ if(isset($_POST["guardar"]) && isset($_POST["idc"]) ){
 			}
 			
 			
-			if(isset($registrosConfimados)){	
+			if($_SESSION["confirmar"]>0){	
 				
-			for($j=0; $j<$_SESSION["idc"]; $j++){
-			    if(isset($registrosConfimados[$j])){
-				$datosAct = array('localizacion' => "Sede Destino", 'idpaq'=> $registrosConfimados[$j]);
+			for($j=1; $j<=$_SESSION["confirmar"]; $j++){
+			   
+				$datosAct = array('localizacion' => "Sede Destino", 'idpaq'=> $_SESSION["confirmados"][$j]);
 				$client->actualizacionLocalizacionRecibidoPaquete($datosAct);
-			
-				}		
-				
+
 			  }	
 			}
 				
   $idValija = $client->entregarValija($datosValija);
-  
+  unset($_SESSION["confirmar"]);
+  unset($_SESSION["falla"]);
+  unset($_SESSION["reportados"]);
+  unset($_SESSION["confirmados"]);
   
 		 } catch (Exception $e) {
 			javaalert('Lo sentimos no hay conexión');
-			iraURL('../views/index.php');
+			iraURL('../index.php');
 		}
 		//javaalert("Los registros han sido habilitados");
 		//iraURL('inbox.php');
 	}else if(isset($_POST["guardar"])){
 		javaalert("Debe seleccionar al menos un registro");
 	}
-?>
+
+?>	 	 
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -160,9 +164,7 @@ if(isset($_POST["guardar"]) && isset($_POST["idc"]) ){
                         <?php /* ?><div class='alert alert-block' align='center'>
                           <h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
                           <h4 align='center'>No hay usuarios </h4><?php */ ?>
-                        <form method="POST" id="botn">
-                            <div align="center"><button type="submit" class="btn" id="guardar" name="guardar" >Confirmar entrega</button></div>
-                        </form> 
+                       
                     </div>
 
                     <!-- /container -->
@@ -177,11 +179,11 @@ if(isset($_POST["guardar"]) && isset($_POST["idc"]) ){
 
 </div>
         <script>
-            //window.onload = function(){killerSession();}
-            //
-            //function killerSession(){
-            //setTimeout("window.open('../recursos/cerrarsesion.php','_top');",300000);
-            //}
+            window.onload = function(){killerSession();}
+            
+           function killerSession(){
+            setTimeout("window.open('../recursos/cerrarsesion.php','_top');",300000);
+           }
         </script>
         
         <script>
@@ -206,6 +208,49 @@ if(isset($_POST["guardar"]) && isset($_POST["idc"]) ){
 	}
 
 
+
+	</script>
+    
+    	 
+<script>
+	
+	function Reportar(idpaq){
+			
+			 var parametros = {
+                "idpaq" : idpaq
+       		 };
+			$.ajax({
+           	type: "POST",
+           	url: "../ajax/packeges_report.php",
+           	data: parametros,
+           	dataType: "text",
+			success:  function (response) {
+            	$("#alert").html(response);
+			}
+		
+	    }); 
+		
+		
+	}
+	
+	function Confirmar(idpaq){
+			
+			 var parametros = {
+                "idpaq" : idpaq
+       		 };
+			$.ajax({
+           	type: "POST",
+           	url: "../ajax/packeges_report_confirm.php",
+           	data: parametros,
+           	dataType: "text",
+			success:  function (response) {
+            	$("#alert").html(response);
+			}
+		
+	    }); 
+	
+	}
+	
 
 	</script>
         <script src="../js/footable.js" type="text/javascript"></script>

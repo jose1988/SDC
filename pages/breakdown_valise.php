@@ -23,7 +23,8 @@ if(!isset($_SESSION["Usuario"])){
 	javaalert('Lo sentimos no hay conexión');
 	iraURL('../index.php');	
 	}
- $_SESSION["falla"]=0;
+
+ 
 
 include("../views/breakdown_valise.php");
 

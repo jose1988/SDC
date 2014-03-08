@@ -81,10 +81,11 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
 					}
                     echo "<td style='text-align:center'>".substr($Bandeja->return[$j]->fechapaq,0,10)."</td>";  
 					echo "<td style='text-align:center'>".$Bandeja->return[$j]->localizacionpaq."</td>";
-					echo "<td style='text-align:center'>Ver mas</td>";  
+					echo "<td style='text-align:center'><a href='../pages/see_package.php?id='".$Bandeja->return[$j]->idpaq." ><button type='button' class='btn btn-info btn-primary' value='Realizar Valija'>  Ver Mas </button> </a></td>";    
 					if($aux=="Recibidos Pendientes"){
-			echo"<th style='width:7%; text-align:center' data-sort-ignore='true'>Confirmar</th>";
-								}                               
+			echo"<th style='width:7%; text-align:center' data-sort-ignore='true'>
+			<form> <button type='button' class='btn btn-info btn-primary' onClick='Confirmar(".$Bandeja->return[$j]->idpaq.");' value='Realizar Valija'>  Confirmar </button> </form> </th>";
+								}                          
             echo "</tr>";
 					$j++;
 				} 
@@ -98,9 +99,10 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
 					}
                     echo "<td style='text-align:center'>".substr($Bandeja->return->fechapaq,0,10)."</td>";  
 					echo "<td style='text-align:center'>".$Bandeja->return->localizacionpaq."</td>";
-					echo "<td style='text-align:center'>Ver mas</td>";    
+					echo "<td style='text-align:center'><a href='../pages/see_package.php?id='".$Bandeja->return->idpaq." ><button type='button' class='btn btn-info btn-primary' value='Realizar Valija'>  Ver Mas </button> </a></td>";    
 					if($aux=="Recibidos Pendientes"){
-			echo"<th style='width:7%; text-align:center' data-sort-ignore='true'>Confirmar</th>";
+			echo"<th style='width:7%; text-align:center' data-sort-ignore='true'>
+			<form> <button type='button' class='btn btn-info btn-primary' onClick='Confirmar(".$Bandeja->return->idpaq.");' value='Realizar Valija'>  Confirmar </button> </form> </th>";
 								}                             
             echo "</tr>";
 			}
@@ -124,28 +126,7 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
 		  
   ?>  
  
-<script>
-	
-	function Confirmar(idpaq){
-			
-			 var parametros = {
-                "idpaq" : idpaq
-       		 };
-			$.ajax({
-           	type: "POST",
-           	url: "../ajax/packeges_confirm.php",
-           	data: parametros,
-           	dataType: "text",
-			success:  function (response) {
-            	$("#alert").html(response);
-			}
-		
-	    }); 
-		
-		
-	}
-    
-    </script>
+
 	
 <script src="../js/footable.js" type="text/javascript"></script>
 <script src="../js/footable.paginate.js" type="text/javascript"></script>

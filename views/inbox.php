@@ -203,7 +203,26 @@
 	}
 	
 	
-	</script>
+	function Confirmar(idpaq){
+			
+			 var parametros = {
+                "idpaq" : idpaq
+       		 };
+			$.ajax({
+           	type: "POST",
+           	url: "../ajax/packeges_confirm.php",
+           	data: parametros,
+           	dataType: "text",
+			success:  function (response) {
+            	$("#footer").html(response);
+			}
+		
+	    }); 
+		
+		
+	}
+    
+    </script>
     
     <script>
 window.onload = function(){killerSession();}
