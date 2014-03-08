@@ -233,7 +233,7 @@
                             <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>
                             <br>
                              <div align="right">
-                            	<button type="submit" class="btn" id="vaciar" name="vaciar">Vaciar Bitacora</button>
+                            	<button type="submit" class="btn" id="vaciar" name="vaciar" onclick="return confirm('¿Esta seguro que desea vaciar la Bitacora?')">Vaciar Bitacora</button>
                                 
                              </div>
                             </form>

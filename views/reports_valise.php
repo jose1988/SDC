@@ -142,7 +142,7 @@
 												}else{
 													$sede = count($resultadoConsultarSede->return);													
 												?>
-                                        		<td style="text-align:center"><?php echo $resultadoConsultarSede->return->nombresed?></td>
+                                        			<td style="text-align:center"><?php echo $resultadoConsultarSede->return->nombresed?></td>
                                                 <?php }?>
                                         		<td style="text-align:center"><?php echo $resultadoConsultarValijas->return[$i]->destinoval->nombresed?></td>
                                                 <?php												
@@ -150,14 +150,21 @@
 												?>
                                                 	<td style="text-align:center"><?php echo ""?></td>
                                                 <?php }
-												else{?>
-                                        		<td style="text-align:center"><?php echo $resultadoConsultarValijas->return[$i]->asuntoval?></td>											<?php }
+												else{
+													if(strlen ($resultadoConsultarValijas->return[$i]->asuntoval)>10){
+														$asunto=substr($resultadoConsultarValijas->return[$i]->asuntoval,0,10)."...";
+													}else{
+														$asunto=$resultadoConsultarValijas->return[$i]->asuntoval;
+													}	
+												?>
+                                        			<td style="text-align:center"><?php echo $asunto?></td>											
+												<?php }
 												if(!isset($resultadoConsultarValijas->return[$i]->fechaval)){
 												?>
                                                 	<td style="text-align:center"><?php echo ""?></td>
                                                 <?php }
 												else{?>
-                                        		<td style="text-align:center"><?php echo date("d/m/Y",strtotime(substr($resultadoConsultarValijas->return[$i]->fechaval,0,10)))?></td>
+                                        			<td style="text-align:center"><?php echo date("d/m/Y",strtotime(substr($resultadoConsultarValijas->return[$i]->fechaval,0,10)))?></td>
                                                  <?php
 												}
                                                	if(!isset($resultadoConsultarValijas->return[$i]->idinc)){
@@ -165,7 +172,7 @@
                                                 	<td style="text-align:center"><?php echo ""?></td>
                                                 <?php }
 												else{?>
-                                        		<td style="text-align:center"><?php echo $resultadoConsultarValijas->return[$i]->idinc->nombreinc?></td>
+                                        			<td style="text-align:center"><?php echo $resultadoConsultarValijas->return[$i]->idinc->nombreinc?></td>
                                                  <?php
 												}
 												?>
@@ -181,14 +188,21 @@
 												?>
                                                 	<td style="text-align:center"><?php echo ""?></td>
                                                 <?php }
-												else{?>
-                                        		<td style="text-align:center"><?php echo $resultadoConsultarValijas->return->asuntoval?></td>											<?php }
+												else{
+												if(strlen ($resultadoConsultarValijas->return[$i]->asuntoval)>10){
+														$asunto=substr($resultadoConsultarValijas->return[$i]->asuntoval,0,10)."...";
+													}else{
+														$asunto=$resultadoConsultarValijas->return[$i]->asuntoval;
+													}
+												?>
+                                        			<td style="text-align:center"><?php echo $asunto?></td>											
+												<?php }
 												if(!isset($resultadoConsultarValijas->return->fechaval)){
 												?>
                                                 	<td style="text-align:center"><?php echo ""?></td>
                                                 <?php }
 												else{?>
-                                        		<td style="text-align:center"><?php echo date("d/m/Y",strtotime(substr($resultadoConsultarValijas->return->fechaval,0,10)))?></td>
+                                        			<td style="text-align:center"><?php echo date("d/m/Y",strtotime(substr($resultadoConsultarValijas->return->fechaval,0,10)))?></td>
                                                  <?php
 												}
                                                 if(!isset($resultadoConsultarValijas->return->idinc)){
@@ -196,7 +210,7 @@
                                                 	<td style="text-align:center"><?php echo ""?></td>
                                                 <?php }
 												else{?>
-                                        		<td style="text-align:center"><?php echo $resultadoConsultarValijas->return->idinc->nombreinc?></td>
+                                        			<td style="text-align:center"><?php echo $resultadoConsultarValijas->return->idinc->nombreinc?></td>
                                                  <?php
 												}
 												?>

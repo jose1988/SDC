@@ -108,7 +108,7 @@
                                     <textarea rows="10" cols="23" id="datosPaquete" name="datosPaquete" style="width:600px"></textarea>
                                     <br>
                                     <br>
-                                    <button type="submit" class="btn" id="reportarPaqAus" name="reportarPaqAus">Reportar</button>			
+                                    <button type="submit" class="btn" id="reportarPaqAus" name="reportarPaqAus" onclick="return confirm('¿Esta seguro que desea reportar la Correspondencia?')">Reportar</button>			
                                 </div>
                             </div>                             
                         </form>

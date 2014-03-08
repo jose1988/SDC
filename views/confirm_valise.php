@@ -104,14 +104,14 @@
                                     <h3 class="form-signin-heading">Confirmar Valija</h3>
                                     <div class="span5" align="right">Código de Valija:</div>
                                     <div class="span3" align="left">
-                                        <input type="text" class="input-block-level" name="cValija" id="cValija" autofocus required>
+                                        <input type="text" class="input-block-level" name="cValija" id="cValija" placeholder="Ej. 4246" title="Ingrese el código de la Valija" autocomplete="off" pattern="[0-9]{1,38}" autofocus required>
                                     </div>
                                     <div class="span5" align="right">Código de Zoom:</div>
                                     <div class="span3" align="left">
-                                        <input type="text" class="input-block-level" name="cZoom" id="cZoom" required>
+                                        <input type="text" class="input-block-level" name="cZoom" id="cZoom" placeholder="Ej. a3Y4" title="Ingrese el código de Zoom" autocomplete="off" pattern="[0-9,a-z,A-Z]{1,38}" required>
                                     </div>
                                 </div>
-                                <button class="btn" type="submit" id="confirmar" name="confirmar">Confirmar</button>
+                                <button class="btn" type="submit" id="confirmar" name="confirmar" onclick="return confirm('¿Esta seguro que desea confirmar la Valija?')">Confirmar</button>
                             </div>
                         </form>
                     </div>

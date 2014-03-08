@@ -131,13 +131,20 @@
 										?>
                                         	<tr>
                                         		<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return[$i]->destinopaq->idusubuz->nombreusu.' '.$resultadoConsultarPaquetes->return[$i]->destinopaq->idusubuz->apellidousu?></td>
-                                                 <?php 
+                                                 <?php
+												
 												if(!isset($resultadoConsultarPaquetes->return[$i]->asuntopaq)){
 												?>
                                                 	<td style="text-align:center"><?php echo ""?></td>
                                                 <?php }
-												else{?>
-                                        		<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return[$i]->asuntopaq?></td>
+												else{
+													if(strlen ($resultadoConsultarPaquetes->return[$i]->asuntopaq)>10){
+														$asunto=substr($resultadoConsultarPaquetes->return[$i]->asuntopaq,0,10)."...";
+													}else{
+														$asunto=$resultadoConsultarPaquetes->return[$i]->asuntopaq;
+													}													
+												?>
+                                        			<td style="text-align:center"><?php echo $asunto?></td>
                                                 <?php
 												}
 												if(!isset($resultadoConsultarPaquetes->return[$i]->localizacionpaq)){
@@ -145,13 +152,13 @@
                                                 	<td style="text-align:center"><?php echo ""?></td>
                                                 <?php }
 												else{?>
-                                        		<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return[$i]->localizacionpaq?></td>											<?php }
+                                        			<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return[$i]->localizacionpaq?></td>											<?php }
 												if(!isset($resultadoConsultarPaquetes->return[$i]->fechaenviopaq)){
 												?>
                                                 	<td style="text-align:center"><?php echo ""?></td>
                                                 <?php }
 												else{?>
-                                        		<td style="text-align:center"><?php echo date("d/m/Y",strtotime(substr($resultadoConsultarPaquetes->return[$i]->fechaenviopaq,0,10)))?></td>
+                                        			<td style="text-align:center"><?php echo date("d/m/Y",strtotime(substr($resultadoConsultarPaquetes->return[$i]->fechaenviopaq,0,10)))?></td>
                                                  <?php
 												}
 												if($resultadoConsultarPaquetes->return[$i]->respaq=='0'){
@@ -159,7 +166,7 @@
                                                 	<td style="text-align:center"><?php echo "No"?></td>
                                                 <?php }
 												else{?>
-                                        		<td style="text-align:center"><?php echo "Si"?></td>
+                                        			<td style="text-align:center"><?php echo "Si"?></td>
                                                 <?php }?>
                                         	</tr>
                                     <?php }
@@ -172,8 +179,14 @@
 												?>
                                                 	<td style="text-align:center"><?php echo ""?></td>
                                                 <?php }
-												else{?>
-                                        		<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return->asuntopaq?></td>
+												else{
+													if(strlen ($resultadoConsultarPaquetes->return->asuntopaq)>10){
+														$asunto=substr($resultadoConsultarPaquetes->return->asuntopaq,0,10)."...";
+													}else{
+														$asunto=$resultadoConsultarPaquetes->return->asuntopaq;
+													}
+												?>
+                                        			<td style="text-align:center"><?php echo $asunto?></td>
                                                 <?php
 												}
 												if(!isset($resultadoConsultarPaquetes->return->localizacionpaq)){
@@ -181,20 +194,20 @@
                                                 	<td style="text-align:center"><?php echo ""?></td>
                                                 <?php }
 												else{?>
-                                        		<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return->localizacionpaq?></td>												<?php }
+                                        			<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return->localizacionpaq?></td>												<?php }
 												if(!isset($resultadoConsultarPaquetes->return->fechaenviopaq)){
 												?>
                                                 	<td style="text-align:center"><?php echo ""?></td>
                                                 <?php }
 												else{?>
-                                        		<td style="text-align:center"><?php echo date("d/m/Y",strtotime(substr($resultadoConsultarPaquetes->return->fechaenviopaq,0,10)))?></td>
+                                        			<td style="text-align:center"><?php echo date("d/m/Y",strtotime(substr($resultadoConsultarPaquetes->return->fechaenviopaq,0,10)))?></td>
                                                  <?php }
 												if($resultadoConsultarPaquetes->return->respaq=='0'){
 												?>
                                                 	<td style="text-align:center"><?php echo "No"?></td>
                                                 <?php }
 												else{?>
-                                        		<td style="text-align:center"><?php echo "Si"?></td>
+                                        			<td style="text-align:center"><?php echo "Si"?></td>
                                                 <?php }?>
                                         	</tr>
 										<?php }?>                                    
