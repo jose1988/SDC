@@ -43,15 +43,15 @@ $idsed= array('idsed' => $_SESSION["Sede"]->return->idsed);
 				  }else{
 				  $rta="Si";
 				  }
-				  if(strlen ($PaquetesConfirmados->return->textopaq)>10){
-								$contenido=substr($PaquetesConfirmados->return->textopaq,0,10)."...";
+				  if(strlen ($rowPaquete->return->textopaq)>10){
+								$contenido=substr($rowPaquete->return->textopaq,0,10)."...";
 								}else{
-									$contenido=$PaquetesConfirmados->return->textopaq;
+									$contenido=$rowPaquete->return->textopaq;
 								}
-								if(strlen ($PaquetesConfirmados->return->asuntopaq)>10){
-								$asunto=substr($PaquetesConfirmados->return->asuntopaq,0,10)."...";
+								if(strlen ($rowPaquete->return->asuntopaq)>10){
+								$asunto=substr($rowPaquete->return->asuntopaq,0,10)."...";
 								}else{
-									$asunto=$PaquetesConfirmados->return->asuntopaq;
+									$asunto=$rowPaquete->return->asuntopaq;
 								}
 		 
        echo "<br>";
