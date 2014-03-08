@@ -14,4 +14,5 @@ h2{
 
 #borde, #bd{
 	border:1px solid black;
+	border-color:#000;
 }
