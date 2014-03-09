@@ -92,7 +92,7 @@ echo '<script language="javascript"> window.location = "../pages/inbox.php"; </s
         </div>
 
         <div class="container app-container">
-            <<div>
+            <div>
                     <ul class="nav nav-pills">
                         <li class="pull-left">
                             <div class="modal-header">
