@@ -12,6 +12,13 @@ if(!isset($_SESSION["Usuario"])){
 $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
   $client = new SOAPClient($wsdl_url);
   $client->decode_utf8 = false; 
+  $usuario= array('user' => $_SESSION["Usuario"]->return->userusu);
+  $Usuario = $client->consultarUsuarioXUser($usuario);
+	if(isset($Usuario)){
+	 javaalert("Lo sentimos no se puede guardar los datos del usuario porque el nombre de usuario ya existe,Consulte con el Administrador");
+     iraURL('../index.php');   //ojo necesito el index
+	}
+  
  $Sedes = $client->listarSedes();
   if(!isset($Sedes->return)){
    javaalert("Lo sentimos no se puede crear el usuario porque no hay sedes registradas,Consulte con el Administrador");
@@ -44,7 +51,7 @@ if(isset($_POST["crear"])){
 						  'nombreusu' => $_POST["nombre"],
 						  'apellidousu' => $_POST["apellido"],
 						  'correousu' => $correo,
-						   'direccionusu' => $direccion1,
+						  'direccionusu' => $direccion1,
 						  'direccion2usu' => $direccion2,
 						  'telefonousu' => $telefono1,
 						  'telefono2usu' => $telefono2,

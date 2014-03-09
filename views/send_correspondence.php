@@ -1,4 +1,8 @@
-
+<?php
+if(!isset($rowContactos->return)){
+echo '<script language="javascript"> window.location = "../pages/inbox.php"; </script>';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -45,9 +49,6 @@
   diasFestivos = ["1/1","1/5","19/4","24/6","5/7","24/7","12/10","25/12","31/12"];
 
 	$.datepicker.regional['es'] = {
-	showButtonPanel: true,
-	changeMonth: true,
-changeYear: true,
 		clearText: 'Limpiar', clearStatus: '',
 		closeText: 'Cerrar', closeStatus: '',
 		prevText: '&#x3c;Ant', prevStatus: '',

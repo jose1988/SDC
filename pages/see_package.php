@@ -9,18 +9,20 @@ if(!isset($_SESSION["Usuario"])){
 	iraURL("../pages/create_user.php");
 }
 
-$idPaquete = $_GET ["id"];
+$idPaquete = $_GET["id"];
+$usuario = $_SESSION["Usuario"]->return->idusu;
 
 if($idPaquete==""){
 	//iraURL('../pages/inbox.php');
 }
 else{
 	try{
-		$parametros = array('idPaquete' => $idPaquete);
+		$parametros = array('idPaquete' => $idPaquete,
+							'idUsuario' => $usuario);
 		$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
 		$client = new SOAPClient($wsdl_url);
 		$client->decode_utf8 = false;
-		$resultadoPaquete = $client->consultarPaqueteXId($parametros);
+		$resultadoPaquete = $client->consultarPaqueteXIdYOrigenODestino($parametros);
 	
 		if(!isset($resultadoPaquete->return)){
 			$paquete = 0;
@@ -44,3 +46,4 @@ else{
 	}
 }
 ?>
+
