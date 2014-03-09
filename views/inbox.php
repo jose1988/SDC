@@ -67,48 +67,144 @@
 	
 	  <div class="container app-container">
 			 
-			 
+		
+        <!-- inicio -->
+            
+          
+        <!--fin -->
+        
+        	 
 	    <div>
+          
 			 	<ul class="nav nav-pills">
-			 		<li class="pull-left">
-			 			<div class="modal-header">
+			 		
+			 			<div class="modal-header" style="width:1135px;">
                         
                    
 							<h3> Correspondencia    
                      <span>SH</span> <?php echo "- José" ?>   
                       
-                    
-                       
-                      <div class="btn-group">
+               
+                     
+                      <div class="btn-group  pull-right">
                       					
                                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
-                      						<span class="icon-cog" style="color:rgb(255,255,255)"> </span>
+                      						<span class="icon-cog" style="color:rgb(255,255,255)"> Configuracion </span>
                                         </button>
                                         
                       					<ul class="dropdown-menu" role="menu">                                        
              								
                         					<li><a href="#">editar usuario</a></li>
+                                            <li class="divider"></li>
+                                         <?php if($_SESSION["Usuario"]->return->tipousu=="1"|| $_SESSION["Usuario"]->return->tipousu=="2"){ ?>   
+                                            <li><a href="../pages/administration.php">Administracion</a></li>
+                                            
                         					<li class="divider"></li>
+                                            <?php } ?>
+                                            
                         					<li><a href="../recursos/cerrarsesion.php" onClick="">Salir</a></li>
                         					<li class="divider"></li>
                         					<li><a href="#">Ayuda</a></li>
                       					</ul>
                                         
                       				</div>
+                                  
+                                   <span class="divider pull-right" style="color:rgb(255,255,255)">  | </span>
+                                     <div class="btn-group  pull-right">
+                      					
+                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
+                      						<span class="icon-th-large" style="color:rgb(255,255,255)">  Operaciones </span>
+                                        </button>
+                                        
+                      					<ul class="dropdown-menu" role="menu">                                       <?php 
+	  
+					   if($SedeRol->return->idrol->idrol=="1"|| $SedeRol->return->idrol->idrol=="3"){ ?>
+						   
+						<li><a href="operator_level.php" > Recibir Paquete</a></li>
+                        					
+						   
+					  <?php }
+					    if($SedeRol->return->idrol->idrol=="2"|| $SedeRol->return->idrol->idrol=="5"){ ?>
+							
+						 
+                        <li><a href="headquarters_operator.php" > Recibir Paquete</a></li>
+                        					
+						   
+					  <?php }
+					    if($SedeRol->return->idrol->idrol=="4" || $SedeRol->return->idrol->idrol=="5"){ ?>
+							
+					 <li><a href="create_valise.php" > Crear Valija</a></li>
+                        					<li class="divider"></li>
+                       <li><a href="breakdown_valise.php" > Recibir Valija</a></li>
+                                             <li class="divider"></li>
+                        <li><a href="reports_valise.php" > Estadisticas Valija</a></li>
+                         <li class="divider"></li>
+                       
+                        					
+						  
+					 <?php  }
+					 
+	  
+					  
+					   ?>
+                        <li><a href="reports_user.php" > Estadisticas Usuario</a></li>
+                        </li>
+                        					
+                      
+             								
+                        					
+                        					
+                      					</ul>
+                                        
+                      				</div>
+                                    
+                                   <span class="divider pull-right" style="color:rgb(255,255,255)">  | </span>
+                                    
+                               <div class="btn-group  pull-right">
+                      					
+                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
+                      						<span class="icon-exclamation-sign" style="color:rgb(255,255,255)"> Alertas </span>
+                                        </button>
+                                        
+                      					<ul class="dropdown-menu" role="menu">                                        
+             								
+                        					<li><a href="../pages/package_overdue_origin.php">Paquetes Enviados</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="../pages/package_overdue_destination.php">Paquetes Recibidos</a></li>
+                                            <li class="divider"></li>
+                                         <?php if($SedeRol->return->idrol->idrol=="4"|| $SedeRol->return->idrol->idrol=="5"){ ?>   
+                                            
+                                            <li><a href="../pages/suitcase_overdue_origin.php">Valijas Enviadas</a></li>
+                                            
+                        					<li class="divider"></li>
+                                            <li><a href="../pages/suitcase_overdue_destination.php"> Valijas Recibidas </a></li>
+                                            
+                        					<li class="divider"></li>
+                                            <?php } ?>
+                                            
+                        					
+                      					</ul>
+                                        
+                      				</div>    
+                                
                                      </h3>
             				</div>
-           			 </li>
+           			
+                     
            	 </ul>
+             
           </div>
         
          
-           
+              
 		<!--Caso pantalla uno-->
        <div class="row-fluid">
        
      <div class="span2">
        
-      
+    <form method="post" action="../pages/send_correspondence.php">
+  <button class="btn btn-danger btn-block btn-small " type="submit"> <h6> Redactar Correspondecia</h6> </button>
+ 
         <ul class="nav nav-pills nav-stacked">
 
 
@@ -137,33 +233,15 @@
       
      </ul>
      
+       </form>
       
-      <?php 
-	  
-					   if($SedeRol->return->idrol->idrol=="1"|| $SedeRol->return->idrol->idrol=="3"){ ?>
-						   
-						<a href="operator_level.php" ><button type="button" class="btn btn-info btn-primary " value="Recibir paquete">  Recibir paquete del usuario  </button> </a>
-						   
-					  <?php }
-					    if($SedeRol->return->idrol->idrol=="2"|| $SedeRol->return->idrol->idrol=="5"){ ?>
-							
-						<a href="headquarters_operator.php" > <button type="button"class="btn btn-info btn-primary"  value="Recibir paquete">  Recibir paquete del usuario   </button> </a>
-						   
-					  <?php }
-					    if($SedeRol->return->idrol->idrol=="4" || $SedeRol->return->idrol->idrol=="5"){ ?>
-							
-					<a href="create_valise.php" ><button type="button" class="btn btn-info btn-primary" value="Realizar Valija">  Realizar Valija para enviar </button> </a>
-						  
-					 <?php  }
-					   
-					   ?>
       </div>
       
        <div class="span10">
 
-         <div class="tab-content" id="bandeja"><strong><h2> Recibidos </h2></strong>
+         <div class="tab-content" id="bandeja"><strong><h2> Bienvenido </h2></strong>
           
-	<ul id="pagination" class="footable-nav"><span>Pag:</span></ul>
+	
            
            </div>
       

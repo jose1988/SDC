@@ -9,7 +9,7 @@ if(!isset($_SESSION["Usuario"])){
 	iraURL("../pages/create_user.php");
 }
 
-$idPaquete = $_GET["id"];
+$idPaquete = $_GET ["id"];
 
 if($idPaquete==""){
 	//iraURL('../pages/inbox.php');
