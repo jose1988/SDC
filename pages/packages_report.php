@@ -9,13 +9,27 @@ if(!isset($_SESSION["Usuario"])){
 	iraURL("../pages/create_user.php");
 }
 
+$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
+$client = new SOAPClient($wsdl_url);
+$client->decode_utf8 = false;
+$UsuarioRol= array('idusu' => $_SESSION["Usuario"]->return->idusu,'sede' =>$_SESSION["Sede"]->return->nombresed);
+$SedeRol=$client->consultarSedeRol($UsuarioRol);
+
+if(isset($SedeRol->return)){
+	if($SedeRol->return->idrol->idrol!="4" && $SedeRol->return->idrol->idrol!="5"){
+   		iraURL('../pages/inbox.php');
+   	}
+}else{
+	iraURL('../pages/inbox.php');
+}
+
 $usuarioBitacora = $_SESSION["Usuario"]->return->idusu;
 $sede = $_SESSION["Sede"]->return->idsed;
 $idPaquete = '2';
 //$idPaquete = $_GET["id"];
 
 if($idPaquete==""){
-	//iraURL('../pages/inbox.php');
+	iraURL('../pages/inbox.php');
 }
 else{
 	if(isset($_POST["reportarPaqAus"])){

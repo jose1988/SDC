@@ -1,4 +1,7 @@
 <?php
+if($usuarioBitacora==""){
+	echo '<script language="javascript"> window.location = "../pages/inbox.php"; </script>';
+}
 require_once("../pdf/dompdf/dompdf_config.inc.php");
 $htmlUno = "";
 $htmlDos = "";
