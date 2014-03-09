@@ -1,3 +1,8 @@
+<?php
+if($usuarioBitacora==""){
+	echo '<script language="javascript"> window.location = "../pages/inbox.php"; </script>';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -232,10 +237,12 @@
                             </table>                            
                             <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>
                             <br>
-                             <div align="right">
+                            <?php  if($_SESSION["Usuario"]->return->tipousu=="2"){?>
+                             <div align="right">                      
                             	<button type="submit" class="btn" id="vaciar" name="vaciar" onclick="return confirm('¿Esta seguro que desea vaciar la Bitacora?')">Vaciar Bitacora</button>
                                 
                              </div>
+							 <?php } ?>
                             </form>
                             <?php }?>
                             </div>
