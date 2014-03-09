@@ -118,10 +118,15 @@
                                 <tbody>
 								<?php
 								if(count($PaquetesConfirmados->return)==1){
+								if(strlen ($PaquetesConfirmados->return->asuntopaq)>10){
+								$asunto=substr($PaquetesConfirmados->return->asuntopaq,0,10)."...";
+								}else{
+									$asunto=$PaquetesConfirmados->return->asuntopaq;
+								}
 								?>
                                     <tr>     
                                        <td  style='text-align:center'><?php echo $PaquetesConfirmados->return->origenpaq->nombreusu." ".$PaquetesConfirmados->return->origenpaq->apellidousu;?></td>
-                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return->asuntopaq;?></td>
+                                        <td style='text-align:center'><?php echo $asunto;?></td>
                                         <td style='text-align:center'><?php echo $PaquetesConfirmados->return->iddoc->nombredoc;?></td>
                                         <td style='text-align:center'><?php echo  date("d/m/Y",strtotime(substr($PaquetesConfirmados->return->fechaapaq,0,10))); ;?></td>
                                         <td style='text-align:center'><?php echo  date("d/m/Y",strtotime(substr($PaquetesConfirmados->return->fechaenviopaq,0,10)));?></td>  
@@ -129,10 +134,15 @@
 								<?php	
 								}else{
 								for($i=0;$i<count($PaquetesConfirmados->return);$i++){
+								if(strlen ($PaquetesConfirmados->return[$i]->asuntopaq)>10){
+								$asunto=substr($PaquetesConfirmados->return[$i]->asuntopaq,0,10)."...";
+								}else{
+									$asunto=$PaquetesConfirmados->return[$i]->asuntopaq;
+								}
 								?>
                                     <tr>     
                                         <td  style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->origenpaq->nombreusu." ".$PaquetesConfirmados->return[$i]->origenpaq->apellidousu;?></td>
-                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->asuntopaq;?></td>
+                                        <td style='text-align:center'><?php echo $asunto;?></td>
                                         <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->iddoc->nombredoc;?></td>
                                         <td style='text-align:center'><?php echo  date("d/m/Y",strtotime(substr($PaquetesConfirmados->return[$i]->fechaapaq,0,10))); ?></td>
                                         <td style='text-align:center'><?php echo  date("d/m/Y",strtotime(substr($PaquetesConfirmados->return[$i]->fechaenviopaq,0,10)));?></td>  

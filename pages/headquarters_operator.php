@@ -13,6 +13,13 @@ try {
 $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
 $client = new SOAPClient($wsdl_url);
 $client->decode_utf8 = false; 
+  if(isset($SedeRol->return)){
+   if($SedeRol->return->idrol->idrol!="2" || $SedeRol->return->idrol->idrol!="5" ){
+   iraURL('../pages/inbox.php');
+   }
+  }else{
+  iraURL('../pages/inbox.php');
+  }
   $idsed= array('idsed' => $_SESSION["Sede"]->return->idsed);
   $parametros=array('registroSede' => $idsed);
    $PaquetesConfirmados = $client->consultarPaquetesConfirmadosXSedeAlDia($parametros); 

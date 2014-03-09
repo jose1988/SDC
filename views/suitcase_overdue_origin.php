@@ -118,7 +118,11 @@
 								<?php
 								if(count($Valijas->return)==1){
 								if(isset($Valijas->return->asuntoval)){
-								$asunto=$Valijas->return->asuntoval;
+								if(strlen ($Valijas->return->asuntoval)>10){
+								$asunto=substr($Valijas->return->asuntoval,0,10)."...";
+								}else{
+									$asunto=$Valijas->return->asuntoval;
+								}
 								}else{ $asunto="";}
 								?>
                                     <tr>     
@@ -131,7 +135,11 @@
 								}else{
 								for($i=0;$i<count($Valijas->return);$i++){
 								if(isset($Valijas->return[$i]->asuntoval)){
-								$asunto=$Valijas->return[$i]->asuntoval;
+								if(strlen ($Valijas->return[$i]->asuntoval)>10){
+								$asunto=substr($Valijas->return[$i]->asuntoval,0,10)."...";
+								}else{
+									$asunto=$Valijas->return[$i]->asuntoval;
+								}
 								}else{ $asunto="";}
 								?>
                                     <tr>     

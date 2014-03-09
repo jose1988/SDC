@@ -110,7 +110,7 @@
        echo "<br>";
 	?>
 	
-         <h2>Correspondencia hoy en el Area de Trabajo</h2>
+         <h2>Correspondencia hoy en el Área de Trabajo</h2>
                             <table class='footable table table-striped table-bordered' data-page-size='10'>    
                                 <thead bgcolor='#FF0000'>
                                     <tr>	
@@ -211,6 +211,9 @@
 			 function isNumberKey(evt)
       {
          var charCode = (evt.which) ? evt.which : event.keyCode
+		  if(charCode == 13){
+		  	Paquete();
+		  }
          if (charCode > 31 && (charCode < 48 || charCode > 57))
             return false;
  

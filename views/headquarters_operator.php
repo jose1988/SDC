@@ -201,6 +201,7 @@
             </div>
         </div>
 		 <script>
+
             window.onload = function(){
 			killerSession();}
              function killerSession(){
@@ -210,14 +211,18 @@
 	function isNumberKey(evt)
       {
          var charCode = (evt.which) ? evt.which : event.keyCode
-         if (charCode > 31 && (charCode < 48 || charCode > 57))
-            return false;
- 
+          if(charCode == 13){
+		  	Paquete();
+		  }
+		 if (charCode > 31 && (charCode < 48 || charCode > 57)){
+		  return false;
+		 }
+
          return true;
       }
    </script>
 		<script>
-	
+
 	function Paquete(){
 	if(idpaq= document.forms.formulario.idpaq.value!=""){
 			var idpaq= document.forms.formulario.idpaq.value;
@@ -250,6 +255,7 @@
             $(function() {
                 $('table').footable();
             });
+			
         </script>
 
     </body>

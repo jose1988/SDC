@@ -14,6 +14,13 @@ try {
 $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
 $client = new SOAPClient($wsdl_url);
 $client->decode_utf8 = false; 
+  if(isset($SedeRol->return)){
+   if($SedeRol->return->idrol->idrol!="1"){
+   iraURL('../pages/inbox.php');
+   }
+  }else{
+  iraURL('../pages/inbox.php');
+  }
   $usu= array('idusu' => $_SESSION["Usuario"]->return->idusu);
   $parametros=array('idUsuario' => $usu);
    $PaquetesConfirmados = $client->consultarPaquetesXUsuarioProcesadasAlDia($parametros); 

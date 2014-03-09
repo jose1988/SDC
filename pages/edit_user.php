@@ -9,8 +9,6 @@ if(!isset($_SESSION["Usuario"])){
 	}elseif(!usuarioCreado()){
 	iraURL("../pages/create_user.php");
 	}
-
-
   $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
   $client = new SOAPClient($wsdl_url);
   $client->decode_utf8 = false; 
