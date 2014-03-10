@@ -207,14 +207,17 @@
     
  
         <ul class="nav nav-pills nav-stacked">
-        
+       <li>   
+      <a href="../pages/inbox.php"> Atrás </a>
+           </li> 
+       
          <li>   
       <a href="../pages/assign_headquarters.php"> Asignar Sede </a>
            </li>
            
            
          <li>   
-      <a href="../pages/edit_role.php"> Editar Rol </a>
+      <a href="../pages/user_role.php"> Editar Rol </a>
            </li>
             <li>   
       <a href="../pages/edit_user.php"> Editar Usuario </a>

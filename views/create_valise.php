@@ -25,9 +25,7 @@ if(isset($_POST["guardar"]) && isset($_POST["ide"])){
 								
 				
 				}		
-				if($contadorEliminados==count($_POST["ide"])){
-					break;
-				}
+				
 			}	
 		 } catch (Exception $e) {
 			javaalert('Lo sentimos no hay conexión');
