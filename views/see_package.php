@@ -311,11 +311,11 @@ if ($idPaquete == "" || $usuario == "") {
                                     <tr>
                                         <td style="text-align:center" width="50%"><b>Respuesta al Paquete</b></td>
                                         <?php 
-										if (!isset($resultadoPaquete->return->idpaqresp)) { ?>
+										if (!isset($resultadoPaquete->return->idpaqres)) { ?>
                                             <td style="text-align:center"><?php echo ""; ?></td>
                                         <?php } 
 										else { ?>
-                                            <td style="text-align:center"><?php echo $resultadoPaquete->return->idpaqresp->idpaq ?></td>
+                                            <td style="text-align:center"><?php echo $resultadoPaquete->return->idpaqres->idpaq ?></td>
     									<?php } ?>
                                     </tr>                                    
                                     <tr>
