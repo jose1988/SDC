@@ -10,6 +10,8 @@ if(isset($_POST["guardar"])){
 			$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
   $client = new SOAPClient($wsdl_url);
   $client->decode_utf8 = false; 
+  $usu= array('idusu' => $_SESSION["Usuario"]->return->idusu);
+  $sede= array('idsed' => $_SESSION["Sede"]->return->idsed);
 			if($_SESSION["falla"]>0){
 			
 			  $datosValija = array('idval' => $_SESSION["Usuario"]->return->idusu, 'status'=> "2");
@@ -33,7 +35,11 @@ if(isset($_POST["guardar"])){
 			for($j=1; $j<=$_SESSION["confirmar"]; $j++){
 			   
 				$datosAct = array('idpaq'=> $_SESSION["confirmados"][$j],'localizacion' => "Sede Destino");
+				
 				$client->actualizacionLocalizacionRecibidoValija($datosAct);
+				$idPaquete= array('idpaq'=> $_SESSION["confirmados"][$j]);
+				$parametros=array('registroPaquete' => $idPaquete,'registroUsuario'=>$usu,'registroSede'=>$sede);
+				$seg = $client->registroSeguimiento($parametros);
 
 			  }	
 			}

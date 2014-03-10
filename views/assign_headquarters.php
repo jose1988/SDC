@@ -1,41 +1,3 @@
-<?php
-if(isset($_POST["guardar"]) && isset($_POST["ide"])){
-		try{
-			$registrosAValija=$_POST["ide"];
-			$contadorEliminados=0;
-			$datosValija = array('idusu' => $_SESSION["Usuario"]->return->idusu, 'sorigen'=> $_SESSION["Sede"]->return->idsed,'sdestino'=>$_SESSION["seded"]);
-				$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
-  $client = new SOAPClient($wsdl_url);
-  $client->decode_utf8 = false; 
-  $idValija = $client->insertarValija($datosValija);
-  $usu= array('idusu' => $_SESSION["Usuario"]->return->idusu);
-  $sede= array('idsed' => $_SESSION["Sede"]->return->idsed);
-			for($j=0; $j<$_SESSION["reg"]; $j++){
-			    if(isset($registrosAValija[$j])){
-				$datosAct = array('localizacion' => "Valija", 'idpaq'=> $registrosAValija[$j],'idval'=>$idValija->return);
-				$client->ActualizacionLocalizacionyValijaDelPaquete($datosAct);
-				
-					$idPaquete= array('idpaq' => $registrosAValija[$j] );
-					$parametros=array('registroPaquete' => $idPaquete,'registroUsuario'=>$usu,'registroSede'=>$sede);
-					$seg = $client->registroSeguimiento($parametros);
-								
-				$contadorEliminados++;
-				}		
-				if($contadorEliminados==count($_POST["ide"])){
-					break;
-				}
-			}	
-		 } catch (Exception $e) {
-			javaalert('Lo sentimos no hay conexión');
-			iraURL('../views/index.php');
-		}
-		//javaalert("Los registros han sido habilitados");
-		//iraURL('inbox.php');
-	}else if(isset($_POST["guardar"])){
-		javaalert("Debe seleccionar al menos un registro");
-	}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -46,7 +8,7 @@ if(isset($_POST["guardar"]) && isset($_POST["ide"])){
         <meta name="author" content="">
 
         <!-- javascript -->
-        <script type='text/javascript' src="../js/jquery-1.9.1.js"></script>
+        <script type='text/javascript' src="../js/jquery-2.0.2.js"></script>
         <script type='text/javascript' src="../js/bootstrap.js"></script>
         <script type='text/javascript' src="../js/bootstrap-transition.js"></script>
         <script type='text/javascript' src="../js/bootstrap-tooltip.js"></script>
@@ -54,7 +16,6 @@ if(isset($_POST["guardar"]) && isset($_POST["ide"])){
 <!--<script type='text/javascript' src="../js/togglesidebar.js"></script>-->	
         <script type='text/javascript' src="../js/custom.js"></script>
         <script type='text/javascript' src="../js/jquery.fancybox.pack.js"></script>
-
 
         <!-- styles -->
         <link href="../css/bootstrap.css" rel="stylesheet">
@@ -175,106 +136,104 @@ if(isset($_POST["guardar"]) && isset($_POST["ide"])){
                 </div>
             <!--Caso pantalla uno-->
             <div class="row-fluid">
-            
-                
                 <div class="span2">
                     <ul class="nav nav-pills nav-stacked">
-                        <li> <a href="inbox.php">Atrás</a> <li>
-                        <li> <a href="confirm_valise.php">Confirmar valija</a> <li> 
-                        <li> <a href="breakdown_valise.php">Recibir valija</a> <li>
-                        <li> <a href="valise_report.php">Reportar valija</a> <li> 
-                        <li> <a href="reports_valise.php">Reportes</a> <li>
+                        <li> <a href="send_correspondence.php">Atrás</a> <li>
                     </ul>
                 </div>
 
-                <div class="span10">
-                    <div class="tab-content" id="lista">
-                        <h2> <strong> Realizar Valija </strong> </h2>
-                        <form class="form-Cvalija">
-                            <div class="span6" >
-                                Elija el destino:  <select onChange="sede();" name="Destinos"> <option value="" style="display:none">Seleccionar:</option> 
-                              
-                                <?php 
+                <div class="span10" align="center">
+                    <div class="tab-content" id="lista" align="center">
+                                               
+                            <h2>
+                            
+                             Seleccione la Sede:
+                                <select onChange="sede();" name="lista" id="lista"  required  title="Seleccione la Tipo de usuario">
+                           <option value="" style="display:none">Seleccionar:</option>
+                                            <?php 
 								if($reg>1){
 									$i=0;
 								  while($reg>$i){
 								
-						echo '<option value="'.$Sedes->return[$i].'">'.$Sedes->return[$i].'</option>';
+						echo '<option value="'.$Sedes->return[$i]->nombresed.'" >'.$Sedes->return[$i]->nombresed.'</option>';
 						$i++;
 						
 								  }
 								}
 								else{
-							echo '<option value="'.$Sedes->return.'">'.$Sedes->return.'</option>';	  
+							echo '<option value="'.$Sedes->return->nombresed.'" >'.$Sedes->return->nombresed.'</option>';	  
 								}
 								?>
+                            
                                 </select>
-                            </div> 
-
-                            <div class="span6" >
-                                Código de Correspondencia:  <input type="text" class="input-medium search-query">
-                                <button type="submit" class="btn">Buscar</button>
-                             
+                              
+                                Seleccione el Usuario:
+                                <select onChange="usuario();" id="listau" name="listau"  required  title="Seleccione la Tipo de usuario">
+                              <option value="" style="display:none">Seleccionar:</option>  
+                                   
+                                </select>
+                            </h2>
+                            <div id="datos">
+                            
+                            <br>
                             </div>
-                        </form>
+                            <div class="span11" align="center"></div>
+                            <br>
                         
-                        <br>
-                        
-                       
-                        <div  id="registro">
-                       
-                        </div>
-                     
-                        </div>
-                  
-                           
-                        </div>
                     </div>
                 </div>
             </div>
-
-            <!-- /container -->
-            <div id="footer" class="container">    	
-            </div>
         </div>
-<script>
+        <script>
+            window.onload = function(){killerSession();}
+             
+             function killerSession(){
+             setTimeout("window.open('../recursos/cerrarsesion.php','_top');",300000);
+             }
+             </script>
+      
+
+
+        <script language="JavaScript">
 
 
 	 
 	
 	function sede(){
-		
-		
+		 //posicion
+        var $selectedOption = $('#lista').find('option:selected');
+		var id = $selectedOption.val();
 		$.ajax({
            type: "POST",
-           url: "../ajax/create_valise.php",
-           data: {'sed':$("#lista option:selected").text()},
+           url: "../ajax/user_headquarters.php",
+           data: {'sed':id},
            dataType: "text",
                 success:  function (response) {
-                       $("#registro").html(response);
+                       $("#listau").html(response);
 					}
 		
 	    }); 
 		
 		
 	}
+	
+	function usuario(){
+		 //posicion
+        var $selectedOption = $('#listau').find('option:selected');
+		var idusu = $selectedOption.val();
+		$.ajax({
+           type: "POST",
+           url: "../ajax/info_user_edit.php",
+           data: {'idusu':idusu},
+           dataType: "text",
+                success:  function (response) {
+                       $("#datos").html(response);
+					}
+		
+	    }); 
+	}
 
 </script>
-        <script>
-            //window.onload = function(){killerSession();}
-            //
-            //function killerSession(){
-            //setTimeout("window.open('../recursos/cerrarsesion.php','_top');",300000);
-            //}
-        </script>
-        <script src="../js/footable.js" type="text/javascript"></script>
-        <script src="../js/footable.paginate.js" type="text/javascript"></script>
-        <script src="../js/footable.sortable.js" type="text/javascript"></script>
 
-        <script type="text/javascript">
-            $(function() {
-                $('table').footable();
-            });
-        </script>
     </body>
 </html>
