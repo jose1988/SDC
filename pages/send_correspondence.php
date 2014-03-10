@@ -13,6 +13,8 @@ try {
     $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
     $client = new SOAPClient($wsdl_url);
     $client->decode_utf8 = false;
+	 $UsuarioRol= array('idusu' => $_SESSION["Usuario"]->return->idusu,'sede' =>$_SESSION["Sede"]->return->nombresed);
+  $SedeRol=$client->consultarSedeRol($UsuarioRol); 
     $usu = array('idusu' => $_SESSION["Usuario"]->return->idusu);
     $sede = array('idsed' => $_SESSION["Sede"]->return->idsed);
     $param = array('registroUsuario' => $usu,
@@ -70,8 +72,6 @@ try {
 					$paq = array('idpaq' => $idPaquete->return->idpaq);
 					$bandejaorigen=$client->insertarBandejaOrigen($paq);
 					$bandejaDestino=$client->insertarBandejaDestino($paq);
-
-                //	echo 'yaaaa';
                 if ($_FILES['imagen']['name'] != "") {
                     $imagenName = $_FILES['imagen']['name'];
                     $caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"; //posibles caracteres a usar
@@ -96,8 +96,8 @@ try {
                     $par = array('registroAdj' => $adj);
                     $Rta = $client->insertarAdjunto($par);
                 }
-                if ($envio->return == 0) {
-                    javaalert("La correspondencia no ha podido ser enviada en estos momentos");
+				if(!isset($envio->return) || !isset($bandejaorigen->return) || !isset($bandejaDestino->return)){
+					 javaalert("La correspondencia no ha podido ser enviada correctamente , por favor consulte con el administrador");                   
                 } else {
                     javaalert("La correspondencia ha sido enviada");
                     llenarLog(1, "Envio de Correspondencia", $_SESSION["Usuario"]->return->idusu, $_SESSION["Sede"]->return->idsed);

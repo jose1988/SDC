@@ -14,10 +14,10 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
   $client->decode_utf8 = false; 
   $usuario= array('user' => $_SESSION["Usuario"]->return->userusu);
   $Usuario = $client->consultarUsuarioXUser($usuario);
-	if(isset($Usuario)){
+/*	if(isset($Usuario)){
 	 javaalert("Lo sentimos no se puede guardar los datos del usuario porque el nombre de usuario ya existe,Consulte con el Administrador");
      iraURL('../index.php');   //ojo necesito el index
-	}
+	}*/    //importante:implementar cuando se tenga el index 
   
  $Sedes = $client->listarSedes();
   if(!isset($Sedes->return)){
