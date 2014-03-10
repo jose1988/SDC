@@ -212,25 +212,15 @@
 
          <?php 
 		 $i=0;
-		  while($i<$reg){
-			$aux=$BandejaUsu->return[$i]->nombreiba;
-				?>
+		if($_SESSION["Usuario"]->return->tipousu=="2"){ ?>   
+				
              <li>   
-      <a href="javascript:;" id="<?php echo $aux ?>" onClick="Bandeja(<?php echo "'".$aux."'" ?>);" >  
-             
-             <?php echo ($BandejaUsu->return[$i]->nombreiba); ?> 
-            
-            
-         
-          </a>
+      <a href="" id="<?php echo $aux ?>" >  </a>
            </li>
-        
+       
          
           <?php
-			 
-		  $i++;
 		   }
-		    
 		  ?>
       
      </ul>
