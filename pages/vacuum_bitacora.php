@@ -44,11 +44,11 @@ try {
 		if(isset($resultadoVacioBitacora->return)==1){
 			javaalert('Bitacora Vaciada');
 			llenarLog(8, "Vacio de Bitacora",$usuarioBitacora,$sede);
-			iraURL('../index.php');
+			iraURL('../pages/administration.php');
 		}
 		else{
 			javaalert('Bitacora No Vaciada');
-			iraURL('../index.php');
+			iraURL('../pages/administration.php');
 		}
 	}
 	
@@ -56,6 +56,6 @@ try {
 	
 } catch (Exception $e) {
 	javaalert('Lo sentimos no hay conexion');
-	iraURL('../index.php');	
+	iraURL('../pages/administration.php');	
 }
 ?>
