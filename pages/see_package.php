@@ -9,6 +9,12 @@ if(!isset($_SESSION["Usuario"])){
 	iraURL("../pages/create_user.php");
 }
 
+$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
+$client = new SOAPClient($wsdl_url);
+$client->decode_utf8 = false;
+$UsuarioRol= array('idusu' => $_SESSION["Usuario"]->return->idusu,'sede' =>$_SESSION["Sede"]->return->nombresed);
+$SedeRol=$client->consultarSedeRol($UsuarioRol);
+
 $idPaquete = $_GET["id"];
 $usuario = $_SESSION["Usuario"]->return->idusu;
 
