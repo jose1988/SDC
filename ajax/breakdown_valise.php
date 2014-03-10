@@ -51,7 +51,7 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
   $client->decode_utf8 = false; 
   $Val= array('registroValija' =>$aux , 'sede' => $_SESSION["Sede"]->return->nombresed);
   $Valijac = $client->ConsultarValija($Val);
-  if($Valijac->return){
+  if(isset($Valijac->return)){
   $Valija = $client->ConsultarPaquetesXValija($Val);
   }
   $reg=0;
@@ -62,13 +62,13 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
   }
    
           
-          echo "<h2> <strong> Contenido de la Valija </h2> </strong>";
+        
           
 	
 		  
 		  
    if($reg!=0){        
-           
+          echo "<strong> <h2>  Contenido de la Valija </h2> </strong>";   
           echo "</div>";
 		  
 		 
@@ -142,7 +142,7 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
 		echo "<br>";
 		echo"<div class='alert alert-block' align='center'>
 			<h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
-			<h4 align='center'>No hay Paquetes en Bandeja </h4>
+			<h4 align='center'>la Valija ya fue desglosada o no existe</h4>
 		</div> ";
 	}
 	
