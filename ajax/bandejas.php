@@ -84,20 +84,20 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
                     echo "<td  style='text-align:center'>".$Bandeja->return[$j]->destinopaq->idusubuz->nombreusu."</td>";
 					 echo "<td  style='text-align:center'>".$Bandeja->return[$j]->asuntopaq."</td>";
 					echo "<td style='text-align:center'>".$Bandeja->return[$j]->iddoc->nombredoc."</td>";
-					if($Bandeja->return[$j]->respaq==0){
-					echo "<td style='text-align:center'> No </td>";}else{
-						echo "<td style='text-align:center'> Si </td>";
+					if($Bandeja->return[$j]->respaq==1 || $Bandeja->return[$j]->respaq==2){
+					echo "<td style='text-align:center'> Si </td>";}else{
+						echo "<td style='text-align:center'> No </td>";
 					}
                     echo "<td style='text-align:center'>".substr($Bandeja->return[$j]->fechapaq,0,10)."</td>";  
 					echo "<td style='text-align:center'>".$Bandeja->return[$j]->localizacionpaq."</td>";
-					echo "<td style='text-align:center'><a href='../pages/see_package.php?id='".$Bandeja->return[$j]->idpaq." ><button type='button' class='btn btn-info btn-primary' value='Realizar Valija'>  Ver Mas </button> </a></td>";    
+					echo "<td style='text-align:center'><a href='../pages/see_package.php?id=".$Bandeja->return[$j]->idpaq."'><button type='button' class='btn btn-info btn-primary' value='Realizar Valija'>  Ver Mas </button> </a></td>";    
 					if($aux=="Recibidos Pendientes"){
 			echo"<th style='width:7%; text-align:center' data-sort-ignore='true'>
 			<form> <button type='button' class='btn btn-info btn-primary' onClick='Confirmar(".$Bandeja->return[$j]->idpaq.");' value='Realizar Valija'>  Confirmar </button> </form> </th>";
 								}   
 								
 								if($aux=="Recibidos"){
-									if($Bandeja->return->respaq==1){ 
+									if($Bandeja->return[$j]->respaq==1){ 
 			echo"<th style='width:7%; text-align:center' data-sort-ignore='true'>
 			<form method='get' action='../pages/response_package.php?idpaqr=".$Bandeja->return[$j]->idpaq."'> <button type='button' class='btn btn-info btn-primary' value='Realizar Valija'> Responder </button> </form> </th>";
 									}else{
@@ -121,7 +121,16 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
 					if($aux=="Recibidos Pendientes"){
 			echo"<th style='width:7%; text-align:center' data-sort-ignore='true'>
 			 <button type='button' class='btn btn-info btn-primary' onClick='Confirmar(".$Bandeja->return->idpaq.");' value='Realizar Valija'>  Confirmar </button>  </th>";
-								}                             
+								}        
+								
+								if($aux=="Recibidos"){
+									if($Bandeja->return->respaq==1){ 
+			echo"<th style='width:7%; text-align:center' data-sort-ignore='true'>
+			<form method='get' action='../pages/response_package.php?idpaqr=".$Bandeja->return[$j]->idpaq."'> <button type='button' class='btn btn-info btn-primary' value='Realizar Valija'> Responder </button> </form> </th>";
+									}else{
+			echo "<td  style='text-align:center'>".$Bandeja->return->statususu."</td>";							
+									}
+								}                           
             echo "</tr>";
 			}
 	echo " </tbody>

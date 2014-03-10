@@ -18,7 +18,8 @@ if(!isset($_SESSION["Usuario"])){
   $client->decode_utf8 = false; 
   $i=0;
   $Sede= array('sede' => $_SESSION["Sede"]->return->nombresed);
-  
+   $UsuarioRol= array('idusu' => $_SESSION["Usuario"]->return->idusu,'sede' =>$_SESSION["Sede"]->return->nombresed);
+   $SedeRol=$client->consultarSedeRol($UsuarioRol); 
   } catch (Exception $e) {
 	javaalert('Lo sentimos no hay conexión');
 	iraURL('../index.php');	

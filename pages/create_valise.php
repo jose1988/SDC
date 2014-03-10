@@ -20,7 +20,8 @@ if(!isset($_SESSION["Usuario"])){
   $Sede= array('sede' => $_SESSION["Sede"]->return->nombresed);
   
   $Sedes = $client->ConsultarSedeParaValija($Sede);
- 
+   $UsuarioRol= array('idusu' => $_SESSION["Usuario"]->return->idusu,'sede' =>$_SESSION["Sede"]->return->nombresed);
+  $SedeRol=$client->consultarSedeRol($UsuarioRol); 
   $reg=0;
 	if(isset( $Sedes->return)){
 	  $reg=count( $Sedes->return);
