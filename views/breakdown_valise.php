@@ -3,7 +3,7 @@
 
 if(isset($_POST["guardar"])){
 		try{
-			javaalert("entra en desglozar");
+			
 			
 			
 			$contadorEliminados=0;
@@ -34,7 +34,7 @@ if(isset($_POST["guardar"])){
 				
 			for($j=1; $j<=$_SESSION["confirmar"]; $j++){
 			   
-				$datosAct = array('idpaq'=> $_SESSION["confirmados"][$j],'localizacion' => "Sede Destino");
+				$datosAct = array('idpaq'=> $_SESSION["confirmados"][$j],'Localizacion' => "Sede Destino");
 				
 				$client->actualizacionLocalizacionRecibidoValija($datosAct);
 				$idPaquete= array('idpaq'=> $_SESSION["confirmados"][$j]);
@@ -49,6 +49,7 @@ if(isset($_POST["guardar"])){
   unset($_SESSION["falla"]);
   unset($_SESSION["reportados"]);
   unset($_SESSION["confirmados"]);
+  javaalert("Confimada la valija");
   
 		 } catch (Exception $e) {
 			javaalert('Lo sentimos no hay conexión');

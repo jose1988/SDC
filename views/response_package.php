@@ -340,8 +340,8 @@ function FechaRelativa (Dia, Mes, Agno, DiferenciaDias) {
                             </tr>
                             <tr>
                                 <td></td><td>
-								Fecha de alerta:<input type="text" value="<?php echo date("d/m/Y",strtotime(substr($Paquete->return->fechaapaq,0,10))) ; ?>" id="datepicker" name="datepicker" autocomplete="off" style="width:100px" title="Seleccione la fecha de alerta" required/> 
-					        	Fecha de límite:<input type="text" value="<?php echo date("d/m/Y",strtotime(substr($Paquete->return->fechaenviopaq,0,10))) ;?>" id="datepickerf" name="datepickerf" autocomplete="off" style="width:100px" title="Seleccione la fecha límite" required/>
+								Fecha de alerta:<input type="text"  id="datepicker" name="datepicker" autocomplete="off" style="width:100px" title="Seleccione la fecha de alerta" required/> 
+					        	Fecha de límite:<input type="text"  id="datepickerf" name="datepickerf" autocomplete="off" style="width:100px" title="Seleccione la fecha límite" required/>
 								<br></td>
                             </tr>
                             <tr>

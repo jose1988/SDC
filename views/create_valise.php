@@ -2,7 +2,7 @@
 if(isset($_POST["guardar"]) && isset($_POST["ide"])){
 		try{
 			$registrosAValija=$_POST["ide"];
-			$contadorEliminados=0;
+			$contadorAceptados=0;
 			$datosValija = array('idusu' => $_SESSION["Usuario"]->return->idusu, 'sorigen'=> $_SESSION["Sede"]->return->idsed,'sdestino'=>$_SESSION["seded"]);
 				$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
   $client = new SOAPClient($wsdl_url);
@@ -13,13 +13,17 @@ if(isset($_POST["guardar"]) && isset($_POST["ide"])){
 			for($j=0; $j<$_SESSION["reg"]; $j++){
 			    if(isset($registrosAValija[$j])){
 				$datosAct = array('localizacion' => "Valija", 'idpaq'=> $registrosAValija[$j],'idval'=>$idValija->return);
-				$client->ActualizacionLocalizacionyValijaDelPaquete($datosAct);
-				
 					$idPaquete= array('idpaq' => $registrosAValija[$j] );
 					$parametros=array('registroPaquete' => $idPaquete,'registroUsuario'=>$usu,'registroSede'=>$sede);
 					$seg = $client->registroSeguimiento($parametros);
+					if($seg==1){
+					$contadorAceptados++;	
+					
+				$client->ActualizacionLocalizacionyValijaDelPaquete($datosAct);
+				
+					}
 								
-				$contadorEliminados++;
+				
 				}		
 				if($contadorEliminados==count($_POST["ide"])){
 					break;

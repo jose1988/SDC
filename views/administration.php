@@ -219,14 +219,14 @@
             <li>   
       <a href="../pages/edit_user.php"> Editar Usuario </a>
            </li>
-           <li>   
-      <a href="../pages/edit_type_user.php"> Editar Tipo De Usuario </a>
-           </li>
+          
 
          <?php 
 		 $i=0;
 		if($_SESSION["Usuario"]->return->tipousu=="2"){ ?>   
-				
+				 <li>   
+      <a href="../pages/edit_type_user.php"> Editar Tipo De Usuario </a>
+           </li>
              <li>   
       <a href="../pages/vacuum_bitacora.php"> Bitacora  </a>
            </li>
