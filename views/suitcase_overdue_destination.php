@@ -182,10 +182,12 @@
 								<?php	
 								}else{
 								for($i=0;$i<count($Valijas->return);$i++){
+								if(isset($Valijas->return[$i]->asuntoval)){
 						     	if(strlen ($Valijas->return[$i]->asuntoval)>10){
 								$asunto=substr($Valijas->return[$i]->asuntoval,0,10)."...";
 								}else{
 									$asunto=$Valijas->return[$i]->asuntoval;
+								
 								}
 								}else{ $asunto="";}
 								?>
