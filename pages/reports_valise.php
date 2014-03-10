@@ -24,6 +24,7 @@ if(isset($SedeRol->return)){
 }
 
 $ideSede = $_SESSION["Sede"]->return->idsed;
+$usuario = $_SESSION["Usuario"]->return->idusu;
 $valijasProcesadas = 0;
 $valijasNoProcesadas = 0;
 
@@ -32,8 +33,9 @@ try {
 	$client = new SOAPClient($wsdl_url);
 	$client->decode_utf8 = false;
 	
-	$idSede = array('registroSede' => $ideSede);
-	$resultadoConsultarValijas = $client->listarValijasXFechaYUsuarioSede($idSede);
+	$parametros = array('registroSede' => $ideSede,
+						'registroUsuario' => $usuario);
+	$resultadoConsultarValijas = $client->listarValijasXFechaYUsuarioSede($parametros);
 	
 	if(!isset($resultadoConsultarValijas->return)){
 		$valijas = 0;
@@ -41,14 +43,14 @@ try {
 		$valijas = count($resultadoConsultarValijas->return);
 	}
 		
-	$resultadoValijasNoProcesadas = $client->listarValijasNoProcesadas($idSede);
+	$resultadoValijasNoProcesadas = $client->listarValijasNoProcesadas($parametros);
 	if(!isset($resultadoValijasNoProcesadas->return)){
 		$valijasNoProcesadas = 0;
 	}else{
 		$valijasNoProcesadas = count($resultadoValijasNoProcesadas->return);
 	}
 		
-	$resultadoValijasProcesadas = $client->listarValijasProcesadas($idSede);
+	$resultadoValijasProcesadas = $client->listarValijasProcesadas($parametros);
 	if(!isset($resultadoValijasProcesadas->return)){
 		$valijasProcesadas = 0;
 	}else{

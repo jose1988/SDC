@@ -320,6 +320,5 @@ if ($usuarioBitacora == "") {
             $('table').footable();
         });
     </script>
-
 </body>
 </html>

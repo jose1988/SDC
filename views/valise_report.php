@@ -178,10 +178,6 @@ if ($usuarioBitacora == "") {
         <div id="footer" class="container">    	
         </div>
 
-        <script src="../js/footable.js" type="text/javascript"></script>
-        <script src="../js/footable.paginate.js" type="text/javascript"></script>
-        <script src="../js/footable.sortable.js" type="text/javascript"></script>
-
         <script>
             window.onload = function() {
                 killerSession();
@@ -190,6 +186,10 @@ if ($usuarioBitacora == "") {
                 setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
             }
         </script>
+        
+        <script src="../js/footable.js" type="text/javascript"></script>
+        <script src="../js/footable.paginate.js" type="text/javascript"></script>
+        <script src="../js/footable.sortable.js" type="text/javascript"></script>
 
         <script type="text/javascript">
             $(function() {

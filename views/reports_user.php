@@ -253,7 +253,7 @@ if ($nomUsuario == "") {
 								if ($procesadosConRespuesta != 0 || $noProcesadosConRespuesta != 0 || $procesadosSinRespuesta != 0 || $noProcesadosSinRespuesta != 0) {?>
                                 	<div id="grafico" style="min-width: 150px; max-width: 850px; height: 350px; margin: 0 auto">   	
                                 	</div>
-                            	<?php } 
+                            	<?php  }
 							} ?>
                         </div>
                     </div>
@@ -277,7 +277,12 @@ if ($nomUsuario == "") {
         <script src="../js/footable.js" type="text/javascript"></script>
         <script src="../js/footable.paginate.js" type="text/javascript"></script>
         <script src="../js/footable.sortable.js" type="text/javascript"></script>
-
+		
+        <script type="text/javascript">
+            $(function() {
+                $('table').footable();
+            });
+        </script>
 
         <script> /*Funciones de los gráfico*/
             $(function() {
@@ -325,19 +330,7 @@ if ($nomUsuario == "") {
                             data: [<?php echo $procesadosSinRespuesta ?>, <?php echo $noProcesadosSinRespuesta ?>]
                         }]
                 });
-
-
             });
-        </script>
-
-        <script src="../js/footable.js" type="text/javascript"></script>
-        <script src="../js/footable.paginate.js" type="text/javascript"></script>
-        <script src="../js/footable.sortable.js" type="text/javascript"></script>
-
-        <script type="text/javascript">
-            $(function() {
-                $('table').footable();
-            });
-        </script>
+        </script>        
     </body>
 </html>

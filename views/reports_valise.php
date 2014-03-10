@@ -224,17 +224,32 @@ if ($ideSede == "") {
                                         } else {
                                         ?>
                                             <tr>
-                                                <td style="text-align:center"><?php echo $resultadoConsultarValijas->return->origenval->nombreusu ?></td>
-                                                <td style="text-align:center"><?php echo $resultadoConsultarValijas->return->destinoval->idusubuz->nombreusu ?></td>
+                                                 <?php
+                                                    $idSed = $resultadoConsultarValijas->return->origenval;
+                                                    $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
+                                                    $client = new SOAPClient($wsdl_url);
+                                                    $client->decode_utf8 = false;
+
+                                                    $idSede = array('idSede' => $idSed);
+                                                    $resultadoConsultarSede = $client->consultarSedeXId($idSede);
+
+                                                    if (!isset($resultadoConsultarSede->return)) {
+                                                        $sede = 0;
+                                                    } else {
+                                                        $sede = count($resultadoConsultarSede->return);
+                                                    ?>
+                                                        <td style="text-align:center"><?php echo $resultadoConsultarSede->return->nombresed ?></td>
+                                                    <?php } ?>
+                                                    <td style="text-align:center"><?php echo $resultadoConsultarValijas->return->destinoval->nombresed ?></td>
                                                 <?php
                                                 if (!isset($resultadoConsultarValijas->return->asuntoval)) { ?>
                                                     <td style="text-align:center"><?php echo "" ?></td>
                                                 <?php }
 												else {
-                                                    if (strlen($resultadoConsultarValijas->return[$i]->asuntoval) > 10) {
-                                                        $asunto = substr($resultadoConsultarValijas->return[$i]->asuntoval, 0, 10) . "...";
+                                                    if (strlen($resultadoConsultarValijas->return->asuntoval) > 10) {
+                                                        $asunto = substr($resultadoConsultarValijas->return->asuntoval, 0, 10) . "...";
                                                     } else {
-                                                        $asunto = $resultadoConsultarValijas->return[$i]->asuntoval;
+                                                        $asunto = $resultadoConsultarValijas->return->asuntoval;
                                                     }
                                                 ?>
                                                     <td style="text-align:center"><?php echo $asunto ?></td>											
@@ -273,11 +288,25 @@ if ($ideSede == "") {
         <!-- /container -->
         <div id="footer" class="container">    	
         </div>
+           
+         <script>
+            window.onload = function() {
+                killerSession();
+            }
+            function killerSession() {
+                setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
+            }
+        </script>
 
         <script src="../js/footable.js" type="text/javascript"></script>
         <script src="../js/footable.paginate.js" type="text/javascript"></script>
         <script src="../js/footable.sortable.js" type="text/javascript"></script>
 
+        <script type="text/javascript">
+            $(function() {
+                $('table').footable();
+            });
+        </script>
 
         <script> /*Funciones de los gráfico*/
             $(function() {
@@ -322,27 +351,6 @@ if ($ideSede == "") {
 
                         }]
                 });
-
-
-            });
-        </script>
-
-        <script>
-            window.onload = function() {
-                killerSession();
-            }
-            function killerSession() {
-                setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
-            }
-        </script>
-
-        <script src="../js/footable.js" type="text/javascript"></script>
-        <script src="../js/footable.paginate.js" type="text/javascript"></script>
-        <script src="../js/footable.sortable.js" type="text/javascript"></script>
-
-        <script type="text/javascript">
-            $(function() {
-                $('table').footable();
             });
         </script>
     </body>
