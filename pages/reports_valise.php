@@ -24,6 +24,8 @@ if(isset($SedeRol->return)){
 }
 
 $ideSede = $_SESSION["Sede"]->return->idsed;
+$valijasProcesadas = 0;
+$valijasNoProcesadas = 0;
 
 try {
 	$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';

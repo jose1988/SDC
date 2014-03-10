@@ -1,6 +1,6 @@
 <?php
-if($nomUsuario==""){
-	echo '<script language="javascript"> window.location = "../pages/inbox.php"; </script>';
+if ($nomUsuario == "") {
+    echo '<script language="javascript"> window.location = "../pages/inbox.php"; </script>';
 }
 ?>
 <!DOCTYPE html>
@@ -68,76 +68,70 @@ if($nomUsuario==""){
             </div>
         </div>
 
-          <div id="middle">
+        <div id="middle">
             <div class="container app-container">
                 <div>
                     <ul class="nav nav-pills">
                         <li class="pull-left">
                             <div class="modal-header" style="width:1135px;">
                                 <h3> Correspondencia    
-                                    <span>SH</span> <?php echo "- Hola, ".$_SESSION["Usuario"]->return->nombreusu;?>
-                                       <div class="btn-group  pull-right">
-                                          <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-cog" style="color:rgb(255,255,255)"> Configuracion </span> </button>
-                                          <ul class="dropdown-menu" role="menu">
+                                    <span>SH</span> <?php echo "- Hola, " . $_SESSION["Usuario"]->return->nombreusu; ?>
+                                    <div class="btn-group  pull-right">
+                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-cog" style="color:rgb(255,255,255)"> Configuracion </span> </button>
+                                        <ul class="dropdown-menu" role="menu">
                                             <li><a href="#">Cuenta</a></li>
                                             <li class="divider"></li>
-                                            <?php if($_SESSION["Usuario"]->return->tipousu=="1"|| $_SESSION["Usuario"]->return->tipousu=="2"){ ?>
-                                            <li><a href="../pages/administration.php">Administracion</a></li>
-                                            <li class="divider"></li>
+                                            <?php if ($_SESSION["Usuario"]->return->tipousu == "1" || $_SESSION["Usuario"]->return->tipousu == "2") { ?>
+                                                <li><a href="../pages/administration.php">Administracion</a></li>
+                                                <li class="divider"></li>
                                             <?php } ?>
                                             <li><a href="../recursos/cerrarsesion.php" onClick="">Salir</a></li>
                                             <li class="divider"></li>
                                             <li><a href="#">Ayuda</a></li>
-                                          </ul>
-                                        </div>   
-                                        
-                                        <span class="divider pull-right" style="color:rgb(255,255,255)"> | </span>
-                                        <div class="btn-group  pull-right">
-                                          <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-th-large" style="color:rgb(255,255,255)"> Operaciones </span> </button>
-                                          <ul class="dropdown-menu" role="menu">
+                                        </ul>
+                                    </div>   
+
+                                    <span class="divider pull-right" style="color:rgb(255,255,255)"> | </span>
+                                    <div class="btn-group  pull-right">
+                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-th-large" style="color:rgb(255,255,255)"> Operaciones </span> </button>
+                                        <ul class="dropdown-menu" role="menu">
                                             <?php 
-                                      
-                                                       if($SedeRol->return->idrol->idrol=="1"|| $SedeRol->return->idrol->idrol=="3"){ ?>
-                                            <li><a href="operator_level.php" > Recibir Paquete</a></li>
-                                            <li class="divider"></li>
+											if ($SedeRol->return->idrol->idrol == "1" || $SedeRol->return->idrol->idrol == "3") { ?>
+                                                <li><a href="operator_level.php" > Recibir Paquete</a></li>
+                                                <li class="divider"></li>
+											<?php }
+											if ($SedeRol->return->idrol->idrol == "2" || $SedeRol->return->idrol->idrol == "5") { ?>
+                                                <li><a href="headquarters_operator.php" > Recibir Paquete</a></li>
+                                                <li class="divider"></li>
                                             <?php }
-                                                        if($SedeRol->return->idrol->idrol=="2"|| $SedeRol->return->idrol->idrol=="5"){ ?>
-                                            <li><a href="headquarters_operator.php" > Recibir Paquete</a></li>
-                                            <li class="divider"></li>
-                                            <?php }
-                                                        if($SedeRol->return->idrol->idrol=="4" || $SedeRol->return->idrol->idrol=="5"){ ?>
-                                            <li><a href="create_valise.php" > Crear Valija</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="breakdown_valise.php" > Recibir Valija</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="reports_valise.php" > Estadisticas Valija</a></li>
-                                            <li class="divider"></li>
-                                            <?php  }
-                                                     
-                                      
-                                                      
-                                                       ?>
+                                            if ($SedeRol->return->idrol->idrol == "4" || $SedeRol->return->idrol->idrol == "5") { ?>
+                                                <li><a href="create_valise.php" > Crear Valija</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="breakdown_valise.php" > Recibir Valija</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="reports_valise.php" > Estadisticas Valija</a></li>
+                                                <li class="divider"></li>
+                                            <?php } ?>
                                             <li><a href="reports_user.php" > Estadisticas Usuario</a></li>
-                                           
-                                          </ul>
-                                        </div>
-                                        <span class="divider pull-right" style="color:rgb(255,255,255)"> | </span>
-                                        <div class="btn-group  pull-right">
-                                          <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-exclamation-sign" style="color:rgb(255,255,255)"> Alertas </span> </button>
-                                          <ul class="dropdown-menu" role="menu">
+                                        </ul>
+                                    </div>
+                                    <span class="divider pull-right" style="color:rgb(255,255,255)"> | </span>
+                                    <div class="btn-group  pull-right">
+                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-exclamation-sign" style="color:rgb(255,255,255)"> Alertas </span> </button>
+                                        <ul class="dropdown-menu" role="menu">
                                             <li><a href="../pages/package_overdue_origin.php">Paquetes Enviados</a></li>
                                             <li class="divider"></li>
                                             <li><a href="../pages/package_overdue_destination.php">Paquetes Recibidos</a></li>
                                             <li class="divider"></li>
-                                            <?php if($SedeRol->return->idrol->idrol=="4"|| $SedeRol->return->idrol->idrol=="5"){ ?>
-                                            <li><a href="../pages/suitcase_overdue_origin.php">Valijas Enviadas</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="../pages/suitcase_overdue_destination.php"> Valijas Recibidas </a></li>
-                                            <li class="divider"></li>
+                                            <?php 
+											if ($SedeRol->return->idrol->idrol == "4" || $SedeRol->return->idrol->idrol == "5") { ?>
+                                                <li><a href="../pages/suitcase_overdue_origin.php">Valijas Enviadas</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="../pages/suitcase_overdue_destination.php"> Valijas Recibidas </a></li>
+                                                <li class="divider"></li>
                                             <?php } ?>
-                                          </ul>
-                                        </div>                               
-                                  
+                                        </ul>
+                                    </div>
                                 </h3>
                             </div>
                         </li>
@@ -158,122 +152,109 @@ if($nomUsuario==""){
 
                     <div class="span10">
                         <div class="tab-content" id="bandeja">
-            			<?php             
-                        //Verificando que este vacio o sea null
-						if(!isset($resultadoConsultarPaquetes->return)){
-							echo '<div class="alert alert-block" align="center">';
-   							echo '<h2 style="color:rgb(255,255,255)" align="center">Atención</h2>';
-   							echo '<h4 align="center">No Existen Registros de Enviados Hoy</h4>';
-							echo '</div>';
-						}
-    					//Si existen registros muestro la tabla
-						else{ ?>                        
-                            <strong> <h2 align="center">Reporte Enviados Hoy</h2> </strong>
-                            <table class='footable table table-striped table-bordered' data-page-size='5'>
-                                <thead bgcolor='#FF0000'>
-                                    <tr>
-                                        <th style="text-align:center">Destino</th>
-                                        <th style="text-align:center" data-sort-ignore="true">Asunto</th>
-                                        <th style="text-align:center" data-sort-ignore="true">Localización</th>
-                                        <th style="text-align:center" data-sort-ignore="true">Fecha</th>
-                                        <th style="text-align:center" data-sort-ignore="true">Con Respuesta</th>                        
-                                    </tr>
-                                </thead>
-                                <tbody>                                	
-                                    
-                                    <?php if($paquetes>1){
-										for($i=0;$i<$paquetes;$i++){
-										?>
-                                        	<tr>
-                                        		<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return[$i]->destinopaq->idusubuz->nombreusu.' '.$resultadoConsultarPaquetes->return[$i]->destinopaq->idusubuz->apellidousu?></td>
-                                                 <?php
-												
-												if(!isset($resultadoConsultarPaquetes->return[$i]->asuntopaq)){
-												?>
-                                                	<td style="text-align:center"><?php echo ""?></td>
+                            <?php
+							//Verificando que este vacio o sea null
+                            if (!isset($resultadoConsultarPaquetes->return)) {
+                                echo '<div class="alert alert-block" align="center">';
+                                echo '<h2 style="color:rgb(255,255,255)" align="center">Atención</h2>';
+                                echo '<h4 align="center">No Existen Registros de Enviados Hoy</h4>';
+                                echo '</div>';
+                            }
+							//Si existen registros muestro la tabla
+                            else {?>                        
+                                <strong> <h2 align="center">Reporte Enviados Hoy</h2> </strong>
+                                <table class='footable table table-striped table-bordered' data-page-size='5'>
+                                    <thead bgcolor='#FF0000'>
+                                        <tr>
+                                            <th style="text-align:center">Destino</th>
+                                            <th style="text-align:center" data-sort-ignore="true">Asunto</th>
+                                            <th style="text-align:center" data-sort-ignore="true">Localización</th>
+                                            <th style="text-align:center" data-sort-ignore="true">Fecha</th>
+                                            <th style="text-align:center" data-sort-ignore="true">Con Respuesta</th>                        
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        if ($paquetes > 1) {
+                                            for ($i = 0; $i < $paquetes; $i++) { ?>
+                                                <tr>
+                                                    <td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return[$i]->destinopaq->idusubuz->nombreusu . ' ' . $resultadoConsultarPaquetes->return[$i]->destinopaq->idusubuz->apellidousu ?></td>
+                                                    <?php
+                                                    if (!isset($resultadoConsultarPaquetes->return[$i]->asuntopaq)) { ?>
+                                                        <td style="text-align:center"><?php echo "" ?></td>
+                                                    <?php } 
+													else {
+                                                        if (strlen($resultadoConsultarPaquetes->return[$i]->asuntopaq) > 10) {
+                                                            $asunto = substr($resultadoConsultarPaquetes->return[$i]->asuntopaq, 0, 10) . "...";
+                                                        } else {
+                                                            $asunto = $resultadoConsultarPaquetes->return[$i]->asuntopaq;
+                                                        }?>
+                                                        <td style="text-align:center"><?php echo $asunto ?></td>
+                                                    <?php }
+                                                    if (!isset($resultadoConsultarPaquetes->return[$i]->localizacionpaq)) { ?>
+                                                        <td style="text-align:center"><?php echo "" ?></td>
+                                                    <?php } else {?>
+                                                        <td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return[$i]->localizacionpaq ?></td>												<?php }
+                                    				if (!isset($resultadoConsultarPaquetes->return[$i]->fechaenviopaq)) { ?>
+                                                        <td style="text-align:center"><?php echo "" ?></td>
+                                                    <?php } 
+													else { ?>
+                                                        <td style="text-align:center"><?php echo date("d/m/Y", strtotime(substr($resultadoConsultarPaquetes->return[$i]->fechaenviopaq, 0, 10))) ?></td>
+                                                    <?php }
+                                                    if ($resultadoConsultarPaquetes->return[$i]->respaq == '0') { ?>
+                                                        <td style="text-align:center"><?php echo "No" ?></td>
+                                                    <?php } 
+													else { ?>
+                                                        <td style="text-align:center"><?php echo "Si" ?></td>
+                                                    <?php } ?>
+                                                </tr>
                                                 <?php }
-												else{
-													if(strlen ($resultadoConsultarPaquetes->return[$i]->asuntopaq)>10){
-														$asunto=substr($resultadoConsultarPaquetes->return[$i]->asuntopaq,0,10)."...";
-													}else{
-														$asunto=$resultadoConsultarPaquetes->return[$i]->asuntopaq;
-													}													
-												?>
-                                        			<td style="text-align:center"><?php echo $asunto?></td>
+                                        } else { ?>
+                                            <tr>
+                                                <td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return->destinopaq->idusubuz->nombreusu . ' ' . $resultadoConsultarPaquetes->return->destinopaq->idusubuz->apellidousu ?></td>
                                                 <?php
-												}
-												if(!isset($resultadoConsultarPaquetes->return[$i]->localizacionpaq)){
-												?>
-                                                	<td style="text-align:center"><?php echo ""?></td>
+                                                if (!isset($resultadoConsultarPaquetes->return->asuntopaq)) { ?>
+                                                    <td style="text-align:center"><?php echo "" ?></td>
                                                 <?php }
-												else{?>
-                                        			<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return[$i]->localizacionpaq?></td>											<?php }
-												if(!isset($resultadoConsultarPaquetes->return[$i]->fechaenviopaq)){
-												?>
-                                                	<td style="text-align:center"><?php echo ""?></td>
-                                                <?php }
-												else{?>
-                                        			<td style="text-align:center"><?php echo date("d/m/Y",strtotime(substr($resultadoConsultarPaquetes->return[$i]->fechaenviopaq,0,10)))?></td>
-                                                 <?php
-												}
-												if($resultadoConsultarPaquetes->return[$i]->respaq=='0'){
-												?>
-                                                	<td style="text-align:center"><?php echo "No"?></td>
-                                                <?php }
-												else{?>
-                                        			<td style="text-align:center"><?php echo "Si"?></td>
-                                                <?php }?>
-                                        	</tr>
-                                    <?php }
-									}
-									else{ ?>
-											<tr>
-                                        		<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return->destinopaq->idusubuz->nombreusu.' '.$resultadoConsultarPaquetes->return->destinopaq->idusubuz->apellidousu?></td>
-                                                <?php 
-												if(!isset($resultadoConsultarPaquetes->return->asuntopaq)){
-												?>
-                                                	<td style="text-align:center"><?php echo ""?></td>
-                                                <?php }
-												else{
-													if(strlen ($resultadoConsultarPaquetes->return->asuntopaq)>10){
-														$asunto=substr($resultadoConsultarPaquetes->return->asuntopaq,0,10)."...";
-													}else{
-														$asunto=$resultadoConsultarPaquetes->return->asuntopaq;
-													}
-												?>
-                                        			<td style="text-align:center"><?php echo $asunto?></td>
-                                                <?php
-												}
-												if(!isset($resultadoConsultarPaquetes->return->localizacionpaq)){
-												?>
-                                                	<td style="text-align:center"><?php echo ""?></td>
-                                                <?php }
-												else{?>
-                                        			<td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return->localizacionpaq?></td>												<?php }
-												if(!isset($resultadoConsultarPaquetes->return->fechaenviopaq)){
-												?>
-                                                	<td style="text-align:center"><?php echo ""?></td>
-                                                <?php }
-												else{?>
-                                        			<td style="text-align:center"><?php echo date("d/m/Y",strtotime(substr($resultadoConsultarPaquetes->return->fechaenviopaq,0,10)))?></td>
-                                                 <?php }
-												if($resultadoConsultarPaquetes->return->respaq=='0'){
-												?>
-                                                	<td style="text-align:center"><?php echo "No"?></td>
-                                                <?php }
-												else{?>
-                                        			<td style="text-align:center"><?php echo "Si"?></td>
-                                                <?php }?>
-                                        	</tr>
-										<?php }?>                                    
-                                </tbody>
-                            </table>
-                            <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>                            
-                            <br>
-                            <br>
-                            <div id="grafico" style="min-width: 150px; max-width: 850px; height: 350px; margin: 0 auto">   	
-                            </div>
-                            <?php }?>
+												else {
+                                                    if (strlen($resultadoConsultarPaquetes->return->asuntopaq) > 10) {
+                                                        $asunto = substr($resultadoConsultarPaquetes->return->asuntopaq, 0, 10) . "...";
+                                                    } else {
+                                                        $asunto = $resultadoConsultarPaquetes->return->asuntopaq;
+                                                    }
+                                                    ?>
+                                                    <td style="text-align:center"><?php echo $asunto ?></td>
+                                                    <?php
+                                                }
+                                                if (!isset($resultadoConsultarPaquetes->return->localizacionpaq)) { ?>
+                                                    <td style="text-align:center"><?php echo "" ?></td>
+                                                <?php } 
+												else { ?>
+                                                    <td style="text-align:center"><?php echo $resultadoConsultarPaquetes->return->localizacionpaq ?></td>																  												<?php }
+                                    			if (!isset($resultadoConsultarPaquetes->return->fechaenviopaq)) { ?>
+                                                    <td style="text-align:center"><?php echo "" ?></td>
+                                                <?php } 
+												else { ?>
+                                                    <td style="text-align:center"><?php echo date("d/m/Y", strtotime(substr($resultadoConsultarPaquetes->return->fechaenviopaq, 0, 10))) ?></td>
+                                                    <?php }
+                                                if ($resultadoConsultarPaquetes->return->respaq == '0') { ?>
+                                                    <td style="text-align:center"><?php echo "No" ?></td>
+                                                <?php } else { ?>
+                                                    <td style="text-align:center"><?php echo "Si" ?></td>
+                                                <?php } ?>
+                                            </tr>
+                                        <?php } ?>                                    
+                                    </tbody>
+                                </table>
+                                <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>                            
+                                <br>
+                                <br>
+                                <?php 
+								if ($procesadosConRespuesta != 0 || $noProcesadosConRespuesta != 0 || $procesadosSinRespuesta != 0 || $noProcesadosSinRespuesta != 0) {?>
+                                	<div id="grafico" style="min-width: 150px; max-width: 850px; height: 350px; margin: 0 auto">   	
+                                	</div>
+                            	<?php } 
+							} ?>
                         </div>
                     </div>
                 </div>
@@ -283,14 +264,16 @@ if($nomUsuario==""){
         <!-- /container -->
         <div id="footer" class="container">    	
         </div>
-		
+
         <script>
-            window.onload = function(){	killerSession(); }            
-            function killerSession(){
-            	setTimeout("window.open('../recursos/cerrarsesion.php','_top');",300000);
+            window.onload = function() {
+                killerSession();
+            }
+            function killerSession() {
+                setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
             }
         </script>
-		
+
         <script src="../js/footable.js" type="text/javascript"></script>
         <script src="../js/footable.paginate.js" type="text/javascript"></script>
         <script src="../js/footable.sortable.js" type="text/javascript"></script>
@@ -346,7 +329,7 @@ if($nomUsuario==""){
 
             });
         </script>
-        
+
         <script src="../js/footable.js" type="text/javascript"></script>
         <script src="../js/footable.paginate.js" type="text/javascript"></script>
         <script src="../js/footable.sortable.js" type="text/javascript"></script>
