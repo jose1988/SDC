@@ -204,18 +204,31 @@
        
      <div class="span2">
        
-    <form method="post" action="../pages/send_correspondence.php">
-  <button class="btn btn-danger btn-block btn-small " type="submit"> <h6> Redactar Correspondecia</h6> </button>
+    
  
         <ul class="nav nav-pills nav-stacked">
-
+        
+         <li>   
+      <a href="../pages/assign_headquarters.php"> Asignar Sede </a>
+           </li>
+           
+           
+         <li>   
+      <a href="../pages/edit_role.php"> Editar Rol </a>
+           </li>
+            <li>   
+      <a href="../pages/edit_user.php"> Editar Usuario </a>
+           </li>
+           <li>   
+      <a href="../pages/edit_type_user.php"> Editar Tipo De Usuario </a>
+           </li>
 
          <?php 
 		 $i=0;
 		if($_SESSION["Usuario"]->return->tipousu=="2"){ ?>   
 				
              <li>   
-      <a href="" id="<?php echo $aux ?>" >  </a>
+      <a href="../pages/vacuum_bitacora.php"> Bitacora  </a>
            </li>
        
          
@@ -225,7 +238,7 @@
       
      </ul>
      
-       </form>
+   
       
       </div>
       

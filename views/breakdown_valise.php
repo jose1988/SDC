@@ -12,7 +12,7 @@ if(isset($_POST["guardar"])){
   $client->decode_utf8 = false; 
 			if($_SESSION["falla"]>0){
 			
-			  $datosValija = array('idval' => $_SESSION["Usuario"]->return->idusu, 'status'=> "entregado con ausente");
+			  $datosValija = array('idval' => $_SESSION["Usuario"]->return->idusu, 'status'=> "2");
 			
 			for($j=1; $j<=$_SESSION["falla"]; $j++){
 			
@@ -24,7 +24,7 @@ if(isset($_POST["guardar"])){
 			  }	
 			   
 			}else{
-				$datosValija = array('idval' => $_SESSION["Usuario"]->return->idusu, 'status'=> "entregado");
+				$datosValija = array('idval' => $_SESSION["Usuario"]->return->idusu, 'status'=> "1");
 			}
 			
 			
@@ -32,8 +32,8 @@ if(isset($_POST["guardar"])){
 				
 			for($j=1; $j<=$_SESSION["confirmar"]; $j++){
 			   
-				$datosAct = array('localizacion' => "Sede Destino", 'idpaq'=> $_SESSION["confirmados"][$j]);
-				$client->actualizacionLocalizacionRecibidoPaquete($datosAct);
+				$datosAct = array('idpaq'=> $_SESSION["confirmados"][$j],'localizacion' => "Sede Destino");
+				$client->actualizacionLocalizacionRecibidoValija($datosAct);
 
 			  }	
 			}
