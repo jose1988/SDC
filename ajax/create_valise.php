@@ -101,7 +101,7 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
 				} 
 			}else{  
 			
-			if(strlen ($Registro->return[$j]->asuntopaq)>10){
+			if(strlen ($Registro->return->asuntopaq)>10){
 								$asunto=substr($Registro->return->asuntopaq,0,10)."...";
 								}else{
 									$asunto=$Registro->return->asuntopaq;

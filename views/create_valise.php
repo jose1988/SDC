@@ -3,7 +3,7 @@ if(isset($_POST["guardar"]) && isset($_POST["ide"])){
 		try{
 			$registrosAValija=$_POST["ide"];
 			$contadorAceptados=0;
-			$datosValija = array('idusu' => $_SESSION["Usuario"]->return->idusu, 'sorigen'=> $_SESSION["Sede"]->return->idsed,'sdestino'=>$_SESSION["seded"]);
+			$datosValija = array('idusu' => $_SESSION["Usuario"]->return->idusu, 'sorigen'=> $_SESSION["Sede"]->return->idsed,'sdestino'=>$_SESSION["seded"],'fechaapaq' => date('Y-m-d', strtotime(str_replace('/', '-', $_POST["datepicker"]))));
 				$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
   $client = new SOAPClient($wsdl_url);
   $client->decode_utf8 = false; 
@@ -16,12 +16,9 @@ if(isset($_POST["guardar"]) && isset($_POST["ide"])){
 					$idPaquete= array('idpaq' => $registrosAValija[$j] );
 					$parametros=array('registroPaquete' => $idPaquete,'registroUsuario'=>$usu,'registroSede'=>$sede);
 					$seg = $client->registroSeguimiento($parametros);
-					if($seg->return==1){
-					$contadorAceptados++;	
 					
 				$client->ActualizacionLocalizacionyValijaDelPaquete($datosAct);
 				
-					}
 								
 				
 				}		
@@ -197,8 +194,10 @@ if(isset($_POST["guardar"]) && isset($_POST["ide"])){
                 <div class="span10">
                     <div class="tab-content" id="lista">
                         <h2> <strong> Realizar Valija </strong> </h2>
-                        <?php if($reg!=0){ ?>
+                                                <?php if($reg!=0){ ?>
+
                         <form class="form-Cvalija">
+                        
                             <div class="span6" >
                                 Elija el destino:  <select onChange="sede();" name="Destinos"> <option value="" style="display:none">Seleccionar:</option> 
                               
@@ -223,19 +222,20 @@ if(isset($_POST["guardar"]) && isset($_POST["ide"])){
                             <div class="span6" >
                               Fecha de envio:<input type="text" id="datepicker" name="datepickerf" autocomplete="off" style="width:100px" title="Seleccione la fecha de envio" required/>
 
-                                <button type="submit" class="btn">Buscar</button>
+                                
                              
                             </div>
+                           
                         </form>
-                        <? } else{
+                        
+                        
+                        <br>
+                         <?php } else{
 							echo"<div class='alert alert-block' align='center'>
 									<h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
 									<h4 align='center'>No hay Paquetes para realizar Valija</h4>
 								</div> ";
 						}?>
-                        
-                        <br>
-                        
                        
                         <div  id="registro">
                        
@@ -282,7 +282,9 @@ if(isset($_POST["guardar"]) && isset($_POST["ide"])){
             function killerSession(){
             setTimeout("window.open('../recursos/cerrarsesion.php','_top');",300000);
             }
-        </script>
+        
+        
+       </script>
         <script src="../js/footable.js" type="text/javascript"></script>
         <script src="../js/footable.paginate.js" type="text/javascript"></script>
         <script src="../js/footable.sortable.js" type="text/javascript"></script>

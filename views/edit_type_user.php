@@ -138,7 +138,7 @@
             <div class="row-fluid">
                 <div class="span2">
                     <ul class="nav nav-pills nav-stacked">
-                        <li> <a href="send_correspondence.php">Atrás</a> <li>
+                        <li> <a href="../pages/inbox.php">Atrás</a> <li>
                     </ul>
                 </div>
 
@@ -147,31 +147,10 @@
                                                
                             <h2>
                             
-                             Seleccione la Sede:
-                                <select onChange="sede();" name="lista" id="lista"  required  title="Seleccione la Tipo de usuario">
-                           <option value="" style="display:none">Seleccionar:</option>
-                                            <?php 
-								if($reg>1){
-									$i=0;
-								  while($reg>$i){
-								
-						echo '<option value="'.$Sedes->return[$i]->nombresed.'" >'.$Sedes->return[$i]->nombresed.'</option>';
-						$i++;
-						
-								  }
-								}
-								else{
-							echo '<option value="'.$Sedes->return->nombresed.'" >'.$Sedes->return->nombresed.'</option>';	  
-								}
-								?>
-                            
-                                </select>
-                              
-                                Seleccione el Usuario:
-                                <select onChange="usuario();" id="listau" name="listau"  required  title="Seleccione la Tipo de usuario">
-                              <option value="" style="display:none">Seleccionar:</option>  
-                                   
-                                </select>
+                               <form class="form-Dvalija" method="post" id="fval">
+                            Usuario:  <input type="text" id="usuario" name="usuario" class="input-medium search-query">
+                            <button type="button"  onClick="Editar();" class="btn">Buscar</button>
+                        </form>
                             </h2>
                             <div id="datos">
                             
@@ -194,43 +173,27 @@
       
 
 
-        <script language="JavaScript">
+        <script>
 
 
 	 
-	
-	function sede(){
-		 //posicion
-        var $selectedOption = $('#lista').find('option:selected');
-		var id = $selectedOption.val();
-		$.ajax({
-           type: "POST",
-           url: "../ajax/user_headquarters.php",
-           data: {'sed':id},
-           dataType: "text",
-                success:  function (response) {
-                       $("#listau").html(response);
-					}
+	function Editar(){
+			var usu= document.forms.fval.usuario.value;
+			 var parametros = {
+                "usu" : usu
+       		 };
+			$.ajax({
+           	type: "POST",
+           	url: "../ajax/info_edit_type.php",
+           	data: parametros,
+           	dataType: "text",
+			success:  function (response) {
+            	$("#datos").html(response);
+			}
 		
 	    }); 
 		
 		
-	}
-	
-	function usuario(){
-		 //posicion
-        var $selectedOption = $('#listau').find('option:selected');
-		var idusu = $selectedOption.val();
-		$.ajax({
-           type: "POST",
-           url: "../ajax/info_user_edit.php",
-           data: {'idusu':idusu},
-           dataType: "text",
-                success:  function (response) {
-                       $("#datos").html(response);
-					}
-		
-	    }); 
 	}
 
 </script>

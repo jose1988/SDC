@@ -7,7 +7,7 @@ if (isset($_POST["crear"])) {
   $client = new SOAPClient($wsdl_url);
   $client->decode_utf8 = false; 
   $res=$client->insertarBuzon($datosB);
-   javaalert($_SESSION["usubox"]."  Se ha guardado con exito");
+   javaalert("Se ha guardado con exito");
 	}catch (Exception $e) {
 			javaalert('Lo sentimos no hay conexión');
 			iraURL('index.php');
