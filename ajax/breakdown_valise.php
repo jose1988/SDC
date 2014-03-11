@@ -94,15 +94,20 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
 			if($reg>1){
 				$j=0;
 				while($j<$reg){ 
+				if(strlen ($Valija->return[$j]->asuntopaq)>10){
+								$asunto=substr($Valija->return[$j]->asuntopaq,0,10)."...";
+								}else{
+									$asunto=$Valija->return[$j]->asuntopaq;
+								}
                 	
                     echo "<td  style='text-align:center'>".$Valija->return[$j]->destinopaq->idusubuz->nombreusu."</td>";
-					 echo "<td  style='text-align:center'>".$Valija->return[$j]->asuntopaq."</td>";
+					 echo "<td  style='text-align:center'>".$asunto."</td>";
 					echo "<td style='text-align:center'>".$Valija->return[$j]->iddoc->nombredoc."</td>";
 					if($Valija->return[$j]->respaq==0){
 					echo "<td style='text-align:center'> No </td>";}else{
 						echo "<td style='text-align:center'> Si </td>";
 					}
-                    echo "<td style='text-align:center'>".substr($Valija->return[$j]->fechapaq,0,10)."</td>";  
+                    echo "<td style='text-align:center'>". date("d/m/Y", strtotime(substr($Valija->return[$j]->fechaenviopaq, 0, 10)))."</td>";  
 					echo "
 					<td style='text-align:center' width='15%'><input type='checkbox'  onClick='Confirmar(".$Valija->return[$j]->idpaq.");' name='idc[".$j."]' id='idc[".$j."]' value='".$Valija->return[$j]->idpaq."'></td>";                     
 					echo " 
@@ -116,15 +121,19 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
 					$j++;
 				} 
 			}else{  
-					
+					if(strlen ($Valija->return->asuntopaq)>10){
+								$asunto=substr($Valija->return->asuntopaq,0,10)."...";
+								}else{
+									$asunto=$Valija->return->asuntopaq;
+								}
                     echo "<td  style='text-align:center'>".$Valija->return->destinopaq->idusubuz->nombreusu."</td>";
-					 echo "<td  style='text-align:center'>".$Valija->return->asuntopaq."</td>";
+					 echo "<td  style='text-align:center'>".$asunto."</td>";
 					echo "<td style='text-align:center'>".$Valija->return->iddoc->nombredoc."</td>";
 					if($Valija->return->respaq==0){
 					echo "<td style='text-align:center'> No </td>";}else{
 						echo "<td style='text-align:center'> Si </td>";
 					}
-                    echo "<td style='text-align:center'>".substr($Valija->return->fechapaq,0,10)."</td>";  
+                    echo "<td style='text-align:center'>". date("d/m/Y", strtotime(substr($Valija->return->fechaenviopaq, 0, 10)))."</td>";  
 					echo "
 					<td style='text-align:center' width='15%'><input type='checkbox'  onClick='Confirmar(".$Valija->return[$j]->idpaq.");' name='idc[0]' id='idc[0]' value='".$Valija->return->idpaq."'></td>";                     
 					echo " 

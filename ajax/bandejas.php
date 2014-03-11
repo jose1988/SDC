@@ -80,15 +80,21 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
 			if($reg>1){
 				$j=0;
 				while($j<$reg){ 
+				
+								if(strlen ($Bandeja->return[$j]->asuntopaq)>10){
+								$asunto=substr($Bandeja->return[$j]->asuntopaq,0,10)."...";
+								}else{
+									$asunto=$Bandeja->return[$j]->asuntopaq;
+								}
                 	
                     echo "<td  style='text-align:center'>".$Bandeja->return[$j]->destinopaq->idusubuz->nombreusu."</td>";
-					 echo "<td  style='text-align:center'>".$Bandeja->return[$j]->asuntopaq."</td>";
+					 echo "<td  style='text-align:center'>".$asunto."</td>";
 					echo "<td style='text-align:center'>".$Bandeja->return[$j]->iddoc->nombredoc."</td>";
 					if($Bandeja->return[$j]->respaq==1 || $Bandeja->return[$j]->respaq==2){
 					echo "<td style='text-align:center'> Si </td>";}else{
 						echo "<td style='text-align:center'> No </td>";
 					}
-                    echo "<td style='text-align:center'>".substr($Bandeja->return[$j]->fechapaq,0,10)."</td>";
+                    echo "<td style='text-align:center'>". date("d/m/Y", strtotime(substr($Bandeja->return[$j]->fechaenviopaq, 0, 10)))."</td>";
 						if($aux!="Recibidos"){  
 					echo "<td style='text-align:center'>".$Bandeja->return[$j]->localizacionpaq."</td>";
 						}
@@ -110,14 +116,19 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
 					$j++;
 				} 
 			}else{  
+			if(strlen ($Bandeja->return->asuntopaq)>10){
+								$asunto=substr($Bandeja->return->asuntopaq,0,10)."...";
+								}else{
+									$asunto=$Bandeja->return->asuntopaq;
+								}
 					 echo "<td  style='text-align:center'>".$Bandeja->return->destinopaq->idusubuz->nombreusu."</td>";
-					 echo "<td  style='text-align:center'>".$Bandeja->return->asuntopaq."</td>";
+					 echo "<td  style='text-align:center'>".$asunto."</td>";
 					echo "<td style='text-align:center'>".$Bandeja->return->iddoc->nombredoc."</td>";
 					if($Bandeja->return->respaq==1 || $Bandeja->return->respaq==2){
 					echo "<td style='text-align:center'> Si </td>";}else{
 						echo "<td style='text-align:center'> No </td>";
 					}
-                    echo "<td style='text-align:center'>".substr($Bandeja->return->fechapaq,0,10)."</td>";  
+                    echo "<td style='text-align:center'>".date("d/m/Y", strtotime(substr($Bandeja->return->fechaenviopaq, 0, 10)))."</td>";  
 					if($aux!="Recibidos"){  
 					echo "<td style='text-align:center'>".$Bandeja->return->localizacionpaq."</td>";
 						}echo "<td style='text-align:center'><a href='../pages/see_package.php?id=".$Bandeja->return->idpaq."'><button type='button' class='btn btn-info btn-primary' value='Realizar Valija'>  Ver Mas </button> </a></td>";    

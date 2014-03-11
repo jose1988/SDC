@@ -75,15 +75,20 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
 			if($reg>1){
 				$j=0;
 				while($j<$reg){ 
+				if(strlen ($Registro->return[$j]->asuntopaq)>10){
+								$asunto=substr($Registro->return[$j]->asuntopaq,0,10)."...";
+								}else{
+									$asunto=$Registro->return[$j]->asuntopaq;
+								}
                 	
                     echo "<td  style='text-align:center'>".$Registro->return[$j]->origenpaq->nombreusu."</td>";
 					 echo "<td  style='text-align:center'>".$Registro->return[$j]->destinopaq->idusubuz->nombreusu."</td>";
-					echo "<td style='text-align:center'>".$Registro->return[$j]->asuntopaq."</td>";
+					echo "<td style='text-align:center'>".$asunto."</td>";
 					if($Registro->return[$j]->respaq==0){
 					echo "<td style='text-align:center'> No </td>";}else{
 						echo "<td style='text-align:center'> Si </td>";
 					}
-                    echo "<td style='text-align:center'>".substr($Registro->return[$j]->fechapaq,0,10)."</td>";  
+                    echo "<td style='text-align:center'>". date("d/m/Y", strtotime(substr($Registro->return[$j]->fechaenviopaq, 0, 10)))."</td>";  
 					
 					       
 				echo '<td style="text-align:center" width="15%"><input type="checkbox" name="ide['.$j.']" id="ide['.$j.']" value='.$Registro->return[$j]->idpaq.'></td>';                                 
@@ -91,14 +96,20 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
 					$j++;
 				} 
 			}else{  
+			
+			if(strlen ($Registro->return[$j]->asuntopaq)>10){
+								$asunto=substr($Registro->return->asuntopaq,0,10)."...";
+								}else{
+									$asunto=$Registro->return->asuntopaq;
+								}
 					   echo "<td  style='text-align:center'>".$Registro->return->origenpaq->nombreusu."</td>";
 					 echo "<td  style='text-align:center'>".$Registro->return->destinopaq->idusubuz->nombreusu."</td>";
-					echo "<td style='text-align:center'>".$Registro->return->asuntopaq."</td>";
+					echo "<td style='text-align:center'>".$asunto."</td>";
 					if($Registro->return->respaq==0){
 					echo "<td style='text-align:center'> No </td>";}else{
 						echo "<td style='text-align:center'> Si </td>";
 					}
-                    echo "<td style='text-align:center'>".substr($Registro->return->fechapaq,0,10)."</td>";  
+                    echo "<td style='text-align:center'>".date("d/m/Y", strtotime(substr($Registro->return->fechaenviopaq, 0, 10)))."</td>";  
 					
 					       
 				echo '<td style="text-align:center" width="15%"><input type="checkbox" name="ide[0]" id="ide[0]" value='.$Registro->return->idpaq.'></td>';                                 
