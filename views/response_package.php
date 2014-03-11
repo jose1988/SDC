@@ -153,8 +153,6 @@ echo '<script language="javascript"> window.location = "../pages/inbox.php"; </s
                 <div class="span2">
                     <ul class="nav nav-pills nav-stacked">
                         <li> <a href="inbox.php">Atrás</a> <li>
-                        <li> <a href="create_mailbox.php">Crear buzón</a> <li>
-                        <li> <a href="create_external_mailbox.php">Crear buzón externo</a> <li>
                     </ul>
                 </div>
 
