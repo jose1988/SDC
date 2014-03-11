@@ -161,7 +161,7 @@
        echo "<br>";
 	?>
 	
-         <h2>Correspondencia hoy en el Área de Trabajo</h2>
+         <h2>Correspondencia que ha recibido hoy</h2>
                             <table class='footable table table-striped table-bordered' data-page-size='10'>    
                                 <thead bgcolor='#FF0000'>
                                     <tr>	
