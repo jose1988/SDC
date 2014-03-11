@@ -158,7 +158,7 @@ if ($nomUsuario == "") {
 							//Si existen registros muestro la tabla
                             else {?>
                                 <form class="form-search" id="formulario" method="post">                   
-                                    <strong> <h2 align="center">Comprobante Nivel 1</h2> </strong>
+                                    <strong> <h2 align="center">Comprobante de correspondencia que ha recibido hoy</h2> </strong>
                                     <table class='footable table table-striped table-bordered' data-page-size='10'>
                                         <thead bgcolor='#FF0000'>
                                             <tr>
