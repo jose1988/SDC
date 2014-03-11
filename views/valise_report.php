@@ -77,7 +77,7 @@ if ($usuarioBitacora == "") {
                                     <div class="btn-group  pull-right">
                                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-cog" style="color:rgb(255,255,255)"> Configuracion </span> </button>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Cuenta</a></li>
+                                            <li><a href="../pages/view_user.php">Cuenta</a></li>
                                             <li class="divider"></li>
                                             <?php 
 											if ($_SESSION["Usuario"]->return->tipousu == "1" || $_SESSION["Usuario"]->return->tipousu == "2") { ?>
