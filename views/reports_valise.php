@@ -80,7 +80,7 @@ if ($ideSede == "") {
                                             <li><a href="../pages/view_user.php">Cuenta</a></li>
                                             <li class="divider"></li>
                                             <?php 
-											if ($_SESSION["Usuario"]->return->tipousu == "1" || $_SESSION["Usuario"]->return->tipousu == "2") { ?>
+                                            if ($_SESSION["Usuario"]->return->tipousu == "1" || $_SESSION["Usuario"]->return->tipousu == "2") { ?>
                                                 <li><a href="../pages/administration.php">Administracion</a></li>
                                                 <li class="divider"></li>
                                             <?php } ?>
@@ -110,7 +110,7 @@ if ($ideSede == "") {
                                                 <li class="divider"></li>
                                                 <li><a href="reports_valise.php" > Estadisticas Valija</a></li>
                                                 <li class="divider"></li>
-											<?php } ?>
+                                            <?php } ?>
                                             <li><a href="reports_user.php" > Estadisticas Usuario</a></li>
                                         </ul>
                                     </div>
@@ -122,13 +122,13 @@ if ($ideSede == "") {
                                             <li class="divider"></li>
                                             <li><a href="../pages/package_overdue_destination.php">Paquetes Recibidos</a></li>
                                             <li class="divider"></li>
-											<?php 
-											if ($SedeRol->return->idrol->idrol == "4" || $SedeRol->return->idrol->idrol == "5") { ?>
+                                            <?php 
+                                            if ($SedeRol->return->idrol->idrol == "4" || $SedeRol->return->idrol->idrol == "5") { ?>
                                                 <li><a href="../pages/suitcase_overdue_origin.php">Valijas Enviadas</a></li>
                                                 <li class="divider"></li>
                                                 <li><a href="../pages/suitcase_overdue_destination.php"> Valijas Recibidas </a></li>
                                                 <li class="divider"></li>
-											<?php } ?>
+                                            <?php } ?>
                                         </ul>
                                     </div>
                                 </h3>
@@ -143,7 +143,7 @@ if ($ideSede == "") {
                         <ul class="nav nav-pills nav-stacked">
                             <li>   
                                 <a href="../pages/create_valise.php">
-									<?php echo "Atrás" ?>         
+                                    <?php echo "Atrás" ?>         
                                 </a>
                             </li>
                         </ul>
@@ -152,14 +152,14 @@ if ($ideSede == "") {
                     <div class="span10">
                         <div class="tab-content" id="bandeja">
                             <?php
-							//Verificando que este vacio o sea null
+                            //Verificando que este vacio o sea null
                             if (!isset($resultadoConsultarValijas->return)) {
                                 echo '<div class="alert alert-block" align="center">';
                                 echo '<h2 style="color:rgb(255,255,255)" align="center">Atención</h2>';
                                 echo '<h4 align="center">No Existen Registros de Valijas Hoy</h4>';
                                 echo '</div>';
                             }
-							//Si existen registros muestro la tabla
+                            //Si existen registros muestro la tabla
                             else { ?>                        
                                 <strong> <h2 align="center">Reporte de Valijas Hoy</h2> </strong>
                                 <table class='footable table table-striped table-bordered' data-page-size='5'>

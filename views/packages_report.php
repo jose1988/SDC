@@ -80,7 +80,7 @@ if ($usuarioBitacora == "" || $idPaquete == "") {
                                             <li><a href="../pages/view_user.php">Cuenta</a></li>
                                             <li class="divider"></li>
                                             <?php 
-											if ($_SESSION["Usuario"]->return->tipousu == "1" || $_SESSION["Usuario"]->return->tipousu == "2") { ?>
+                                            if ($_SESSION["Usuario"]->return->tipousu == "1" || $_SESSION["Usuario"]->return->tipousu == "2") { ?>
                                                 <li><a href="../pages/administration.php">Administracion</a></li>
                                                 <li class="divider"></li>
                                             <?php } ?>
@@ -95,11 +95,11 @@ if ($usuarioBitacora == "" || $idPaquete == "") {
                                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-th-large" style="color:rgb(255,255,255)"> Operaciones </span> </button>
                                         <ul class="dropdown-menu" role="menu">
                                             <?php 
-											if ($SedeRol->return->idrol->idrol == "1" || $SedeRol->return->idrol->idrol == "3") { ?>
+                                            if ($SedeRol->return->idrol->idrol == "1" || $SedeRol->return->idrol->idrol == "3") { ?>
                                                 <li><a href="operator_level.php" > Recibir Paquete</a></li>
                                                 <li class="divider"></li>
-											<?php }
-											if ($SedeRol->return->idrol->idrol == "2" || $SedeRol->return->idrol->idrol == "5") { ?>
+                                            <?php }
+                                            if ($SedeRol->return->idrol->idrol == "2" || $SedeRol->return->idrol->idrol == "5") { ?>
                                                 <li><a href="headquarters_operator.php" > Recibir Paquete</a></li>
                                                 <li class="divider"></li>
                                             <?php }
@@ -123,13 +123,13 @@ if ($usuarioBitacora == "" || $idPaquete == "") {
                                             <li class="divider"></li>
                                             <li><a href="../pages/package_overdue_destination.php">Paquetes Recibidos</a></li>
                                             <li class="divider"></li>
-											<?php 
-											if ($SedeRol->return->idrol->idrol == "4" || $SedeRol->return->idrol->idrol == "5") { ?>
+                                            <?php 
+                                            if ($SedeRol->return->idrol->idrol == "4" || $SedeRol->return->idrol->idrol == "5") { ?>
                                                 <li><a href="../pages/suitcase_overdue_origin.php">Valijas Enviadas</a></li>
                                                 <li class="divider"></li>
                                                 <li><a href="../pages/suitcase_overdue_destination.php"> Valijas Recibidas </a></li>
                                                 <li class="divider"></li>
-											<?php } ?>
+                                            <?php } ?>
                                         </ul>
                                     </div>
                                 </h3>
@@ -144,7 +144,7 @@ if ($usuarioBitacora == "" || $idPaquete == "") {
                         <ul class="nav nav-pills nav-stacked">
                             <li>   
                                 <a href="../pages/breakdown_valise.php">
-									<?php echo "Atrás" ?>         
+                                    <?php echo "Atrás" ?>         
                                 </a>
                             </li>
                         </ul>

@@ -77,7 +77,7 @@ if ($usuarioBitacora == "") {
                                             <li><a href="../pages/view_user.php">Cuenta</a></li>
                                             <li class="divider"></li>
                                             <?php 
-											if ($_SESSION["Usuario"]->return->tipousu == "1" || $_SESSION["Usuario"]->return->tipousu == "2") { ?>
+                                            if ($_SESSION["Usuario"]->return->tipousu == "1" || $_SESSION["Usuario"]->return->tipousu == "2") { ?>
                                                 <li><a href="../pages/administration.php">Administracion</a></li>
                                                 <li class="divider"></li>
                                             <?php } ?>
@@ -92,7 +92,7 @@ if ($usuarioBitacora == "") {
                                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-th-large" style="color:rgb(255,255,255)"> Operaciones </span> </button>
                                         <ul class="dropdown-menu" role="menu">
                                             <?php 
-											if ($SedeRol->return->idrol->idrol == "1" || $SedeRol->return->idrol->idrol == "3") { ?>
+                                            if ($SedeRol->return->idrol->idrol == "1" || $SedeRol->return->idrol->idrol == "3") { ?>
                                                 <li><a href="operator_level.php" > Recibir Paquete</a></li>
                                                 <li class="divider"></li>
                                             <?php }
@@ -121,7 +121,7 @@ if ($usuarioBitacora == "") {
                                             <li><a href="../pages/package_overdue_destination.php">Paquetes Recibidos</a></li>
                                             <li class="divider"></li>
                                             <?php 
-											if ($SedeRol->return->idrol->idrol == "4" || $SedeRol->return->idrol->idrol == "5") { ?>
+                                            if ($SedeRol->return->idrol->idrol == "4" || $SedeRol->return->idrol->idrol == "5") { ?>
                                                 <li><a href="../pages/suitcase_overdue_origin.php">Valijas Enviadas</a></li>
                                                 <li class="divider"></li>
                                                 <li><a href="../pages/suitcase_overdue_destination.php"> Valijas Recibidas </a></li>
@@ -150,14 +150,14 @@ if ($usuarioBitacora == "") {
                     <div class="span10">
                         <div class="tab-content" id="bandeja">
                             <?php
-							//Verificando que este vacio o sea null
+                            //Verificando que este vacio o sea null
                             if (!isset($resultadoListaBitacora->return)) {
                                 echo '<div class="alert alert-block" align="center">';
                                 echo '<h2 style="color:rgb(255,255,255)" align="center">Atención</h2>';
                                 echo '<h4 align="center">No Existen Registros en Bitacora</h4>';
                                 echo '</div>';
                             }
-							//Si existen registros muestro la tabla
+                            //Si existen registros muestro la tabla
                             else {
                                 ?>
                                 <form class="form-search" id="formulario" method="post">                   
