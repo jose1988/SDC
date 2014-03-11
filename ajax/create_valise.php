@@ -12,12 +12,16 @@
 	<link rel="stylesheet" type="text/css" media="all" href="../font-awesome/css/font-awesome.min.css">
 	<link href="../font-awesome/css/font-awesome.css" rel="stylesheet">
 	
+
+	
 	<!-- [if IE 7]>
 	<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome-ie7.min.css">
 	<![endif]-->
     <link href="../css/footable-0.1.css" rel="stylesheet" type="text/css" />
 	<link href="../css/footable.sortable-0.1.css" rel="stylesheet" type="text/css" />
 	<link href="../css/footable.paginate.css" rel="stylesheet" type="text/css" />
+	
+	
 <body class="appBg">
 
 

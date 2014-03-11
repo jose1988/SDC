@@ -59,7 +59,10 @@ if(isset($_POST["guardar"]) && isset($_POST["ide"])){
         <script type='text/javascript' src="../js/custom.js"></script>
         <script type='text/javascript' src="../js/jquery.fancybox.pack.js"></script>
 
-
+	<!-- javascript para el funcionamiento del calendario -->
+<link rel="stylesheet" type="text/css" href="../js/ui-lightness/jquery-ui-1.10.3.custom.css" media="all" />
+<script type="text/javascript" src="../js/jquery-ui-1.10.3.custom.js" ></script> 
+<script type="text/javascript" src="../js/calendarioValidado.js" ></script> 
         <!-- styles -->
         <link href="../css/bootstrap.css" rel="stylesheet">
         <link href="../css/bootstrap-combined.min.css" rel="stylesheet">
@@ -218,7 +221,8 @@ if(isset($_POST["guardar"]) && isset($_POST["ide"])){
                             </div> 
 
                             <div class="span6" >
-                                Código de Correspondencia:  <input type="text" class="input-medium search-query">
+                              Fecha de envio:<input type="text" id="datepicker" name="datepickerf" autocomplete="off" style="width:100px" title="Seleccione la fecha de envio" required/>
+
                                 <button type="submit" class="btn">Buscar</button>
                              
                             </div>

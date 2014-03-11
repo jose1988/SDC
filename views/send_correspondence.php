@@ -23,6 +23,7 @@ echo '<script language="javascript"> window.location = "../pages/inbox.php"; </s
 <!-- javascript para el funcionamiento del calendario -->
 <link rel="stylesheet" type="text/css" href="../js/ui-lightness/jquery-ui-1.10.3.custom.css" media="all" />
 <script type="text/javascript" src="../js/jquery-ui-1.10.3.custom.js" ></script> 
+<script type="text/javascript" src="../js/calendarioValidado.js" ></script> 
         <!-- styles -->
         <link href="../css/bootstrap.css" rel="stylesheet">
         <link href="../css/bootstrap-combined.min.css" rel="stylesheet">
@@ -36,6 +37,7 @@ echo '<script language="javascript"> window.location = "../pages/inbox.php"; </s
         <!--Load fontAwesome css-->
         <link rel="stylesheet" type="text/css" media="all" href="../font-awesome/css/font-awesome.min.css">
         <link href="../font-awesome/css/font-awesome.css" rel="stylesheet">
+		
 
         <!-- [if IE 7]>
         <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome-ie7.min.css">
@@ -43,9 +45,7 @@ echo '<script language="javascript"> window.location = "../pages/inbox.php"; </s
         <link href="../css/footable-0.1.css" rel="stylesheet" type="text/css" />
         <link href="../css/footable.sortable-0.1.css" rel="stylesheet" type="text/css" />
         <link href="../css/footable.paginate.css" rel="stylesheet" type="text/css" />
-<?php
-include('../js/calendario.php');
-?>
+
 		</head>
 
     <body class="appBg">
