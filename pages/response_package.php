@@ -73,7 +73,7 @@ $idPadre= array('idpaq' => $_GET['idpaqr']);
 					$bandejaorigen=$client->insertarBandejaOrigen($paq);
 					$bandejaDestino=$client->insertarBandejaDestino($paq);
 					$paramPadre = array('idpaq' => $idPaquete->return->idpaq,'status'=>"2");
-					$statusPadre=$client->insertarBandejaDestino($paramPadre);
+					$statusPadre=$client->editarEstatusPaquete($paramPadre);
 			if($_FILES['imagen']['name']!=""){
 					$imagenName= $_FILES['imagen']['name'];
 					$caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"; //posibles caracteres a usar
