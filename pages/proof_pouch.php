@@ -55,7 +55,7 @@ try {
 		$resultadoConsultarSede = $client->consultarSedeXId($idSede);
 		
 		llenarLog(6, "Comprobante de Valija",$usuarioBitacora,$ideSede);
-		/*echo"<script language='javascript'>window.location='../pages/create_valise.php';</script>";*/
+		echo"<script language='javascript'>window.location='../pages/create_valise.php';</script>";
 		
 	} catch (Exception $e) {
 		javaalert('Lo sentimos no hay conexion');
