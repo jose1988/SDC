@@ -1,5 +1,5 @@
 <?php
-if(!isset($rowContactos->return)){
+if(!isset($rowPrioridad->return)){
 echo '<script language="javascript"> window.location = "../pages/inbox.php"; </script>';
 }
 ?>
@@ -102,10 +102,11 @@ include('../js/calendario.php');
                                             <?php }
                                                         if($SedeRol->return->idrol->idrol=="2"|| $SedeRol->return->idrol->idrol=="5"){ ?>
                                             <li><a href="headquarters_operator.php" > Recibir Paquete</a></li>
-                                            <li class="divider"></li>
+                                        
                                             <?php }
                                                         if($SedeRol->return->idrol->idrol=="4" || $SedeRol->return->idrol->idrol=="5"){ ?>
-                                            <li><a href="create_valise.php" > Crear Valija</a></li>
+                                                <li class="divider"></li>
+											<li><a href="create_valise.php" > Crear Valija</a></li>
                                             <li class="divider"></li>
                                             <li><a href="breakdown_valise.php" > Recibir Valija</a></li>
                                             <li class="divider"></li>
@@ -150,13 +151,25 @@ include('../js/calendario.php');
                     <ul class="nav nav-pills nav-stacked">
                         <li> <a href="inbox.php">Atrás</a> <li>
                         <li> <a href="create_mailbox.php">Crear buzón</a> <li>
-                        <li> <a href="create_external_mailbox.php">Crear buzón externo</a> <li>
                     </ul>
                 </div>
 
                 <div class="span10">
                     <div class="tab-content" id="Correspondecia">
                         <table> 
+						<?php
+						if (!isset($rowContactos->return)) {
+						?> 
+						<tr>
+                                <td>Para:</td><td>
+								<input id="contacto" name="contacto" type="text"  list="suggests" maxlength="24" style="width:800px ;height:28px" size="100"  autocomplete="off"  disabled  required>								
+								</td>
+						   </tr>
+						<?php
+						}else{
+						
+						
+						?>
                             <tr>
                                 <td>Para:</td><td>
 								<input id="contacto" name="contacto" type="text"  list="suggests" maxlength="24" style="width:800px ;height:28px" size="100"  title="Ingrese el nombre de usuario" autocomplete="off"   autofocus required>								
@@ -174,6 +187,9 @@ include('../js/calendario.php');
 									</datalist>
 								</td>
 						   </tr>
+						  <?php
+						  }
+						  ?> 
                             <tr>
                                 <td>Asunto:</td><td><input type="text" id="asunto" name="asunto" maxlength="24"  size="100" style="width:800px" title="Ingrese el asunto" autocomplete="off"  required><br></td>
                             </tr>
@@ -228,11 +244,24 @@ include('../js/calendario.php');
 							<tr>
                              <td>Con Respuesta: </td><td><input type="checkbox" name="rta" id="rta" title="Seleccione si desea con respuesta" checked="checked"></td>
                             </tr>
+							<?php
+							if (!isset($rowContactos->return)) {
+							?> 
+							 <tr>          
+                                <td colspan="2" align="right"><input disabled type="submit" id="enviar"  onclick="return confirm('¿Esta seguro que desea enviar la correspondencia? \n Luego de enviado no podrá modificar la correspondencia')" value="Enviar Correspondecia" name="enviar"><br>
+                                </td>
+                            </tr>
+							<?php
+						}else{
+
+						?>
                             <tr>          
                                 <td colspan="2" align="right"><input type="submit" id="enviar"  onclick="return confirm('¿Esta seguro que desea enviar la correspondencia? \n Luego de enviado no podrá modificar la correspondencia')" value="Enviar Correspondecia" name="enviar"><br>
                                 </td>
                             </tr>
-							
+							 <?php
+						  }
+						  ?> 
                         </table>
                     </div>
                 </div>
