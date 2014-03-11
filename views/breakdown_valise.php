@@ -14,7 +14,7 @@ if(isset($_POST["guardar"])){
   $sede= array('idsed' => $_SESSION["Sede"]->return->idsed);
 			if($_SESSION["falla"]>0){
 			
-			  $datosValija = array('idval' => $_SESSION["Usuario"]->return->idusu, 'status'=> "2");
+			  $datosValija = array('idval' => $_SESSION["valdes"], 'status'=> "2",'idusu' => $_SESSION["Usuario"]->return->idusu,'sede' => $_SESSION["Sede"]->return->nombresed);
 			
 			for($j=1; $j<=$_SESSION["falla"]; $j++){
 			
@@ -26,7 +26,7 @@ if(isset($_POST["guardar"])){
 			  }	
 			   
 			}else{
-				$datosValija = array('idval' => $_SESSION["Usuario"]->return->idusu, 'status'=> "1");
+				$datosValija = array('idval' => $_SESSION["valdes"],'status'=> "1",'idusu' => $_SESSION["Usuario"]->return->idusu,'sede' => $_SESSION["Sede"]->return->nombresed);
 			}
 			
 			
@@ -49,6 +49,7 @@ if(isset($_POST["guardar"])){
   unset($_SESSION["falla"]);
   unset($_SESSION["reportados"]);
   unset($_SESSION["confirmados"]);
+  unset($_SESSION["valdes"]);
   javaalert("Confimada la valija");
   
 		 } catch (Exception $e) {
