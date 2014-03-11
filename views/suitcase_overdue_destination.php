@@ -59,76 +59,73 @@
             </div>
         </div>
 
-         <div id="middle">
+        <div id="middle">
             <div class="container app-container">
                 <div>
                     <ul class="nav nav-pills">
                         <li class="pull-left">
                             <div class="modal-header" style="width:1135px;">
                                 <h3> Correspondencia    
-                                    <span>SH</span> <?php echo "- Hola, ".$_SESSION["Usuario"]->return->nombreusu;?>
-                                       <div class="btn-group  pull-right">
-                                          <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-cog" style="color:rgb(255,255,255)"> Configuracion </span> </button>
-                                          <ul class="dropdown-menu" role="menu">
+                                    <span>SH</span> <?php echo "- Hola, " . $_SESSION["Usuario"]->return->nombreusu; ?>
+                                    <div class="btn-group  pull-right">
+                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-cog" style="color:rgb(255,255,255)"> Configuracion </span> </button>
+                                        <ul class="dropdown-menu" role="menu">
                                             <li><a href="../pages/view_user.php">Cuenta</a></li>
                                             <li class="divider"></li>
-                                            <?php if($_SESSION["Usuario"]->return->tipousu=="1"|| $_SESSION["Usuario"]->return->tipousu=="2"){ ?>
-                                            <li><a href="../pages/administration.php">Administracion</a></li>
-                                            <li class="divider"></li>
+                                            <?php if ($_SESSION["Usuario"]->return->tipousu == "1" || $_SESSION["Usuario"]->return->tipousu == "2") { ?>
+                                                <li><a href="../pages/administration.php">Administracion</a></li>
+                                                <li class="divider"></li>
                                             <?php } ?>
                                             <li><a href="../recursos/cerrarsesion.php" onClick="">Salir</a></li>
                                             <li class="divider"></li>
                                             <li><a href="#">Ayuda</a></li>
-                                          </ul>
-                                        </div>   
-                                        
-                                        <span class="divider pull-right" style="color:rgb(255,255,255)"> | </span>
-                                        <div class="btn-group  pull-right">
-                                          <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-th-large" style="color:rgb(255,255,255)"> Operaciones </span> </button>
-                                          <ul class="dropdown-menu" role="menu">
-                                            <?php 
-                                      
-                                                       if($SedeRol->return->idrol->idrol=="1"|| $SedeRol->return->idrol->idrol=="3"){ ?>
-                                            <li><a href="operator_level.php" > Recibir Paquete</a></li>
-                                            <li class="divider"></li>
+                                        </ul>
+                                    </div>   
+
+                                    <span class="divider pull-right" style="color:rgb(255,255,255)"> | </span>
+                                    <div class="btn-group  pull-right">
+                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-th-large" style="color:rgb(255,255,255)"> Operaciones </span> </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <?php if ($SedeRol->return->idrol->idrol == "1" || $SedeRol->return->idrol->idrol == "3") { ?>
+                                                <li><a href="operator_level.php" > Recibir Paquete</a></li>
+                                                <li class="divider"></li>
+<?php }
+if ($SedeRol->return->idrol->idrol == "2" || $SedeRol->return->idrol->idrol == "5") {
+    ?>
+                                                <li><a href="headquarters_operator.php" > Recibir Paquete</a></li>
+                                                <li class="divider"></li>
                                             <?php }
-                                                        if($SedeRol->return->idrol->idrol=="2"|| $SedeRol->return->idrol->idrol=="5"){ ?>
-                                            <li><a href="headquarters_operator.php" > Recibir Paquete</a></li>
-                                            <li class="divider"></li>
+                                            if ($SedeRol->return->idrol->idrol == "4" || $SedeRol->return->idrol->idrol == "5") {
+                                                ?>
+                                                <li><a href="create_valise.php" > Crear Valija</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="breakdown_valise.php" > Recibir Valija</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="reports_valise.php" > Estadisticas Valija</a></li>
+                                                <li class="divider"></li>
                                             <?php }
-                                                        if($SedeRol->return->idrol->idrol=="4" || $SedeRol->return->idrol->idrol=="5"){ ?>
-                                            <li><a href="create_valise.php" > Crear Valija</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="breakdown_valise.php" > Recibir Valija</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="reports_valise.php" > Estadisticas Valija</a></li>
-                                            <li class="divider"></li>
-                                            <?php  }
-                                                     
-                                      
-                                                      
-                                                       ?>
+                                            ?>
                                             <li><a href="reports_user.php" > Estadisticas Usuario</a></li>
-                                           
-                                          </ul>
-                                        </div>
-                                        <span class="divider pull-right" style="color:rgb(255,255,255)"> | </span>
-                                        <div class="btn-group  pull-right">
-                                          <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-exclamation-sign" style="color:rgb(255,255,255)"> Alertas </span> </button>
-                                          <ul class="dropdown-menu" role="menu">
+
+                                        </ul>
+                                    </div>
+                                    <span class="divider pull-right" style="color:rgb(255,255,255)"> | </span>
+                                    <div class="btn-group  pull-right">
+                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-exclamation-sign" style="color:rgb(255,255,255)"> Alertas </span> </button>
+                                        <ul class="dropdown-menu" role="menu">
                                             <li><a href="../pages/package_overdue_origin.php">Paquetes Enviados</a></li>
                                             <li class="divider"></li>
                                             <li><a href="../pages/package_overdue_destination.php">Paquetes Recibidos</a></li>
                                             <li class="divider"></li>
-                                            <?php if($SedeRol->return->idrol->idrol=="4"|| $SedeRol->return->idrol->idrol=="5"){ ?>
-                                            <li><a href="../pages/suitcase_overdue_origin.php">Valijas Enviadas</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="../pages/suitcase_overdue_destination.php"> Valijas Recibidas </a></li>
-                                            <li class="divider"></li>
-                                            <?php } ?>
-                                          </ul>
-                                        </div>                               
-                                  
+<?php if ($SedeRol->return->idrol->idrol == "4" || $SedeRol->return->idrol->idrol == "5") { ?>
+                                                <li><a href="../pages/suitcase_overdue_origin.php">Valijas Enviadas</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="../pages/suitcase_overdue_destination.php"> Valijas Recibidas </a></li>
+                                                <li class="divider"></li>
+<?php } ?>
+                                        </ul>
+                                    </div>                               
+
                                 </h3>
                             </div>
                         </li>
@@ -147,76 +144,78 @@
                     <div class="span10">
                         <div class="tab-content" id="bandeja">
                             <form class="form-search" id="formulario">
-						    <h2>Valijas que no han Llegado </h2>
-						  		 <?php		
-   if(isset($Valijas->return)){        
-   
-       echo "<br>";
-	?>
-                            <table class='footable table table-striped table-bordered' data-page-size='10'>    
-                                <thead bgcolor='#FF0000'>
-                                    <tr>	
-                                   <th style='width:7%; text-align:center' data-sort-ignore="true">Origen</th>
-                                        <th style='width:7%; text-align:center' data-sort-ignore="true">Asunto </th>
-                                        <th style='width:7%; text-align:center' data-sort-ignore="true">Fecha del Envio</th>
-                                        <th style='width:7%; text-align:center' data-sort-ignore="true">Fecha Límite </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-								<?php
-								if(count($Valijas->return)==1){
-								if(isset($Valijas->return->asuntoval)){
-								if(strlen ($Valijas->return->asuntoval)>10){
-								$asunto=substr($Valijas->return->asuntoval,0,10)."...";
-								}else{
-									$asunto=$Valijas->return->asuntoval;
-								}
-								}else{ $asunto="";}
-								?>
-                                    <tr>     
-                                       <td style='text-align:center'><?php echo $Valijas->return->origenval;?></td>
-                                        <td style='text-align:center'><?php echo $asunto;?></td>
-                                     <td style='text-align:center'><?php echo date("d/m/Y",strtotime(substr($Valijas->return->fechaval,0,10))) ;?></td>
-                                        <td style='text-align:center'><?php echo date("d/m/Y",strtotime(substr($Valijas->return->fechaalerval,0,10))) ;?></td>
-                                    </tr>   
-								<?php	
-								}else{
-								for($i=0;$i<count($Valijas->return);$i++){
-								if(isset($Valijas->return[$i]->asuntoval)){
-						     	if(strlen ($Valijas->return[$i]->asuntoval)>10){
-								$asunto=substr($Valijas->return[$i]->asuntoval,0,10)."...";
-								}else{
-									$asunto=$Valijas->return[$i]->asuntoval;
-								
-								}
-								}else{ $asunto="";}
-								?>
-                                     <tr>     
-                                            <td style='text-align:center'><?php echo $Valijas->return[$i]->origenval;?></td>
-                                        <td style='text-align:center'><?php echo $asunto;?></td>
-                                        <td style='text-align:center'><?php echo date("d/m/Y",strtotime(substr($Valijas->return[$i]->fechaval,0,10))) ;?></td>
-                                        <td style='text-align:center'><?php echo date("d/m/Y",strtotime(substr($Valijas->return[$i]->fechaalerval,0,10))) ;?></td>
-                                    </tr>   
-								<?php															
-								}
-								}//fin else
-								?>  
-								</tbody>
-                            </table>
-							<ul id="pagination" class="footable-nav"><span>Pag:</span></ul>								
-							
-	<?php				
-	}else{
-	 echo "<br>";
-		echo"<div class='alert alert-block' align='center'>
+                                <h2>Valijas que no han Llegado </h2>
+<?php
+if (isset($Valijas->return)) {
+
+    echo "<br>";
+    ?>
+                                    <table class='footable table table-striped table-bordered' data-page-size='10'>    
+                                        <thead bgcolor='#FF0000'>
+                                            <tr>	
+                                                <th style='width:7%; text-align:center' data-sort-ignore="true">Origen</th>
+                                                <th style='width:7%; text-align:center' data-sort-ignore="true">Asunto </th>
+                                                <th style='width:7%; text-align:center' data-sort-ignore="true">Fecha del Envio</th>
+                                                <th style='width:7%; text-align:center' data-sort-ignore="true">Fecha Límite </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+    <?php
+    if (count($Valijas->return) == 1) {
+        if (isset($Valijas->return->asuntoval)) {
+            if (strlen($Valijas->return->asuntoval) > 10) {
+                $asunto = substr($Valijas->return->asuntoval, 0, 10) . "...";
+            } else {
+                $asunto = $Valijas->return->asuntoval;
+            }
+        } else {
+            $asunto = "";
+        }
+        ?>
+                                                <tr>     
+                                                    <td style='text-align:center'><?php echo $Valijas->return->origenval; ?></td>
+                                                    <td style='text-align:center'><?php echo $asunto; ?></td>
+                                                    <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($Valijas->return->fechaval, 0, 10))); ?></td>
+                                                    <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($Valijas->return->fechaalerval, 0, 10))); ?></td>
+                                                </tr>   
+                                                <?php
+                                            } else {
+                                                for ($i = 0; $i < count($Valijas->return); $i++) {
+                                                    if (isset($Valijas->return[$i]->asuntoval)) {
+                                                        if (strlen($Valijas->return[$i]->asuntoval) > 10) {
+                                                            $asunto = substr($Valijas->return[$i]->asuntoval, 0, 10) . "...";
+                                                        } else {
+                                                            $asunto = $Valijas->return[$i]->asuntoval;
+                                                        }
+                                                    } else {
+                                                        $asunto = "";
+                                                    }
+                                                    ?>
+                                                    <tr>     
+                                                        <td style='text-align:center'><?php echo $Valijas->return[$i]->origenval; ?></td>
+                                                        <td style='text-align:center'><?php echo $asunto; ?></td>
+                                                        <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($Valijas->return[$i]->fechaval, 0, 10))); ?></td>
+                                                        <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($Valijas->return[$i]->fechaalerval, 0, 10))); ?></td>
+                                                    </tr>   
+                                                    <?php
+                                                }
+                                            }//fin else
+                                            ?>  
+                                        </tbody>
+                                    </table>
+                                    <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>								
+
+                                    <?php
+                                } else {
+                                    echo "<br>";
+                                    echo"<div class='alert alert-block' align='center'>
 			<h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
 			<h4 align='center'>No hay Paquetes con Fechas Vencidas en estos Momentos  </h4>
 		</div> ";
-	
-	}
-	?>			  
-						  
-                            
+                                }
+                                ?>			  
+
+
                             </form>
                         </div>
                     </div>
@@ -231,13 +230,14 @@
         <script src="../js/footable.js" type="text/javascript"></script>
         <script src="../js/footable.paginate.js" type="text/javascript"></script>
         <script src="../js/footable.sortable.js" type="text/javascript"></script>
- <script>
-            window.onload = function(){
-			killerSession();}
-             function killerSession(){
-             setTimeout("window.open('../recursos/cerrarsesion.php','_top');",300000);
-             }
-   </script>
+        <script>
+            window.onload = function() {
+                killerSession();
+            }
+            function killerSession() {
+                setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
+            }
+        </script>
         <script type="text/javascript">
             $(function() {
                 $('table').footable();

@@ -1,6 +1,6 @@
 <?php
-if(!isset($Sedes->return)){
-echo '<script language="javascript"> window.location = "../pages/inbox.php"; </script>';
+if (!isset($Sedes->return)) {
+    echo '<script language="javascript"> window.location = "../pages/inbox.php"; </script>';
 }
 ?>
 <!DOCTYPE html>
@@ -66,31 +66,31 @@ echo '<script language="javascript"> window.location = "../pages/inbox.php"; </s
         </div>
 
         <div class="container app-container">
-           <div>
-                    <ul class="nav nav-pills">
-                        <li class="pull-left">
-                            <div class="modal-header" style="width:1135px;">
-                                <h3> Correspondencia    
-                                    <span>SH</span> <?php echo "- Hola, ".$_SESSION["Usuario"]->return->nombreusu;?>
-                                       <div class="btn-group  pull-right">
-                                          <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-cog" style="color:rgb(255,255,255)"> Configuracion </span> </button>
-                                          <ul class="dropdown-menu" role="menu">
-                                            <li><a href="../recursos/cerrarsesion.php" onClick="">Salir</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Ayuda</a></li>
-                                          </ul>
-                                        </div>                              
-                                  
-                                </h3>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+            <div>
+                <ul class="nav nav-pills">
+                    <li class="pull-left">
+                        <div class="modal-header" style="width:1135px;">
+                            <h3> Correspondencia    
+                                <span>SH</span> <?php echo "- Hola, " . $_SESSION["Usuario"]->return->nombreusu; ?>
+                                <div class="btn-group  pull-right">
+                                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-cog" style="color:rgb(255,255,255)"> Configuracion </span> </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="../recursos/cerrarsesion.php" onClick="">Salir</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Ayuda</a></li>
+                                    </ul>
+                                </div>                              
+
+                            </h3>
+                        </div>
+                    </li>
+                </ul>
+            </div>
             <!--Caso pantalla uno-->
             <div class="row-fluid">
                 <div class="span2">
                     <ul class="nav nav-pills nav-stacked">
-                        <li> <a href="../pages/index.php">Atrás</a> <li>
+                        <li> <a href="../pages/index.php">Atrás</a> </li>
                     </ul>
                 </div>
 
@@ -121,21 +121,20 @@ echo '<script language="javascript"> window.location = "../pages/inbox.php"; </s
                                     <td style="text-align:center">Teléfono 2</td>
                                     <td style="text-align:center"><input type="tel" name="telefono2" id="telefono2" autocomplete="off" maxlength="50" size="30" placeholder="Ej. 04168674789"  ></td>
                                 </tr>
-																 <tr>
+                                <tr>
                                     <td style="text-align:center">Sede</td>
                                     <td style="text-align:center"><select name="sede" required  title="Seleccione la Sede a la que pertenece">
-								<option value="" style="display:none">Seleccionar:</option>                                  
-								  <?php 
-								  if(count($Sedes->return)==1){
-								  echo '<option value="'.$Sedes->return->idsed.'">'.$Sedes->return->nombresed.'</option>';
-								  }else{
-								  for($i=0;$i<count($Sedes->return);$i++){
-									echo '<option value="'.$Sedes->return[$i]->idsed.'">'.$Sedes->return[$i]->nombresed.'</option>';
-									}
-								  }
-									
-									?>
-                                    </select></td>
+                                            <option value="" style="display:none">Seleccionar:</option>                                  
+                                            <?php
+                                            if (count($Sedes->return) == 1) {
+                                                echo '<option value="' . $Sedes->return->idsed . '">' . $Sedes->return->nombresed . '</option>';
+                                            } else {
+                                                for ($i = 0; $i < count($Sedes->return); $i++) {
+                                                    echo '<option value="' . $Sedes->return[$i]->idsed . '">' . $Sedes->return[$i]->nombresed . '</option>';
+                                                }
+                                            }
+                                            ?>
+                                        </select></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align:center" >Dirección 1</td>
@@ -156,13 +155,14 @@ echo '<script language="javascript"> window.location = "../pages/inbox.php"; </s
             </div>
         </div>
 
- <script>
-            window.onload = function(){
-			killerSession();}
-             function killerSession(){
-             setTimeout("window.open('../recursos/cerrarsesion.php','_top');",300000);
-             }
-   </script>
+        <script>
+            window.onload = function() {
+                killerSession();
+            }
+            function killerSession() {
+                setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
+            }
+        </script>
         <script src="../js/footable.js" type="text/javascript"></script>
         <script src="../js/footable.paginate.js" type="text/javascript"></script>
         <script src="../js/footable.sortable.js" type="text/javascript"></script>

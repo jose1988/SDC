@@ -1,6 +1,6 @@
 <?php
-if(!isset($Usuario->return)){
-echo '<script language="javascript"> window.location = "../pages/inbox.php"; </script>';
+if (!isset($Usuario->return)) {
+    echo '<script language="javascript"> window.location = "../pages/inbox.php"; </script>';
 }
 ?>
 <!DOCTYPE html>
@@ -45,33 +45,32 @@ echo '<script language="javascript"> window.location = "../pages/inbox.php"; </s
         <link href="../css/footable.paginate.css" rel="stylesheet" type="text/css" />
 
     </head>
-<?php 
-	$apellido="";
-	$correo="";
-	$telefono1="";
-	$telefono2="";
-	$direccion1="";
-	$direccion2="";
-	if(isset($Usuario->return->apellidousu)){
-	$apellido=$Usuario->return->apellidousu;
-	}
-	if(isset($Usuario->return->correousu)){
-	$correo=$Usuario->return->correousu;
-	}
-	if(isset($Usuario->return->telefonousu)){
-	$telefono1=$Usuario->return->telefonousu;
-	}
-	if(isset($Usuario->return->telefono2usu)){
-	$telefono2=$Usuario->return->telefono2usu;
-	}
-	if(isset($Usuario->return->direccionusu)){
-	$direccion1=$Usuario->return->direccionusu;
-	}
-	if(isset($Usuario->return->direccion2usu)){
-	$direccion2=$Usuario->return->direccion2usu;
-	}
-
-?>
+    <?php
+    $apellido = "";
+    $correo = "";
+    $telefono1 = "";
+    $telefono2 = "";
+    $direccion1 = "";
+    $direccion2 = "";
+    if (isset($Usuario->return->apellidousu)) {
+        $apellido = $Usuario->return->apellidousu;
+    }
+    if (isset($Usuario->return->correousu)) {
+        $correo = $Usuario->return->correousu;
+    }
+    if (isset($Usuario->return->telefonousu)) {
+        $telefono1 = $Usuario->return->telefonousu;
+    }
+    if (isset($Usuario->return->telefono2usu)) {
+        $telefono2 = $Usuario->return->telefono2usu;
+    }
+    if (isset($Usuario->return->direccionusu)) {
+        $direccion1 = $Usuario->return->direccionusu;
+    }
+    if (isset($Usuario->return->direccion2usu)) {
+        $direccion2 = $Usuario->return->direccion2usu;
+    }
+    ?>
     <body class="appBg">
         <div id="header">
             <div class="container header-top-top hidden-phone">
@@ -91,234 +90,222 @@ echo '<script language="javascript"> window.location = "../pages/inbox.php"; </s
             </div>
         </div>
 
-   <div id="middle">
-	
-	  <div class="container app-container">
-			 
-		
-        <!-- inicio -->
-            
-          
-        <!--fin -->
-        
-        	 
-	    <div>
-          
-			 	<ul class="nav nav-pills">
-			 		
-			 			<div class="modal-header" style="width:1135px;">
-                        
-                   
-							<h3> Correspondencia    
-                     <span>SH</span> <?php echo "- José" ?>   
-                      
-               
-                     
-                      <div class="btn-group  pull-right">
-                      					
-                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
-                      						<span class="icon-cog" style="color:rgb(255,255,255)"> Configuracion </span>
-                                        </button>
-                                        
-                      					<ul class="dropdown-menu" role="menu">                                        
-             								
-                        					<li><a href="#">Cuenta</a></li>
-                                            <li class="divider"></li>
-                                         <?php if($_SESSION["Usuario"]->return->tipousu=="1"|| $_SESSION["Usuario"]->return->tipousu=="2"){ ?>   
+        <div id="middle">
+
+            <div class="container app-container">
+
+
+                <!-- inicio -->
+
+
+                <!--fin -->
+
+
+                <div>
+
+                    <ul class="nav nav-pills">
+
+                        <div class="modal-header" style="width:1135px;">
+
+
+                            <h3> Correspondencia    
+                                <span>SH</span> <?php echo "- José" ?>   
+
+
+
+                                <div class="btn-group  pull-right">
+
+                                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
+                                        <span class="icon-cog" style="color:rgb(255,255,255)"> Configuracion </span>
+                                    </button>
+
+                                    <ul class="dropdown-menu" role="menu">                                        
+
+                                        <li><a href="#">Cuenta</a></li>
+                                        <li class="divider"></li>
+                                        <?php if ($_SESSION["Usuario"]->return->tipousu == "1" || $_SESSION["Usuario"]->return->tipousu == "2") { ?>   
                                             <li><a href="../pages/administration.php">Administracion</a></li>
-                                            
-                        					<li class="divider"></li>
-                                            <?php } ?>
-                                            
-                        					<li><a href="../recursos/cerrarsesion.php" onClick="">Salir</a></li>
-                        					<li class="divider"></li>
-                        					<li><a href="#">Ayuda</a></li>
-                      					</ul>
-                                        
-                      				</div>
-                                  
-                                   <span class="divider pull-right" style="color:rgb(255,255,255)">  | </span>
-                                     <div class="btn-group  pull-right">
-                      					
-                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
-                      						<span class="icon-th-large" style="color:rgb(255,255,255)">  Operaciones </span>
-                                        </button>
-                                        
-                      					<ul class="dropdown-menu" role="menu">                                       <?php 
-	  
-					   if($SedeRol->return->idrol->idrol=="1"|| $SedeRol->return->idrol->idrol=="3"){ ?>
-						   
-						<li><a href="operator_level.php" > Recibir Paquete</a></li>
-                        <li class="divider"></li>
-                        					
-						   
-					  <?php }
-					    if($SedeRol->return->idrol->idrol=="2"|| $SedeRol->return->idrol->idrol=="5"){ ?>
-							
-						 
-                        <li><a href="headquarters_operator.php" > Recibir Paquete</a></li>
-                        <li class="divider"></li>
-                        					
-						   
-					  <?php }
-					    if($SedeRol->return->idrol->idrol=="4" || $SedeRol->return->idrol->idrol=="5"){ ?>
-							
-					 <li><a href="create_valise.php" > Crear Valija</a></li>
-                        					<li class="divider"></li>
-                       <li><a href="breakdown_valise.php" > Recibir Valija</a></li>
-                                             <li class="divider"></li>
-                        <li><a href="reports_valise.php" > Estadisticas Valija</a></li>
-                         <li class="divider"></li>
-                       
-                        					
-						  
-					 <?php  }
-					 
-	  
-					  
-					   ?>
-                        <li><a href="reports_user.php" > Estadisticas Usuario</a></li>
-                        </li>
-                        					
-                      
-             								
-                        					
-                        					
-                      					</ul>
-                                        
-                      				</div>
-                                    
-                                   <span class="divider pull-right" style="color:rgb(255,255,255)">  | </span>
-                                    
-                               <div class="btn-group  pull-right">
-                      					
-                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
-                      						<span class="icon-exclamation-sign" style="color:rgb(255,255,255)"> Alertas </span>
-                                        </button>
-                                        
-                      					<ul class="dropdown-menu" role="menu">                                        
-             								
-                        					<li><a href="../pages/package_overdue_origin.php">Paquetes Enviados</a></li>
+
                                             <li class="divider"></li>
-                                            <li><a href="../pages/package_overdue_destination.php">Paquetes Recibidos</a></li>
-                                           
-                                         <?php if($SedeRol->return->idrol->idrol=="4"|| $SedeRol->return->idrol->idrol=="5"){ ?>   
-                                             <li class="divider"></li>
+                                        <?php } ?>
+
+                                        <li><a href="../recursos/cerrarsesion.php" onClick="">Salir</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Ayuda</a></li>
+                                    </ul>
+
+                                </div>
+
+                                <span class="divider pull-right" style="color:rgb(255,255,255)">  | </span>
+                                <div class="btn-group  pull-right">
+
+                                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
+                                        <span class="icon-th-large" style="color:rgb(255,255,255)">  Operaciones </span>
+                                    </button>
+
+                                    <ul class="dropdown-menu" role="menu">                                       <?php if ($SedeRol->return->idrol->idrol == "1" || $SedeRol->return->idrol->idrol == "3") { ?>
+
+                                            <li><a href="operator_level.php" > Recibir Paquete</a></li>
+                                            <li class="divider"></li>
+
+
+<?php }
+if ($SedeRol->return->idrol->idrol == "2" || $SedeRol->return->idrol->idrol == "5") {
+    ?>
+
+
+                                            <li><a href="headquarters_operator.php" > Recibir Paquete</a></li>
+                                            <li class="divider"></li>
+
+
+<?php }
+if ($SedeRol->return->idrol->idrol == "4" || $SedeRol->return->idrol->idrol == "5") {
+    ?>
+
+                                            <li><a href="create_valise.php" > Crear Valija</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="breakdown_valise.php" > Recibir Valija</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="reports_valise.php" > Estadisticas Valija</a></li>
+                                            <li class="divider"></li>
+
+
+
+                                        <?php }
+                                        ?>
+                                        <li><a href="reports_user.php" > Estadisticas Usuario</a></li>
+                                        </li>		
+                                    </ul>
+
+                                </div>
+
+                                <span class="divider pull-right" style="color:rgb(255,255,255)">  | </span>
+
+                                <div class="btn-group  pull-right">
+
+                                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				
+                                        <span class="icon-exclamation-sign" style="color:rgb(255,255,255)"> Alertas </span>
+                                    </button>
+
+                                    <ul class="dropdown-menu" role="menu">                                        
+
+                                        <li><a href="../pages/package_overdue_origin.php">Paquetes Enviados</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="../pages/package_overdue_destination.php">Paquetes Recibidos</a></li>
+
+<?php if ($SedeRol->return->idrol->idrol == "4" || $SedeRol->return->idrol->idrol == "5") { ?>   
+                                            <li class="divider"></li>
                                             <li><a href="../pages/suitcase_overdue_origin.php">Valijas Enviadas</a></li>
-                        					<li class="divider"></li>
+                                            <li class="divider"></li>
                                             <li><a href="../pages/suitcase_overdue_destination.php"> Valijas Recibidas </a></li>
-                                          <?php } ?>
-                                            
-                        					
-                      					</ul>
-                                        
-                      				</div>    
-                                
-                                     </h3>
-            				</div>
-           			
-                     
-           	 </ul>
-             
-          </div>
-        
-         
-              
-		<!--Caso pantalla uno-->
-       <div class="row-fluid">
-       
-     <div class="span2">
-       
-    
- 
-        <ul class="nav nav-pills nav-stacked">
-       <li>   
-      <a href="../pages/inbox.php"> Atrás </a>
-           </li> 
-       
-         
-           
-           
-       
-            <li>   
-      <a href="../pages/edit_user.php"> Editar Usuario </a>
-           </li>
-        
+<?php } ?>
 
-      
-      
-     </ul>
-     
-   
-      
-      </div>
 
-                <div class="span10" align="center">
-                    <div class="tab-content" id="lista" align="center"> 
-         <div class="tab-content" id="lista" align="center"> 
-         <h2> Datos del Usuario </h2> 
-       <table class='footable table table-striped table-bordered'>
-			 <tr>
-			 <td style="text-align:center" ><b>Nombre</b></td>
-				 <td style="text-align:center"><?php echo $Usuario->return->nombreusu;?></td>
-		     </tr>
-			 <tr>
-			 
-			 <td style="text-align:center"><b>Apellido</b></td>
-				<td style="text-align:center"><?php echo $apellido;?></td>
-		     </tr>
-			 
-			 <td style="text-align:center" width="50%"><b>Correo</b></td>
-				 <td style="text-align:center"><?php echo $correo;?></td>		
-			 </tr>
-			
-			 <tr>
-			 
-			 <td style="text-align:center" width="50%"><b>Usuario</b></td>
-				 <td style="text-align:center"><?php echo $Usuario->return->userusu;?>
-				 </td>		
-			 </tr>
-			  <tr>
-			
-             
-              <tr>
-			 
-			 <td style="text-align:center"><b>Teléfono 1</b></td>
-				<td style="text-align:center"><?php echo $telefono1;?></td>
-		     </tr>
-              <tr>
-			 
-			 <td style="text-align:center"><b>Teléfono 2</b></td>
-				<td style="text-align:center"><?php echo $telefono2;?></td>
-		     </tr>
-              <tr>
-			 
-			 <td style="text-align:center"><b>Dirección 1</b></td>
-				<td style="text-align:center"><?php echo $direccion1;?></td>
-		     </tr>
-              <tr>
-			 
-			 <td style="text-align:center"><b>Dirección 2</b></td>
-				<td style="text-align:center"><?php echo $direccion2;?></td>
-		     </tr>
+                                    </ul>
 
-	</table>
+                                </div>    
+
+                            </h3>
+                        </div>
+
+
+                    </ul>
+
+                </div>
+
+
+
+                <!--Caso pantalla uno-->
+                <div class="row-fluid">
+
+                    <div class="span2">
+
+
+
+                        <ul class="nav nav-pills nav-stacked">
+                            <li>   
+                                <a href="../pages/inbox.php"> Atrás </a>
+                            </li> 
+                            <li>   
+                                <a href="../pages/edit_user.php"> Editar Usuario </a>
+                            </li>
+
+
+
+
+                        </ul>
+
+
+
+                    </div>
+
+                    <div class="span10" align="center">
+                        <div class="tab-content" id="lista" align="center"> 
+                            <div class="tab-content" id="lista" align="center"> 
+                                <h2> Datos del Usuario </h2> 
+                                <table class='footable table table-striped table-bordered'>
+                                    <tr>
+                                        <td style="text-align:center" ><b>Nombre</b></td>
+                                        <td style="text-align:center"><?php echo $Usuario->return->nombreusu; ?></td>
+                                    </tr>
+                                    <tr>
+
+                                        <td style="text-align:center"><b>Apellido</b></td>
+                                        <td style="text-align:center"><?php echo $apellido; ?></td>
+                                    </tr>
+
+                                    <td style="text-align:center" width="50%"><b>Correo</b></td>
+                                    <td style="text-align:center"><?php echo $correo; ?></td>		
+                                    </tr>
+
+                                    <tr>
+
+                                        <td style="text-align:center" width="50%"><b>Usuario</b></td>
+                                        <td style="text-align:center"><?php echo $Usuario->return->userusu; ?>
+                                        </td>		
+                                    </tr>
+                                    <tr>
+
+
+                                    <tr>
+
+                                        <td style="text-align:center"><b>Teléfono 1</b></td>
+                                        <td style="text-align:center"><?php echo $telefono1; ?></td>
+                                    </tr>
+                                    <tr>
+
+                                        <td style="text-align:center"><b>Teléfono 2</b></td>
+                                        <td style="text-align:center"><?php echo $telefono2; ?></td>
+                                    </tr>
+                                    <tr>
+
+                                        <td style="text-align:center"><b>Dirección 1</b></td>
+                                        <td style="text-align:center"><?php echo $direccion1; ?></td>
+                                    </tr>
+                                    <tr>
+
+                                        <td style="text-align:center"><b>Dirección 2</b></td>
+                                        <td style="text-align:center"><?php echo $direccion2; ?></td>
+                                    </tr>
+
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
- <script>
-            window.onload = function(){
-			killerSession();}
-             function killerSession(){
-             setTimeout("window.open('../recursos/cerrarsesion.php','_top');",300000);
-             }
-   </script>
-        <script src="../js/footable.js" type="text/javascript"></script>
-        <script src="../js/footable.paginate.js" type="text/javascript"></script>
-        <script src="../js/footable.sortable.js" type="text/javascript"></script>
-        <script type="text/javascript" src="../js/jquery-2.0.3.js" ></script> 
+                <script>
+                    window.onload = function() {
+                        killerSession();
+                    }
+                    function killerSession() {
+                        setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
+                    }
+                </script>
+                <script src="../js/footable.js" type="text/javascript"></script>
+                <script src="../js/footable.paginate.js" type="text/javascript"></script>
+                <script src="../js/footable.sortable.js" type="text/javascript"></script>
+                <script type="text/javascript" src="../js/jquery-2.0.3.js" ></script> 
 
 
-    </body>
-</html>
+                </body>
+                </html>
