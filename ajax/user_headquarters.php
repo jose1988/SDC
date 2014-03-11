@@ -12,7 +12,7 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
  $Sede= array('sede' => $aux);
   $_SESSION["sedeb"]=$aux;
   $Usuarios = $client->consultarUsuariosXSede($Sede);
- javaAlert("entro al ajax".$aux);
+
   $reg=0;
 	if(isset( $Usuarios->return)){
 	  $reg=count( $Usuarios->return);

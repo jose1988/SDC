@@ -106,7 +106,7 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
 					echo "
 					<td style='text-align:center' width='15%'><input type='checkbox'  onClick='Confirmar(".$Valija->return[$j]->idpaq.");' name='idc[".$j."]' id='idc[".$j."]' value='".$Valija->return[$j]->idpaq."'></td>";                     
 					echo " 
-					<td style='text-align:center' width='15%'><input type='checkbox' name='idr".$j."' id='idr".$j."'  onClick='Reportar(".$Valija->return[$j]->idpaq.");' value='".$Valija->return[$j]->idpaq."'></td>";  
+					<td style='text-align:center' width='15%'><input type='checkbox' name='idr[".$j."]' id='idr[".$j."]'  onClick='Reportar(".$Valija->return[$j]->idpaq.");' value='".$Valija->return[$j]->idpaq."'></td>";  
 			
 				            
             echo " </tr>";
@@ -116,7 +116,8 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
 					$j++;
 				} 
 			}else{  
-					 echo "<td  style='text-align:center'>".$Valija->return->destinopaq->idusubuz->nombreusu."</td>";
+					
+                    echo "<td  style='text-align:center'>".$Valija->return->destinopaq->idusubuz->nombreusu."</td>";
 					 echo "<td  style='text-align:center'>".$Valija->return->asuntopaq."</td>";
 					echo "<td style='text-align:center'>".$Valija->return->iddoc->nombredoc."</td>";
 					if($Valija->return->respaq==0){
@@ -124,10 +125,11 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
 						echo "<td style='text-align:center'> Si </td>";
 					}
                     echo "<td style='text-align:center'>".substr($Valija->return->fechapaq,0,10)."</td>";  
-					echo "<td style='text-align:center'> 
-					<td style='text-align:center' width='15%'><input type='checkbox' onClick='Confirmar(".$Valija->return->idpaq.");' name='idc[0]' id='idc[0]' value='".$Valija->return->idpaq."'></td>";                     
-					echo "<td style='text-align:center'> 
-					<td style='text-align:center' width='15%'><input type='checkbox' name='idr[0]' id='idr[0]' value='".$Valija->return->idpaq." onClick='Reportar(".$Valija->return->idpaq.");'></td>";            
+					echo "
+					<td style='text-align:center' width='15%'><input type='checkbox'  onClick='Confirmar(".$Valija->return[$j]->idpaq.");' name='idc[0]' id='idc[0]' value='".$Valija->return->idpaq."'></td>";                     
+					echo " 
+					<td style='text-align:center' width='15%'><input type='checkbox' name='idr[0]' id='idr[0]'  onClick='Reportar(".$Valija->return->idpaq.");' value='".$Valija->return->idpaq."'></td>";  
+			          
             echo "</tr>";
 			}
 	echo " </tbody>

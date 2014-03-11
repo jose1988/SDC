@@ -30,7 +30,7 @@ require_once('../lib/nusoap.php');
 $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
   $client = new SOAPClient($wsdl_url);
   $client->decode_utf8 = false; 
- javaAlert("entro al ajax".$aux);
+ 
  $datosU = array('idUsuario' => $aux);
   $Bandeja = $client->consultarUsuario($datosU);
   $reg=0;

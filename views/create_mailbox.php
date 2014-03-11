@@ -1,13 +1,13 @@
 <?php
 if (isset($_POST["crear"])) {
-    javaalert($_SESSION["usubox"]."  Se ha guardado con exito");
+   
     try{
 	$datosB = array('idusu' => $_SESSION["Usuario"]->return->idusu,'idusub' => $_SESSION["usubox"],'sede' => $_SESSION["sedeb"]);
 	$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
   $client = new SOAPClient($wsdl_url);
   $client->decode_utf8 = false; 
   $res=$client->insertarBuzon($datosB);
-  
+   javaalert($_SESSION["usubox"]."  Se ha guardado con exito");
 	}catch (Exception $e) {
 			javaalert('Lo sentimos no hay conexión');
 			iraURL('index.php');

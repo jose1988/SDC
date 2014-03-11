@@ -42,7 +42,7 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
  $sedeU = $client->consultarSedeRol($dau); 
   $reg=count($Bandeja->return);
   $regs=count($sedeU->return);
-   javaAlert("entro al ajax".$aux);
+   
   $regr=count($Roles->return);									
   $_SESSION["usuedit"]=$Bandeja->return->idusu;
   }else{

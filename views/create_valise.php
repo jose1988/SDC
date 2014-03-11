@@ -194,11 +194,13 @@ if(isset($_POST["guardar"]) && isset($_POST["ide"])){
                 <div class="span10">
                     <div class="tab-content" id="lista">
                         <h2> <strong> Realizar Valija </strong> </h2>
+                        <?php if($reg!=0){ ?>
                         <form class="form-Cvalija">
                             <div class="span6" >
                                 Elija el destino:  <select onChange="sede();" name="Destinos"> <option value="" style="display:none">Seleccionar:</option> 
                               
                                 <?php 
+								
 								if($reg>1){
 									$i=0;
 								  while($reg>$i){
@@ -221,6 +223,12 @@ if(isset($_POST["guardar"]) && isset($_POST["ide"])){
                              
                             </div>
                         </form>
+                        <? } else{
+							echo"<div class='alert alert-block' align='center'>
+									<h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
+									<h4 align='center'>No hay Paquetes para realizar Valija</h4>
+								</div> ";
+						}?>
                         
                         <br>
                         
@@ -265,11 +273,11 @@ if(isset($_POST["guardar"]) && isset($_POST["ide"])){
 
 </script>
         <script>
-            //window.onload = function(){killerSession();}
-            //
-            //function killerSession(){
-            //setTimeout("window.open('../recursos/cerrarsesion.php','_top');",300000);
-            //}
+            window.onload = function(){killerSession();}
+            
+            function killerSession(){
+            setTimeout("window.open('../recursos/cerrarsesion.php','_top');",300000);
+            }
         </script>
         <script src="../js/footable.js" type="text/javascript"></script>
         <script src="../js/footable.paginate.js" type="text/javascript"></script>
