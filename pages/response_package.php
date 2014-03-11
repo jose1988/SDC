@@ -64,12 +64,16 @@ $idPadre= array('idpaq' => $_GET['idpaqr']);
 							'iddoc' => $documento,
 							'idsed'=>$sede,
 							'idpaqres'=>$idPadre);
-							$registro= array('registroPaquete' => $paquete);
-				$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
-			$client = new SOAPClient($wsdl_url);
-			$client->decode_utf8 = false;				
+							$registro= array('registroPaquete' => $paquete);		
 							
 			$envio=$client->crearPaquete($registro);		//pilas ismael
+			 $paramUltimo = array('idUsuario' => $Paquete->return->destinopaq->idusubuz->idusu);
+                    $idPaquete = $client->ultimoPaqueteXOrigen($paramUltimo);
+					$paq = array('idpaq' => $idPaquete->return->idpaq);
+					$bandejaorigen=$client->insertarBandejaOrigen($paq);
+					$bandejaDestino=$client->insertarBandejaDestino($paq);
+					$paramPadre = array('idpaq' => $idPaquete->return->idpaq,'status'=>"2");
+					$statusPadre=$client->insertarBandejaDestino($paramPadre);
 			if($_FILES['imagen']['name']!=""){
 					$imagenName= $_FILES['imagen']['name'];
 					$caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"; //posibles caracteres a usar
@@ -99,16 +103,19 @@ $idPadre= array('idpaq' => $_GET['idpaqr']);
 			$Rta=	$client->insertarAdjunto($par);
 			
 			}
-			if($envio->return==0){
-				javaalert("La correspondencia no ha podido ser enviada en estos momentos");
+			if(!isset($envio->return) || !isset($bandejaorigen->return) || !isset($bandejaDestino->return) || !isset($statusPadre->return)){
+								 javaalert("La correspondencia no ha podido ser enviada correctamente , por favor consulte con el administrador");                   
+
+			
+			
 			}else{
-				javaalert("La correspondencia ha sido enviada");
+				if($envio->return=="1" && $bandejaorigen->return=="1" && $bandejaDestino->return=="1" && $statusPadre->return=="1"){
+						javaalert("La correspondencia ha sido enviada");
 				llenarLog(1, "Envio de Correspondencia",$_SESSION["Usuario"]->return->idusu,$_SESSION["Sede"]->return->idsed);
+				}
 			}
 			iraURL('../pages/inbox.php');
 			
-			}else{
-			javaalert("El Usuario al que desea enviar la correspondencia no esta registrado en sus contactos, por favor verifique");
 			}
 			
 			
