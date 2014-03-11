@@ -201,16 +201,13 @@ echo '<script language="javascript"> window.location = "../pages/inbox.php"; </s
                         					<li><a href="../pages/package_overdue_origin.php">Paquetes Enviados</a></li>
                                             <li class="divider"></li>
                                             <li><a href="../pages/package_overdue_destination.php">Paquetes Recibidos</a></li>
-                                            <li class="divider"></li>
+                                           
                                          <?php if($SedeRol->return->idrol->idrol=="4"|| $SedeRol->return->idrol->idrol=="5"){ ?>   
-                                            
+                                             <li class="divider"></li>
                                             <li><a href="../pages/suitcase_overdue_origin.php">Valijas Enviadas</a></li>
-                                            
                         					<li class="divider"></li>
                                             <li><a href="../pages/suitcase_overdue_destination.php"> Valijas Recibidas </a></li>
-                                            
-                        					<li class="divider"></li>
-                                            <?php } ?>
+                                          <?php } ?>
                                             
                         					
                       					</ul>
@@ -262,22 +259,22 @@ echo '<script language="javascript"> window.location = "../pages/inbox.php"; </s
          <h2> Datos del Usuario </h2> 
        <table class='footable table table-striped table-bordered'>
 			 <tr>
-			 <td style="text-align:center" >Nombre</td>
+			 <td style="text-align:center" ><b>Nombre</b></td>
 				 <td style="text-align:center"><?php echo $Usuario->return->nombreusu;?></td>
 		     </tr>
 			 <tr>
 			 
-			 <td style="text-align:center">Apellido</td>
+			 <td style="text-align:center"><b>Apellido</b></td>
 				<td style="text-align:center"><?php echo $apellido;?></td>
 		     </tr>
 			 
-			 <td style="text-align:center" width="50%">Correo</td>
+			 <td style="text-align:center" width="50%"><b>Correo</b></td>
 				 <td style="text-align:center"><?php echo $correo;?></td>		
 			 </tr>
 			
 			 <tr>
 			 
-			 <td style="text-align:center" width="50%">Usuario</td>
+			 <td style="text-align:center" width="50%"><b>Usuario</b></td>
 				 <td style="text-align:center"><?php echo $Usuario->return->userusu;?>
 				 </td>		
 			 </tr>
@@ -286,22 +283,22 @@ echo '<script language="javascript"> window.location = "../pages/inbox.php"; </s
              
               <tr>
 			 
-			 <td style="text-align:center">Teléfono 1</td>
+			 <td style="text-align:center"><b>Teléfono 1</b></td>
 				<td style="text-align:center"><?php echo $telefono1;?></td>
 		     </tr>
               <tr>
 			 
-			 <td style="text-align:center">Teléfono 2</td>
+			 <td style="text-align:center"><b>Teléfono 2</b></td>
 				<td style="text-align:center"><?php echo $telefono2;?></td>
 		     </tr>
               <tr>
 			 
-			 <td style="text-align:center">Dirección 1</td>
+			 <td style="text-align:center"><b>Dirección 1</b></td>
 				<td style="text-align:center"><?php echo $direccion1;?></td>
 		     </tr>
               <tr>
 			 
-			 <td style="text-align:center">Dirección 2</td>
+			 <td style="text-align:center"><b>Dirección 2</b></td>
 				<td style="text-align:center"><?php echo $direccion2;?></td>
 		     </tr>
 

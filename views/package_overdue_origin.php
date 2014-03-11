@@ -61,7 +61,7 @@
 
           <div id="middle">
             <div class="container app-container">
-                <div>
+          <div>
                     <ul class="nav nav-pills">
                         <li class="pull-left">
                             <div class="modal-header" style="width:1135px;">
@@ -118,10 +118,10 @@
                                           <ul class="dropdown-menu" role="menu">
                                             <li><a href="../pages/package_overdue_origin.php">Paquetes Enviados</a></li>
                                             <li class="divider"></li>
-                                            <li><a href="../pages/package_overdue_destination.php">Paquetes Recibidos</a></li>                                            
-                                            <?php if($SedeRol->return->idrol->idrol=="4"|| $SedeRol->return->idrol->idrol=="5"){ ?>
+                                            <li><a href="../pages/package_overdue_destination.php">Paquetes Recibidos</a></li>
                                             <li class="divider"></li>
-											<li><a href="../pages/suitcase_overdue_origin.php">Valijas Enviadas</a></li>
+                                            <?php if($SedeRol->return->idrol->idrol=="4"|| $SedeRol->return->idrol->idrol=="5"){ ?>
+                                            <li><a href="../pages/suitcase_overdue_origin.php">Valijas Enviadas</a></li>
                                             <li class="divider"></li>
                                             <li><a href="../pages/suitcase_overdue_destination.php"> Valijas Recibidas </a></li>
                                             <li class="divider"></li>
