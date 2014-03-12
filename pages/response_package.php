@@ -19,6 +19,11 @@ $UsuarioRol = array('idusu' => $_SESSION["Usuario"]->return->idusu, 'sede' => $_
 $SedeRol = $client->consultarSedeRol($UsuarioRol);
 $idPaquete = array('idPaquete' => $_GET['idpaqr']);
 $Paquete = $client->ConsultarPaqueteXId($idPaquete);
+if (!isset($Paquete->return)) {
+    iraURL('../pages/inbox.php');
+}elseif($Paquete->return->statuspaq!="1" && $Paquete->return->idusubuz->idusu != $_SESSION["Usuario"]->return->idusu){
+iraURL('../pages/inbox.php');
+}
 $contacto = array('idusu' => $Paquete->return->origenpaq->idusu);
 $dueno = array('idusu' => $Paquete->return->destinopaq->idusubuz->idusu);
 $sede = array('idsed' => $Paquete->return->idsed->idsed);
@@ -59,6 +64,7 @@ if (isset($_POST["enviar"])) {//echo $_POST["datepicker"].'<br>';
                 'fechaenviopaq' => date('Y-m-d', strtotime(str_replace('/', '-', $_POST["datepickerf"]))),
                 'fechaapaq' => date('Y-m-d', strtotime(str_replace('/', '-', $_POST["datepicker"]))),
                 'statuspaq' => "0",
+				'respaq' => "0",
                 'localizacionpaq' => $Paquete->return->destinopaq->idusubuz->userusu,
                 'idpri' => $prioridad,
                 'iddoc' => $documento,
@@ -91,9 +97,6 @@ if (isset($_POST["enviar"])) {//echo $_POST["datepicker"].'<br>';
                 $Ruta = $direccion2 . "/adjunto/" . $cadena . "." . $tipo[1];
                 $imagen = $_FILES['imagen']['tmp_name'];
                 move_uploaded_file($imagen, $uploadfile);
-                $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
-                $client = new SOAPClient($wsdl_url);
-                $client->decode_utf8 = false;
                 $idPaquete = $client->maxPaquete();
                 $paq = array('idpaq' => $idPaquete->return);
                 $adj = array('nombreadj' => $imagenName,
@@ -107,7 +110,7 @@ if (isset($_POST["enviar"])) {//echo $_POST["datepicker"].'<br>';
             } else {
                 if ($envio->return == "1" && $bandejaorigen->return == "1" && $bandejaDestino->return == "1" && $statusPadre->return == "1") {
                     javaalert("La correspondencia ha sido enviada");
-                    llenarLog(1, "Envio de Correspondencia", $_SESSION["Usuario"]->return->idusu, $_SESSION["Sede"]->return->idsed);
+                    llenarLog(1, "Envio de Respuesta de Correspondencia", $_SESSION["Usuario"]->return->idusu, $_SESSION["Sede"]->return->idsed);
                 }
             }
             iraURL('../pages/inbox.php');
