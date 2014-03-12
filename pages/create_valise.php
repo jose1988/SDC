@@ -17,16 +17,23 @@ if(!isset($_SESSION["Usuario"])){
   $client = new SOAPClient($wsdl_url);
   $client->decode_utf8 = false; 
   $i=0;
+  $reg=0;
   $Sede= array('sede' => $_SESSION["Sede"]->return->nombresed);
   
   $Sedes = $client->ConsultarSedeParaValija($Sede);
    $UsuarioRol= array('idusu' => $_SESSION["Usuario"]->return->idusu,'sede' =>$_SESSION["Sede"]->return->nombresed);
   $SedeRol=$client->consultarSedeRol($UsuarioRol); 
-  $reg=0;
-	if(isset( $Sedes->return)){
-	  $reg=count( $Sedes->return);
+  if($SedeRol->return->idrol->idrol=="4" || $SedeRol->return->idrol->idrol=="5"){
+	  if(isset($Sedes->return)){
+	  $reg=count($Sedes->return);
 	  
 	  }
+	  $verificacion=1; 
+  }else{
+	  iraURL('../pages/inbox.php');	
+  }
+  
+	
   } catch (Exception $e) {
 	javaalert('Lo sentimos no hay conexión');
 	iraURL('../index.php');	

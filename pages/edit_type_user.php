@@ -25,12 +25,14 @@ if(!isset($_SESSION["Usuario"])){
 	  $reg=count($Sedes->return);
 	  
 	  }
+	  $UsuarioRol= array('idusu' => $_SESSION["Usuario"]->return->idusu,'sede' =>$_SESSION["Sede"]->return->nombresed);
+   $SedeRol=$client->consultarSedeRol($UsuarioRol);
   } catch (Exception $e) {
 	javaalert('Lo sentimos no hay conexión');
 	iraURL('../index.php');	
 	}	
 
-include("../views/user_role.php");
+include("../views/edit_type_user.php");
 
 
 
