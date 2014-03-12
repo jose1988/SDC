@@ -1,6 +1,6 @@
 <?php
-if($usuarioBitacora==""){
-	echo '<script language="javascript"> window.location = "../pages/inbox.php"; </script>';
+if ($usuarioBitacora == "") {
+    echo '<script language="javascript"> window.location = "../pages/inbox.php"; </script>';
 }
 require_once("../pdf/dompdf/dompdf_config.inc.php");
 $htmlUno = "";
@@ -9,13 +9,13 @@ $htmlTres = "";
 $htmlCuatro = "";
 $htmlCinco = "";
 
-if($contadorPaquetes>0){
-	
+if ($contadorPaquetes > 0) {
+
 ///Si el contador excede el valor para ver 2 páginas
-if($contadorPaquetes>5){
+    if ($contadorPaquetes > 5) {
 
 # Contenido HTML del documento que queremos generar en PDF.
-$htmlUno = '<html>
+        $htmlUno = '<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Comprobante de Listado de Paquetes en Nivel 1</title>
@@ -26,42 +26,42 @@ $htmlUno = '<html>
 <table align="center" width="500" border="0" >
   <tr>
     <td>
-		<img src="../images/header-top-left.png" width="330" height="50">
-   	  	<h2 align="center">Sistema de Correspondencia</h2>
-		<h3 align="center">Listado de Paquetes en Nivel 1</h3>
+	<img src="../images/header-top-left.png" width="330" height="50">
+   	<h2 align="center">Sistema de Correspondencia</h2>
+	<h3 align="center">Listado de Paquetes en Nivel 1</h3>
     	<table width="500" border="1" id="borde">
 			<tr id="bd">
 				<td id="bd" style="text-align:center"><strong>Paquete</strong></td>
-    			<td id="bd" style="text-align:center"><strong>Origen</strong></td>
-    			<td id="bd" style="text-align:center"><strong>Destino</strong></td>
-    			<td id="bd" style="text-align:center"><strong>Dirección</strong></td>
+                                <td id="bd" style="text-align:center"><strong>Origen</strong></td>
+                                <td id="bd" style="text-align:center"><strong>Destino</strong></td>
+                                <td id="bd" style="text-align:center"><strong>Dirección</strong></td>
 				<td id="bd" style="text-align:center"><strong>Teléfono</strong></td>
 				<td id="bd" style="text-align:center"><strong>Respuesta al Paquete</strong></td>
   			</tr>';
-			
-	  	for($i=0; $i<$contadorPaquetes; $i++){			
-	  		$htmlDos = $htmlDos.'<tr id="bd">
-				<td id="bd" align="center">'.$idPaq[$i].'</td>
-    			<td id="bd">'.$origen[$i].'</td>
-    			<td id="bd">'.$destino[$i].'</td>
-    			<td id="bd">'.$direccion[$i].'</td>
-				<td id="bd">'.$telefono[$i].'</td>
-				<td id="bd" align="center">'.$idPaqRes[$i].'</td>
-  			</tr>';		
-		}
-		
-		$htmlTres = '</table>
+
+        for ($i = 0; $i < $contadorPaquetes; $i++) {
+            $htmlDos = $htmlDos . '<tr id="bd">
+				<td id="bd" align="center">' . $idPaq[$i] . '</td>
+                                <td id="bd">' . $origen[$i] . '</td>
+                                <td id="bd">' . $destino[$i] . '</td>
+                                <td id="bd">' . $direccion[$i] . '</td>
+				<td id="bd">' . $telefono[$i] . '</td>
+				<td id="bd" align="center">' . $idPaqRes[$i] . '</td>
+  			</tr>';
+        }
+
+        $htmlTres = '</table>
 		<table width="500" border="0">
 		<tr>
-  		  <td colspan="4">&nbsp;</td>
+                    <td colspan="4">&nbsp;</td>
 		</tr>
   		<tr>
-  		  <td colspan="2" align="center"><strong>________________</strong></td>
-          <td colspan="2" align="center"><strong>________________</strong></td>
+                    <td colspan="2" align="center"><strong>________________</strong></td>
+                    <td colspan="2" align="center"><strong>________________</strong></td>
 		  </tr>
   		<tr>
-  		  <td colspan="2" align="center"><strong>Usuario Nivel 1</strong></td>
-          <td colspan="2" align="center"><strong>Recepción</strong></td>
+                    <td colspan="2" align="center"><strong>Usuario Nivel 1</strong></td>
+                    <td colspan="2" align="center"><strong>Recepción</strong></td>
 		</tr>
 	</table>
 	</td>
@@ -73,42 +73,42 @@ $htmlUno = '<html>
   <table align="center" width="500" border="0" >
   <tr>
     <td>
-		<img src="../images/header-top-left.png" width="330" height="50">
-   	  	<h2 align="center">Sistema de Correspondencia</h2>
-		<h3 align="center">Listado de Paquetes en Nivel 1</h3>
+	<img src="../images/header-top-left.png" width="330" height="50">
+   	<h2 align="center">Sistema de Correspondencia</h2>
+	<h3 align="center">Listado de Paquetes en Nivel 1</h3>
     	<table width="500" border="1" id="borde">
 			<tr id="bd">
 				<td id="bd" style="text-align:center"><strong>Paquete</strong></td>
-    			<td id="bd" style="text-align:center"><strong>Origen</strong></td>
-    			<td id="bd" style="text-align:center"><strong>Destino</strong></td>
-    			<td id="bd" style="text-align:center"><strong>Dirección</strong></td>
+                                <td id="bd" style="text-align:center"><strong>Origen</strong></td>
+                                <td id="bd" style="text-align:center"><strong>Destino</strong></td>
+                                <td id="bd" style="text-align:center"><strong>Dirección</strong></td>
 				<td id="bd" style="text-align:center"><strong>Teléfono</strong></td>
 				<td id="bd" style="text-align:center"><strong>Respuesta al Paquete</strong></td>
   			</tr>';
-			
-	  	for($i=0; $i<$contadorPaquetes; $i++){
-	  		$htmlCuatro = $htmlCuatro.'<tr id="bd">
-				<td id="bd" align="center">'.$idPaq[$i].'</td>
-    			<td id="bd">'.$origen[$i].'</td>
-    			<td id="bd">'.$destino[$i].'</td>
-    			<td id="bd">'.$direccion[$i].'</td>
-				<td id="bd">'.$telefono[$i].'</td>
-				<td id="bd" align="center">'.$idPaqRes[$i].'</td>
-  			</tr>';		
-		}
-		
-		$htmlCinco = '</table>
+
+        for ($i = 0; $i < $contadorPaquetes; $i++) {
+            $htmlCuatro = $htmlCuatro . '<tr id="bd">
+				<td id="bd" align="center">' . $idPaq[$i] . '</td>
+                                <td id="bd">' . $origen[$i] . '</td>
+                                <td id="bd">' . $destino[$i] . '</td>
+                                <td id="bd">' . $direccion[$i] . '</td>
+				<td id="bd">' . $telefono[$i] . '</td>
+				<td id="bd" align="center">' . $idPaqRes[$i] . '</td>
+  			</tr>';
+        }
+
+        $htmlCinco = '</table>
 		<table width="500" border="0">
 		<tr>
-  		  <td colspan="4">&nbsp;</td>
+                    <td colspan="4">&nbsp;</td>
 		</tr>
   		<tr>
-  		  <td colspan="2" align="center"><strong>________________</strong></td>
-          <td colspan="2" align="center"><strong>________________</strong></td>
+                    <td colspan="2" align="center"><strong>________________</strong></td>
+                    <td colspan="2" align="center"><strong>________________</strong></td>
 		  </tr>
   		<tr>
-  		  <td colspan="2" align="center"><strong>Usuario Nivel 1</strong></td>
-          <td colspan="2" align="center"><strong>Recepción</strong></td>
+                    <td colspan="2" align="center"><strong>Usuario Nivel 1</strong></td>
+                    <td colspan="2" align="center"><strong>Recepción</strong></td>
 		</tr>
 	</table>
 	</td>
@@ -117,12 +117,11 @@ $htmlUno = '<html>
 </body>
 </html>
 ';
-}//Fin del IF
-
+    }//Fin del IF
 //Si el contador es menor a cinco mando a imprimir una sola hoja
-else{
+    else {
 
-$htmlUno = '<html>
+        $htmlUno = '<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Comprobante de Listado de Paquetes en Nivel 1</title>
@@ -133,42 +132,42 @@ $htmlUno = '<html>
 <table align="center" width="500" border="0" >
   <tr>
     <td>
-		<img src="../images/header-top-left.png" width="330" height="50">
-   	  	<h2 align="center">Sistema de Correspondencia</h2>
-		<h3 align="center">Listado de Paquetes en Nivel 1</h3>
+	<img src="../images/header-top-left.png" width="330" height="50">
+   	<h2 align="center">Sistema de Correspondencia</h2>
+	<h3 align="center">Listado de Paquetes en Nivel 1</h3>
     	<table width="500" border="1" id="borde">
 			<tr id="bd">
 				<td id="bd" style="text-align:center"><strong>Paquete</strong></td>
-    			<td id="bd" style="text-align:center"><strong>Origen</strong></td>
-    			<td id="bd" style="text-align:center"><strong>Destino</strong></td>
-    			<td id="bd" style="text-align:center"><strong>Dirección</strong></td>
+                                <td id="bd" style="text-align:center"><strong>Origen</strong></td>
+                                <td id="bd" style="text-align:center"><strong>Destino</strong></td>
+                                <td id="bd" style="text-align:center"><strong>Dirección</strong></td>
 				<td id="bd" style="text-align:center"><strong>Teléfono</strong></td>
 				<td id="bd" style="text-align:center"><strong>Respuesta al Paquete</strong></td>
   			</tr>';
-			
-		for($i=0; $i<$contadorPaquetes; $i++){			
-	  		$htmlDos = $htmlDos.'<tr id="bd">
-				<td id="bd" align="center">'.$idPaq[$i].'</td>
-    			<td id="bd">'.$origen[$i].'</td>
-    			<td id="bd">'.$destino[$i].'</td>
-    			<td id="bd">'.$direccion[$i].'</td>
-				<td id="bd">'.$telefono[$i].'</td>
-				<td id="bd" align="center">'.$idPaqRes[$i].'</td>
-  			</tr>';		
-		}
-		
-		$htmlTres = '</table>
+
+        for ($i = 0; $i < $contadorPaquetes; $i++) {
+            $htmlDos = $htmlDos . '<tr id="bd">
+				<td id="bd" align="center">' . $idPaq[$i] . '</td>
+                                <td id="bd">' . $origen[$i] . '</td>
+                                <td id="bd">' . $destino[$i] . '</td>
+                                <td id="bd">' . $direccion[$i] . '</td>
+				<td id="bd">' . $telefono[$i] . '</td>
+				<td id="bd" align="center">' . $idPaqRes[$i] . '</td>
+  			</tr>';
+        }
+
+        $htmlTres = '</table>
 		<table width="500" border="0">
 		<tr>
-  		  <td colspan="4">&nbsp;</td>
+                    <td colspan="4">&nbsp;</td>
 		</tr>
   		<tr>
-  		  <td colspan="2" align="center"><strong>________________</strong></td>
-          <td colspan="2" align="center"><strong>________________</strong></td>
+                    <td colspan="2" align="center"><strong>________________</strong></td>
+                    <td colspan="2" align="center"><strong>________________</strong></td>
 		  </tr>
   		<tr>
-  		  <td colspan="2" align="center"><strong>Usuario Nivel 1</strong></td>
-          <td colspan="2" align="center"><strong>Recepción</strong></td>
+                    <td colspan="2" align="center"><strong>Usuario Nivel 1</strong></td>
+                    <td colspan="2" align="center"><strong>Recepción</strong></td>
 		</tr>
 	</table>
 	</td>
@@ -184,42 +183,42 @@ $htmlUno = '<html>
   </tr>  
   <tr>
   	<td>
-		<img src="../images/header-top-left.png" width="330" height="50">
-   	  	<h2 align="center">Sistema de Correspondencia</h2>
-		<h3 align="center">Listado de Paquetes en Nivel 1</h3>
-		<table width="500" border="1" id="borde">
+            <img src="../images/header-top-left.png" width="330" height="50">
+            <h2 align="center">Sistema de Correspondencia</h2>
+            <h3 align="center">Listado de Paquetes en Nivel 1</h3>
+            <table width="500" border="1" id="borde">
 			<tr id="bd">
 				<td id="bd" style="text-align:center"><strong>Paquete</strong></td>
-    			<td id="bd" style="text-align:center"><strong>Origen</strong></td>
-    			<td id="bd" style="text-align:center"><strong>Destino</strong></td>
-    			<td id="bd" style="text-align:center"><strong>Dirección</strong></td>
+                                <td id="bd" style="text-align:center"><strong>Origen</strong></td>
+                                <td id="bd" style="text-align:center"><strong>Destino</strong></td>
+                                <td id="bd" style="text-align:center"><strong>Dirección</strong></td>
 				<td id="bd" style="text-align:center"><strong>Teléfono</strong></td>
 				<td id="bd" style="text-align:center"><strong>Respuesta al Paquete</strong></td>
   			</tr>';
-		
-		for($i=0; $i<$contadorPaquetes; $i++){
-	  		$htmlCuatro = $htmlCuatro.'<tr id="bd">
-				<td id="bd" align="center">'.$idPaq[$i].'</td>
-    			<td id="bd">'.$origen[$i].'</td>
-    			<td id="bd">'.$destino[$i].'</td>
-    			<td id="bd">'.$direccion[$i].'</td>
-				<td id="bd">'.$telefono[$i].'</td>
-				<td id="bd" align="center">'.$idPaqRes[$i].'</td>
-  			</tr>';		
-		}
-		
-		$htmlCinco = '</table>
+
+        for ($i = 0; $i < $contadorPaquetes; $i++) {
+            $htmlCuatro = $htmlCuatro . '<tr id="bd">
+				<td id="bd" align="center">' . $idPaq[$i] . '</td>
+                                <td id="bd">' . $origen[$i] . '</td>
+                                <td id="bd">' . $destino[$i] . '</td>
+                                <td id="bd">' . $direccion[$i] . '</td>
+				<td id="bd">' . $telefono[$i] . '</td>
+				<td id="bd" align="center">' . $idPaqRes[$i] . '</td>
+  			</tr>';
+        }
+
+        $htmlCinco = '</table>
 		<table width="500" border="0">
 		<tr>
-  		  <td colspan="4">&nbsp;</td>
+                    <td colspan="4">&nbsp;</td>
 		</tr>
   		<tr>
-  		  <td colspan="2" align="center"><strong>________________</strong></td>
-          <td colspan="2" align="center"><strong>________________</strong></td>
+                    <td colspan="2" align="center"><strong>________________</strong></td>
+                    <td colspan="2" align="center"><strong>________________</strong></td>
 		  </tr>
   		<tr>
-  		  <td colspan="2" align="center"><strong>Usuario Nivel 1</strong></td>
-          <td colspan="2" align="center"><strong>Recepción</strong></td>
+                    <td colspan="2" align="center"><strong>Usuario Nivel 1</strong></td>
+                    <td colspan="2" align="center"><strong>Recepción</strong></td>
 		</tr>
 	</table>
 	</td>
@@ -228,21 +227,18 @@ $htmlUno = '<html>
 </body>
 </html>
 ';
-
-}//Fin del ELSE
-
+    }//Fin del ELSE
 //Concatenación de todo
-$html = $htmlUno.$htmlDos.$htmlTres.$htmlCuatro.$htmlCinco;
+    $html = $htmlUno . $htmlDos . $htmlTres . $htmlCuatro . $htmlCinco;
 
 //Obtenemos el código html de la página web que nos interesa
-$dompdf = new DOMPDF();
+    $dompdf = new DOMPDF();
 //Creamos una instancia a la clase
-$dompdf->load_html($html);
+    $dompdf->load_html($html);
 //Esta línea es para hacer la página del PDF más grande
-$dompdf->set_paper('carta','portrait');
-$dompdf->render();
-$nom = 'Comprobante Nivel Uno_'.$contadorPaquetes.' Paquetes.pdf';
-$dompdf->stream($nom);
-
+    $dompdf->set_paper('carta', 'portrait');
+    $dompdf->render();
+    $nom = 'Comprobante Nivel Uno_' . $contadorPaquetes . ' Paquetes.pdf';
+    $dompdf->stream($nom);
 }//Fin del IF general
 ?>
