@@ -14,7 +14,7 @@ require_once('../lib/nusoap.php');
   
 	}catch (Exception $e) {
 			javaalert('Lo sentimos no hay conexión');
-			iraURL('index.php');
+			iraURL('../index.php');
 		}
 
 ?>

@@ -143,8 +143,9 @@
                 </div>
 
                 <div class="span10" align="center">
+                  
                     <div class="tab-content" id="lista" align="center">
-                                               
+                            <h2> <strong> Editar Tipo de Usuario</strong> </h2>                    
                             <h2>
                             
                                <form class="form-Dvalija" method="post" id="fval">

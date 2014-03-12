@@ -143,7 +143,9 @@
                 </div>
 
                 <div class="span10" align="center">
+                  
                     <div class="tab-content" id="lista" align="center">
+                     <h2> <strong> Asignar Sede </strong> </h2>
                                                
                             <h2>
                             

@@ -44,7 +44,7 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
   
    
   $regr=count($Sedes->return);									
-  $_SESSION["usuedit"]=$Bandeja->return->idusu;
+  $_SESSION["usuedit"]= $aux;
   }else{
 	$reg=0;  
   }
