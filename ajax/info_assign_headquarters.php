@@ -129,7 +129,7 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
 		var ed = $selectedOption.val();
 		$.ajax({
            type: "POST",
-           url: "../ajax/user_edit.php",
+           url: "../ajax/edit_assign_headquarters.php",
            data: {'ed':ed},
            dataType: "text",
                 success:  function (response) {

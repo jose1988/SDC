@@ -1,4 +1,5 @@
 <?php
+
 if(isset($_POST["guardar"]) && isset($_POST["ide"])){
 		try{
 			$registrosAValija=$_POST["ide"];

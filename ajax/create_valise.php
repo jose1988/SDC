@@ -1,4 +1,10 @@
-	<!-- styles -->
+	 <!-- javascript -->
+        <script type='text/javascript' src="../js/jquery-1.9.1.js"></script>
+        <link rel="stylesheet" type="text/css" href="../js/ui-lightness/jquery-ui-1.10.3.custom.css" media="all" />
+<script type="text/javascript" src="../js/jquery-ui-1.10.3.custom.js" ></script> 
+<script type="text/javascript" src="../js/calendarioValidado.js" ></script> 
+    
+    <!-- styles -->
 	<link href="../css/bootstrap.css" rel="stylesheet">
 	<link href="../css/bootstrap-combined.min.css" rel="stylesheet">
 	<link href="../css/bootstrap-responsive.css" rel="stylesheet">
@@ -123,18 +129,18 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
 	
   	</table>
 	
-	";
+	</form>";
 	echo '<ul id="pagination" class="footable-nav"><span>Pag:</span></ul>';
    		
 		echo "
-                                <div align=´'center'><button  class='btn' id='guardar' name='guardar' >Crear Valija</button></div>
-     </form>";              
+                                <div align='center'><button  class='btn' id='guardar' name='guardar' >Crear Valija</button></div>
+     ";              
 		
 	}else {
 		echo "<br>";
 		echo"<div class='alert alert-block' align='center'>
 			<h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
-			<h4 align='center'>No hay Paquetes en Bandeja </h4>
+			<h4 align='center'>No hay Paquetes para valija</h4>
 		</div> ";
 	}
 	
@@ -144,6 +150,7 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
 		  
   ?>  
  
+
 
 <script src="../js/footable.js" type="text/javascript"></script>
 <script src="../js/footable.paginate.js" type="text/javascript"></script>
