@@ -24,8 +24,13 @@ if (!isset($rowPrioridad->return)) {
         <link rel="stylesheet" type="text/css" href="../js/ui-lightness/jquery-ui-1.10.3.custom.css" media="all" />
         <script type="text/javascript" src="../js/jquery-ui-1.10.3.custom.js" ></script> 
         <script type="text/javascript" src="../js/calendarioValidado.js" ></script> 
-        <!-- styles -->
-        <link href="../css/bootstrap.css" rel="stylesheet">
+      <!-- styles -->
+        <link rel="shortcut icon" href="../images/faviconsh.ico">
+       
+       
+        <link rel="shortcut icon" href="../images/faviconsh.ico">
+       
+        <link href="css/bootstrap.css" rel="stylesheet">
         <link href="../css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="../css/bootstrap-responsive.css" rel="stylesheet">
         <link href="../css/style.css" rel="stylesheet">

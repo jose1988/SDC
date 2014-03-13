@@ -35,8 +35,13 @@ if (isset($_POST["crear"])) {
         <script type='text/javascript' src="../js/custom.js"></script>
         <script type='text/javascript' src="../js/jquery.fancybox.pack.js"></script>
 
-        <!-- styles -->
-        <link href="../css/bootstrap.css" rel="stylesheet">
+      <!-- styles -->
+        <link rel="shortcut icon" href="../images/faviconsh.ico">
+       
+       
+        <link rel="shortcut icon" href="../images/faviconsh.ico">
+       
+        <link href="css/bootstrap.css" rel="stylesheet">
         <link href="../css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="../css/bootstrap-responsive.css" rel="stylesheet">
         <link href="../css/style.css" rel="stylesheet">
@@ -407,7 +412,7 @@ if (isset($_POST["crear"])) {
 		var id = $selectedOption.val();
 		$.ajax({
            type: "POST",
-           url: "../ajax/user_headquarters.php",
+           url: "../ajax/user_headquarters_mail.php",
            data: {'sed':id},
            dataType: "text",
                 success:  function (response) {

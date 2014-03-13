@@ -1,5 +1,8 @@
 
 	<!-- styles -->
+        <link rel="shortcut icon" href="../images/faviconsh.ico">
+       
+       
 	<link href="../css/bootstrap.css" rel="stylesheet">
 	<link href="../css/bootstrap-combined.min.css" rel="stylesheet">
 	<link href="../css/bootstrap-responsive.css" rel="stylesheet">
@@ -34,7 +37,7 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
 
    $datosU = array('user' => $aux);
   $Bandeja = $client->consultarUsuarioXUser($datosU);
-  $Sedes = $client->listarSedes();
+  $Sedes = $client->ConsultarSedesParaAsignar($datosU);
   $regs=0;
   $reg=0;
   if(isset($Bandeja->return ) && isset($Sedes->return )){

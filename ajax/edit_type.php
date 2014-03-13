@@ -11,6 +11,13 @@ require_once('../lib/nusoap.php');
   $client = new SOAPClient($wsdl_url);
   $client->decode_utf8 = false; 
   $res=$client->editarTipoUsuario($datosB);
+   if($res->return==1){
+	 javaalert('Tipo de usuario asignado con exito'); 
+	 iraURL('../pages/administration.php');
+  }else{
+	  javaalert('Error al realizar la operacion'); 
+	 iraURL('../pages/administration.php'); 
+  }
   
 	}catch (Exception $e) {
 			javaalert('Lo sentimos no hay conexión');

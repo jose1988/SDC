@@ -8,6 +8,7 @@
         <meta name="author" content="">
 
         <!-- javascript -->
+      
         <script type='text/javascript' src="js/jquery-1.9.1.js"></script>
         <script type='text/javascript' src="js/bootstrap.js"></script>
         <script type='text/javascript' src="js/bootstrap-transition.js"></script>
@@ -19,6 +20,9 @@
 
 
         <!-- styles -->
+        <link rel="shortcut icon" href="images/faviconsh.ico">
+       
+       
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/bootstrap-combined.min.css" rel="stylesheet">

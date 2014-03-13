@@ -45,6 +45,9 @@
 	?>
 	
 	<!-- styles -->
+        <link rel="shortcut icon" href="../images/faviconsh.ico">
+       
+       
 	<link href="../css/bootstrap.css" rel="stylesheet">
 	<link href="../css/bootstrap-combined.min.css" rel="stylesheet">
 	<link href="../css/bootstrap-responsive.css" rel="stylesheet">

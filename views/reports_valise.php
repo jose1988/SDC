@@ -24,8 +24,13 @@ if ($ideSede == "") {
         <script src="http://code.highcharts.com/highcharts.js"></script>
         <script src="http://code.highcharts.com/modules/exporting.js"></script>
 
-        <!-- styles -->
-        <link href="../css/bootstrap.css" rel="stylesheet">
+      <!-- styles -->
+        <link rel="shortcut icon" href="../images/faviconsh.ico">
+       
+       
+        <link rel="shortcut icon" href="../images/faviconsh.ico">
+       
+        <link href="css/bootstrap.css" rel="stylesheet">
         <link href="../css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="../css/bootstrap-responsive.css" rel="stylesheet">
         <link href="../css/style.css" rel="stylesheet">

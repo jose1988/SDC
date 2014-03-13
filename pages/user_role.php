@@ -19,7 +19,8 @@ if(!isset($_SESSION["Usuario"])){
   $i=0;
   
   $Sedes = $client->ConsultarSedes();
- 
+   $UsuarioRol= array('idusu' => $_SESSION["Usuario"]->return->idusu,'sede' =>$_SESSION["Sede"]->return->nombresed);
+  $SedeRol=$client->consultarSedeRol($UsuarioRol); 
   $reg=0;
 	if(isset($Sedes->return)){
 	  $reg=count($Sedes->return);
