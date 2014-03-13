@@ -19,9 +19,11 @@ $UsuarioRol = array('idusu' => $_SESSION["Usuario"]->return->idusu, 'sede' => $_
 $SedeRol = $client->consultarSedeRol($UsuarioRol);
 $idPaquete = array('idPaquete' => $_GET['idpaqr']);
 $Paquete = $client->ConsultarPaqueteXId($idPaquete);
+  //echo '<pre>';print_r($Paquete);
+
 if (!isset($Paquete->return)) {
     iraURL('../pages/inbox.php');
-}elseif($Paquete->return->statuspaq!="1" && $Paquete->return->idusubuz->idusu != $_SESSION["Usuario"]->return->idusu){
+}elseif($Paquete->return->statuspaq!="1" && $Paquete->return->destinopaq->idusubuz->idusu != $_SESSION["Usuario"]->return->idusu){
 iraURL('../pages/inbox.php');
 }
 $contacto = array('idusu' => $Paquete->return->origenpaq->idusu);
@@ -31,7 +33,6 @@ $verifico = array('dueno' => $dueno, 'contacto' => $contacto, 'idSede' => $sede)
 $buzon = $client->verificarExistenciaBuzon($verifico);
 $rowDocumentos = $client->listarDocumentos();
 $rowPrioridad = $client->listarPrioridad();
-//  echo '<pre>';print_r($Paquete);
 
 if (!isset($rowDocumentos->return)) {
     javaalert("Lo sentimos no se puede enviar correspondencia porque no hay Tipos de documentos registrados,Consulte con el Administrador");
@@ -49,7 +50,7 @@ if (isset($_POST["enviar"])) {//echo $_POST["datepicker"].'<br>';
         $Parametros = array('userUsu' => $Paquete->return->origenpaq->userusu,
             'idUsuario' => $origenpaq);
         $usuarioBuzon = $client->consultarBuzonXNombreUsuario($Parametros);
-
+ // echo '<pre>';print_r($Parametros);
         if (isset($usuarioBuzon->return)) {
             $destinopaq = array('idbuz' => $usuarioBuzon->return->idbuz);
             $prioridad = array('idpri' => $_POST["prioridad"]);

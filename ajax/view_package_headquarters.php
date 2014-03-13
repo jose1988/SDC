@@ -1,6 +1,14 @@
 	<?php  
 	session_start();
-  require_once('../lib/nusoap.php');
+include("../recursos/funciones.php");
+require_once('../lib/nusoap.php');
+if (!isset($_SESSION["Usuario"])) {
+    iraURL("../index.php");
+} elseif (!usuarioCreado()) {
+    iraURL("../pages/create_user.php");
+} elseif (!isset($_POST['idpaq'])) {
+    iraURL("../pages/inbox.php");
+}
   try{
   $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
   $client = new SOAPClient($wsdl_url);
