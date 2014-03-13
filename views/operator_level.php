@@ -249,11 +249,12 @@ if (isset($PaquetesConfirmados->return)) {
                     </div>
                 </div>
             </div>
+			</div>
 
             <!-- /container -->
             <div id="footer" class="container">    	
             </div>
-        </div>
+   
         <script>
                                     window.onload = function() {
                                         killerSession();
