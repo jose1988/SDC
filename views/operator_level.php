@@ -1,4 +1,8 @@
-
+<?php
+if (!isset($SedeRol->return)) {
+    echo '<script language="javascript"> window.location = "../pages/inbox.php"; </script>';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>

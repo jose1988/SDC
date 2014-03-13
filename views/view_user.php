@@ -114,10 +114,7 @@ if (!isset($Usuario->return)) {
 
 
                             <h3> Correspondencia    
-                                <span>SH</span> <?php echo "- José" ?>   
-
-
-
+                                    <span>SH</span> <?php echo "- Hola, " . $_SESSION["Usuario"]->return->nombreusu; ?>
                                 <div class="btn-group  pull-right">
 
                                     <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">				

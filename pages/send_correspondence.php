@@ -117,7 +117,12 @@ try {
 						}
                        
                         llenarLog(1, "Envio de Correspondencia", $_SESSION["Usuario"]->return->idusu, $_SESSION["Sede"]->return->idsed);
-                        echo"<script>window.open('../pages/proof_of_correspondence.php');</script>";
+                        if($usuarioBuzon->return->tipobuz==0){
+						echo"<script>window.open('../pages/proof_of_correspondence.php');</script>";
+						}else{
+						echo"<script>window.open('../pages/proof_of_external_correspondence.php');</script>";
+						}
+						
                     }else{
 					      javaalert("La correspondencia no ha podido ser enviada correctamente , por favor consulte con el administrador");
 					}

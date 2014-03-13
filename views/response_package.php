@@ -163,11 +163,11 @@ if ($SedeRol->return->idrol->idrol == "2" || $SedeRol->return->idrol->idrol == "
                         <table> 
                             <tr>
                                 <td>Para:</td><td>
-                                    <input id="contacto" name="contacto" type="text"  value="<?php echo $Paquete->return->origenpaq->userusu; ?>" maxlength="24" style="width:800px" size="100"  disabled>								
+                                    <input id="contacto" name="contacto" type="text"  value="<?php echo $Paquete->return->origenpaq->userusu; ?>" maxlength="199" style="width:800px" size="100"  disabled>								
                                 </td>
                             </tr>
                             <tr>
-                                <td>Asunto:</td><td><input type="text" id="asunto" name="asunto" maxlength="24"  size="100" style="width:800px" value="<?php echo $Paquete->return->asuntopaq; ?>" title="Ingrese el asunto" autocomplete="off"  required><br></td>
+                                <td>Asunto:</td><td><input type="text" id="asunto" name="asunto" maxlength="199"  size="100" style="width:800px" value="<?php echo $Paquete->return->asuntopaq; ?>" title="Ingrese el asunto" autocomplete="off"  required><br></td>
                             </tr>
                             <tr>
                                 <td>Tipo Doc:</td><td><select name="doc" required  title="Seleccione el tipo de documento">
@@ -207,11 +207,11 @@ if (count($rowPrioridad->return) == 1) {
                             </tr>
                             <tr>
                                 <td>Imagen (opcional):</td><td>
-                                    <input id="imagen" name="imagen" type="file" maxlength="24" onBlur='LimitAttach(this);'/>
+                                    <input id="imagen" name="imagen" type="file" maxlength="199" onBlur='LimitAttach(this);'/>
                                 </td>
                             </tr>
                             <tr>
-                                <td>Su mensaje: </td><td><textarea  rows="10" cols= "23" id="elmsg" name="elmsg" maxlength="499"  style="width:800px" title="Ingrese un comentario" required><?php echo $Paquete->return->textopaq; ?></textarea><br></td>
+                                <td>Su mensaje: </td><td><textarea  rows="10" cols= "23" id="elmsg" name="elmsg" maxlength="1999"  style="width:800px" title="Ingrese un comentario" required><?php echo $Paquete->return->textopaq; ?></textarea><br></td>
                             </tr>
                             <tr>          
                                 <td colspan="2" align="right"><input type="submit" value="Responder Correspondecia" name="enviar"><br>
