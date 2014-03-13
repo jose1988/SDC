@@ -176,10 +176,20 @@ if (!isset($rowContactos->return)) {
                                                 <datalist id="suggests">
                                         <?php
                                         if (count($rowContactos->return) == 1) {
-                                            echo '<option value="' . $rowContactos->return->idusubuz->userusu . '">';
+											if( $rowContactos->return->tipobuz=="0"){
+											  echo '<option value="' . $rowContactos->return->idusubuz->userusu . '">';
+											}else{
+											echo '<option value="' . $rowContactos->return->nombrebuz. '">';
+											}
+                                          
                                         } else {
                                             for ($i = 0; $i < count($rowContactos->return); $i++) {
-                                                echo '<option value="' . $rowContactos->return[$i]->idusubuz->userusu . '">';
+											if( $rowContactos->return[$i]->tipobuz=="0"){
+											 echo '<option value="' . $rowContactos->return[$i]->idusubuz->userusu . '">';
+											}else{
+											echo '<option value="' . $rowContactos->return[$i]->nombrebuz. '">';
+											}
+                                               
                                             }
                                         }
                                         ?>
