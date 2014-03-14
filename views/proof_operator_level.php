@@ -244,7 +244,7 @@ if ($contadorPaquetes > 0) {
 //Esta línea es para hacer la página del PDF más grande
     $dompdf->set_paper('carta', 'portrait');
     $dompdf->render();
-    $nom = 'Comprobante Nivel Uno_' . $contadorPaquetes . ' Paquetes.pdf';
+    $nom = 'Comprobante Confirmados_' . $contadorPaquetes . ' Paquetes.pdf';
     $dompdf->stream($nom);
 }//Fin del IF general
 ?>
