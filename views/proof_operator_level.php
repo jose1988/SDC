@@ -9,6 +9,12 @@ $htmlTres = "";
 $htmlCuatro = "";
 $htmlCinco = "";
 
+if (isset($SedeRol->return->idrol->nombrerol)) {
+    $nombreRol = "- ".$SedeRol->return->idrol->nombrerol;
+} else {
+    $nombreRol = "";
+}
+
 if ($contadorPaquetes > 0) {
 
 ///Si el contador excede el valor para ver 2 páginas
@@ -28,7 +34,7 @@ if ($contadorPaquetes > 0) {
     <td>
 	<img src="../images/header-top-left.png" width="330" height="50">
    	<h2 align="center">Sistema de Correspondencia</h2>
-	<h3 align="center">Listado de Paquetes en Nivel 1</h3>
+	<h3 align="center">Paquetes Confirmados Hoy '.$nombreRol.'</h3>
     	<table width="500" border="1" id="borde">
 			<tr id="bd">
 				<td id="bd" style="text-align:center"><strong>Paquete</strong></td>
@@ -75,7 +81,7 @@ if ($contadorPaquetes > 0) {
     <td>
 	<img src="../images/header-top-left.png" width="330" height="50">
    	<h2 align="center">Sistema de Correspondencia</h2>
-	<h3 align="center">Listado de Paquetes en Nivel 1</h3>
+	<h3 align="center">Paquetes Confirmados Hoy '.$nombreRol.'</h3>
     	<table width="500" border="1" id="borde">
 			<tr id="bd">
 				<td id="bd" style="text-align:center"><strong>Paquete</strong></td>
@@ -134,7 +140,7 @@ if ($contadorPaquetes > 0) {
     <td>
 	<img src="../images/header-top-left.png" width="330" height="50">
    	<h2 align="center">Sistema de Correspondencia</h2>
-	<h3 align="center">Listado de Paquetes en Nivel 1</h3>
+	<h3 align="center">Paquetes Confirmados Hoy '.$nombreRol.'</h3>
     	<table width="500" border="1" id="borde">
 			<tr id="bd">
 				<td id="bd" style="text-align:center"><strong>Paquete</strong></td>
@@ -185,7 +191,7 @@ if ($contadorPaquetes > 0) {
   	<td>
             <img src="../images/header-top-left.png" width="330" height="50">
             <h2 align="center">Sistema de Correspondencia</h2>
-            <h3 align="center">Listado de Paquetes en Nivel 1</h3>
+            <h3 align="center">Paquetes Confirmados Hoy '.$nombreRol.'</h3>
             <table width="500" border="1" id="borde">
 			<tr id="bd">
 				<td id="bd" style="text-align:center"><strong>Paquete</strong></td>
@@ -238,7 +244,7 @@ if ($contadorPaquetes > 0) {
 //Esta línea es para hacer la página del PDF más grande
     $dompdf->set_paper('carta', 'portrait');
     $dompdf->render();
-    $nom = 'Comprobante Nivel Uno_' . $contadorPaquetes . ' Paquetes.pdf';
+    $nom = 'Comprobante Confirmados_' . $contadorPaquetes . ' Paquetes.pdf';
     $dompdf->stream($nom);
 }//Fin del IF general
 ?>

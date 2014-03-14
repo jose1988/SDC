@@ -22,7 +22,7 @@ try {
     $rowContactos = $client->consultarBuzonXUsuario($param);
     $rowDocumentos = $client->listarDocumentos();
     $rowPrioridad = $client->listarPrioridad();
-
+//echo '<pre>';print_r( $rowContactos);
     if (!isset($rowDocumentos->return)) {
         javaalert("Lo sentimos no se puede enviar correspondencia porque no hay Tipos de documentos registrados,Consulte con el Administrador");
         iraURL('../pages/inbox.php');
@@ -36,17 +36,24 @@ try {
     }
     if (isset($_POST["enviar"])) {
         if (isset($_POST["contacto"]) && $_POST["contacto"] != "" && isset($_POST["asunto"]) && $_POST["asunto"] != "" && isset($_POST["doc"]) && $_POST["doc"] != "" && isset($_POST["prioridad"]) && $_POST["prioridad"] != "" && isset($_POST["datepicker"]) && $_POST["datepicker"] != "" && isset($_POST["datepickerf"]) && $_POST["datepickerf"] != "" && isset($_POST["elmsg"]) && $_POST["elmsg"] != "") {
-            if (!isset($_POST["rta"])) {
-                $rta = "0";
-            } else {
-                $rta = "1";
-            }
+           
+		  
             $origenpaq = array('idusu' => $_SESSION["Usuario"]->return->idusu);
             $Parametros = array('userUsu' => $_POST["contacto"],
                 'idUsuario' => $origenpaq);
             $usuarioBuzon = $client->consultarBuzonXNombreUsuario($Parametros);
 
             if (isset($usuarioBuzon->return)) {
+			if($usuarioBuzon->return->tipobuz==0){
+			 if (!isset($_POST["rta"])) {
+                $rta = "0";
+            } else {
+                $rta = "1";
+            }
+			}else{
+			$rta = "0";
+			}
+			
                 $destinopaq = array('idbuz' => $usuarioBuzon->return->idbuz);
                 $prioridad = array('idpri' => $_POST["prioridad"]);
                 $documento = array('iddoc' => $_POST["doc"]);
@@ -71,7 +78,13 @@ try {
                 $idPaquete = $client->ultimoPaqueteXOrigen($paramUltimo);
                 $paq = array('idpaq' => $idPaquete->return->idpaq);
                 $bandejaorigen = $client->insertarBandejaOrigen($paq);
-                $bandejaDestino = $client->insertarBandejaDestino($paq);
+				if($usuarioBuzon->return->tipobuz==0){
+				 $bandejaDestino = $client->insertarBandejaDestino($paq);
+				  $bandejaDestino = $bandejaDestino->return;
+				}else{
+				$bandejaDestino = "1";
+				}
+               
                 if ($_FILES['imagen']['name'] != "") {
                     $imagenName = $_FILES['imagen']['name'];
                     $caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"; //posibles caracteres a usar
@@ -96,19 +109,28 @@ try {
                     $par = array('registroAdj' => $adj);
                     $Rta = $client->insertarAdjunto($par);
                 }
-                if (!isset($envio->return) || !isset($bandejaorigen->return) || !isset($bandejaDestino->return)) {
-                    javaalert("La correspondencia no ha podido ser enviada correctamente , por favor consulte con el administrador");
-                } else {
-                    if ($envio->return == "1" && $bandejaorigen->return == "1" && $bandejaDestino->return == "1") {
-                        javaalert("La correspondencia ha sido enviada");
+                    if ($envio->return == "1" && $bandejaorigen->return == "1" && $bandejaDestino == "1") {
+						if($usuarioBuzon->return->tipobuz==1){
+						 javaalert("La correspondencia ha sido enviada, como el buzón es externo no tendra respuesta del paquete");
+						}else{
+						 javaalert("La correspondencia ha sido enviada");
+						}
+                       
                         llenarLog(1, "Envio de Correspondencia", $_SESSION["Usuario"]->return->idusu, $_SESSION["Sede"]->return->idsed);
-                        echo"<script>window.open('../pages/proof_of_correspondence.php');</script>";
-                    }
-                }
+                        if($usuarioBuzon->return->tipobuz==0){
+						echo"<script>window.open('../pages/proof_of_correspondence.php');</script>";
+						}else{
+						echo"<script>window.open('../pages/proof_of_external_correspondence.php');</script>";
+						}
+						
+                    }else{
+					      javaalert("La correspondencia no ha podido ser enviada correctamente , por favor consulte con el administrador");
+					}
+                
                 iraURL('../pages/inbox.php');
             } else {
 
-                javaalert("El Usuario al que desea enviar la correspondencia no esta registrado en sus contactos, por favor verifique");
+                javaalert("El buzón al que desea enviar la correspondencia no esta registrado en sus contactos, por favor verifique");
             }
         } else {
             javaalert("Debe agregar todos los campos obligatorios, por favor verifique");

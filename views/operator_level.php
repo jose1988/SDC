@@ -1,4 +1,8 @@
-
+<?php
+if (!isset($SedeRol->return)) {
+    echo '<script language="javascript"> window.location = "../pages/inbox.php"; </script>';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -249,11 +253,12 @@ if (isset($PaquetesConfirmados->return)) {
                     </div>
                 </div>
             </div>
+			</div>
 
             <!-- /container -->
             <div id="footer" class="container">    	
             </div>
-        </div>
+   
         <script>
                                     window.onload = function() {
                                         killerSession();
