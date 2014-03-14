@@ -30,8 +30,10 @@
 	 try{
 	 include("../recursos/funciones.php");
 require_once('../lib/nusoap.php');
+$reg=0;
+if(isset($_POST['usu']) && $_POST['usu']!= ""  && $_POST['usu']!= NULL){
   $aux= $_POST['usu'];
-$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
+  $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
   $client = new SOAPClient($wsdl_url);
   $client->decode_utf8 = false; 
 
@@ -39,7 +41,7 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
   $Bandeja = $client->consultarUsuarioXUser($datosU);
  
   $regs=0;
-  $reg=0;
+  
   if(isset($Bandeja->return )){
 	  
  
@@ -50,18 +52,25 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
   }else{
 	$reg=0;  
   }
+}else{
+    javaalert('Debe ingresar el User del Usuario');
+	iraURL('../pages/edit_type_user.php');  
+}
+
 	 } catch (Exception $e) {
 	javaalert('Lo sentimos no hay conexión');
 	iraURL('../index.php');	
 	}	
    
           
-          echo "<h2> <strong>".$Bandeja->return->nombreusu." </strong> </h2>";
+          
           
 	
 		  
 		  
    if($reg!=0){ 
+   
+   echo "<h2> <strong>".$Bandeja->return->nombreusu." </strong> </h2>";
    echo "<form method='post'> ";        
            
       echo  "<table class='footable table table-striped table-bordered'>
@@ -88,7 +97,7 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
 						   
 							echo "<option value='0' > Usuario </option>";	
 							echo "<option value='1' > Administrador </option>";	
-							echo "<option value='1' > Super Administrador </option>";	  
+							echo "<option value='2' > Super Administrador </option>";	  
 								
 
                           echo "  

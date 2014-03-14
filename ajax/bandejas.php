@@ -60,7 +60,7 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
        <th style='width:7%; text-align:center' >Destino</th>
    <th style='width:7%; text-align:center' data-sort-ignore='true'>Asunto </th>
                                         <th style='width:7%; text-align:center' >Tipo</th>
-                                        <th style='width:7%; text-align:center' >Con Respuesta</th>
+                                        <th style='width:7%; text-align:center' data-sort-ignore='true'>Con Respuesta</th>
                                         <th style='width:7%; text-align:center' >Fecha</th>";
 										
 										if($aux!="Recibidos"){

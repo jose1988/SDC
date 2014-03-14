@@ -215,10 +215,10 @@ if(isset($_POST["guardar"])){
 
                 <div class="span10">
                     <div class="tab-content" id="lista">
-                        <h2> <strong> Desglozar Valija </strong> </h2>
+                        <h2> <strong> Desglosar Valija </strong> </h2>
                         <form class="form-Dvalija" method="post" id="fval">
-                            Código de Valija:  <input type="text" id="idval" name="idval" class="input-medium search-query">
-                            <button type="button"  onClick="Valija();" class="btn">Buscar</button>
+                            Código de Valija:  <input type="text" placeholder="Ej. 4246" title="Ingrese el código de Valija" autocomplete="off" style="width:140px ;height:28px" onkeypress="return isNumberKey(event)" pattern="[0-9]{1,38}" id="idval" name="idval" class="input-medium search-query">
+                            <button type="button"  onClick="Valija();" class="btn" >Buscar</button>
                         </form>
                         
                         <div id="valija">
@@ -279,6 +279,7 @@ if(isset($_POST["guardar"])){
 <script>
 	
 	function Reportar(idpaq){
+		
 			
 			 var parametros = {
                 "idpaq" : idpaq

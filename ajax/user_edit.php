@@ -6,7 +6,10 @@
 require_once('../lib/nusoap.php');
 		$aux= $_POST['ed'];
 	$datosB = array('idusu' => $_SESSION["usuedit"],'rol' => $aux,'sede' =>  $_SESSION["sedeb"]);
-	
+	if($aux==""){
+	javaalert('Debe seleccionar un rol'); 
+	 iraURL('../pages/edit_type_user.php');	
+	}else{
 	$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
   $client = new SOAPClient($wsdl_url);
   $client->decode_utf8 = false; 
@@ -17,6 +20,7 @@ require_once('../lib/nusoap.php');
   }else{
 	  javaalert('Error al realizar la operacion'); 
 	 iraURL('../pages/administration.php'); 
+  }
   }
   
 	}catch (Exception $e) {

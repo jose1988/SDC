@@ -30,16 +30,19 @@
 	 try{
 	 include("../recursos/funciones.php");
 require_once('../lib/nusoap.php');
-  $aux= $_POST['usu'];
-$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
+$reg=0;
+if(isset($_POST['usu']) && $_POST['usu']!= ""  && $_POST['usu']!= NULL){
+	
+      $aux= $_POST['usu'];
+   $datosU = array('user' => $aux);
+   $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
   $client = new SOAPClient($wsdl_url);
   $client->decode_utf8 = false; 
 
-   $datosU = array('user' => $aux);
+  
   $Bandeja = $client->consultarUsuarioXUser($datosU);
-  $Sedes = $client->ConsultarSedesParaAsignar($datosU);
+  $Sedes = $client->listarSedes($datosU);
   $regs=0;
-  $reg=0;
   if(isset($Bandeja->return ) && isset($Sedes->return )){
 	
  
@@ -51,18 +54,25 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
   }else{
 	$reg=0;  
   }
+   
+}else{
+    javaalert('Debe ingresar el User del Usuario');
+	iraURL('../pages/assign_headquarters.php');  
+}
+
 	 } catch (Exception $e) {
 	javaalert('Lo sentimos no hay conexión');
 	iraURL('../index.php');	
 	}	
    
           
-          echo "<h2> <strong>".$Bandeja->return->nombreusu." </strong> </h2>";
+       
           
 	
 		  
 		  
    if($reg!=0){ 
+      echo "<h2> <strong>".$Bandeja->return->nombreusu." </strong> </h2>";
    echo "<form method='post'> ";        
            
       echo  "<table class='footable table table-striped table-bordered'>

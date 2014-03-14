@@ -118,7 +118,7 @@
                                             <?php if($SedeRol->return->idrol->idrol=="4"|| $SedeRol->return->idrol->idrol=="5"){
 												 if($SedeRol->return->idrol->idrol=="5"){ ?>
                                                   <li class="divider"></li>
-                                            <?php } ?>
+                                                 <?php } ?>
                                            
                                             <li><a href="../pages/suitcase_overdue_origin.php">Valijas Enviadas</a></li>
                                             <li class="divider"></li>

@@ -47,10 +47,11 @@ require_once('../lib/nusoap.php');
 
 	
 	 <?php
-	
-  $aux= $_POST['idval'];
+	   $reg=0;
+	if(isset($_POST['idval']) && $_POST['idval']!= "" && $_POST['idval']!= ""){
+   $aux= $_POST['idval'];
   $_SESSION["valdes"]=$aux;
-$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
+  $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
   $client = new SOAPClient($wsdl_url);
   $client->decode_utf8 = false; 
   $Val= array('registroValija' =>$aux , 'sede' => $_SESSION["Sede"]->return->nombresed);
@@ -58,12 +59,18 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
   if(isset($Valijac->return)){
   $Valija = $client->ConsultarPaquetesXValija($Val);
   }
-  $reg=0;
+
   if(isset($Valija->return)){
   $reg=count($Valija->return);
   }else{
 	$reg=0;  
   }
+}else{
+    javaalert('Debe ingresar el Codigo de una valija');
+	iraURL('../pages/breakdown_valise.php');  
+}
+ 
+
    
           
         
@@ -112,13 +119,12 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
 					}
                     echo "<td style='text-align:center'>". date("d/m/Y", strtotime(substr($Valija->return[$j]->fechaenviopaq, 0, 10)))."</td>";  
 					echo "
-					<td style='text-align:center' width='15%'><input type='checkbox'  onClick='Confirmar(".$Valija->return[$j]->idpaq.");' name='idc[".$j."]' id='idc[".$j."]' value='".$Valija->return[$j]->idpaq."'></td>";                     
+					<td style='text-align:center' onmousedown='Rep(".$j.");'  width='15%'><input type='checkbox'  onClick='Confirmar(".$Valija->return[$j]->idpaq.");' name='idc[".$j."]' id='idc[".$j."]' value='".$Valija->return[$j]->idpaq."' /></td>";                     
 					echo " 
-					<td style='text-align:center' width='15%'><input type='checkbox' name='idr[".$j."]' id='idr[".$j."]'  onClick='Reportar(".$Valija->return[$j]->idpaq.");' value='".$Valija->return[$j]->idpaq."'></td>";  
+					<td style='text-align:center' width='15%'><input type='checkbox' name='idr[".$j."]' id='idr[".$j."]'  onClick='Reportar(".$Valija->return[$j]->idpaq.");' value='".$Valija->return[$j]->idpaq."' /></td>";  
 			
 				            
             echo " </tr>";
-			
 			
 			
 					$j++;
@@ -167,7 +173,37 @@ $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WS
 		  
   ?>
 
+<script  type="text/javascript">
+	
+	function Rep(id){
+		  rd=document.getElementsByName("idr");
+		  
+		document.nombe_forma.idr[0].disabled=true;	  
+		  
+			
+		
+	}
+	
+	function Con(id){
+			
+			 var parametros = {
+                "idpaq" : idpaq
+       		 };
+			$.ajax({
+           	type: "POST",
+           	url: "../ajax/packeges_report_confirm.php",
+           	data: parametros,
+           	dataType: "text",
+			success:  function (response) {
+            	$("#alert").html(response);
+			}
+		
+	    }); 
+	
+	}
+	
 
+	</script>
 
 <script src="../js/footable.js" type="text/javascript"></script>
 <script src="../js/footable.paginate.js" type="text/javascript"></script>

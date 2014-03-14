@@ -146,7 +146,7 @@ if ($usuarioBitacora == "") {
                     <div class="span2">      
                         <ul class="nav nav-pills nav-stacked">
                             <li>   
-                                <a href="../pages/inbox.php">
+                                <a href="../pages/administration.php">
                                     <?php echo "Atrás" ?>         
                                 </a>
                             </li>

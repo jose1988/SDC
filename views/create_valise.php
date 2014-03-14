@@ -226,7 +226,7 @@ if(isset($_POST["guardar"]) && isset($_POST["ide"])){
                             </div> 
 
                             <div class="span6" >
-                              Fecha de envio:<input type="text" id="datepicker" name="datepickerf" autocomplete="off" style="width:100px" title="Seleccione la fecha de envio" required/>
+                              Fecha de envio:<input type="text" id="datepicker" name="datepicker" autocomplete="off" style="width:100px" title="Seleccione la fecha de envio" required/>
 
                                 
                              
