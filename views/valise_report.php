@@ -126,13 +126,16 @@ if ($usuarioBitacora == "") {
                                             <li><a href="../pages/package_overdue_origin.php">Paquetes Enviados</a></li>
                                             <li class="divider"></li>
                                             <li><a href="../pages/package_overdue_destination.php">Paquetes Recibidos</a></li>
+                                            <li><a href="../pages/package_overdue_destination.php">Paquetes Recibidos</a></li>
+                                           
+                                            <?php if($SedeRol->return->idrol->idrol=="4"|| $SedeRol->return->idrol->idrol=="5"){
+												 if($SedeRol->return->idrol->idrol=="5"){ ?>
+                                                  <li class="divider"></li>
+                                            <?php } ?>
+                                           
+                                            <li><a href="../pages/suitcase_overdue_origin.php">Valijas Enviadas</a></li>
                                             <li class="divider"></li>
-                                            <?php 
-                                            if ($SedeRol->return->idrol->idrol == "4" || $SedeRol->return->idrol->idrol == "5") { ?>
-                                                <li><a href="../pages/suitcase_overdue_origin.php">Valijas Enviadas</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="../pages/suitcase_overdue_destination.php"> Valijas Recibidas </a></li>
-                                                <li class="divider"></li>
+                                            <li><a href="../pages/suitcase_overdue_destination.php"> Valijas Recibidas </a></li>
                                             <?php } ?>
                                         </ul>
                                     </div>

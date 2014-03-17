@@ -8,7 +8,7 @@ if (!isset($_SESSION["Usuario"])) {
     iraURL("../index.php");
 } elseif (!usuarioCreado()) {
     iraURL("../pages/create_user.php");
-} elseif (!isset($_GET['idpaqr'])) {
+}  elseif (!isset($_GET['idpaqr'])) {
     iraURL("../pages/inbox.php");
 }
 //try {

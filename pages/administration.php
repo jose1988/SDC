@@ -12,12 +12,20 @@ $client->decode_utf8 = false;
   $SedeRol=$client->consultarSedeRol($UsuarioRol); 
 if(!isset($_SESSION["Usuario"])){
 	
-	iraURL("../index.php");
+	iraURL("../pages/index.php");
 	}
+	
+			if(isset($SedeRol->return)){
+				if($SedeRol->return->idrol->idrol==0){
+					 iraURL("../pages/inbox.php");
+				   }
+				}else{
+					 iraURL("../pages/index.php");
+				}
 
   } catch (Exception $e) {
 	javaalert('Lo sentimos no hay conexión');
-	iraURL('./index.php');	
+	iraURL('../pages/index.php');	
 	}
 
 include("../views/administration.php");

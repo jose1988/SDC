@@ -124,12 +124,15 @@
                                             <li><a href="../pages/package_overdue_origin.php">Paquetes Enviados</a></li>
                                             <li class="divider"></li>
                                             <li><a href="../pages/package_overdue_destination.php">Paquetes Recibidos</a></li>
-                                            <li class="divider"></li>
-                                            <?php if($SedeRol->return->idrol->idrol=="4"|| $SedeRol->return->idrol->idrol=="5"){ ?>
+                                           
+                                            <?php if($SedeRol->return->idrol->idrol=="4"|| $SedeRol->return->idrol->idrol=="5"){
+												 if($SedeRol->return->idrol->idrol=="5"){ ?>
+                                                  <li class="divider"></li>
+                                            <?php } ?>
+                                           
                                             <li><a href="../pages/suitcase_overdue_origin.php">Valijas Enviadas</a></li>
                                             <li class="divider"></li>
                                             <li><a href="../pages/suitcase_overdue_destination.php"> Valijas Recibidas </a></li>
-                                            <li class="divider"></li>
                                             <?php } ?>
                                           </ul>
                                         </div>                               
@@ -154,7 +157,7 @@
                             <h2>
                             
                                <form class="form-Dvalija" method="post" id="fval">
-                            Usuario:  <input type="text" id="usuario" name="usuario" class="input-medium search-query">
+                            Usuario:  <input type="text"  placeholder="Ejm. jose.fuentes" id="usuario" name="usuario" class="input-medium search-query">
                             <button type="button"  onClick="Editar();" class="btn">Buscar</button>
                         </form>
                             </h2>

@@ -5,10 +5,12 @@ try {
 include("../recursos/funciones.php");
 require_once('../lib/nusoap.php');
 
-if(!isset($_SESSION["Usuario"])){
-	
-	iraURL("../index.php");
-	}
+
+if (!isset($_SESSION["Usuario"])) {
+    iraURL("../index.php");
+} elseif (!usuarioCreado()) {
+    iraURL("../pages/create_user.php");
+} 
 
 
   $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
@@ -27,6 +29,13 @@ if(!isset($_SESSION["Usuario"])){
 	  $reg=count($BandejaUsu->return);
 	
 	  }
+	  if(isset($SedeRol->return)){
+				if($SedeRol->return->idrol->idrol==0){
+					 iraURL("../pages/inbox.php");
+				   }
+				}else{
+					 iraURL("../pages/index.php");
+				}
   } catch (Exception $e) {
 	javaalert('Lo sentimos no hay conexión');
 	iraURL('./index.php');	

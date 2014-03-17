@@ -5,10 +5,12 @@ try {
 include("../recursos/funciones.php");
 require_once('../lib/nusoap.php');
 
-if(!isset($_SESSION["Usuario"])){
-	
-	iraURL('../index.php');
-	}
+
+if (!isset($_SESSION["Usuario"])) {
+    iraURL("../index.php");
+} elseif (!usuarioCreado()) {
+    iraURL("../pages/create_user.php");
+} 
 
 //echo'<pre>';
 // print_r( $_SESSION["Sede"]);
@@ -26,6 +28,13 @@ if(!isset($_SESSION["Usuario"])){
 	  $reg=count($Sedes->return);
 	  
 	  }
+	  if(isset($SedeRol->return)){
+				if($SedeRol->return->idrol->idrol==0){
+					 iraURL("../pages/inbox.php");
+				   }
+				}else{
+					 iraURL("../pages/index.php");
+				}
   } catch (Exception $e) {
 	javaalert('Lo sentimos no hay conexión');
 	iraURL('../index.php');	

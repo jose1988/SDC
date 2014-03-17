@@ -5,10 +5,12 @@ try {
 include("../recursos/funciones.php");
 require_once('../lib/nusoap.php');
 
-if(!isset($_SESSION["Usuario"])){
-	
-	iraURL("../index.php");
-	}
+
+if (!isset($_SESSION["Usuario"])) {
+    iraURL("../index.php");
+} elseif (!usuarioCreado()) {
+    iraURL("../pages/create_user.php");
+} 
 
 
   $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';

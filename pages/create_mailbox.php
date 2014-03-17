@@ -5,10 +5,12 @@ try {
 include("../recursos/funciones.php");
 require_once('../lib/nusoap.php');
 
-if(!isset($_SESSION["Usuario"])){
-	
-	iraURL('../index.php');
-	}
+
+if (!isset($_SESSION["Usuario"])) {
+    iraURL("../index.php");
+} elseif (!usuarioCreado()) {
+    iraURL("../pages/create_user.php");
+} 
 
 //echo'<pre>';
 // print_r( $_SESSION["Sede"]);
