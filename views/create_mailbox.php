@@ -178,13 +178,13 @@ if (isset($_POST["crear"])) {
 									$i=0;
 								  while($reg>$i){
 								
-						echo '<option value="'.$Sedes->return[$i].'" >'.$Sedes->return[$i].'</option>';
+						echo '<option value="'.$Sedes->return[$i]->nombresed.'" >'.$Sedes->return[$i]->nombresed.'</option>';
 						$i++;
 						
 								  }
 								}
 								else{
-							echo '<option value="'.$Sedes->return.'" >'.$Sedes->return.'</option>';	  
+							echo '<option value="'.$Sedes->return->nombresed.'" >'.$Sedes->return->nombresed.'</option>';	  
 								}
 								?>
                             

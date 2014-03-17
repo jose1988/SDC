@@ -19,7 +19,7 @@ if(!isset($_SESSION["Usuario"])){
   $i=0;
   $Sede= array('sede' => $_SESSION["Sede"]->return->nombresed);
   
-  $Sedes = $client->ConsultarSedeParaValija($Sede);
+  $Sedes = $client->ConsultarSedesBuzon($Sede);
    $UsuarioRol= array('idusu' => $_SESSION["Usuario"]->return->idusu,'sede' =>$_SESSION["Sede"]->return->nombresed);
   $SedeRol=$client->consultarSedeRol($UsuarioRol); 
   $reg=0;

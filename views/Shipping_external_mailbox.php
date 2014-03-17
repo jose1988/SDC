@@ -137,21 +137,12 @@
 <!--Caso pantalla uno-->
 <div class="row-fluid">
   <div class="span2">
-    <form method="post" action="../pages/send_correspondence.php">
-      <button class="btn btn-danger btn-block btn-small " type="submit">
-      <h6> Redactar Correspondecia</h6>
-      </button>
+   
       <ul class="nav nav-pills nav-stacked">
-        <?php 
-		 $i=0;
-		  while($i<$reg){
-			$aux=$BandejaUsu->return[$i]->nombreiba;
-				?>
-        <li> <a href="javascript:;" id="<?php echo $aux ?>" onClick="Bandeja(<?php echo "'".$aux."'" ?>);" > <?php echo ($BandejaUsu->return[$i]->nombreiba); ?> </a> </li>
-        <?php
-			 
-		  $i++;
-		   }
+        
+		 
+        <li> <a href="../pages/inbox.php"> Atrás</a> </li>
+      
 		    
 		  ?>
       </ul>
