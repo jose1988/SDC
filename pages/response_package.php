@@ -11,7 +11,7 @@ if (!isset($_SESSION["Usuario"])) {
 }  elseif (!isset($_GET['idpaqr'])) {
     iraURL("../pages/inbox.php");
 }
-//try {
+try {
 $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
 $client = new SOAPClient($wsdl_url);
 $client->decode_utf8 = false;
@@ -121,8 +121,8 @@ if (isset($_POST["enviar"])) {//echo $_POST["datepicker"].'<br>';
     }
 }
 include("../views/response_package.php");
-/* } catch (Exception $e) {
-  javaalert('Lo sentimos no hay conexión');
+} catch (Exception $e) {
+  javaalert('Lo sentimos no hay conexion');
   iraURL('../pages/inbox.php');
-  } */
+  } 
 ?>

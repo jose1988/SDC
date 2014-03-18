@@ -1,4 +1,3 @@
-<meta http-equiv="Content-Type" content="text/html charset=utf-8" />
 <?php
 session_start();
 
@@ -147,7 +146,7 @@ try {
     }
     include("../views/send_correspondence.php");
 } catch (Exception $e) {
-    javaalert('Lo sentimos no hay conexión');
+    javaalert('Lo sentimos no hay conexion');
     iraURL('../pages/inbox.php');
 }
 ?>

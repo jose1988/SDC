@@ -1,4 +1,3 @@
-<meta http-equiv="Content-Type" content="text/html charset=utf-8" />
 <?php
 session_start();
 
@@ -29,7 +28,7 @@ try {
 //print_R($PaquetesConfirmados);
     include("../views/headquarters_operator.php");
 } catch (Exception $e) {
-    javaalert('Lo sentimos no hay conexión');
+    javaalert('Lo sentimos no hay conexion');
     iraURL('../pages/inbox.php');
 }
 ?>

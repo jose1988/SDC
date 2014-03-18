@@ -66,7 +66,7 @@ try {
     }
     include("../views/edit_user.php");
 } catch (Exception $e) {
-    javaalert('Lo sentimos no hay conexión');
+    javaalert('Lo sentimos no hay conexion');
     iraURL('../pages/inbox.php');
 }
 ?>

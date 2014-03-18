@@ -1,4 +1,3 @@
-<meta http-equiv="Content-Type" content="text/html charset=utf-8" />
 <?php
 session_start();
 
@@ -24,7 +23,7 @@ try {
 //print_R($PaquetesConfirmados);
     include("../views/package_overdue_origin.php");
 } catch (Exception $e) {
-    javaalert('Lo sentimos no hay conexión');
+    javaalert('Lo sentimos no hay conexion');
     iraURL('../pages/inbox.php');
 }
 ?>
