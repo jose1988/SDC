@@ -180,9 +180,14 @@ if (isset($PaquetesConfirmados->return)) {
         } else {
             $asunto = $PaquetesConfirmados->return->asuntopaq;
         }
+		if($PaquetesConfirmados->return->destinopaq->tipobuz==0){
+		$nombrebuz=$PaquetesConfirmados->return->destinopaq->idusubuz->nombreusu . " " . $PaquetesConfirmados->return->destinopaq->idusubuz->apellidousu;
+		}else{
+		$nombrebuz=$PaquetesConfirmados->return->destinopaq->nombrebuz;
+		}
         ?>
                                                 <tr>     
-                                                    <td style='text-align:center'><?php echo $PaquetesConfirmados->return->destinopaq->idusubuz->nombreusu . " " . $PaquetesConfirmados->return->destinopaq->idusubuz->apellidousu; ?></td>
+                                                    <td style='text-align:center'><?php echo $nombrebuz; ?></td>
                                                     <td style='text-align:center'><?php echo $asunto; ?></td>
                                                     <td style='text-align:center'><?php echo $PaquetesConfirmados->return->iddoc->nombredoc; ?></td>
                                                     <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($PaquetesConfirmados->return->fechaapaq, 0, 10)));
@@ -197,9 +202,14 @@ if (isset($PaquetesConfirmados->return)) {
             } else {
                 $asunto = $PaquetesConfirmados->return[$i]->asuntopaq;
             }
+					if($PaquetesConfirmados->return[$i]->destinopaq->tipobuz==0){
+		$nombrebuz=$PaquetesConfirmados->return[$i]->destinopaq->idusubuz->nombreusu . " " . $PaquetesConfirmados->return[$i]->destinopaq->idusubuz->apellidousu;
+		}else{
+		$nombrebuz=$PaquetesConfirmados->return[$i]->destinopaq->nombrebuz;
+		}
             ?>
                                                     <tr>     
-                                                        <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->destinopaq->idusubuz->nombreusu . " " . $PaquetesConfirmados->return[$i]->destinopaq->idusubuz->apellidousu; ?></td>
+                                                        <td style='text-align:center'><?php echo $nombrebuz; ?></td>
                                                         <td style='text-align:center'><?php echo $asunto; ?></td>
                                                         <td style='text-align:center'><?php echo $PaquetesConfirmados->return[$i]->iddoc->nombredoc; ?></td>
                                                         <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($PaquetesConfirmados->return[$i]->fechaapaq, 0, 10))); ?></td>
