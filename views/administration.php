@@ -85,7 +85,7 @@
                         
                    
 							<h3> Correspondencia    
-                     <span>SH</span> <?php echo "- José" ?>   
+                    <span>SH</span> <?php echo "- Hola, " . $_SESSION["Usuario"]->return->nombreusu; ?>  
                       
                
                      

@@ -128,7 +128,6 @@ if ($nomUsuario == "") {
                                             <li><a href="../pages/package_overdue_origin.php">Paquetes Enviados</a></li>
                                             <li class="divider"></li>
                                             <li><a href="../pages/package_overdue_destination.php">Paquetes Recibidos</a></li>
-                                            <li><a href="../pages/package_overdue_destination.php">Paquetes Recibidos</a></li>
                                            
                                             <?php if($SedeRol->return->idrol->idrol=="4"|| $SedeRol->return->idrol->idrol=="5"){
 												 if($SedeRol->return->idrol->idrol=="5"){ ?>

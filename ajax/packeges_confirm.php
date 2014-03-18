@@ -12,8 +12,7 @@ require_once('../lib/nusoap.php');
   $paq= array('idpaq' =>$aux);
   $Valija = $client->actualizarBandeja($paq);
  
- 
-javaalert('este es el codigo  '.$aux);
+
 		  
   ?>  
  

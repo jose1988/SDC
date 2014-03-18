@@ -43,7 +43,7 @@ if (!isset($_SESSION["Usuario"])) {
  //echo'<pre>';
 // print_r( $_SESSION["Usuario"]);
 // echo '<pre>';
-include("../views/inbox.php");
+include("../views/shipping_external_mailbox.php");
 
 
 
