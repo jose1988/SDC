@@ -156,7 +156,6 @@ if ($SedeRol->return->idrol->idrol == "4" || $SedeRol->return->idrol->idrol == "
                                             <li><a href="../pages/suitcase_overdue_origin.php">Valijas Enviadas</a></li>
                                             <li class="divider"></li>
                                             <li><a href="../pages/suitcase_overdue_destination.php"> Valijas Recibidas </a></li>
-                                            <li class="divider"></li>
 <?php } ?>
                                     </ul>
                                 </div>                               
@@ -202,8 +201,7 @@ if ($SedeRol->return->idrol->idrol == "4" || $SedeRol->return->idrol->idrol == "
                                         <td style="text-align:center"><input type="text" name="usuario" id="usuario"  value="<?php echo $Usuario->return->userusu; ?>" size="30"   disabled>
                                         </td>		
                                     </tr>
-                                    <tr>
-
+                                    
 
                                     <tr>
 
