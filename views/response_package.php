@@ -139,7 +139,6 @@ if ($SedeRol->return->idrol->idrol == "2" || $SedeRol->return->idrol->idrol == "
                                         <li><a href="../pages/suitcase_overdue_origin.php">Valijas Enviadas</a></li>
                                         <li class="divider"></li>
                                         <li><a href="../pages/suitcase_overdue_destination.php"> Valijas Recibidas </a></li>
-                                        <li class="divider"></li>
 <?php } ?>
                                 </ul>
                             </div>                               
