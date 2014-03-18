@@ -287,7 +287,7 @@ if ($idPaquete == "" || $usuario == "") {
                                     </tr>
                                     <tr>
                                         <td style="text-align:center" width="50%"><b>Asunto Valija</b></td>
-                                        <?php if (!isset($resultadoPaquete->return->idval)) { ?>
+                                        <?php if (!isset($resultadoPaquete->return->idval->asuntoval)) { ?>
                                             <td style="text-align:center"><?php echo ""; ?></td>
                                         <?php } else {
                                             ?>
