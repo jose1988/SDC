@@ -136,7 +136,7 @@ if ($SedeRol->return->idrol->idrol == "2" || $SedeRol->return->idrol->idrol == "
                                                 <li><a href="../pages/suitcase_overdue_origin.php">Valijas Enviadas</a></li>
                                                 <li class="divider"></li>
                                                 <li><a href="../pages/suitcase_overdue_destination.php"> Valijas Recibidas </a></li>
-                                                <li class="divider"></li>
+                                            
 <?php } ?>
                                         </ul>
                                     </div>                               
@@ -153,6 +153,7 @@ if ($SedeRol->return->idrol->idrol == "2" || $SedeRol->return->idrol->idrol == "
                             <ul class="nav nav-pills nav-stacked">
                                 <li> <a href="inbox.php">Atrás</a> </li>
                                 <li> <a href="create_mailbox.php">Crear buzón</a> </li>
+								<li> <a href="create_mail_external.php">Crear buzón externo</a> </li>
                             </ul>
                         </div>
 
@@ -172,12 +173,13 @@ if (!isset($rowContactos->return)) {
     ?>
                                         <tr>
                                             <td>Para:</td><td>
-                                                <input id="contacto" name="contacto" type="text"  list="suggests" maxlength="199" style="width:800px ;height:28px" size="100"  title="Ingrese el nombre de usuario" autocomplete="off"   autofocus required>								
-                                                <datalist id="suggests">
+                                                
                                         <?php
-                                        if (count($rowContactos->return) == 1) {
+                                 /*      if (count($rowContactos->return) == 1) {
 											if( $rowContactos->return->tipobuz=="0"){
-											  echo '<option value="' . $rowContactos->return->idusubuz->userusu . '">';
+										//	  echo '<option value="' .$rowContactos->return->idsed->nombresed.':'. $rowContactos->return->idusubuz->userusu . '">';
+					  echo '<option value="' .$rowContactos->return->idusubuz->userusu . '">';
+
 											}else{
 											echo '<option value="' . $rowContactos->return->nombrebuz. '">';
 											}
@@ -185,15 +187,43 @@ if (!isset($rowContactos->return)) {
                                         } else {
                                             for ($i = 0; $i < count($rowContactos->return); $i++) {
 											if( $rowContactos->return[$i]->tipobuz=="0"){
-											 echo '<option value="' . $rowContactos->return[$i]->idusubuz->userusu . '">';
+										//	 echo '<option value="' .$rowContactos->return[$i]->idsed->nombresed.':'.$rowContactos->return[$i]->idusubuz->userusu . '">'.$rowContactos->return[$i]->idusubuz->userusu . '</option>';
+											echo '<option value="' .$rowContactos->return[$i]->idusubuz->userusu . '">';
 											}else{
 											echo '<option value="' . $rowContactos->return[$i]->nombrebuz. '">';
 											}
                                                
                                             }
+                                        }*/ 
+                                        ?>
+                                              
+												<select name="contacto" id="contacto" required  title="Seleccione el destino">
+                                                <option value="" style="display:none">Seleccionar:</option>
+
+ <?php
+                                        if (count($rowContactos->return) == 1) {
+											if( $rowContactos->return->tipobuz=="0"){
+										//	  echo '<option value="' .$rowContactos->return->idsed->nombresed.':'. $rowContactos->return->idusubuz->userusu . '">';
+					  echo '<option value="' .$rowContactos->return->idbuz. '">'.$rowContactos->return->idsed->nombresed.':'. $rowContactos->return->idusubuz->userusu.'</option>';
+
+											}else{
+											echo '<option value="' . $rowContactos->return->idbuz. '">'.$rowContactos->return->nombrebuz.'</option>';
+											}
+                                          
+                                        } else {
+                                            for ($i = 0; $i < count($rowContactos->return); $i++) {
+											if( $rowContactos->return[$i]->tipobuz=="0"){
+										//	 echo '<option value="' .$rowContactos->return[$i]->idsed->nombresed.':'.$rowContactos->return[$i]->idusubuz->userusu . '">'.$rowContactos->return[$i]->idusubuz->userusu . '</option>';
+											echo '<option value="' .$rowContactos->return[$i]->idbuz. '">'.$rowContactos->return[$i]->idsed->nombresed.':'.$rowContactos->return[$i]->idusubuz->userusu.'</option>';
+											}else{
+											echo '<option value="' . $rowContactos->return[$i]->idbuz. '">'.$rowContactos->return[$i]->nombrebuz.'</option>';
+											}
+                                               
+                                            }
                                         }
                                         ?>
-                                                </datalist>
+
+                                            </select>
                                             </td>
                                         </tr>
                                                     <?php

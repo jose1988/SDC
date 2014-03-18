@@ -8,7 +8,7 @@ if (!isset($_SESSION["Usuario"])) {
     iraURL("../index.php");
 } elseif (!usuarioCreado()) {
     iraURL("../pages/create_user.php");
-} 
+}
 try {
     $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
     $client = new SOAPClient($wsdl_url);
@@ -41,10 +41,19 @@ try {
             $origenpaq = array('idusu' => $_SESSION["Usuario"]->return->idusu);
             $Parametros = array('userUsu' => $_POST["contacto"],
                 'idUsuario' => $origenpaq);
-            $usuarioBuzon = $client->consultarBuzonXNombreUsuario($Parametros);
-
-            if (isset($usuarioBuzon->return)) {
-			if($usuarioBuzon->return->tipobuz==0){
+         //   $usuarioBuzon = $client->consultarBuzonXNombreUsuario($Parametros);
+			 if (count($rowContactos->return) == 1) {
+			 $tipobuz=$rowContactos->return->tipobuz;
+			 }else{
+			  for ($i = 0; $i < count($rowContactos->return); $i++) {
+			  if($_POST["contacto"]==$rowContactos->return[$i]->idbuz){
+				$tipobuz=$rowContactos->return[$i]->tipobuz;
+				break;
+			  }
+			  }
+			 }
+            //if (isset($usuarioBuzon->return)) {
+			if($tipobuz==0){
 			 if (!isset($_POST["rta"])) {
                 $rta = "0";
             } else {
@@ -54,7 +63,7 @@ try {
 			$rta = "0";
 			}
 			
-                $destinopaq = array('idbuz' => $usuarioBuzon->return->idbuz);
+                $destinopaq = array('idbuz' => $_POST["contacto"]);
                 $prioridad = array('idpri' => $_POST["prioridad"]);
                 $documento = array('iddoc' => $_POST["doc"]);
                 $sede = array('idsed' => $_SESSION["Sede"]->return->idsed);
@@ -78,7 +87,7 @@ try {
                 $idPaquete = $client->ultimoPaqueteXOrigen($paramUltimo);
                 $paq = array('idpaq' => $idPaquete->return->idpaq);
                 $bandejaorigen = $client->insertarBandejaOrigen($paq);
-				if($usuarioBuzon->return->tipobuz==0){
+				if($tipobuz==0){
 				 $bandejaDestino = $client->insertarBandejaDestino($paq);
 				  $bandejaDestino = $bandejaDestino->return;
 				}else{
@@ -110,14 +119,14 @@ try {
                     $Rta = $client->insertarAdjunto($par);
                 }
                     if ($envio->return == "1" && $bandejaorigen->return == "1" && $bandejaDestino == "1") {
-						if($usuarioBuzon->return->tipobuz==1){
+						if($tipobuz==1){
 						 javaalert("La correspondencia ha sido enviada, como el buzón es externo no tendra respuesta del paquete");
 						}else{
 						 javaalert("La correspondencia ha sido enviada");
 						}
                        
                         llenarLog(1, "Envio de Correspondencia", $_SESSION["Usuario"]->return->idusu, $_SESSION["Sede"]->return->idsed);
-                        if($usuarioBuzon->return->tipobuz==0){
+                        if($tipobuz==0){
 						echo"<script>window.open('../pages/proof_of_correspondence.php');</script>";
 						}else{
 						echo"<script>window.open('../pages/proof_of_external_correspondence.php');</script>";
@@ -127,11 +136,11 @@ try {
 					      javaalert("La correspondencia no ha podido ser enviada correctamente , por favor consulte con el administrador");
 					}
                 
-                iraURL('../pages/inbox.php');
-            } else {
+               // iraURL('../pages/inbox.php');
+          /*  } else {
 
                 javaalert("El buzón al que desea enviar la correspondencia no esta registrado en sus contactos, por favor verifique");
-            }
+            }*/
         } else {
             javaalert("Debe agregar todos los campos obligatorios, por favor verifique");
         }
