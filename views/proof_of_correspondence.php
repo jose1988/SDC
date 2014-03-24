@@ -2,7 +2,7 @@
 if ($usuarioBitacora == "") {
     echo '<script language="javascript"> window.location = "../pages/inbox.php"; </script>';
 }
-require_once("../pdf/dompdf/dompdf_config.inc.php");
+require_once("../dompdf/dompdf_config.inc.php"); 
 $htmlUno = "";
 $htmlDos = "";
 $htmlTres = "";
@@ -46,6 +46,8 @@ if (isset($resultadoConsultarSede->return->nombresed)) {
 } else {
     $sede = "";
 }
+
+$ruta="../images/codigoBarras/".$idpaq.".png";
 
 if (isset($resultadoConsultarUltimoPaquete->return)) {
 
@@ -114,13 +116,15 @@ if (isset($resultadoConsultarUltimoPaquete->return)) {
   </tr>
  
   <tr>
-  	<td>&nbsp;</td>
+  	<td><p>&nbsp;</p>
+    <p>&nbsp;</p></td>
   </tr>
   <tr>
-  	<td>---------------------------------------------------------------------------------------------------------------------------</td>
+  	<td>-------------------------------------------------------------------------------------------------------------------------------------------------------------------</td>
   </tr>
   <tr>
-  	<td>&nbsp;</td>
+  	<td><p>&nbsp;</p>
+    <p>&nbsp;</p></td>
   </tr>
   
   <tr>
@@ -182,7 +186,6 @@ if (isset($resultadoConsultarUltimoPaquete->return)) {
 
 //Concatenación de todo
     $html = $htmlUno . $htmlDos . $htmlTres;
-
 //Obtenemos el código html de la página web que nos interesa
     $dompdf = new DOMPDF();
 //Creamos una instancia a la clase
@@ -190,7 +193,7 @@ if (isset($resultadoConsultarUltimoPaquete->return)) {
 //Esta línea es para hacer la página del PDF más grande
     $dompdf->set_paper('carta', 'portrait');
     $dompdf->render();
-    $nom = 'Comprobante de Correpondencia Numero ' . $idpaq . '.pdf';
+    $nom = 'Comprobante de Correspondencia Numero ' . $idpaq . '.pdf';
     $dompdf->stream($nom);
 }//Fin del IF general
 ?>

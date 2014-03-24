@@ -2,7 +2,7 @@
 if ($usuarioBitacora == "") {
     echo '<script language="javascript"> window.location = "../pages/inbox.php"; </script>';
 }
-require_once("../pdf/dompdf/dompdf_config.inc.php");
+require_once("../dompdf/dompdf_config.inc.php");
 
 $idval = $resultadoConsultarUltimaValija->return->idval;
 
@@ -100,13 +100,15 @@ if (isset($resultadoConsultarUltimaValija->return)) {
   </tr>
  
   <tr>
-  	<td>&nbsp;</td>
+  	<td><p>&nbsp;</p>
+    <p>&nbsp;</p></td>
   </tr>
   <tr>
-  	<td>---------------------------------------------------------------------------------------------------------------------------</td>
+  	<td>-------------------------------------------------------------------------------------------------------------------------------------------------------------------</td>
   </tr>
   <tr>
-  	<td>&nbsp;</td>
+  	<td><p>&nbsp;</p>
+    <p>&nbsp;</p></td>
   </tr>
   
   <tr>

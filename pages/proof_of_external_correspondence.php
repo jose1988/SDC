@@ -1,13 +1,15 @@
 <?php
+
 session_start();
 include("../recursos/funciones.php");
+include("../recursos/codigoBarrasPdf.php");
 require_once('../lib/nusoap.php');
 
 if (!isset($_SESSION["Usuario"])) {
     iraURL("../index.php");
 } elseif (!usuarioCreado()) {
     iraURL("../pages/create_user.php");
-} 
+}
 
 $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
 $client = new SOAPClient($wsdl_url);
@@ -46,15 +48,16 @@ try {
         $idSede = array('idSede' => $ideSede);
         $resultadoConsultarSede = $client->consultarSedeXId($idSede);
 
+        $idpaq = $resultadoConsultarUltimoPaquete->return->idpaq;
+        guardarImagen($idpaq);
+
         llenarLog(6, "Comprobante de Correspondencia Externa", $usuarioBitacora, $ideSede);
-        echo"<script language='javascript'>window.location='../pages/inbox.php';</script>";
-        
+        /* echo"<script language='javascript'>window.location='../pages/inbox.php';</script>"; */
     } catch (Exception $e) {
         javaalert('Lo sentimos no hay conexion');
         iraURL('../pages/send_correspondence.php');
     }
-    include("../views/proof_of_external_correspondence.php");
-    
+    include("../pdf/proof_of_external_correspondence.php");
 } catch (Exception $e) {
     javaalert('Lo sentimos no hay conexion');
     iraURL('../pages/send_correspondence.php');

@@ -2,7 +2,7 @@
 if ($usuarioBitacora == "") {
     echo '<script language="javascript"> window.location = "../pages/inbox.php"; </script>';
 }
-require_once("../pdf/dompdf/dompdf_config.inc.php");
+require_once("../dompdf/dompdf_config.inc.php");
 $htmlUno = "";
 $htmlDos = "";
 $htmlTres = "";
@@ -47,7 +47,7 @@ if ($contadorPaquetes > 0) {
 
         for ($i = 0; $i < $contadorPaquetes; $i++) {
             $htmlDos = $htmlDos . '<tr id="bd">
-				<td id="bd" align="center">' . $idPaq[$i] . '</td>
+				<td id="bd" align="center"><img src="../images/codigoBarras/'.$idpaq[$i].'.png" width="50" height="10"></td>
                                 <td id="bd">' . $origen[$i] . '</td>
                                 <td id="bd">' . $destino[$i] . '</td>
                                 <td id="bd">' . $direccion[$i] . '</td>
@@ -66,7 +66,7 @@ if ($contadorPaquetes > 0) {
                     <td colspan="2" align="center"><strong>________________</strong></td>
 		  </tr>
   		<tr>
-                    <td colspan="2" align="center"><strong>Usuario Nivel 1</strong></td>
+                    <td colspan="2" align="center"><strong>Usuario '.$nombreRol.'</strong></td>
                     <td colspan="2" align="center"><strong>Recepción</strong></td>
 		</tr>
 	</table>
@@ -113,7 +113,7 @@ if ($contadorPaquetes > 0) {
                     <td colspan="2" align="center"><strong>________________</strong></td>
 		  </tr>
   		<tr>
-                    <td colspan="2" align="center"><strong>Usuario Nivel 1</strong></td>
+                    <td colspan="2" align="center"><strong>Usuario '.$nombreRol.'</strong></td>
                     <td colspan="2" align="center"><strong>Recepción</strong></td>
 		</tr>
 	</table>
@@ -153,7 +153,7 @@ if ($contadorPaquetes > 0) {
 
         for ($i = 0; $i < $contadorPaquetes; $i++) {
             $htmlDos = $htmlDos . '<tr id="bd">
-				<td id="bd" align="center">' . $idPaq[$i] . '</td>
+				<td id="bd" align="center"><img src="../images/codigoBarras/'.$idpaq[$i].'.png" width="50" height="10"></td>
                                 <td id="bd">' . $origen[$i] . '</td>
                                 <td id="bd">' . $destino[$i] . '</td>
                                 <td id="bd">' . $direccion[$i] . '</td>
@@ -172,21 +172,23 @@ if ($contadorPaquetes > 0) {
                     <td colspan="2" align="center"><strong>________________</strong></td>
 		  </tr>
   		<tr>
-                    <td colspan="2" align="center"><strong>Usuario Nivel 1</strong></td>
+                    <td colspan="2" align="center"><strong>Usuario '.$nombreRol.'</strong></td>
                     <td colspan="2" align="center"><strong>Recepción</strong></td>
 		</tr>
 	</table>
 	</td>
   </tr>
   <tr>
-  	<td>&nbsp;</td>
+  	<td><p>&nbsp;</p>
+    <p>&nbsp;</p></td>
   </tr>
   <tr>
-  	<td>---------------------------------------------------------------------------------------------------------------------------</td>
+  	<td>-------------------------------------------------------------------------------------------------------------------------------------------------------------------</td>
   </tr>
   <tr>
-  	<td>&nbsp;</td>
-  </tr>  
+  	<td><p>&nbsp;</p>
+    <p>&nbsp;</p></td>
+  </tr> 
   <tr>
   	<td>
             <img src="../images/header-top-left.png" width="330" height="50">
@@ -223,7 +225,7 @@ if ($contadorPaquetes > 0) {
                     <td colspan="2" align="center"><strong>________________</strong></td>
 		  </tr>
   		<tr>
-                    <td colspan="2" align="center"><strong>Usuario Nivel 1</strong></td>
+                    <td colspan="2" align="center"><strong>Usuario '.$nombreRol.'</strong></td>
                     <td colspan="2" align="center"><strong>Recepción</strong></td>
 		</tr>
 	</table>
@@ -236,7 +238,6 @@ if ($contadorPaquetes > 0) {
     }//Fin del ELSE
 //Concatenación de todo
     $html = $htmlUno . $htmlDos . $htmlTres . $htmlCuatro . $htmlCinco;
-
 //Obtenemos el código html de la página web que nos interesa
     $dompdf = new DOMPDF();
 //Creamos una instancia a la clase
