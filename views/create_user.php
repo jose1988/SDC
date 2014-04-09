@@ -23,12 +23,12 @@ if (!isset($Sedes->return)) {
         <script type='text/javascript' src="../js/jquery.fancybox.pack.js"></script>
 
 
-      <!-- styles -->
+        <!-- styles -->
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
-       
+
+
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
+
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="../css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="../css/bootstrap-responsive.css" rel="stylesheet">
@@ -76,9 +76,9 @@ if (!isset($Sedes->return)) {
                     <li class="pull-left">
                         <div class="modal-header" style="width:1135px;">
                             <h3> Correspondencia    
-                                <span>SH</span> <?php echo "- Hola, " . $_SESSION["Usuario"]->return->nombreusu; ?>
+                                <span>SH</span> Bienvenido
                                 <div class="btn-group  pull-right">
-                                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-cog" style="color:rgb(255,255,255)"> Configuracion </span> </button>
+                                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-cog" style="color:rgb(255,255,255)"> Configuración </span> </button>
                                     <ul class="dropdown-menu" role="menu">
                                         <li><a href="../recursos/cerrarsesion.php" onClick="">Salir</a></li>
                                         <li class="divider"></li>
@@ -95,7 +95,7 @@ if (!isset($Sedes->return)) {
             <div class="row-fluid">
                 <div class="span2">
                     <ul class="nav nav-pills nav-stacked">
-                        <li> <a href="../pages/index.php">Atrás</a> </li>
+                        <li> <a href="../index.php">Atrás</a> </li>
                     </ul>
                 </div>
 
@@ -115,20 +115,20 @@ if (!isset($Sedes->return)) {
                                 <tr>
                                     <td style="text-align:center" width="50%">Correo</td>
                                     <td style="text-align:center"><input type="email" name="correo" id="correo" autocomplete="off" maxlength="50" size="50" title="Ingrese un correo" placeholder="Ej. pedroperez@gmail.com">
-
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="text-align:center">Teléfono 1</td>
-                                    <td style="text-align:center"><input type="tel" name="telefono1" id="telefono1" autocomplete="off" maxlength="50" size="30" title="Ingrese el numero de telefono" placeholder="Ej. 04269876543"   ></td>
+                                    <td style="text-align:center"><input type="tel" name="telefono1" id="telefono1" autocomplete="off" maxlength="50" size="30" title="Ingrese el número de teléfono" placeholder="Ej. 04269876543"   ></td>
                                 </tr>
                                 <tr>
-                                    <td style="text-align:center">Teléfono 2</td>
+                                    <td style="text-align:center">Teléfono Adicional</td>
                                     <td style="text-align:center"><input type="tel" name="telefono2" id="telefono2" autocomplete="off" maxlength="50" size="30" placeholder="Ej. 04168674789"  ></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align:center">Sede</td>
-                                    <td style="text-align:center"><select name="sede" required  title="Seleccione la Sede a la que pertenece">
+                                    <td style="text-align:center"><select onChange="areas();
+                                            direccion();" id="sede" name="sede" required  title="Seleccione la Sede a la que pertenece">
                                             <option value="" style="display:none">Seleccionar:</option>                                  
                                             <?php
                                             if (count($Sedes->return) == 1) {
@@ -142,14 +142,19 @@ if (!isset($Sedes->return)) {
                                         </select></td>
                                 </tr>
                                 <tr>
-                                    <td style="text-align:center" >Dirección 1</td>
-                                    <td style="text-align:center"><textarea style="width:500px;"   id="direccion1" name="direccion1" maxlength="2000"  style="width:800px" ></textarea></td>
+                                    <td style="text-align:center">Área de Trabajo</td>
+                                    <td style="text-align:center"><select id="area" name="area"  required  title="Seleccione el área de trabajo a la que pertenece">
+                                            <option value="" style="display:none">Seleccionar:</option>
+                                        </select></td>
                                 </tr>
                                 <tr>
-                                    <td style="text-align:center" >Dirección 2</td>
-                                    <td style="text-align:center"><textarea style="width:500px;" id="direccion2" name="direccion2" maxlength="2000"  style="width:800px"></textarea></td>
+                                    <td style="text-align:center">Cargo</td>
+                                    <td style="text-align:center"><input type="text" name="cargo" id="cargo" autocomplete="off" maxlength="150" size="30" title="Ingrese su cargo" placeholder="Ej. Analista"  required></td>
                                 </tr>
-
+                                <tr>
+                                    <td style="text-align:center" >Dirección</td>
+                                    <td style="text-align:center"><textarea  style="width:500px;"   id="direccion1" name="direccion1" maxlength="2000"  style="width:800px" ></textarea></td>
+                                </tr>
                             </table>
                             <br>
                             <div class="span11" align="center"><button class="btn" id="crear" name="crear" type="submit">Guardar</button></div>
@@ -166,6 +171,29 @@ if (!isset($Sedes->return)) {
             }
             function killerSession() {
                 setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
+            }
+        </script>
+
+        <script>
+            function areas() {
+                //posicion
+                var $selectedOption = $('#sede').find('option:selected');
+                var id = $selectedOption.val();
+                $.ajax({
+                    type: "POST",
+                    url: "../ajax/user_headquarters_mail.php",
+                    data: {'sed': id},
+                    dataType: "text",
+                    success: function(response) {
+                        $("#area").html(response);
+                    }
+
+                });
+
+
+            }
+            function direccion() {
+                document.forms.formulario.direccion1.value = document.forms.formulario.sede.value;
             }
         </script>
         <script src="../js/footable.js" type="text/javascript"></script>

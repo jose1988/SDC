@@ -1,43 +1,60 @@
 <?php
 
-if ($usuarioBitacora == "") {
-    echo '<script language="javascript"> window.location = "../pages/inbox.php"; </script>';
-}
-$idval = $resultadoConsultarUltimaValija->return->idval;
-
-$nombre = $resultadoConsultarUltimaValija->return->idusu->nombreusu;
-
-if (isset($resultadoConsultarUltimaValija->return->origenpaq->apellidousu)) {
-    $apellido = $resultadoConsultarUltimaValija->return->origenpaq->apellidousu;
-} else {
-    $apellido = "";
-}
-
-if (isset($resultadoConsultarUltimaValija->return->destinoval->nombresed)) {
-    $nombredes = $resultadoConsultarUltimaValija->return->destinoval->nombresed;
-} else {
-    $nombredes = "";
-}
-
-if (isset($resultadoConsultarUltimaValija->return->destinoval->direccionsed)) {
-    $direcciondes = $resultadoConsultarUltimaValija->return->destinoval->direccionsed;
-} else {
-    $direcciondes = "";
-}
-
-if (isset($resultadoConsultarUltimaValija->return->destinoval->telefonosed)) {
-    $telefonodes = $resultadoConsultarUltimaValija->return->destinoval->telefonosed;
-} else {
-    $telefonodes = "";
-}
-
-if (isset($resultadoConsultarSede->return->nombresed)) {
-    $sede = $resultadoConsultarSede->return->nombresed;
-} else {
-    $sede = "";
-}
+session_start();
+$resultadoConsultarUltimaValija = $_SESSION["valija"];
+$codigo = $_SESSION["codigo"];
+$resultadoOrigen = $_SESSION["origen"];
+$fecha = $_SESSION["fecha"];
 
 if (isset($resultadoConsultarUltimaValija->return)) {
+
+//Datos de la Valija
+    $idVal = $resultadoConsultarUltimaValija->return->idval;
+    if (isset($resultadoConsultarUltimaValija->return->iduse->idsed->nombresed)) {
+        $sede = $resultadoConsultarUltimaValija->return->iduse->idsed->nombresed;
+    } else {
+        $sede = "";
+    }
+    if (isset($resultadoConsultarUltimaValija->return->tipoval)) {
+        $tipo = $resultadoConsultarUltimaValija->return->tipoval;
+    } else {
+        $tipo = "";
+    }
+
+//Datos del Origen
+    if (isset($resultadoOrigen->return->nombresed)) {
+        $nombreOrig = $resultadoOrigen->return->nombresed;
+    } else {
+        $nombreOrig = "";
+    }
+    if (isset($resultadoOrigen->return->direccionsed)) {
+        $direccionOrig = $resultadoOrigen->return->direccionsed;
+    } else {
+        $direccionOrig = "";
+    }
+    if (isset($resultadoOrigen->return->telefonosed)) {
+        $telefonoOrig = $resultadoOrigen->return->telefonosed;
+    } else {
+        $telefonoOrig = "";
+    }
+
+//Datos del Destino
+    if (isset($resultadoConsultarUltimaValija->return->destinoval->nombresed)) {
+        $nombreDest = $resultadoConsultarUltimaValija->return->destinoval->nombresed;
+    } else {
+        $nombreDest = "";
+    }
+    if (isset($resultadoConsultarUltimaValija->return->destinoval->direccionsed)) {
+        $direccionDest = $resultadoConsultarUltimaValija->return->destinoval->direccionsed;
+    } else {
+        $direccionDest = "";
+    }
+    if (isset($resultadoConsultarUltimaValija->return->destinoval->telefonosed)) {
+        $telefonoDest = $resultadoConsultarUltimaValija->return->destinoval->telefonosed;
+    } else {
+        $telefonoDest = "";
+    }
+	
     ob_start();
     include("../template/proof_pouch.php");
 
@@ -56,7 +73,7 @@ if (isset($resultadoConsultarUltimaValija->return)) {
     //Esta línea es para hacer la página del PDF más grande
     $dompdf->set_paper('carta', 'portrait');
     $dompdf->render();
-    $nom = 'Comprobante de Valija Numero ' . $idval . '.pdf';
+    $nom = 'Comprobante de Valija No ' . $idVal . '.pdf';
     $dompdf->stream($nom);
 }//Fin del IF general
 ?>

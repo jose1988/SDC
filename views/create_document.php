@@ -25,12 +25,12 @@ if (isset($_POST["guardar"])) {
         <script type='text/javascript' src="../js/jquery.fancybox.pack.js"></script>
 
 
-      <!-- styles -->
+        <!-- styles -->
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
-       
+
+
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
+
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="../css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="../css/bootstrap-responsive.css" rel="stylesheet">
@@ -73,162 +73,83 @@ if (isset($_POST["guardar"])) {
             </div>
         </div>
 
-       <div id="middle">
-            <div class="container app-container">
-                <div>
-                    <ul class="nav nav-pills">
-                        <li class="pull-left">
-                            <div class="modal-header" style="width:1135px;">
-                                <h3> Correspondencia    
-                                    <span>SH</span> <?php echo "- Hola, ".$_SESSION["Usuario"]->return->nombreusu;?>
-                                       <div class="btn-group  pull-right">
-                                          <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-cog" style="color:rgb(255,255,255)"> Configuracion </span> </button>
-                                          <ul class="dropdown-menu" role="menu">
-                                            <li><a href="../pages/view_user.php">Cuenta</a></li>
-                                            <li class="divider"></li>
-                                            <?php if($_SESSION["Usuario"]->return->tipousu=="1"|| $_SESSION["Usuario"]->return->tipousu=="2"){ ?>
-                                            <li><a href="../pages/administration.php">Administracion</a></li>
-                                            <li class="divider"></li>
-                                            <?php } ?>
-                                            <li><a href="../recursos/cerrarsesion.php" onClick="">Salir</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Ayuda</a></li>
-                                          </ul>
-                                        </div>   
-                                        
-                                        <span class="divider pull-right" style="color:rgb(255,255,255)"> | </span>
-                                        <div class="btn-group  pull-right">
-                                          <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-th-large" style="color:rgb(255,255,255)"> Operaciones </span> </button>
-                                          <ul class="dropdown-menu" role="menu">
-                                            <?php 
-                                      
-                                                       if($SedeRol->return->idrol->idrol=="1"|| $SedeRol->return->idrol->idrol=="3"){ ?>
-                                            <li><a href="operator_level.php" > Recibir Paquete</a></li>
-                                            <li class="divider"></li>
-                                            <?php }
-                                                        if($SedeRol->return->idrol->idrol=="2"|| $SedeRol->return->idrol->idrol=="5"){ ?>
-                                            <li><a href="headquarters_operator.php" > Recibir Paquete</a></li>
-                                            <li class="divider"></li>
-                                            <?php }
-                                                        if($SedeRol->return->idrol->idrol=="4" || $SedeRol->return->idrol->idrol=="5"){ ?>
-                                            <li><a href="create_valise.php" > Crear Valija</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="breakdown_valise.php" > Recibir Valija</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="reports_valise.php" > Estadisticas Valija</a></li>
-                                            <li class="divider"></li>
-                                            <?php  }
-                                                     
-                                      
-                                                      
-                                                       ?>
-                                            <li><a href="reports_user.php" > Estadisticas Usuario</a></li>
-                                           
-                                          </ul>
-                                        </div>
-                                        <span class="divider pull-right" style="color:rgb(255,255,255)"> | </span>
-                                        <div class="btn-group  pull-right">
-                                          <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-exclamation-sign" style="color:rgb(255,255,255)"> Alertas </span> </button>
-                                          <ul class="dropdown-menu" role="menu">
-                                            <li><a href="../pages/package_overdue_origin.php">Paquetes Enviados</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="../pages/package_overdue_destination.php">Paquetes Recibidos</a></li>
-                                           
-                                            <?php if($SedeRol->return->idrol->idrol=="4"|| $SedeRol->return->idrol->idrol=="5"){
-												 if($SedeRol->return->idrol->idrol=="5"){ ?>
-                                                  <li class="divider"></li>
-                                            <?php } ?>
-                                           
-                                            <li><a href="../pages/suitcase_overdue_origin.php">Valijas Enviadas</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="../pages/suitcase_overdue_destination.php"> Valijas Recibidas </a></li>
-                                            <?php } ?>
-                                          </ul>
-                                        </div>                               
-                                  
-                                </h3>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+        <div id="middle">
+            <div class="container app-container"> 
+                <?php
+                Menu($SedeRol);
+                ?> 
+                <!--Caso pantalla uno-->
+                <div class="row-fluid">
+                    <div class="span2">
+                        <ul class="nav nav-pills nav-stacked" >
+                            <li> <a href="../pages/administration.php">Atrás</a> </li>
+                        </ul>
+                    </div>
 
-            <!--Caso pantalla uno-->
-            <div class="row-fluid">
-                <div class="span2">
-                    <ul class="nav nav-pills nav-stacked" >
-                        <li> <a href="headquarters_operator.php" >Atrás</a> <li>
-                    </ul>
-                </div>
-
-                <div class="span10" align="center">
-
-                    <div class="tab-content" id="lista" align="center">
-                        <form id="formulario" method="post">
-                            <table class='footable table table-striped table-bordered'>
-                                <tr>
-                                    <td style="text-align:center" >Nombre</td>
-                                    <td style="text-align:center"><input type="text" name="nombre" id="nombre" maxlength="19" size="30" title="Ingrese Nombre del Documento" placeholder="Ej. Jose" autofocus required>
-                                        <div id="Info" style="float:right"></div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align:center">Descripción</td>
-                                    <td style="text-align:center"><input type="text" name="Descripcion" id="Descripcion" maxlength="2000" size="2000" title="Ingrese la Descripción del documento" placeholder="Ej. Documento de texto"></td>
-                                </tr>
-                            </table>
-                            <br>
-                            <div class="span11" align="center"><button class="btn" id="guardar" name="guardar" type="submit">Guardar</button></div>
-                        </form>
+                    <div class="span10" align="center">
+                        <div class="tab-content" id="lista" align="center">
+                            <form id="formulario" method="post">
+                                <table class='footable table table-striped table-bordered'>
+                                    <tr>
+                                        <td style="text-align:center" >Nombre</td>
+                                        <td style="text-align:center"><input type="text" name="nombre" id="nombre" maxlength="19" size="30" title="Ingrese Nombre del Documento" placeholder="Ej. Jose" autofocus required>
+                                            <div id="Info" style="float:right"></div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:center">Descripción</td>
+                                        <td style="text-align:center"><input type="text" name="Descripcion" id="Descripcion" maxlength="2000" size="2000" title="Ingrese la Descripción del documento" placeholder="Ej. Documento de texto"></td>
+                                    </tr>
+                                </table>
+                                <br>
+                                <div class="span11" align="center"><button class="btn" id="guardar" name="guardar" type="submit">Guardar</button></div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <script>
-            /*window.onload = function(){killerSession();}
+            <script>
+                /*window.onload = function(){killerSession();}
              
-             function killerSession(){
-             setTimeout("window.open('../recursos/cerrarsesion.php','_top');",300000);
-             }
-             </script>
-        <script src="../js/footable.js" type="text/javascript"></script>
-        <script src="../js/footable.paginate.js" type="text/javascript"></script>
-        <script src="../js/footable.sortable.js" type="text/javascript"></script>
-        <script type="text/javascript" src="../js/jquery-2.0.3.js" ></script> 
+                 function killerSession(){
+                 setTimeout("window.open('../recursos/cerrarsesion.php','_top');",300000);
+                 }
+            </script>
+            <script src="../js/footable.js" type="text/javascript"></script>
+            <script src="../js/footable.paginate.js" type="text/javascript"></script>
+            <script src="../js/footable.sortable.js" type="text/javascript"></script>
+            <script type="text/javascript" src="../js/jquery-2.0.3.js" ></script> 
 
-             <script type="text/javascript">
-             $(document).ready(function() {
+            <script type="text/javascript">
+            $(document).ready(function() {
              
              
              
-             <!-- Codigo para verificar si el nombre del usuario ya existe --> 
-             $('#nombre').blur(function(){
-             if($(this).val()!=""){
-             $('#Info').html('<img src="../images/loader.gif" alt="" />').fadeOut(1000);
-             }
-             var nombre = $(this).val();        
-             var dataString = 'nombre='+nombre;
+            <!-- Codigo para verificar si el nombre del usuario ya existe --> 
+            $('#nombre').blur(function(){
+            if($(this).val()!=""){
+            $('#Info').html('<img src="../images/loader.gif" alt="" />').fadeOut(1000);
+            }
+            var nombre = $(this).val();        
+            var dataString = 'nombre='+nombre;
              
-             var parametros = {
+            var parametros = {
              
-             "nombre" : nombre
-             };
-             $.ajax({
-             type: "POST",
-             url: "../ajax/chequeoNombreDocumento.php",
-             data: parametros,
-             success: function(data) {
-             $('#Info').fadeIn(1000).html(data);
-             }
-             });     
-             });
-             
-             
-             
-             });
-             */
-
-        </script>  
+            "nombre" : nombre
+            };
+            $.ajax({
+            type: "POST",
+            url: "../ajax/chequeoNombreDocumento.php",
+            data: parametros,
+            success: function(data) {
+            $('#Info').fadeIn(1000).html(data);
+            }
+            });     
+            });
+            });
+            */
+            </script>  
 
     </body>
 </html>

@@ -11,6 +11,11 @@ if (!isset($_SESSION["Usuario"])) {
     iraURL("../pages/create_user.php");
 }
 
+$_SESSION["valija"] = "";
+$_SESSION["codigo"] = "";
+$_SESSION["origen"] = "";
+$_SESSION["fecha"] = "";
+
 $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
 $client = new SOAPClient($wsdl_url);
 $client->decode_utf8 = false;
@@ -42,7 +47,6 @@ try {
     } else {
         $usua = $resultadoConsultarUsuario->return;
     }
-
     $idUsuario = $resultadoConsultarUsuario->return->idusu;
 
     try {
@@ -53,19 +57,41 @@ try {
         $idUsu = array('idUsuario' => $idUsuario);
         $resultadoConsultarUltimaValija = $client->ultimaValijaXUsuario($idUsu);
 
-        $idSede = array('idSede' => $ideSede);
-        $resultadoConsultarSede = $client->consultarSedeXId($idSede);
+        if (isset($resultadoConsultarUltimaValija->return)) {
 
-        $idval = $resultadoConsultarUltimaValija->return->idval;
-        guardarImagen($idval);
+            if (isset($resultadoConsultarUltimaValija->return->fechaval)) {
+                $fecha = FechaHora($resultadoConsultarUltimaValija->return->fechaval);
+            } else {
+                $fecha = "";
+            }
+            //Año de envio del paquete
+            $fechaCod = (substr($fecha, 6, 4));
 
-        llenarLog(6, "Comprobante de Valija", $usuarioBitacora, $ideSede);
-        /* echo"<script language='javascript'>window.location='../pages/create_valise.php';</script>"; */
+            $sedOrigen = $resultadoConsultarUltimaValija->return->origenval;
+            $idOrigen = array('idSede' => $sedOrigen);
+            $resultadoOrigen = $client->consultarSedeXId($idOrigen);
+            $codigoSede = $resultadoOrigen->return->codigosed;
+
+            $idval = $resultadoConsultarUltimaValija->return->idval;
+
+            //Código total codigosede+añovalija+idvalija
+            $codigoTotal = $codigoSede . $fechaCod . $idval;
+            guardarImagen($codigoTotal);
+
+            $_SESSION["valija"] = $resultadoConsultarUltimaValija;
+            $_SESSION["codigo"] = $codigoTotal;
+            $_SESSION["origen"] = $resultadoOrigen;
+            $_SESSION["fecha"] = $fecha;
+
+            llenarLog(6, "Comprobante de Valija", $usuarioBitacora, $ideSede);
+            echo"<script>window.open('../pdf/proof_pouch.php');</script>";
+            //iraURL('../pdf/proof_pouch.php');
+        }
     } catch (Exception $e) {
         javaalert('Lo sentimos no hay conexion');
         iraURL('../pages/create_valise.php');
     }
-    include("../pdf/proof_pouch.php");
+    echo "<script languaje='javascript' type='text/javascript'>window.close();</script>";
 } catch (Exception $e) {
     javaalert('Lo sentimos no hay conexion');
     iraURL('../pages/create_valise.php');

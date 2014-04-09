@@ -11,6 +11,10 @@ if (!isset($_SESSION["Usuario"])) {
     iraURL("../pages/create_user.php");
 }
 
+$_SESSION["paquete"] = "";
+$_SESSION["codigo"] = "";
+$_SESSION["fecha"] = "";
+
 $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
 $client = new SOAPClient($wsdl_url);
 $client->decode_utf8 = false;
@@ -45,19 +49,40 @@ try {
         $idUsu = array('idUsuario' => $idUsuario);
         $resultadoConsultarUltimoPaquete = $client->ultimoPaqueteXOrigen($idUsu);
 
-        $idSede = array('idSede' => $ideSede);
-        $resultadoConsultarSede = $client->consultarSedeXId($idSede);
+        if (isset($resultadoConsultarUltimoPaquete->return)) {
 
-        $idpaq = $resultadoConsultarUltimoPaquete->return->idpaq;
-        guardarImagen($idpaq);
+            if (isset($resultadoConsultarUltimoPaquete->return->fechapaq)) {
+                $fecha = FechaHora($resultadoConsultarUltimoPaquete->return->fechapaq);
+            } else {
+                $fecha = "";
+            }
+            //Año de envio del paquete
+            $fechaCod = (substr($fecha, 6, 4));
 
-        llenarLog(6, "Comprobante de Correspondencia", $usuarioBitacora, $ideSede);
-        /* echo"<script language='javascript'>window.location='../pages/inbox.php';</script>"; */
+            $sedPaq = $resultadoConsultarUltimoPaquete->return->idsed->idsed;
+            $idSede = array('idSede' => $sedPaq);
+            $resultadoConsultarSede = $client->consultarSedeXId($idSede);
+            $codigoSede = $resultadoConsultarSede->return->codigosed;
+
+            $idpaq = $resultadoConsultarUltimoPaquete->return->idpaq;
+
+            //Código total codigosede+añopaquete+idpaquete
+            $codigoTotal = $codigoSede . $fechaCod . $idpaq;
+            guardarImagen($codigoTotal);
+
+            $_SESSION["paquete"] = $resultadoConsultarUltimoPaquete;
+            $_SESSION["codigo"] = $codigoTotal;
+            $_SESSION["fecha"] = $fecha;
+
+            llenarLog(6, "Comprobante de Correspondencia", $usuarioBitacora, $ideSede);
+            echo"<script>window.open('../pdf/proof_of_correspondence.php','fullscreen');</script>";
+            //iraURL('../pdf/proof_of_correspondence.php');
+        }
     } catch (Exception $e) {
         javaalert('Lo sentimos no hay conexion');
         iraURL('../pages/send_correspondence.php');
     }
-    include("../pdf/proof_of_correspondence.php");
+    echo "<script languaje='javascript' type='text/javascript'>window.close();</script>";
 } catch (Exception $e) {
     javaalert('Lo sentimos no hay conexion');
     iraURL('../pages/send_correspondence.php');

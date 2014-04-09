@@ -24,12 +24,12 @@ if (!isset($rowDocumentos->return)) {
         <link rel="stylesheet" type="text/css" href="../js/ui-lightness/jquery-ui-1.10.3.custom.css" media="all" />
         <script type="text/javascript" src="../js/jquery-ui-1.10.3.custom.js" ></script> 
         <script type="text/javascript" src="../js/calendarioValidado.js" ></script> 
-      <!-- styles -->
+        <!-- styles -->
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
-       
+
+
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
+
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="../css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="../css/bootstrap-responsive.css" rel="stylesheet">
@@ -77,77 +77,9 @@ if (!isset($rowDocumentos->return)) {
     </div>
 
     <div class="container app-container">
-        <div>
-            <ul class="nav nav-pills">
-                <li class="pull-left">
-                    <div class="modal-header" style="width:1135px;">
-                        <h3> Correspondencia    
-                            <span>SH</span> <?php echo "- Hola, " . $_SESSION["Usuario"]->return->nombreusu; ?>
-                            <div class="btn-group  pull-right">
-                                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-cog" style="color:rgb(255,255,255)"> Configuracion </span> </button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="../pages/view_user.php">Cuenta</a></li>
-                                    <li class="divider"></li>
-                                    <?php if ($_SESSION["Usuario"]->return->tipousu == "1" || $_SESSION["Usuario"]->return->tipousu == "2") { ?>
-                                        <li><a href="../pages/administration.php">Administracion</a></li>
-                                        <li class="divider"></li>
-                                    <?php } ?>
-                                    <li><a href="../recursos/cerrarsesion.php" onClick="">Salir</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Ayuda</a></li>
-                                </ul>
-                            </div>   
-
-                            <span class="divider pull-right" style="color:rgb(255,255,255)"> | </span>
-                            <div class="btn-group  pull-right">
-                                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-th-large" style="color:rgb(255,255,255)"> Operaciones </span> </button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <?php if ($SedeRol->return->idrol->idrol == "1" || $SedeRol->return->idrol->idrol == "3") { ?>
-                                        <li><a href="operator_level.php" > Recibir Paquete</a></li>
-                                        <li class="divider"></li>
-<?php }
-if ($SedeRol->return->idrol->idrol == "2" || $SedeRol->return->idrol->idrol == "5") {
-    ?>
-                                        <li><a href="headquarters_operator.php" > Recibir Paquete</a></li>
-
-                                    <?php }
-                                    if ($SedeRol->return->idrol->idrol == "4" || $SedeRol->return->idrol->idrol == "5") {
-                                        ?>
-                                        <li class="divider"></li>                                           
-                                        <li><a href="create_valise.php" > Crear Valija</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="breakdown_valise.php" > Recibir Valija</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="reports_valise.php" > Estadisticas Valija</a></li>
-                                        <li class="divider"></li>
-                                    <?php }
-                                    ?>
-                                    <li><a href="reports_user.php" > Estadisticas Usuario</a></li>
-
-                                </ul>
-                            </div>
-                            <span class="divider pull-right" style="color:rgb(255,255,255)"> | </span>
-                            <div class="btn-group  pull-right">
-                                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-exclamation-sign" style="color:rgb(255,255,255)"> Alertas </span> </button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="../pages/package_overdue_origin.php">Paquetes Enviados</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="../pages/package_overdue_destination.php">Paquetes Recibidos</a></li>
-
-<?php if ($SedeRol->return->idrol->idrol == "4" || $SedeRol->return->idrol->idrol == "5") { ?>
-                                        <li class="divider"></li>
-                                        <li><a href="../pages/suitcase_overdue_origin.php">Valijas Enviadas</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="../pages/suitcase_overdue_destination.php"> Valijas Recibidas </a></li>
-<?php } ?>
-                                </ul>
-                            </div>                               
-
-                        </h3>
-                    </div>
-                </li>
-            </ul>
-        </div>
+        <?php
+        Menu($SedeRol);
+        ?>
         <!--Caso pantalla uno-->
         <form method="post" ENCTYPE="multipart/form-data">
             <div class="row-fluid">
@@ -162,58 +94,56 @@ if ($SedeRol->return->idrol->idrol == "2" || $SedeRol->return->idrol->idrol == "
                         <table> 
                             <tr>
                                 <td>Para:</td><td>
-                                    <input id="contacto" name="contacto" type="text"  value="<?php echo $Paquete->return->origenpaq->userusu; ?>" maxlength="199" style="width:800px" size="100"  disabled>								
+                                    <input id="contacto" name="contacto" type="text"  value="<?php echo $Paquete->return->origenpaq->nombrebuz; ?>" maxlength="199" style="width:800px" size="100"  disabled>								
                                 </td>
                             </tr>
                             <tr>
-                                <td>Asunto:</td><td><input type="text" id="asunto" name="asunto" maxlength="199"  size="100" style="width:800px" value="<?php echo $Paquete->return->asuntopaq; ?>" title="Ingrese el asunto" autocomplete="off"  required><br></td>
+                                <td>Asunto:</td><td><input type="text" id="asunto" name="asunto" maxlength="199"  size="100" style="width:800px" title="Ingrese el asunto" autocomplete="off"  required><br></td>
                             </tr>
                             <tr>
                                 <td>Tipo Doc:</td><td><select name="doc" required  title="Seleccione el tipo de documento">
                                         <option value="" style="display:none">Seleccionar:</option>
 
-<?php
-if (count($rowDocumentos->return) == 1) {
-    echo '<option value="' . $rowDocumentos->return->iddoc . '">' . $rowDocumentos->return->nombredoc . '</option>';
-} else {
-    for ($i = 0; $i < count($rowDocumentos->return); $i++) {
-        echo '<option value="' . $rowDocumentos->return[$i]->iddoc . '">' . $rowDocumentos->return[$i]->nombredoc . '</option>';
-    }
-}
-?>
+                                        <?php
+                                        if (count($rowDocumentos->return) == 1) {
+                                            echo '<option value="' . $rowDocumentos->return->iddoc . '">' . $rowDocumentos->return->nombredoc . '</option>';
+                                        } else {
+                                            for ($i = 0; $i < count($rowDocumentos->return); $i++) {
+                                                echo '<option value="' . $rowDocumentos->return[$i]->iddoc . '">' . $rowDocumentos->return[$i]->nombredoc . '</option>';
+                                            }
+                                        }
+                                        ?>
 
                                     </select><br></td>
                             </tr>
                             <tr>
                                 <td>Prioridad:</td><td><select name="prioridad" required  title="Seleccione la prioridad">
                                         <option value="" style="display:none">Seleccionar:</option>                                  
-<?php
-if (count($rowPrioridad->return) == 1) {
-    echo '<option value="' . $rowPrioridad->return->idpri . '">' . $rowPrioridad->return->nombrepri . '</option>';
-} else {
-    for ($i = 0; $i < count($rowPrioridad->return); $i++) {
-        echo '<option value="' . $rowPrioridad->return[$i]->idpri . '">' . $rowPrioridad->return[$i]->nombrepri . '</option>';
-    }
-}
-?>
+                                        <?php
+                                        if (count($rowPrioridad->return) == 1) {
+                                            echo '<option value="' . $rowPrioridad->return->idpri . '">' . $rowPrioridad->return->nombrepri . '</option>';
+                                        } else {
+                                            for ($i = 0; $i < count($rowPrioridad->return); $i++) {
+                                                echo '<option value="' . $rowPrioridad->return[$i]->idpri . '">' . $rowPrioridad->return[$i]->nombrepri . '</option>';
+                                            }
+                                        }
+                                        ?>
                                     </select><br></td>
                             </tr>
                             <tr>
-                                <td></td><td>
-                                    Fecha de alerta:<input type="text"  id="datepicker" name="datepicker" autocomplete="off" style="width:100px" title="Seleccione la fecha de alerta" required/> 
-                                    Fecha de límite:<input type="text"  id="datepickerf" name="datepickerf" autocomplete="off" style="width:100px" title="Seleccione la fecha límite" required/>
-                                    <br></td>
+                                <td> Frágil: </td><td><input type="checkbox" name="fragil" id="fragil" title="Seleccione si el paquete es frágil"></td>
                             </tr>
                             <tr>
-                                <td>Imagen (opcional):</td><td>
+                                <td>Imagen del paquete(opcional):</td><td>
                                     <input id="imagen" name="imagen" type="file" maxlength="199" onBlur='LimitAttach(this);'/>
                                 </td>
                             </tr>
                             <tr>
-                                <td>Su mensaje: </td><td><textarea  rows="10" cols= "23" id="elmsg" name="elmsg" maxlength="1999"  style="width:800px" title="Ingrese un comentario" required><?php echo $Paquete->return->textopaq; ?></textarea><br></td>
+                                <td>Comentario del paquete: </td><td><textarea  rows="10" cols= "23" id="elmsg" name="elmsg" maxlength="1999"  style="width:800px" title="Ingrese un comentario" required>...</textarea><br></td>
                             </tr>
+
                             <tr>          
-                                <td colspan="2" align="right"><input type="submit" value="Responder Correspondecia" name="enviar"><br>
+                                <td colspan="2" align="right"><input type="submit" id="enviar"  onclick="return confirm('¿Esta seguro que desea enviar la correspondencia? \n Luego de enviado no podrá modificar la correspondencia')" value="Responder Correspondecia" name="enviar"><br>
                                 </td>
                             </tr>
 
@@ -222,10 +152,6 @@ if (count($rowPrioridad->return) == 1) {
                 </div>
             </div>
         </form>
-        <!-- /container -->
-        <div id="footer" class="container">    	
-        </div>
-
     </div>
     <script>
                                         function LimitAttach(tField) {

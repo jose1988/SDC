@@ -1,41 +1,34 @@
 <?php
-
-if(isset($_POST["guardar"]) && isset($_POST["ide"])){
-		try{
-			$registrosAValija=$_POST["ide"];
-			$contadorAceptados=0;
-			$datosValija = array('idusu' => $_SESSION["Usuario"]->return->idusu, 'sorigen'=> $_SESSION["Sede"]->return->idsed,'sdestino'=>$_SESSION["seded"],'fechaapaq' => date('Y-m-d', strtotime(str_replace('/', '-', $_POST["datepicker"]))));
-				$wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
-  $client = new SOAPClient($wsdl_url);
-  $client->decode_utf8 = false; 
-  $idValija = $client->insertarValija($datosValija);
-  $usu= array('idusu' => $_SESSION["Usuario"]->return->idusu);
-  $sede= array('idsed' => $_SESSION["Sede"]->return->idsed);
-			for($j=0; $j<$_SESSION["reg"]; $j++){
-			    if(isset($registrosAValija[$j])){
-				$datosAct = array('localizacion' => "Valija", 'idpaq'=> $registrosAValija[$j],'idval'=>$idValija->return);
-					$idPaquete= array('idpaq' => $registrosAValija[$j] );
-					$parametros=array('registroPaquete' => $idPaquete,'registroUsuario'=>$usu,'registroSede'=>$sede);
-					$seg = $client->registroSeguimiento($parametros);
-					
-				$client->ActualizacionLocalizacionyValijaDelPaquete($datosAct);
-				
-								
-				
-				}		
-				
-			}	
-			
-			echo"<script>window.open('../pages/proof_pouch.php');</script>";
-		 } catch (Exception $e) {
-			javaalert('Lo sentimos no hay conexión');
-			iraURL('../views/index.php');
-		}
-		//javaalert("Los registros han sido habilitados");
-		//iraURL('inbox.php');
-	}else if(isset($_POST["guardar"])){
-		javaalert("Debe seleccionar al menos un registro");
-	}
+if (isset($_POST["guardar"]) && isset($_POST["ide"])) {
+    try {
+        $registrosAValija = $_POST["ide"];
+        $contadorAceptados = 0;
+        $datosValija = array('idusu' => $_SESSION["Usuario"]->return->idusu, 'sorigen' => $_SESSION["Sede"]->return->idsed, 'sdestino' => $_SESSION["seded"], 'fechaapaq' => date('Y-m-d', strtotime(str_replace('/', '-', "27/03/2014"))));
+        $wsdl_url = 'http://localhost:15362/SistemaDeCorrespondencia/CorrespondeciaWS?WSDL';
+        $client = new SOAPClient($wsdl_url);
+        $client->decode_utf8 = false;
+        $idValija = $client->insertarValija($datosValija);
+        $usu = array('idusu' => $_SESSION["Usuario"]->return->idusu);
+        $sede = array('idsed' => $_SESSION["Sede"]->return->idsed);
+        for ($j = 0; $j < $_SESSION["reg"]; $j++) {
+            if (isset($registrosAValija[$j])) {
+                $datosAct = array('idpaq' => $registrosAValija[$j], 'idval' => $idValija->return);
+                $client->ActualizacionLocalizacionyValijaDelPaquete($datosAct);
+                $idPaquete = array('idpaq' => $registrosAValija[$j]);
+                $parametros = array('registroPaquete' => $idPaquete, 'registroUsuario' => $usu, 'registroSede' => $sede, 'Caso' => "0");
+                $seg = $client->registroSeguimiento($parametros);
+            }
+        }
+        echo"<script>window.open('../pages/proof_pouch.php');</script>";
+    } catch (Exception $e) {
+        javaalert('Lo sentimos no hay conexion');
+        iraURL('../index.php');
+    }
+    //javaalert("Los registros han sido habilitados");
+    //iraURL('inbox.php');
+} else if (isset($_POST["guardar"])) {
+    javaalert("Debe seleccionar al menos un registro");
+}
 ?>
 
 <!DOCTYPE html>
@@ -57,16 +50,16 @@ if(isset($_POST["guardar"]) && isset($_POST["ide"])){
         <script type='text/javascript' src="../js/custom.js"></script>
         <script type='text/javascript' src="../js/jquery.fancybox.pack.js"></script>
 
-	<!-- javascript para el funcionamiento del calendario -->
-<link rel="stylesheet" type="text/css" href="../js/ui-lightness/jquery-ui-1.10.3.custom.css" media="all" />
-<script type="text/javascript" src="../js/jquery-ui-1.10.3.custom.js" ></script> 
-<script type="text/javascript" src="../js/calendarioValidado.js" ></script> 
-      <!-- styles -->
+        <!-- javascript para el funcionamiento del calendario -->
+        <link rel="stylesheet" type="text/css" href="../js/ui-lightness/jquery-ui-1.10.3.custom.css" media="all" />
+        <script type="text/javascript" src="../js/jquery-ui-1.10.3.custom.js" ></script> 
+        <script type="text/javascript" src="../js/calendarioValidado.js" ></script> 
+        <!-- styles -->
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
-       
+
+
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
+
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="../css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="../css/bootstrap-responsive.css" rel="stylesheet">
@@ -108,200 +101,97 @@ if(isset($_POST["guardar"]) && isset($_POST["ide"])){
             </div>
         </div>
 
-       <div id="middle">
-            <div class="container app-container">
-                <div>
-                    <ul class="nav nav-pills">
-                        <li class="pull-left">
-                            <div class="modal-header" style="width:1135px;">
-                                <h3> Correspondencia    
-                                    <span>SH</span> <?php echo "- Hola, ".$_SESSION["Usuario"]->return->nombreusu;?>
-                                       <div class="btn-group  pull-right">
-                                          <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-cog" style="color:rgb(255,255,255)"> Configuracion </span> </button>
-                                          <ul class="dropdown-menu" role="menu">
-                                            <li><a href="../pages/view_user.php">Cuenta</a></li>
-                                            <li class="divider"></li>
-                                            <?php if($_SESSION["Usuario"]->return->tipousu=="1"|| $_SESSION["Usuario"]->return->tipousu=="2"){ ?>
-                                            <li><a href="../pages/administration.php">Administracion</a></li>
-                                            <li class="divider"></li>
-                                            <?php } ?>
-                                            <li><a href="../recursos/cerrarsesion.php" onClick="">Salir</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Ayuda</a></li>
-                                          </ul>
-                                        </div>   
-                                        
-                                        <span class="divider pull-right" style="color:rgb(255,255,255)"> | </span>
-                                        <div class="btn-group  pull-right">
-                                          <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-th-large" style="color:rgb(255,255,255)"> Operaciones </span> </button>
-                                          <ul class="dropdown-menu" role="menu">
-                                            <?php 
-                                      
-                                                       if($SedeRol->return->idrol->idrol=="1"|| $SedeRol->return->idrol->idrol=="3"){ ?>
-                                            <li><a href="operator_level.php" > Recibir Paquete</a></li>
-                                            <li class="divider"></li>
-                                            <?php }
-                                                        if($SedeRol->return->idrol->idrol=="2"|| $SedeRol->return->idrol->idrol=="5"){ ?>
-                                            <li><a href="headquarters_operator.php" > Recibir Paquete</a></li>
-                                            <li class="divider"></li>
-                                            <?php }
-                                                        if($SedeRol->return->idrol->idrol=="4" || $SedeRol->return->idrol->idrol=="5"){ ?>
-                                            <li><a href="create_valise.php" > Crear Valija</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="breakdown_valise.php" > Recibir Valija</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="reports_valise.php" > Estadisticas Valija</a></li>
-                                            <li class="divider"></li>
-                                            <?php  }
-                                                     
-                                      
-                                                      
-                                                       ?>
-                                            <li><a href="reports_user.php" > Estadisticas Usuario</a></li>
-                                           
-                                          </ul>
-                                        </div>
-                                        <span class="divider pull-right" style="color:rgb(255,255,255)"> | </span>
-                                        <div class="btn-group  pull-right">
-                                          <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-exclamation-sign" style="color:rgb(255,255,255)"> Alertas </span> </button>
-                                          <ul class="dropdown-menu" role="menu">
-                                            <li><a href="../pages/package_overdue_origin.php">Paquetes Enviados</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="../pages/package_overdue_destination.php">Paquetes Recibidos</a></li>
-                                           
-                                            <?php if($SedeRol->return->idrol->idrol=="4"|| $SedeRol->return->idrol->idrol=="5"){
-												 if($SedeRol->return->idrol->idrol=="5"){ ?>
-                                                  <li class="divider"></li>
-                                            <?php } ?>
-                                           
-                                            <li><a href="../pages/suitcase_overdue_origin.php">Valijas Enviadas</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="../pages/suitcase_overdue_destination.php"> Valijas Recibidas </a></li>
-                                            <?php } ?>
-                                          </ul>
-                                        </div>                               
-                                  
-                                </h3>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            <!--Caso pantalla uno-->
-            <div class="row-fluid">
-            
-                
-                <div class="span2">
-                    <ul class="nav nav-pills nav-stacked">
-                        <li> <a href="inbox.php">Atrás</a> <li>
-                        <li> <a href="confirm_valise.php">Confirmar valija</a> <li> 
-                        <li> <a href="breakdown_valise.php">Recibir valija</a> <li>
-                        <li> <a href="valise_report.php">Reportar valija</a> <li> 
-                        <li> <a href="reports_valise.php">Reportes</a> <li>
-                    </ul>
-                </div>
+        <div id="middle">
+            <div class="container app-container"> 
+                <?php
+                Menu($SedeRol);
+                ?> 
+                <!--Caso pantalla uno-->
+                <div class="row-fluid">
+                    <div class="span2">
+                        <ul class="nav nav-pills nav-stacked">
+                            <li> <a href="inbox.php">Atrás</a> <li>
+                            <li> <a href="confirm_valise.php">Confirmar valija</a> <li>
+                        </ul>
+                    </div>
 
-                <div class="span10">
-                    <div class="tab-content" id="lista">
-                        <h2> <strong> Realizar Valija </strong> </h2>
-                                                <?php if($reg!=0){ ?>
-
-                        <form class="form-Cvalija">
-                        
-                            <div class="span6" >
-                                Elija el destino:  <select onChange="sede();" name="Destinos"> <option value="" style="display:none">Seleccionar:</option> 
-                              
-                                <?php 
-								
-								if($reg>1){
-									$i=0;
-								  while($reg>$i){
-								
-						echo '<option value="'.$Sedes->return[$i].'">'.$Sedes->return[$i].'</option>';
-						$i++;
-						
-								  }
-								}
-								else{
-							echo '<option value="'.$Sedes->return.'">'.$Sedes->return.'</option>';	  
-								}
-								?>
-                                </select>
-                            </div> 
-
-                            <div class="span6" >
-                              Fecha de envio:<input type="text" id="datepicker" name="datepicker" autocomplete="off" style="width:100px" title="Seleccione la fecha de envio" required/>
-
-                                
-                             
-                            </div>
-                           
-                        </form>
-                        
-                        
-                        <br>
-                         <?php } else{
-							echo"<div class='alert alert-block' align='center'>
+                    <div class="span10">
+                        <div class="tab-content" id="lista">
+                            <h2> <strong> Realizar Valija </strong> </h2>
+                            <?php if ($reg != 0) { ?>
+                                <form class="form-Cvalija">
+                                    <div class="span6" >
+                                        Elija el destino:  <select onChange="sede();" name="Destinos"> <option value="" style="display:none">Seleccionar:</option> 
+                                            <?php
+                                            if ($reg > 1) {
+                                                $i = 0;
+                                                while ($reg > $i) {
+                                                    echo '<option value="' . $Sedes->return[$i] . '">' . $Sedes->return[$i] . '</option>';
+                                                    $i++;
+                                                }
+                                            } else {
+                                                echo '<option value="' . $Sedes->return . '">' . $Sedes->return . '</option>';
+                                            }
+                                            ?>
+                                        </select>
+                                    </div> 
+                                    <div class="span6" >
+                                    </div>
+                                </form>
+                                <br>
+                                <?php
+                            } else {
+                                echo"<div class='alert alert-block' align='center'>
 									<h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
 									<h4 align='center'>No hay Paquetes para realizar Valija</h4>
 								</div> ";
-						}?>
-                       
-                        <div  id="registro">
-                       
-                        </div>
-                     
-                        </div>
-                  
-                           
+                            }
+                            ?>
+                            <div  id="registro">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- /container -->
-            <div id="footer" class="container">    	
-            </div>
         </div>
-<script>
+
+        <!-- /container -->
+        <div id="footer" class="container">    	
+        </div>
+    </div>
+    <script>
+		function sede() {
+			$.ajax({
+				type: "POST",
+				url: "../ajax/create_valise.php",
+				data: {'sed': $("#lista option:selected").text()},
+                dataType: "text",
+				success: function(response) {
+					$("#registro").html(response);
+				}
+			});
+		}
+
+    </script>
+    <script>
+        window.onload = function() {
+            killerSession();
+        }
+
+        function killerSession() {
+            setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
+        }
 
 
-	 
-	
-	function sede(){
-		
-		
-		$.ajax({
-           type: "POST",
-           url: "../ajax/create_valise.php",
-           data: {'sed':$("#lista option:selected").text()},
-           dataType: "text",
-                success:  function (response) {
-                       $("#registro").html(response);
-					}
-		
-	    }); 
-		
-		
-	}
+    </script>
+    <script src="../js/footable.js" type="text/javascript"></script>
+    <script src="../js/footable.paginate.js" type="text/javascript"></script>
+    <script src="../js/footable.sortable.js" type="text/javascript"></script>
 
-</script>
-        <script>
-            window.onload = function(){killerSession();}
-            
-            function killerSession(){
-            setTimeout("window.open('../recursos/cerrarsesion.php','_top');",300000);
-            }
-        
-        
-       </script>
-        <script src="../js/footable.js" type="text/javascript"></script>
-        <script src="../js/footable.paginate.js" type="text/javascript"></script>
-        <script src="../js/footable.sortable.js" type="text/javascript"></script>
-
-        <script type="text/javascript">
-            $(function() {
-                $('table').footable();
-            });
-        </script>
-    </body>
+    <script type="text/javascript">
+        $(function() {
+            $('table').footable();
+        });
+    </script>
+</body>
 </html>

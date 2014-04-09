@@ -18,17 +18,16 @@ if (!isset($Usuario->return)) {
         <script type='text/javascript' src="../js/bootstrap-transition.js"></script>
         <script type='text/javascript' src="../js/bootstrap-tooltip.js"></script>
         <script type='text/javascript' src="../js/modernizr.min.js"></script>
-<!--<script type='text/javascript' src="../js/togglesidebar.js"></script>-->	
         <script type='text/javascript' src="../js/custom.js"></script>
         <script type='text/javascript' src="../js/jquery.fancybox.pack.js"></script>
 
 
-      <!-- styles -->
+        <!-- styles -->
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
-       
+
+
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
+
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="../css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="../css/bootstrap-responsive.css" rel="stylesheet">
@@ -96,80 +95,14 @@ if (!isset($Usuario->return)) {
         </div>
 
         <div class="container app-container">
-            <div>
-                <ul class="nav nav-pills">
-                    <li class="pull-left">
-                        <div class="modal-header" style="width:1135px;">
-                            <h3> Correspondencia    
-                                <span>SH</span> <?php echo "- Hola, " . $_SESSION["Usuario"]->return->nombreusu; ?>
-                                <div class="btn-group  pull-right">
-                                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-cog" style="color:rgb(255,255,255)"> Configuracion </span> </button>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="../pages/view_user.php">Cuenta</a></li>
-                                        <li class="divider"></li>
-                                        <?php if ($_SESSION["Usuario"]->return->tipousu == "1" || $_SESSION["Usuario"]->return->tipousu == "2") { ?>
-                                            <li><a href="../pages/administration.php">Administracion</a></li>
-                                            <li class="divider"></li>
-                                        <?php } ?>
-                                        <li><a href="../recursos/cerrarsesion.php" onClick="">Salir</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Ayuda</a></li>
-                                    </ul>
-                                </div>   
-
-                                <span class="divider pull-right" style="color:rgb(255,255,255)"> | </span>
-                                <div class="btn-group  pull-right">
-                                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-th-large" style="color:rgb(255,255,255)"> Operaciones </span> </button>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <?php if ($SedeRol->return->idrol->idrol == "1" || $SedeRol->return->idrol->idrol == "3") { ?>
-                                            <li><a href="operator_level.php" > Recibir Paquete</a></li>
-                                            <li class="divider"></li>
-                                        <?php }
-                                        if ($SedeRol->return->idrol->idrol == "2" || $SedeRol->return->idrol->idrol == "5") {
-                                            ?>
-                                            <li><a href="headquarters_operator.php" > Recibir Paquete</a></li>
-                                            <li class="divider"></li>
-<?php }
-if ($SedeRol->return->idrol->idrol == "4" || $SedeRol->return->idrol->idrol == "5") {
-    ?>
-                                            <li><a href="create_valise.php" > Crear Valija</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="breakdown_valise.php" > Recibir Valija</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="reports_valise.php" > Estadisticas Valija</a></li>
-                                            <li class="divider"></li>
-                                        <?php }
-                                        ?>
-                                        <li><a href="reports_user.php" > Estadisticas Usuario</a></li>
-
-                                    </ul>
-                                </div>
-                                <span class="divider pull-right" style="color:rgb(255,255,255)"> | </span>
-                                <div class="btn-group  pull-right">
-                                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-exclamation-sign" style="color:rgb(255,255,255)"> Alertas </span> </button>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="../pages/package_overdue_origin.php">Paquetes Enviados</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="../pages/package_overdue_destination.php">Paquetes Recibidos</a></li>
-<?php if ($SedeRol->return->idrol->idrol == "4" || $SedeRol->return->idrol->idrol == "5") { ?>
-                                            <li class="divider"></li>
-                                            <li><a href="../pages/suitcase_overdue_origin.php">Valijas Enviadas</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="../pages/suitcase_overdue_destination.php"> Valijas Recibidas </a></li>
-<?php } ?>
-                                    </ul>
-                                </div>                               
-
-                            </h3>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+            <?php
+            Menu($SedeRol);
+            ?>  
             <!--Caso pantalla uno-->
             <div class="row-fluid">
                 <div class="span2">
                     <ul class="nav nav-pills nav-stacked">
-                        <li> <a href="inbox.php">Atrás</a> </li>
+                        <li> <a href="view_user.php">Atrás</a> </li>
                     </ul>
                 </div>
 
@@ -184,46 +117,31 @@ if ($SedeRol->return->idrol->idrol == "4" || $SedeRol->return->idrol->idrol == "
                                         <td style="text-align:center"><input type="text" name="nombre" id="nombre" autocomplete="off" value="<?php echo $Usuario->return->nombreusu; ?>" maxlength="150" size="30"  autofocus required></td>
                                     </tr>
                                     <tr>
-
                                         <td style="text-align:center">Apellido</td>
                                         <td style="text-align:center"><input type="text" name="apellido" id="apellido" autocomplete="off" value="<?php echo $apellido; ?>" maxlength="150" size="30"  ></td>
                                     </tr>
-
-                                    <td style="text-align:center" width="50%">Correo</td>
-                                    <td style="text-align:center"><input type="email" name="correo" id="correo" autocomplete="off" value="<?php echo $correo; ?>" maxlength="100" size="50" >	 
-                                    </td>		
-
-                                    </tr>
-
                                     <tr>
-
+                                        <td style="text-align:center" width="50%">Correo</td>
+                                        <td style="text-align:center"><input type="email" name="correo" id="correo" autocomplete="off" value="<?php echo $correo; ?>" maxlength="100" size="50" >	 
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td style="text-align:center" width="50%">Usuario</td>
                                         <td style="text-align:center"><input type="text" name="usuario" id="usuario"  value="<?php echo $Usuario->return->userusu; ?>" size="30"   disabled>
                                         </td>		
                                     </tr>
-                                    
-
                                     <tr>
-
                                         <td style="text-align:center">Teléfono 1</td>
                                         <td style="text-align:center"><input type="tel" name="telefono1" id="telefono1" autocomplete="off" value="<?php echo $telefono1; ?>" maxlength="50" size="30"    ></td>
                                     </tr>
                                     <tr>
-
                                         <td style="text-align:center">Teléfono 2</td>
                                         <td style="text-align:center"><input type="tel" name="telefono2" id="telefono2" autocomplete="off" value="<?php echo $telefono2; ?>" maxlength="50" size="30"  ></td>
                                     </tr>
                                     <tr>
-
                                         <td style="text-align:center">Dirección 1</td>
                                         <td style="text-align:center"><textarea style="width:500px;"   id="direccion1" name="direccion1"  maxlength="2000" style="width:800px"><?php echo $direccion1; ?></textarea></td>
                                     </tr>
-                                    <tr>
-
-                                        <td style="text-align:center">Dirección 2</td>
-                                        <td style="text-align:center"><textarea style="width:500px;" id="direccion2" name="direccion2" maxlength="2000" style="width:800px"><?php echo $direccion2; ?></textarea></td>
-                                    </tr>
-
                                 </table><br>
                                 <div class="span11" align="center"><button class="btn" id="guardar" name="guardar" onclick="return confirm('¿Esta seguro que desea guardar los cambios?')" type="submit">Guardar</button></div>
                                 <br>
@@ -244,7 +162,5 @@ if ($SedeRol->return->idrol->idrol == "4" || $SedeRol->return->idrol->idrol == "
             <script src="../js/footable.paginate.js" type="text/javascript"></script>
             <script src="../js/footable.sortable.js" type="text/javascript"></script>
             <script type="text/javascript" src="../js/jquery-2.0.3.js" ></script> 
-
-
     </body>
 </html>

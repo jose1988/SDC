@@ -17,12 +17,12 @@
         <script type='text/javascript' src="../js/custom.js"></script>
         <script type='text/javascript' src="../js/jquery.fancybox.pack.js"></script>
 
-      <!-- styles -->
+        <!-- styles -->
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
-       
+
+
         <link rel="shortcut icon" href="../images/faviconsh.ico">
-       
+
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="../css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="../css/bootstrap-responsive.css" rel="stylesheet">
@@ -64,184 +64,99 @@
             </div>
         </div>
 
-       <div id="middle">
-            <div class="container app-container">
-                <div>
-                    <ul class="nav nav-pills">
-                        <li class="pull-left">
-                            <div class="modal-header" style="width:1135px;">
-                                <h3> Correspondencia    
-                                    <span>SH</span> <?php echo "- Hola, ".$_SESSION["Usuario"]->return->nombreusu;?>
-                                       <div class="btn-group  pull-right">
-                                          <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-cog" style="color:rgb(255,255,255)"> Configuracion </span> </button>
-                                          <ul class="dropdown-menu" role="menu">
-                                            <li><a href="../pages/view_user.php">Cuenta</a></li>
-                                            <li class="divider"></li>
-                                            <?php if($_SESSION["Usuario"]->return->tipousu=="1"|| $_SESSION["Usuario"]->return->tipousu=="2"){ ?>
-                                            <li><a href="../pages/administration.php">Administracion</a></li>
-                                            <li class="divider"></li>
-                                            <?php } ?>
-                                            <li><a href="../recursos/cerrarsesion.php" onClick="">Salir</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Ayuda</a></li>
-                                          </ul>
-                                        </div>   
-                                        
-                                        <span class="divider pull-right" style="color:rgb(255,255,255)"> | </span>
-                                        <div class="btn-group  pull-right">
-                                          <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-th-large" style="color:rgb(255,255,255)"> Operaciones </span> </button>
-                                          <ul class="dropdown-menu" role="menu">
-                                            <?php 
-                                      
-                                                       if($SedeRol->return->idrol->idrol=="1"|| $SedeRol->return->idrol->idrol=="3"){ ?>
-                                            <li><a href="operator_level.php" > Recibir Paquete</a></li>
-                                            <li class="divider"></li>
-                                            <?php }
-                                                        if($SedeRol->return->idrol->idrol=="2"|| $SedeRol->return->idrol->idrol=="5"){ ?>
-                                            <li><a href="headquarters_operator.php" > Recibir Paquete</a></li>
-                                            <li class="divider"></li>
-                                            <?php }
-                                                        if($SedeRol->return->idrol->idrol=="4" || $SedeRol->return->idrol->idrol=="5"){ ?>
-                                            <li><a href="create_valise.php" > Crear Valija</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="breakdown_valise.php" > Recibir Valija</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="reports_valise.php" > Estadisticas Valija</a></li>
-                                            <li class="divider"></li>
-                                            <?php  }
-                                                     
-                                      
-                                                      
-                                                       ?>
-                                            <li><a href="reports_user.php" > Estadisticas Usuario</a></li>
-                                           
-                                          </ul>
-                                        </div>
-                                        <span class="divider pull-right" style="color:rgb(255,255,255)"> | </span>
-                                        <div class="btn-group  pull-right">
-                                          <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> <span class="icon-exclamation-sign" style="color:rgb(255,255,255)"> Alertas </span> </button>
-                                          <ul class="dropdown-menu" role="menu">
-                                            <li><a href="../pages/package_overdue_origin.php">Paquetes Enviados</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="../pages/package_overdue_destination.php">Paquetes Recibidos</a></li>
-                                           
-                                            <?php if($SedeRol->return->idrol->idrol=="4"|| $SedeRol->return->idrol->idrol=="5"){
-												 if($SedeRol->return->idrol->idrol=="5"){ ?>
-                                                  <li class="divider"></li>
-                                            <?php } ?>
-                                           
-                                            <li><a href="../pages/suitcase_overdue_origin.php">Valijas Enviadas</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="../pages/suitcase_overdue_destination.php"> Valijas Recibidas </a></li>
-                                            <?php } ?>
-                                          </ul>
-                                        </div>                               
-                                  
-                                </h3>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            <!--Caso pantalla uno-->
-            <div class="row-fluid">
-                <div class="span2">
-                    <ul class="nav nav-pills nav-stacked">
-                        <li> <a href="../pages/administration.php">Atrás</a> <li>
-                    </ul>
-                </div>
 
-                <div class="span10" align="center">
-                    <div class="tab-content" id="lista" align="center">
+        <div id="middle">
+            <div class="container app-container"> 
+                <?php
+                Menu($SedeRol);
+                ?> 
+                <!--Caso pantalla uno-->
+                <div class="row-fluid">
+                    <div class="span2">
+                        <ul class="nav nav-pills nav-stacked">
+                            <li> <a href="../pages/administration.php">Atrás</a> <li>
+                        </ul>
+                    </div>
+
+                    <div class="span10" align="center">
+                        <div class="tab-content" id="lista" align="center">
                             <h2> Asignar Rol</h2>                   
                             <h2>
-                            
-                             Seleccione la Sede:
+                                Seleccione la Sede:
                                 <select onChange="sede();" name="lista" id="lista"  required  title="Seleccione la Tipo de usuario">
-                           <option value="" style="display:none">Seleccionar:</option>
-                                            <?php 
-								if($reg>1){
-									$i=0;
-								  while($reg>$i){
-								
-						echo '<option value="'.$Sedes->return[$i]->nombresed.'" >'.$Sedes->return[$i]->nombresed.'</option>';
-						$i++;
-						
-								  }
-								}
-								else{
-							echo '<option value="'.$Sedes->return->nombresed.'" >'.$Sedes->return->nombresed.'</option>';	  
-								}
-								?>
-                            
+                                    <option value="" style="display:none">Seleccionar:</option>
+                                    <?php
+                                    if ($reg > 1) {
+                                        $i = 0;
+                                        while ($reg > $i) {
+
+                                            echo '<option value="' . $Sedes->return[$i]->nombresed . '" >' . $Sedes->return[$i]->nombresed . '</option>';
+                                            $i++;
+                                        }
+                                    } else {
+                                        echo '<option value="' . $Sedes->return->nombresed . '" >' . $Sedes->return->nombresed . '</option>';
+                                    }
+                                    ?>
                                 </select>
-                              
                                 Seleccione el Usuario:
                                 <select onChange="usuario();" id="listau" name="listau"  required  title="Seleccione la Tipo de usuario">
-                              <option value="" style="display:none">Seleccionar:</option>  
-                                   
+                                    <option value="" style="display:none">Seleccionar:</option>  
+
                                 </select>
                             </h2>
                             <div id="datos">
-                            
-                            <br>
+
+                                <br>
                             </div>
                             <div class="span11" align="center"></div>
                             <br>
-                        
+
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <script>
-            window.onload = function(){killerSession();}
-             
-             function killerSession(){
-             setTimeout("window.open('../recursos/cerrarsesion.php','_top');",300000);
-             }
-             </script>
-      
+            <script>
+                    window.onload = function() {
+                        killerSession();
+                    }
 
+                    function killerSession() {
+                        setTimeout("window.open('../recursos/cerrarsesion.php','_top');", 300000);
+                    }
 
-        <script language="JavaScript">
+            </script>
 
+            <script language="JavaScript">
+                function sede() {
+                    //posicion
+                    var $selectedOption = $('#lista').find('option:selected');
+                    var id = $selectedOption.val();
+                    $.ajax({
+                        type: "POST",
+                        url: "../ajax/user_headquarters.php",
+                        data: {'sed': id},
+                        dataType: "text",
+                        success: function(response) {
+                            $("#listau").html(response);
+                        }
+                    });
+                }
 
-	 
-	
-	function sede(){
-		 //posicion
-        var $selectedOption = $('#lista').find('option:selected');
-		var id = $selectedOption.val();
-		$.ajax({
-           type: "POST",
-           url: "../ajax/user_headquarters.php",
-           data: {'sed':id},
-           dataType: "text",
-                success:  function (response) {
-                       $("#listau").html(response);
-					}
-		
-	    }); 
-		
-		
-	}
-	
-	function usuario(){
-		 //posicion
-        var $selectedOption = $('#listau').find('option:selected');
-		var idusu = $selectedOption.val();
-		$.ajax({
-           type: "POST",
-           url: "../ajax/info_user_edit.php",
-           data: {'idusu':idusu},
-           dataType: "text",
-                success:  function (response) {
-                       $("#datos").html(response);
-					}
-		
-	    }); 
-	}
-
-</script>
+                function usuario() {
+                    //posicion
+                    var $selectedOption = $('#listau').find('option:selected');
+                    var idusu = $selectedOption.val();
+                    $.ajax({
+                        type: "POST",
+                        url: "../ajax/info_user_edit.php",
+                        data: {'idusu': idusu},
+                        dataType: "text",
+                        success: function(response) {
+                            $("#datos").html(response);
+                        }
+                    });
+                }
+            </script>
 
     </body>
 </html>
