@@ -89,7 +89,7 @@
                                 <a href="../pages/create_headquarters.php">Crear Sede</a>
                             </li>
                             <li>   
-                                <a href="../pages/disable_area.php">Deshabilitar Area</a>
+                                <a href="../pages/disable_area.php">Deshabilitar Área</a>
                             </li>
                             <li>   
                                 <a href="../pages/user_role.php">Editar Rol</a>
