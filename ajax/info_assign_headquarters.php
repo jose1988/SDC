@@ -34,12 +34,15 @@
             $client = new SOAPClient($wsdl_url);
             $client->decode_utf8 = false;
             $Bandeja = $client->consultarUsuarioXUser($datosU);
-			$u = array('idusu' => $Bandeja->return->idusu);
+			if(isset($Bandeja->return)){
+				$u = array('idusu' => $Bandeja->return->idusu);
 			$usu= array('registroUsuario' => $u);
 			 $SedeMia = $client->consultarSedeDeUsuario($usu);
+			}
+		
             $Sedes = $client->listarSedes();
             $regs = 0;
-            if (isset($Bandeja->return) && isset($Sedes->return)) {
+            if (isset($Bandeja->return) && isset($Sedes->return) &&  isset($SedeMia->return)) {
                 $reg = count($Bandeja->return);
                 $regr = count($Sedes->return);
                 $_SESSION["usuedit"] = $Bandeja->return->idusu;
@@ -54,6 +57,7 @@
         javaalert('Lo sentimos no hay conexion');
         iraURL('../index.php');
     }
+	if(isset($Bandeja->return) && isset($Sedes->return) && isset($SedeMia->return)){
     if ($reg != 0) {
         echo "<h2> <strong>" . $Bandeja->return->nombreusu . " </strong> </h2>";
         echo "<form method='post'> ";
@@ -115,6 +119,12 @@
 	<button class='btn' id='crear' onClick='editar();' name='crear' type='button'>Guardar</button>		  
 		</form>";
     }
+	}else{
+	echo"<div class='alert alert-block' align='center'>
+			<h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
+			<h4 align='center'>No hay Exsiten registros de Usuario con ese Nombre </h4>
+		</div> ";
+	}
     ?>
 
     <script language="JavaScript">

@@ -34,8 +34,11 @@
 	$idusu = array('idusu' => $_SESSION["Usuario"]->return->idusu);
 	$parametrosBuzon = array('idUsuario' => $idusu);
 	$idBuzon=$client->miIdBuzon($parametrosBuzon);	
-	$idBuz=array('idbuz' => $idBuzon->return);
-    $BuzonNA = array('nombre' => $nom, 'apellido' => $ape, 'area' => $area, 'miBuzon' =>$idBuz);
+	$usuId = array('idusu' => $_SESSION["Usuario"]->return->idusu);
+
+	$idBuz=array('idbuz' => $idBuzon->return,
+					'idusu' =>$usuId);
+    $BuzonNA = array('nombre' => $nom, 'apellido' => $ape, 'area' => $area, 'miBuzon' =>$idBuz,'sede'=>$_SESSION["Sede"]->return->idsed);
     $Buz = $client->consultarBuzonParaEnviar($BuzonNA);
     if (isset($Buz->return)) {
         $reg = count($Buz->return);
@@ -46,7 +49,7 @@
     	 <thead bgcolor='#ff0000'>
                                     <tr>";
         echo "<th ; text-align:center' >Nombres y apellidos</th>";
-        echo "<th  text-align:center' data-sort-ignore='true'>Area </th>";
+        echo "<th  text-align:center' data-sort-ignore='true'>Área </th>";
         echo "<th style='width:7%; text-align:center' >Sede</th>
             <th style='width:5%; text-align:center' ></th>
          </thead>
@@ -77,13 +80,13 @@
         }
     } else {
         if ($Buz->return->tipobuz == "1") {
-            echo "<th text-align:center' data-sort-ignore='true'>" . $Buz->return->nombrebuz . "</th>";
+            echo "<th text-align:center' data-sort-ignore='true'>" . $Buz->return->nombrebuz. "</th>";
             echo "<td style='text-align:center'> Externo</td>";
-            echo "<td style='text-align:center'>" . $Buz->return->nombrebuz . "</td>";
+            echo "<td style='text-align:center'>Externo</td>";
         } else {
             echo "<th text-align:center' data-sort-ignore='true'>" . $Buz->return->idusu->nombreusu ." " . $Buz->return->idusu->apellidousu . "</th>";
-            echo "<td style='text-align:center'>" . $Buz->return->idusu->apellidousu . "</td>";
-            echo "<td style='text-align:center'>" . $Buz->return->nombrebuz . "</td>";
+            echo "<td style='text-align:center'>" . $Buz->return->idatr->nombreatr . "</td>";
+            echo "<td style='text-align:center'>" . $Buz->return->idatr->idsed->nombresed . "</td>";
         }
         ?>
         <th  'text-align:center' >

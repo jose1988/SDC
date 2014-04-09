@@ -1,4 +1,7 @@
 <?php
+session_start();
+include("../recursos/funciones.php");
+require_once('../lib/nusoap.php');
 $idsede = $_POST['idsede'];
 
 try {
@@ -8,15 +11,17 @@ try {
     $areasede = array('sede' => $idsede);
     $Areas = $client->consultarAreasXSede($areasede);
     if (!isset($Areas->return)) {
-        javaalert("No existen areas registradas");
-        iraURL('../pages/inbox.php');
+        javaalert("No existen áreas registradas en la sede seleccionada");
+        iraURL('../pages/disable_area.php');
     }
-    $reg = count($Areas->return);
+   
 } catch (Exception $e) {
     javaalert('Error al deshabilitar la Area');
     iraURL('../pages/inbox.php');
 }
-echo "<h2> <strong>Areas</strong> </h2>";
+if(isset($Areas->return)){
+ $reg = count($Areas->return);
+echo "<h2> <strong>Áreas</strong> </h2>";
 echo " <a href='../pages/disable_area.php'> <button class='btn primary''>
                                 <span class='icon-backward'>Regresar</span>
                  </button> </a>";
@@ -82,6 +87,7 @@ if ($reg > 0) {
 echo " </tbody>
   	</table>";
 echo '<ul id="pagination" class="footable-nav"><span>Pag:</span></ul>';
+}
 ?>
 <script src="../js/footable.js" type="text/javascript"></script>
 <script src="../js/footable.paginate.js" type="text/javascript"></script>

@@ -228,10 +228,10 @@
                                                 <option value="" style="display:none">Seleccionar Sede:</option>                                  
                                                 <?php
                                                 if (count($Sedes->return) == 1) {
-                                                    echo '<option value="' . $Sedes->return->nombresed . '">' . $Sedes->return->nombresed . '</option>';
+                                                    echo '<option value="' . $Sedes->return->idsed . '">' . $Sedes->return->nombresed . '</option>';
                                                 } else {
                                                     for ($i = 0; $i < count($Sedes->return); $i++) {
-                                                        echo '<option value="' . $Sedes->return[$i]->nombresed . '">' . $Sedes->return[$i]->nombresed . '</option>';
+                                                        echo '<option value="' . $Sedes->return[$i]->idsed . '">' . $Sedes->return[$i]->nombresed . '</option>';
                                                     }
                                                 }
                                                 ?>

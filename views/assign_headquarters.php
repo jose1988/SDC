@@ -81,7 +81,7 @@
                             <h2> <strong> Asignar Buzón Adicional </strong> </h2>
                             <h2>
                                 <form class="form-Dvalija" method="post" id="fval">
-                                    Usuario:  <input placeholder="Ejm. jose.fuentes" type="text" id="usuario" name="usuario" class="input-medium search-query">
+                                    Usuario:  <input placeholder="Ejm. jose.fuentes" type="text" id="usuario" name="usuario" class="input-medium search-query" >
                                     <button type="button"  onClick="Editar();" class="btn">Buscar</button>
                                 </form>
                             </h2>
@@ -108,7 +108,8 @@
 
             <script>
                 function Editar() {
-                    var usu = document.forms.fval.usuario.value;
+				if(document.forms.fval.usuario.value!= ""){
+				  var usu = document.forms.fval.usuario.value;
                     var parametros = {
                         "usu": usu
                     };
@@ -122,6 +123,10 @@
                         }
 
                     });
+				}else{
+				alert('Debe agregar el nombre de usuario');
+				}
+                  
                 }
             </script>
     </body>

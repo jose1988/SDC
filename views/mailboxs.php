@@ -134,10 +134,10 @@ if ($usu== "") {
                                             } else { 
 											        $areaBuzon="Externo";$sedeBuzon="Externo";
 													if(isset($resultadoLista->return->idatr->nombreatr)){
-														$areaBuzon=$resultadoLista->return[$i]->idatr->nombreatr;
+														$areaBuzon=$resultadoLista->return->idatr->nombreatr;
 													}
 													if(isset($resultadoLista->return->idatr->idsed->nombresed)){
-														$sedeBuzon=$resultadoLista->return[$i]->idatr->idsed->nombresed;
+														$sedeBuzon=$resultadoLista->return->idatr->idsed->nombresed;
 													}
 ?>
                                                     <tr>

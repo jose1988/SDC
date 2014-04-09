@@ -15,7 +15,8 @@ try {
     $client->decode_utf8 = false;
     $UsuarioRol = array('idusu' => $_SESSION["Usuario"]->return->idusu, 'sede' => $_SESSION["Sede"]->return->nombresed);
     $SedeRol = $client->consultarSedeRol($UsuarioRol);
-    $Sedes = $client->listarSedes();
+	$sedemia = array('idSede' => $_SESSION["Sede"]->return->idsed);
+    $Sedes = $client->listarSedesParaEnvio($sedemia);
     $usu = array('idusu' => $_SESSION["Usuario"]->return->idusu);
     $sede = array('idsed' => $_SESSION["Sede"]->return->idsed);
     $param = array('registroUsuario' => $usu,
@@ -25,6 +26,10 @@ try {
     $rowPrioridad = $client->listarPrioridad();
 	$origenbuz = array('idusu' => $_SESSION["Usuario"]->return->idusu, 'idsede' => $_SESSION["Sede"]->return->idsed);
     $propioBuzon = $client->consultarBuzonXUsuarioSede($origenbuz);
+	if (!isset($Sedes->return)) {
+        javaalert("Lo sentimos no se puede enviar correspondencia porque no hay sedes registradas,Consulte con el Administrador");
+        iraURL('../pages/inbox.php');
+    }
 	if (!isset($propioBuzon->return)) {
         javaalert("Lo sentimos no se puede enviar correspondencia porque no tiene el buzon creado,Consulte con el Administrador");
         iraURL('../pages/inbox.php');
