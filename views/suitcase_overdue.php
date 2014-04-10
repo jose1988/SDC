@@ -107,7 +107,7 @@ if (!isset($SedeRol->return)) {
                                                     ?>
                                                     <tr class="success">     
                                                         <td style='text-align:center'><?php echo $ValijasDestino->return->idval; ?></td>
-                                                        <td style='text-align:center'><?php echo $ValijasDestino->return->origenval->nombresed; ?></td>
+                                                        <td style='text-align:center'><?php echo $ValijasDestino->return->origenval; ?></td>
                                                         <td style='text-align:center'><?php echo $ValijasDestino->return->destinoval->nombresed; ?></td>
                                                         <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($ValijasDestino->return->fechaval, 0, 10))); ?></td>
                                                     </tr>   
@@ -117,7 +117,7 @@ if (!isset($SedeRol->return)) {
                                                         ?>
                                                         <tr class="success">     
                                                             <td style='text-align:center'><?php echo $ValijasDestino->return[$i]->idval; ?></td>
-                                                            <td style='text-align:center'><?php echo $ValijasDestino->return[$i]->origenval->nombresed; ?></td>
+                                                            <td style='text-align:center'><?php echo $ValijasDestino->return[$i]->origenval; ?></td>
                                                             <td style='text-align:center'><?php echo $ValijasDestino->return[$i]->destinoval->nombresed; ?></td>
                                                             <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($ValijasDestino->return[$i]->fechaval, 0, 10))); ?></td>
                                                         </tr>   
@@ -130,7 +130,7 @@ if (!isset($SedeRol->return)) {
                                                     ?>
                                                     <tr class="info">     
                                                         <td style='text-align:center'><?php echo $ValijasOrigen->return->idval; ?></td>
-                                                        <td style='text-align:center'><?php echo $ValijasOrigen->return->origenval->nombresed; ?></td>
+                                                        <td style='text-align:center'><?php echo $ValijasOrigen->return->origenval; ?></td>
                                                         <td style='text-align:center'><?php echo $ValijasOrigen->return->destinoval->nombresed; ?></td>
                                                         <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($ValijasOrigen->return->fechaval, 0, 10))); ?></td>
                                                     </tr>   
@@ -140,7 +140,7 @@ if (!isset($SedeRol->return)) {
                                                         ?>
                                                         <tr class="info">     
                                                             <td style='text-align:center'><?php echo $ValijasOrigen->return[$i]->idval; ?></td>
-                                                            <td style='text-align:center'><?php echo $ValijasOrigen->return[$i]->origenval->nombresed; ?></td>
+                                                            <td style='text-align:center'><?php echo $ValijasOrigen->return[$i]->origenval; ?></td>
                                                             <td style='text-align:center'><?php echo $ValijasOrigen->return[$i]->destinoval->nombresed; ?></td>
                                                             <td style='text-align:center'><?php echo date("d/m/Y", strtotime(substr($ValijasOrigen->return[$i]->fechaval, 0, 10))); ?></td>
                                                         </tr>   

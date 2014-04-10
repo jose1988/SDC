@@ -151,7 +151,7 @@ if (!isset($SedeRol->return)) {
                                                     ?>  
                                                 </tbody>
                                             </table>
-                                            <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>	
+                                            <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>	<br><br>
                                             <button class="btn" type="button" id="enviar" name="enviar" onClick="Paquete();">Seleccionar</button>										
 
                                             <?php

@@ -159,7 +159,7 @@ if (!isset($SedeRol->return)) {
                                                         $asunto = $PaquetesOrigen->return->asuntopaq;
                                                     }
                                                     if ($PaquetesOrigen->return->destinopaq->tipobuz == 0) {
-                                                        $nombrebuz = $PaquetesOrigen->return->destinopaq->idusubuz->nombreusu . " " . $PaquetesOrigen->return->destinopaq->idusubuz->apellidousu;
+                                                        $nombrebuz = $PaquetesOrigen->return->destinopaq->idusu->nombreusu . " " . $PaquetesOrigen->return->destinopaq->idusu->apellidousu;
                                                     } else {
                                                         $nombrebuz = $PaquetesOrigen->return->destinopaq->nombrebuz;
                                                     }
